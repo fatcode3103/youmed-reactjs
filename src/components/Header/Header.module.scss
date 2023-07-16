@@ -1,0 +1,120 @@
+.header-container {
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--height-header);
+    padding: 0 10px;
+}
+
+.header-logo {
+}
+
+.header-logo img {
+    width: 120px;
+}
+
+.header-text {
+}
+
+.header-appointment {
+    padding: 10px 26px;
+    font-size: 1.6rem;
+    font-weight: 500;
+    border-radius: 3px;
+    transition: all 0.3s linear;
+    margin-right: 10px;
+
+    &:hover{
+        cursor: pointer;
+        background-color: #f1f1f1;
+    }
+}
+
+.medical-staff-icon,
+.appointment-icon{
+    margin-left: 4px;
+    font-size: 1.2rem;
+}
+
+.header-advise {
+    padding: 10px 26px;
+    font-size: 1.6rem;
+    font-weight: 500;
+    border-radius: 3px;
+    transition: all 0.3s linear;
+    margin-right: 10px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #f1f1f1;
+    }
+}
+
+.header-store {
+    padding: 10px 26px;
+    font-size: 1.6rem;
+    font-weight: 500;
+    border-radius: 3px;
+    transition: all 0.3s linear;
+    margin-right: 10px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #f1f1f1;
+    }
+}
+
+.header-medical {
+    padding: 10px 26px;
+    font-size: 1.6rem;
+    font-weight: 500;
+    border-radius: 3px;
+    transition: all 0.3s linear;
+    margin-right: 10px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #f1f1f1;
+    }
+}
+
+.header-medical-staff{
+    padding: 10px 26px;
+    font-size: 1.5rem;
+    border-radius: 3px;
+    transition: all 0.2s linear;
+    margin-right: 10px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #f1f1f1;
+    }
+}
+
+.header-account {
+    
+}
+
+.btn-login{
+    outline: none;
+    background-color: #fff;
+    color: rgb(15, 123, 255);
+    font-size: 1.5rem;
+    font-weight: 500;
+    border: 1px solid rgb(15, 123, 255);
+    padding: 10px 16px;
+    border-radius: 3px;
+    transition: all 0.2s linear;
+
+    &:hover{
+        cursor: pointer;
+        background-color: rgb(15, 123, 255);
+        color: #fff;
+    }
+}
