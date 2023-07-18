@@ -1,30 +1,31 @@
+import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
+import styles from "./Login.module.scss";
 import { path } from "../../utils/contants";
 import * as actions from "../../app/actions";
-import "./Login.scss";
+import Button from "../Button";
+
+const cx = classNames.bind(styles);
 
 function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPass, setShowPass] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
+    const [clickLogin, setClickLogin] = useState(false);
 
     const { user: userState } = useSelector((state) => state);
     const dispatch = useDispatch();
 
     const { isLogin, loginErrorMessage } = userState;
 
-    useEffect(() => {
-        setErrorMessage(loginErrorMessage);
-    }, [loginErrorMessage]);
-
-    const handleLogin = async () => {
-        await dispatch(actions.loginAction({ email, password }, navigate));
+    const handleLogin = (e) => {
+        dispatch(actions.loginAction({ email, password }, navigate));
     };
 
     const handlePassword = () => {
@@ -39,76 +40,73 @@ function Login() {
 
     const handleChangeEmail = (e) => {
         setEmail(e.target.value);
-        setErrorMessage("");
     };
 
     const handleChangePassword = (e) => {
         setPassword(e.target.value);
-        setErrorMessage("");
     };
 
     return (
-        <div className="login-background">
-            <div className="login-container">
-                <div className="login-content row">
-                    <div className="col-12 text-center text-login">Login</div>
-                    <div className="col-12 form-group login-input">
-                        <label>Email:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Enter your email"
-                            value={email}
-                            onChange={(e) => handleChangeEmail(e)}
-                        />
-                    </div>
-                    <div className="col-12 form-group login-input">
-                        <label>Password:</label>
-                        <div className="custom-input-password">
-                            <input
-                                type={showPass ? "text" : "password"}
-                                className="form-control"
-                                placeholder="Enter your password"
-                                value={password}
-                                onChange={(e) => handleChangePassword(e)}
-                                onKeyDown={(e) => handleOnKeyDown(e)}
-                            />
-                            <span
-                                className="custom-pass"
-                                onClick={() => handlePassword()}
-                            >
-                                {showPass ? (
-                                    // <FontAwesomeIcon
-                                    //     className="show-pass"
-                                    //     icon={faEye}
-                                    // />
-                                    <span>show</span>
-                                ) : (
-                                    // <FontAwesomeIcon
-                                    //     className="hide-pass"
-                                    //     id={faEyeSlash}
-                                    // />
-                                    <span>hide</span>
-                                )}
-                            </span>
-                        </div>
-                    </div>
-                    <div className="col-12" style={{ color: "#ff1313" }}>
-                        {errorMessage}
-                    </div>
-                    <button className="btn-login" onClick={() => handleLogin()}>
-                        Login
-                    </button>
-                    <div className="col-12 sp">
-                        <span className="forgot-password">
-                            <span>Forgot your password</span>
-                        </span>
-                        <span className="help">
-                            <span>Help</span>
-                        </span>
-                    </div>
-                    <Link to={path.REGISTER}>Register</Link>
+        <div className={cx("login-container")}>
+            <div className={cx("login-content")}>
+                <div className={cx("input-group-lg")}>
+                    <label className={cx("mt-2")}>Email</label>
+                    <input
+                        type="text"
+                        className={cx("form-control p-2")}
+                        value={email}
+                        onChange={(e) => handleChangeEmail(e)}
+                        onKeyDown={(e) => handleOnKeyDown(e)}
+                    />
                 </div>
+                <div className={cx("input-group-lg mt-3 mb-4")}>
+                    <label>Mật khẩu</label>
+                    <input
+                        className={cx("form-control p-2")}
+                        type={showPass ? "text" : "password"}
+                        value={password}
+                        onChange={(e) => handleChangePassword(e)}
+                        onKeyDown={(e) => handleOnKeyDown(e)}
+                    />
+                    <span
+                        className={cx("custom-pass")}
+                        onClick={() => handlePassword()}
+                    >
+                        {showPass ? (
+                            <FontAwesomeIcon
+                                className={cx("show-pass")}
+                                icon={faEye}
+                            />
+                        ) : (
+                            <FontAwesomeIcon
+                                className={cx("hide-pass")}
+                                icon={faEyeSlash}
+                            />
+                        )}
+                    </span>
+                </div>
+
+                <div className={cx("more")}>
+                    <div class="form-check">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="flexCheckDefault"
+                        />
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Ghi nhớ mật khẩu
+                        </label>
+                    </div>
+                    <div>
+                        <span className={cx("forgot-password")}>
+                            <span>Quên mật khẩu ?</span>
+                        </span>
+                    </div>
+                </div>
+                <Button normal={true} onClick={(e) => handleLogin(e)}>
+                    Đăng nhập
+                </Button>
             </div>
         </div>
     );

@@ -19,7 +19,7 @@ export const userSlice = createSlice({
             state.isLogin = true;
             state.isLoading = false;
             state.currentUser = action.payload.data;
-            state.loginErrorMessage = action.payload.message;
+            state.loginErrorMessage = "";
         },
         loginFailed: (state, action) => {
             state.isLogin = false;

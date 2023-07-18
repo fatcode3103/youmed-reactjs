@@ -1,0 +1,60 @@
+.normal{
+    border: none;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    transition: all 0.2s linear;
+
+    &:hover{
+        cursor: pointer;
+        opacity: 0.8;
+        color: #fff;
+    }
+}
+
+.outline{
+    outline: none;
+    background-color: #fff;
+    color: rgb(15, 123, 255);
+    font-size: 1.5rem;
+    font-weight: 500;
+    border: 1px solid var(--primary-color);
+    padding: 10px 16px;
+    border-radius: 5px;
+    transition: all 0.2s linear;
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgb(15, 123, 255);
+        color: #fff;
+    }
+}
+
+.disabled{
+    pointer-events: none;
+    opacity: 0.4;
+    padding: 10px 16px;
+    border-radius: 5px;
+    background-color: #ccc;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.onlyLink{
+    &:hover{
+        cursor: pointer;
+        color: #000;
+    }
+}
+
+//size
+.s{
+    max-width: 200px;
+}
+
+.l{
+    min-width: 340px;
+}

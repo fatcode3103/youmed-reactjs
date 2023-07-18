@@ -1,0 +1,47 @@
+.login-footer {
+    margin: 0 120px;
+    font-size: 1.4rem;
+}
+
+.connection{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-icon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2.4rem;
+    color: #64748b ;
+}
+
+.social-icon-1,.social-icon-2,.social-icon-3,.social-icon-4{
+    transition: all 0.2s linear;
+    &:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+}
+
+.license{
+    display: flex;
+    align-items: center;
+}
+
+.license-1{
+    height: 30px;
+}
+.license-2 {
+    height: 30px;
+}
+
+.more-info{
+    margin-bottom: 50px;
+    font-size: 1.3rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

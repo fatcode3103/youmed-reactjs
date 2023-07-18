@@ -47,65 +47,7 @@ function Register() {
         setErrorMessage("");
     };
 
-    return (
-        <div className="login-background">
-            <div className="login-container">
-                <div className="login-content row">
-                    <div className="col-12 text-center text-login">Login</div>
-                    <div className="col-12 form-group login-input">
-                        <label>Email:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Enter your email"
-                            value={email}
-                            onChange={(e) => handleChangeEmail(e)}
-                        />
-                    </div>
-                    <div className="col-12 form-group login-input">
-                        <label>Password:</label>
-                        <div className="custom-input-password">
-                            <input
-                                type={showPass ? "text" : "password"}
-                                className="form-control"
-                                placeholder="Enter your password"
-                                value={password}
-                                onChange={(e) => handleChangePassword(e)}
-                                onKeyDown={(e) => handleOnKeyDown(e)}
-                            />
-                            <span
-                                className="custom-pass"
-                                onClick={() => handlePassword()}
-                            >
-                                {showPass ? (
-                                    // <FontAwesomeIcon
-                                    //     className="show-pass"
-                                    //     icon={faEye}
-                                    // />
-                                    <span>show</span>
-                                ) : (
-                                    // <FontAwesomeIcon
-                                    //     className="hide-pass"
-                                    //     id={faEyeSlash}
-                                    // />
-                                    <span>hide</span>
-                                )}
-                            </span>
-                        </div>
-                    </div>
-                    <div className="col-12" style={{ color: "#ff1313" }}>
-                        {errorMessage}
-                    </div>
-                    <button
-                        className="btn-register"
-                        onClick={() => handleRegister()}
-                    >
-                        Register
-                    </button>
-                </div>
-            </div>
-        </div>
-    );
+    return <div className="login-container">Register</div>;
 }
 
 export default Register;

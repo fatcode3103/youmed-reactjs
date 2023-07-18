@@ -2,6 +2,8 @@
     width: 100%;
     position: fixed;
     top: 0;
+    background-color: #fff;
+    z-index: 3;
 }
 
 .header-content {
@@ -10,29 +12,36 @@
     justify-content: space-between;
     height: var(--height-header);
     padding: 0 10px;
+    position: relative;
 }
 
 .header-logo {
+    width: 40%;
+    cursor: pointer;
 }
 
 .header-logo img {
-    width: 120px;
+    position: absolute;
+    width: 150px;
+    transform: translateY(-50%);
+    top: 50%;
 }
 
 .header-text {
+    width: 60%;
 }
 
 .header-appointment {
     padding: 10px 26px;
     font-size: 1.6rem;
     font-weight: 500;
-    border-radius: 3px;
-    transition: all 0.3s linear;
+    border-radius: 5px;
+    transition: all 0.2s linear;
     margin-right: 10px;
 
     &:hover{
         cursor: pointer;
-        background-color: #f1f1f1;
+        background-color: #ecf0f3;
     }
 }
 
@@ -46,13 +55,13 @@
     padding: 10px 26px;
     font-size: 1.6rem;
     font-weight: 500;
-    border-radius: 3px;
-    transition: all 0.3s linear;
+    border-radius: 5px;
+    transition: all 0.2s linear;
     margin-right: 10px;
 
     &:hover {
         cursor: pointer;
-        background-color: #f1f1f1;
+        background-color: #ecf0f3;
     }
 }
 
@@ -60,13 +69,13 @@
     padding: 10px 26px;
     font-size: 1.6rem;
     font-weight: 500;
-    border-radius: 3px;
-    transition: all 0.3s linear;
+    border-radius: 5px;
+    transition: all 0.2s linear;
     margin-right: 10px;
 
     &:hover {
         cursor: pointer;
-        background-color: #f1f1f1;
+        background-color: #ecf0f3;
     }
 }
 
@@ -74,31 +83,46 @@
     padding: 10px 26px;
     font-size: 1.6rem;
     font-weight: 500;
-    border-radius: 3px;
-    transition: all 0.3s linear;
+    border-radius: 5px;
+    transition: all 0.2s linear;
     margin-right: 10px;
 
     &:hover {
         cursor: pointer;
-        background-color: #f1f1f1;
+        background-color: #ecf0f3;
     }
 }
 
 .header-medical-staff{
     padding: 10px 26px;
     font-size: 1.5rem;
-    border-radius: 3px;
+    border-radius: 5px;
     transition: all 0.2s linear;
     margin-right: 10px;
 
     &:hover {
         cursor: pointer;
-        background-color: #f1f1f1;
+        background-color: #ecf0f3;
     }
 }
 
-.header-account {
-    
+//account
+.header-account{
+    width: 10%;
+}
+
+.acconut-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.img-account{
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 .btn-login{
@@ -109,7 +133,7 @@
     font-weight: 500;
     border: 1px solid rgb(15, 123, 255);
     padding: 10px 16px;
-    border-radius: 3px;
+    border-radius: 5px;
     transition: all 0.2s linear;
 
     &:hover{
@@ -117,4 +141,8 @@
         background-color: rgb(15, 123, 255);
         color: #fff;
     }
+}
+
+.link {
+    text-decoration: none;
 }

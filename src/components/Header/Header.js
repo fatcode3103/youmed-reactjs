@@ -2,65 +2,56 @@ import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import Tippy from "@tippyjs/react/headless";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { path } from "../../utils/contants";
 import styles from "./Header.module.scss";
-import logo from "../../assets/image/logo_youmed.svg";
-import { PanelAppointment, PanelUserInfo } from "../Panel";
-
-var _ = require("lodash");
+import Menu from "../Menu/Menu";
+import images from "../../assets/image";
+import Button from "../Button";
+import * as menuData from "../MenuData";
 
 const cx = classNames.bind(styles);
 
 function Header() {
+    const navigate = useNavigate();
+
     const { user: userState } = useSelector((state) => state);
     const dispatch = useDispatch();
 
     const { isLogin, currentUser } = userState;
 
-    const handleLoginBtn = () => {};
+    const handlebackToHome = () => {
+        navigate(path.HOME);
+    };
 
     return (
         <div className={cx("header-container")}>
             <div className={cx("header-content")}>
-                <div className={cx("header-logo")}>
-                    <img src={logo} alt="logo" />
+                <div
+                    className={cx("header-logo")}
+                    onClick={() => handlebackToHome()}
+                >
+                    <img src={images.logo} alt="logo" />
                 </div>
                 <div className={cx("header-text")}>
-                    <Tippy
-                        delay={[100, 100]}
-                        interactive={true}
-                        render={(attrs) => (
-                            <div className="box" tabIndex="-1" {...attrs}>
-                                <PanelAppointment />
-                            </div>
-                        )}
-                    >
+                    <Menu item={menuData.menuAppointment}>
                         <span className={cx("header-appointment")}>
-                            <span>Đăt khám</span>
+                            <span>Đặt khám</span>
                             <FontAwesomeIcon
                                 icon={faCaretDown}
                                 className={cx("appointment-icon")}
                             />
                         </span>
-                    </Tippy>
+                    </Menu>
 
                     <span className={cx("header-advise")}>
                         Tư vấn trực tuyến
                     </span>
                     <span className={cx("header-store")}>Cửa hàng</span>
                     <span className={cx("header-medical")}>Tin y tế</span>
-                    <Tippy
-                        delay={[100, 100]}
-                        interactive={true}
-                        render={(attrs) => (
-                            <div className="box" tabIndex="-1" {...attrs}>
-                                {/* <PanelUserInfo /> */}
-                            </div>
-                        )}
-                    >
+                    <Menu item={menuData.menuMedicalStaff}>
                         <span className={cx("header-medical-staff")}>
                             <span>Dành cho nhân viên Y tế</span>
                             <FontAwesomeIcon
@@ -68,38 +59,31 @@ function Header() {
                                 className={cx("medical-staff-icon")}
                             />
                         </span>
-                    </Tippy>
+                    </Menu>
                 </div>
-                <Tippy
-                    delay={[100, 100]}
-                    interactive={true}
-                    render={(attrs) => (
-                        <div className="box" tabIndex="-1" {...attrs}>
-                            {isLogin ? <PanelUserInfo /> : ""}
-                        </div>
-                    )}
-                >
-                    <div className={cx("header-account")}>
-                        {isLogin ? (
-                            <>
-                                <div>
+                <div className={cx("header-account")}>
+                    {isLogin ? (
+                        <>
+                            <Menu item={menuData.menuUserInfo}>
+                                <div className={cx("acconut-user")}>
+                                    <img
+                                        src={images.noImage}
+                                        alt="avatar"
+                                        className={cx("img-account")}
+                                    />
                                     <span>
                                         {currentUser.firstName}{" "}
                                         {currentUser.lastName}
                                     </span>
                                 </div>
-                            </>
-                        ) : (
-                            <Link
-                                to={path.LOGIN}
-                                onClick={() => handleLoginBtn()}
-                                className={cx("btn-login")}
-                            >
-                                Đăng nhập
-                            </Link>
-                        )}
-                    </div>
-                </Tippy>
+                            </Menu>
+                        </>
+                    ) : (
+                        <Button to={path.LOGIN} outline={true} size="s">
+                            Đăng nhập
+                        </Button>
+                    )}
+                </div>
             </div>
         </div>
     );

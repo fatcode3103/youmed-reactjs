@@ -17,7 +17,6 @@ function Home() {
 
     return (
         <div className={cx("home-container")}>
-            {console.log("check isLogin: >>>", isLogin)}
             <Header />
             <div className={cx("home-content")}>
                 <HomeHeader />
