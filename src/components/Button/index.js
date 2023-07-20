@@ -16,11 +16,21 @@ function Button(props) {
         disabled = false,
         onlyLink = false,
         className,
-        onClick: handleLogin,
+        onClick,
+        primary,
+        none,
         ...other
     } = props;
 
-    const prop = { onClick: handleLogin };
+    // custom classname
+    let obj = {};
+    Array.isArray(className) &&
+        className.forEach((item) => {
+            obj[item] = true;
+        });
+    //
+
+    const prop = { onClick };
 
     let Btn = "button";
 
@@ -30,6 +40,8 @@ function Button(props) {
     } else if (href) {
         prop.href = href;
         Btn = "a";
+    } else if (none) {
+        Btn = "div";
     }
 
     const classes = cx({
@@ -38,6 +50,8 @@ function Button(props) {
         outline: outline,
         disabled: disabled,
         onlyLink: onlyLink,
+        primary: primary,
+        ...obj,
     });
 
     return (

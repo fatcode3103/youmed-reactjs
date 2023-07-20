@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import PageNotFound from "../PageNotFound";
 import Header from "../Header";
@@ -9,6 +10,7 @@ import images from "../../assets/image";
 import Register from "./Register";
 import Login from "./Login";
 import Footer from "../Footer";
+import Loading from "../Loading";
 
 const cx = classNames.bind(styles);
 
@@ -19,15 +21,17 @@ function LoginPage() {
     const { user: userState } = useSelector((state) => state);
     const dispatch = useDispatch();
 
-    const { isLogin } = userState;
+    const { t } = useTranslation();
+
+    const { isLogin, isLoading } = userState;
 
     const tab = [
         {
-            title: "Đăng nhập",
+            title: t("login.login"),
             key: "t1",
         },
         {
-            title: "Đăng ký",
+            title: t("login.register"),
             key: "t2",
         },
     ];
@@ -42,40 +46,44 @@ function LoginPage() {
 
     return (
         <>
-            <Header />
             {!isLogin ? (
-                <div className={cx("login-container")}>
-                    <div className={cx("login-content")}>
-                        <div className={cx("login-image")}>
-                            <img src={images.imgLogin} alt="login-img" />
-                        </div>
-                        <div className={cx("form")}>
-                            <div className={cx("header")}>
-                                {tab.map((item, index) => {
-                                    return (
-                                        <div
-                                            className={cx("text", {
-                                                active: item.key === activeTab,
-                                            })}
-                                            key={index}
-                                            onClick={(e) =>
-                                                handelClickTab(e, item)
-                                            }
-                                        >
-                                            {item.title}
-                                        </div>
-                                    );
-                                })}
-                                <div
-                                    className={cx("line")}
-                                    style={lineStyle}
-                                ></div>
+                <>
+                    <Header />
+                    <div className={cx("login-container")}>
+                        {isLoading && <Loading />}
+                        <div className={cx("login-content")}>
+                            <div className={cx("login-image")}>
+                                <img src={images.imgLogin} alt="login-img" />
                             </div>
-                            {activeTab === "t1" ? <Login /> : <Register />}
+                            <div className={cx("form")}>
+                                <div className={cx("header")}>
+                                    {tab.map((item, index) => {
+                                        return (
+                                            <div
+                                                className={cx("text", {
+                                                    active:
+                                                        item.key === activeTab,
+                                                })}
+                                                key={index}
+                                                onClick={(e) =>
+                                                    handelClickTab(e, item)
+                                                }
+                                            >
+                                                {item.title}
+                                            </div>
+                                        );
+                                    })}
+                                    <div
+                                        className={cx("line")}
+                                        style={lineStyle}
+                                    ></div>
+                                </div>
+                                {activeTab === "t1" ? <Login /> : <Register />}
+                            </div>
                         </div>
+                        <Footer />
                     </div>
-                    <Footer />
-                </div>
+                </>
             ) : (
                 <PageNotFound />
             )}

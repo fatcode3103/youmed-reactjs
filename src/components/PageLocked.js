@@ -15,7 +15,9 @@ const PageLoked = () => (
             alt="not-found"
             className={cx("not-found-img")}
         />
-        <Link to={path.HOME}>Go Home</Link>
+        <Link to={path.HOME} style={{ fontSize: "2rem" }}>
+            Go Home
+        </Link>
     </div>
 );
 

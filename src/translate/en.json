@@ -1,0 +1,49 @@
+{
+    "home": {
+        "appointment": "Appointment",
+        "counseling": "Online counseling",
+        "medical_staff": "For medical staff",
+        "login": "Log in",
+        "store": "Store",
+        "medical_news": "Medical news",
+        "appointment_doctor": "Make an appointment to see a Doctor",
+        "appointment_no_waitting": "Book an appointment without waiting",
+        "hospital": "Book a Hospital",
+        "pay_result": "Book an exam, pay, get results",
+        "appointmnet_clinic": "Book a Clinic",
+        "diverse_specialties": "Diverse specialties and services",
+        "appointment_test": "Schedule a test",
+        "take_samples": "Take samples for testing at home",
+        "schedule": "Schedule",
+        "language": "Language",
+        "payment_history": "Payment history",
+        "profile": "Profile",
+        "login_system": "Go to the system",
+        "log_out": "Log out"
+    },
+    "user-manage": {
+        "add_new_user": "Add new user"
+    },
+    "toast": {
+        "current_language": "Current language",
+        "language_error": "Language switch error",
+        "logout_failed": "Logout failed",
+        "logout_successful": "Sign out successful",
+        "login_failed": "Login failed",
+        "welcome": "Welcome",
+        "post_user_success": "Create user successfully",
+        "post_user_failed": "Create user failed",
+        "delete_user_success": "Delete user successfully",
+        "delete_user_failed": "Delete user failed",
+        "edit_user_success": "Edit user success",
+        "edit_user_failed": "Edit user failed"
+    },
+    "login":{
+        "email": "Email",
+        "password": "Password",
+        "remember_password": "Remember password",
+        "forgot_password": "Forgot password",
+        "login": "Log in",
+        "register": "Register"
+    }
+}

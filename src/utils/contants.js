@@ -12,4 +12,10 @@ export const path = {
     SCHEDULE: "/schdule",
     PAYMENT_HISTORY: "/payment-history",
     PROFILE: "/profile",
+    USER_MANAGE: "/system/user-manage",
+};
+
+export const language = {
+    EN: "en",
+    VN: "vi",
 };

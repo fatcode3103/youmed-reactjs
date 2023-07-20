@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+    language: "en",
     isLogin: false,
     loginErrorMessage: "",
     currentUser: {},
@@ -39,6 +40,17 @@ export const userSlice = createSlice({
             state.isLogin = false;
             state.isLoading = false;
         },
+        //language
+        changeLanguageStart: (state, action) => {
+            state.isLoading = true;
+        },
+        changeLanguageSuccess: (state, action) => {
+            state.isLoading = false;
+            state.language = action.payload;
+        },
+        changeLanguageFailed: (state, action) => {
+            state.isLoading = false;
+        },
     },
 });
 
@@ -49,6 +61,9 @@ export const {
     logoutStart,
     logoutSuccess,
     logoutFailed,
+    changeLanguageStart,
+    changeLanguageSuccess,
+    changeLanguageFailed,
 } = userSlice.actions;
 
 export default userSlice.reducer;

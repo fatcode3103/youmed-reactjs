@@ -1,0 +1,49 @@
+{
+    "home": {
+        "appointment": "Đặt khám",
+        "counseling": "Tư vấn trực tuyến",
+        "medical_staff": "Dành cho nhân viên Y tế",
+        "login": "Đăng nhập",
+        "store": "Cửa hàng",
+        "medical_news": "Tin y tế",
+        "appointment_doctor": "Đặt lịch khám Bác sĩ",
+        "appointment_no_waitting": "Đặt lịch khám không chờ đợi",
+        "hospital": "Đặt lịch Bệnh viện",
+        "pay_result": "Đặt khám, thanh toán, nhận kết quả",
+        "appointmnet_clinic": "Đặt khám Phòng khám",
+        "diverse_specialties": "Đa dạng chuyên khoa và dịch vụ",
+        "appointment_test": "Đặt lịch xét nghiệm",
+        "take_samples": "Lấy mẫu xét nghiệm tại nhà",
+        "schedule": "Lịch Khám",
+        "language": "Ngôn ngữ",
+        "payment_history": "Lịch sử thanh toán",
+        "profile": "Hồ sơ",
+        "login_system": "Đi đến hệ thống",
+        "log_out": "Đăng xuất"
+    },
+    "user-manage": {
+        "add_new_user": "Thêm người dùng mới"
+    },
+    "toast":{
+        "current_language": "Ngôn ngữ hiện tại",
+        "language_error": "Lỗi chuyển đổi ngôn ngữ",
+        "logout_failed": "Đăng xuất thất bại",
+        "logout_successful": "Đăng xuất thành công",
+        "login_failed": "Đăng nhập thất bại",
+        "welcome": "Xin chào",
+        "post_user_success": "Tạo người dùng thành công",
+        "post_user_failed": "Tạo người dùng thất bại",
+        "delete_user_success": "Xóa người dùng thành công",
+        "delete_user_failed": "Xóa người dùng thất bại",
+        "edit_user_success": "Sửa thông tin người dùng thành công",
+        "edit_user_failed": "Sửa thông tin người dùng thất bại"
+    },
+    "login":{
+        "email": "Địa chỉ email",
+        "password": "Mật khẩu",
+        "remember_password": "Ghi nhớ mật khẩu",
+        "forgot_password": "Quên mật khẩu",
+        "login": "Đăng nhập",
+        "register": "Đăng ký"
+    }
+}

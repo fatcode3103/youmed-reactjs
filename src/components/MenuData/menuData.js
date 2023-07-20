@@ -1,24 +1,30 @@
-import { path } from "../../utils/contants";
+import { Translation } from "react-i18next";
+
+import { path, language } from "../../utils/contants";
 
 export const menuAppointment = [
     {
-        title: "Đặt lịch khám Bác sĩ",
-        text: "Đặt lịch khám không chờ đợi",
+        title: <Translation>{(t) => t("home.appointment_doctor")}</Translation>,
+        text: (
+            <Translation>
+                {(t) => t("home.appointment_no_waitting")}
+            </Translation>
+        ),
         to: path.DOCTOR_APPOINTMENT,
     },
     {
-        title: "Đặt lịch Bệnh viện",
-        text: "Đặt khám, thanh toán, nhận kết quả",
+        title: <Translation>{(t) => t("home.hospital")}</Translation>,
+        text: <Translation>{(t) => t("home.pay_result")}</Translation>,
         to: path.HOSPITAL_APPOINTMENT,
     },
     {
-        title: "Đặt khám Phòng khám",
-        text: "Đa dạng chuyên khoa và dịch vụ",
+        title: <Translation>{(t) => t("home.appointmnet_clinic")}</Translation>,
+        text: <Translation>{(t) => t("home.diverse_specialties")}</Translation>,
         to: path.CLINIC_APPOINTMENT,
     },
     {
-        title: "Đặt lịch xét nghiệm",
-        text: "Lấy mẫu xét nghiệm tại nhà",
+        title: <Translation>{(t) => t("home.appointment_test")}</Translation>,
+        text: <Translation>{(t) => t("home.take_samples")}</Translation>,
         to: path.TEST_APPOINTMENT,
     },
 ];
@@ -40,23 +46,42 @@ export const menuMedicalStaff = [
 
 export const menuUserInfo = [
     {
-        title: "Lịch Khám",
+        title: <Translation>{(t) => t("home.schedule")}</Translation>,
         to: path.SCHEDULE,
     },
     {
-        title: "Lịch sử thanh toán",
+        title: <Translation>{(t) => t("home.language")}</Translation>,
+        key: "none",
+        menuSub: {
+            title: <Translation>{(t) => t("home.language")}</Translation>,
+            data: [
+                {
+                    title: "English",
+                    code: language.EN,
+                    key: "none",
+                },
+                {
+                    title: "Vietnamese",
+                    code: language.VN,
+                    key: "none",
+                },
+            ],
+        },
+    },
+    {
+        title: <Translation>{(t) => t("home.payment_history")}</Translation>,
         to: path.PAYMENT_HISTORY,
     },
     {
-        title: "Hồ sơ",
+        title: <Translation>{(t) => t("home.profile")}</Translation>,
         to: path.PROFILE,
     },
     {
-        title: "Đăng nhập vào hệ thống",
+        title: <Translation>{(t) => t("home.login_system")}</Translation>,
         to: path.SYSTEM,
     },
     {
-        title: "Thoát",
+        title: <Translation>{(t) => t("home.log_out")}</Translation>,
         key: "logout",
         to: path.HOME,
     },

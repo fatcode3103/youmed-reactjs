@@ -1,48 +1,87 @@
+import { Translation } from "react-i18next";
 import { toast } from "react-toastify";
 
-import { getUserApi, postLoginApi } from "../../services/userService";
-import {
-    loginStart,
-    loginSuccess,
-    loginFailed,
-    logoutStart,
-    logoutSuccess,
-    logoutFailed,
-} from "../../features/user/userSlice";
+import { postLoginApi } from "../../services/userService";
+import * as userAction from "../../features/user/userSlice";
 import { path } from "../../utils/contants";
 
 export const loginAction = (userData, navigate) => {
     return async (dispatch) => {
-        dispatch(loginStart());
+        dispatch(userAction.loginStart());
         try {
             let res = await postLoginApi(userData);
             let { data, message } = res.data;
             if (res && res.data.errorCode === 0) {
-                dispatch(loginSuccess({ data }));
+                dispatch(userAction.loginSuccess({ data }));
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.welcome")} {data.firstName}{" "}
+                                {data.lastName} !
+                            </span>
+                        )}
+                    </Translation>
+                );
                 navigate(path.HOME);
-                console.log("data.firstName: ", data.firstName);
-                toast.success(`Xin chào ${data.firstName} ${data.lastName} !`);
             } else {
-                dispatch(loginFailed({ message }));
                 toast.error(message);
+                dispatch(userAction.loginFailed({ message }));
             }
         } catch (e) {
-            dispatch(loginFailed());
-            toast.error("Đăng nhập thất bại !");
+            toast.error(
+                <Translation>
+                    {(t) => <span>{t("toast.login_failed")} !</span>}
+                </Translation>
+            );
+            dispatch(userAction.loginFailed());
         }
     };
 };
 
 export const logoutAction = (navigate) => {
     return async (dispatch) => {
-        dispatch(logoutStart());
+        dispatch(userAction.logoutStart());
         try {
-            dispatch(logoutSuccess());
+            dispatch(userAction.logoutSuccess());
+            toast.success(
+                <Translation>
+                    {(t) => <span>{t("toast.logout_successful")} !</span>}
+                </Translation>
+            );
             navigate(path.HOME);
-            toast.success("Đăng xuất thành công !");
         } catch (e) {
-            dispatch(logoutFailed());
-            toast.error("Đăng xuất thất bại !");
+            toast.error(
+                <Translation>
+                    {(t) => <span>{t("toast.logout_failed")} !</span>}
+                </Translation>
+            );
+            dispatch(userAction.logoutFailed());
+        }
+    };
+};
+
+export const changeLanguageAction = (code, title) => {
+    return async (dispatch) => {
+        dispatch(userAction.changeLanguageStart());
+        try {
+            dispatch(userAction.changeLanguageSuccess(code));
+            toast.success(
+                <Translation>
+                    {(t) => (
+                        <span>
+                            {t("toast.current_language")}: {title}
+                        </span>
+                    )}
+                </Translation>
+            );
+        } catch (e) {
+            dispatch(userAction.changeLanguageFailed());
+            toast.error(
+                <Translation>
+                    {(t) => <span>{t("toast.language_error")} !</span>}
+                </Translation>
+            );
         }
     };
 };

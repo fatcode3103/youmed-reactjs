@@ -50,6 +50,10 @@
     }
 }
 
+.primary{
+    background-color: var(--primary-color);
+}
+
 //size
 .s{
     max-width: 200px;
@@ -57,4 +61,22 @@
 
 .l{
     min-width: 340px;
+}
+
+
+//
+.mb-4{
+    margin-bottom: 4rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.ml-2{
+    margin-left: 2rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
 }

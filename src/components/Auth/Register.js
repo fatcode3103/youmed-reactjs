@@ -19,33 +19,33 @@ function Register() {
 
     const { isLogin, loginErrorMessage } = userState;
 
-    useEffect(() => {
-        setErrorMessage(loginErrorMessage);
-    }, [loginErrorMessage]);
+    // useEffect(() => {
+    //     setErrorMessage(loginErrorMessage);
+    // }, [loginErrorMessage]);
 
-    const handleRegister = async () => {
-        await dispatch(actions.login({ email, password }, navigate));
-    };
+    // const handleRegister = () => {
+    //     dispatch(actions.loginAction({ email, password }, navigate));
+    // };
 
-    const handlePassword = () => {
-        setShowPass(!showPass);
-    };
+    // const handlePassword = () => {
+    //     setShowPass(!showPass);
+    // };
 
-    const handleOnKeyDown = (e) => {
-        if (e.key === "Enter") {
-            handleRegister();
-        }
-    };
+    // const handleOnKeyDown = (e) => {
+    //     if (e.key === "Enter") {
+    //         handleRegister();
+    //     }
+    // };
 
-    const handleChangeEmail = (e) => {
-        setEmail(e.target.value);
-        setErrorMessage("");
-    };
+    // const handleChangeEmail = (e) => {
+    //     setEmail(e.target.value);
+    //     setErrorMessage("");
+    // };
 
-    const handleChangePassword = (e) => {
-        setPassword(e.target.value);
-        setErrorMessage("");
-    };
+    // const handleChangePassword = (e) => {
+    //     setPassword(e.target.value);
+    //     setErrorMessage("");
+    // };
 
     return <div className="login-container">Register</div>;
 }
