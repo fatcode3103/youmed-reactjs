@@ -19,10 +19,20 @@
         "payment_history": "Lịch sử thanh toán",
         "profile": "Hồ sơ",
         "login_system": "Đi đến hệ thống",
-        "log_out": "Đăng xuất"
+        "log_out": "Đăng xuất",
+        "header": {
+            "title": "Ứng dụng Đặt khám",
+            "text": "Đặt khám Bác sĩ, Bệnh viện, Phòng khám trên YouMed để có số thứ tự và khung giờ khám trước",
+            "search": "Symptoms, doctors, hospitals,..."
+        }
+
     },
-    "user-manage": {
-        "add_new_user": "Thêm người dùng mới"
+    "system": {
+        "user_manage": "Quản lý người dùng"
+    },
+    "user_manage": {
+        "add_new_user": "Thêm người dùng mới",
+        "preview": "Nhấp để xem trước"
     },
     "toast":{
         "current_language": "Ngôn ngữ hiện tại",

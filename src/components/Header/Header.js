@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faLanguage } from "@fortawesome/free-solid-svg-icons";
@@ -6,14 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { path, language } from "../../utils/contants";
+import { path, language as LANGUAGE } from "../../utils/contants";
 import styles from "./Header.module.scss";
 import Menu from "../Menu/Menu";
 import images from "../../assets/image";
 import Button from "../Button";
-// import MenuAppointment from "../Menu/MenuAppointment";
-// import MenuStaff from "../Menu/MenuStaff";
-// import MenuUser from "../Menu/MenuUser";
 
 import {
     menuAppointment,
@@ -26,21 +22,21 @@ const cx = classNames.bind(styles);
 function Header(props) {
     const navigate = useNavigate();
     const { t } = useTranslation();
-
-    const { user: userState } = useSelector((state) => state);
+    const { avatarBase64 } = props;
+    const userState = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
-    const { isLogin, currentUser } = userState;
+    const { isLogin, currentUser, language } = userState;
 
     const menuLanguage = [
         {
             title: "English",
-            code: language.EN,
+            code: LANGUAGE.EN,
             key: "none",
         },
         {
             title: "Vietnamese",
-            code: language.VN,
+            code: LANGUAGE.VN,
             key: "none",
         },
     ];
@@ -94,14 +90,25 @@ function Header(props) {
                             <Menu item={menuUserInfo}>
                                 <div className={cx("acconut-user")}>
                                     <img
-                                        src={images.noImage}
+                                        src={
+                                            avatarBase64
+                                                ? avatarBase64
+                                                : images.noImage
+                                        }
                                         alt="avatar"
                                         className={cx("img-account")}
                                     />
-                                    <span>
-                                        {currentUser.firstName}{" "}
-                                        {currentUser.lastName}
-                                    </span>
+                                    {language === LANGUAGE.VN ? (
+                                        <span>
+                                            {currentUser.lastName}{" "}
+                                            {currentUser.firstName}
+                                        </span>
+                                    ) : (
+                                        <span>
+                                            {currentUser.firstName}{" "}
+                                            {currentUser.lastName}
+                                        </span>
+                                    )}
                                 </div>
                             </Menu>
                         </>

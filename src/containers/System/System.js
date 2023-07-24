@@ -11,7 +11,7 @@ import HeaderSystem from "../../components/Header/HeaderSystem";
 const cx = classNames.bind(styles);
 
 function System() {
-    const { user: userState } = useSelector((state) => state);
+    const userState = useSelector((state) => state.user);
 
     const { currentUser, isLogin } = userState;
     const navigate = useNavigate();

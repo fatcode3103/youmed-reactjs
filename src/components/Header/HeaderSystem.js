@@ -3,8 +3,9 @@ import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-import { path } from "../../utils/contants";
+import { path, language as LANGUAGE } from "../../utils/contants";
 import Menu from "../Menu/Menu";
 import images from "../../assets/image";
 import MenuUser from "../Menu/MenuUser";
@@ -14,11 +15,11 @@ const cx = classNames.bind(styles);
 
 function HeaderSystem() {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
-    const { user: userState } = useSelector((state) => state);
-    const dispatch = useDispatch();
+    const userState = useSelector((state) => state.user);
 
-    const { isLogin, currentUser } = userState;
+    const { currentUser, language } = userState;
 
     const handlebackToHomeSystem = () => {
         navigate(path.SYSTEM);
@@ -36,7 +37,7 @@ function HeaderSystem() {
                 <div className={cx("header-text")}>
                     <Link to={path.USER_MANAGE}>
                         <span className={cx("user-manage")}>
-                            <span>Quản lý người dùng</span>
+                            <span>{t("system.user_manage")}</span>
                         </span>
                     </Link>
                 </div>
@@ -48,9 +49,17 @@ function HeaderSystem() {
                                 alt="avatar"
                                 className={cx("img-account")}
                             />
-                            <span>
-                                {currentUser.firstName} {currentUser.lastName}
-                            </span>
+                            {language === LANGUAGE.VN ? (
+                                <span>
+                                    {currentUser.lastName}{" "}
+                                    {currentUser.firstName}
+                                </span>
+                            ) : (
+                                <span>
+                                    {currentUser.firstName}{" "}
+                                    {currentUser.lastName}
+                                </span>
+                            )}
                         </div>
                     </Menu>
                 </div>

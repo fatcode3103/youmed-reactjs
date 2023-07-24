@@ -1,0 +1,36 @@
+.download-app-container{
+    margin: 50px 0px 100px 0px;
+}
+
+.download-app-content{
+    padding: 0 120px;
+    background: linear-gradient(90deg,#1975dc, #3f8ce2);
+    max-height: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content-left{
+    color: #fff;
+    padding: 30px 0px;
+}
+
+.content-left h1{
+    font-size: 4rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.content-left p{
+    margin-bottom: 20px;
+}
+
+.content-left p span{
+    margin-left: 4px;
+}
+
+.download-logo a{
+    margin-right: 20px;
+}
+

@@ -11,22 +11,24 @@ import HeaderSystem from "../../../components/Header/HeaderSystem";
 import Loading from "../../../components/Loading";
 import ModalUser from "../Admin/ModalUser";
 import Button from "../../../components/Button";
+import BufferToBase64 from "../../../utils/BufferToBase64";
 
 const cx = classNames.bind(styles);
 
 function UserManage() {
     const { t } = useTranslation();
     const [isData, setIsData] = useState(false);
-    const [idEdit, setIdEdit] = useState("");
+    const [bufferToBase64, setBufferToBase64] = useState("");
     const [refresh, setRefresh] = useState(false);
     const [isShow, setIsShow] = useState(false);
-    const { admin: adminState } = useSelector((state) => state);
+    const adminState = useSelector((state) => state.admin);
     const dispatch = useDispatch();
 
     const { isLoading, allUser, userById: currentUserByIdEdit } = adminState;
 
     useEffect(() => {
         dispatch(actions.getAllUserAction());
+        console.log("123");
     }, [dispatch, refresh]);
 
     const render = () => {
@@ -42,9 +44,9 @@ function UserManage() {
     //edit
     const handleEditUserClick = (user) => {
         dispatch(actions.getUserByIdAction(user.id));
+        setBufferToBase64(BufferToBase64(user.image.data));
         handleOpenModal();
         setIsData(true);
-        setIdEdit(user.id);
     };
 
     const handleOpenModal = () => {
@@ -66,12 +68,12 @@ function UserManage() {
             <HeaderSystem />
             <div className={cx("user-manage-container")}>
                 <ModalUser
+                    render={render}
+                    bufferToBase64={bufferToBase64}
                     isData={isData}
                     isShow={isShow}
                     handleCloseModal={handleCloseModal}
-                    render={render}
                     currentUserByIdEdit={currentUserByIdEdit}
-                    idEdit={idEdit}
                 />
 
                 <Button
@@ -82,7 +84,7 @@ function UserManage() {
                     }}
                     normal
                 >
-                    + {t("user-manage.add_new_user")}
+                    + {t("user_manage.add_new_user")}
                 </Button>
                 <table className={cx("user-manage-tabel")}>
                     <thead>

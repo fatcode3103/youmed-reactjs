@@ -19,10 +19,19 @@
         "payment_history": "Payment history",
         "profile": "Profile",
         "login_system": "Go to the system",
-        "log_out": "Log out"
+        "log_out": "Log out",
+        "header": {
+            "title": "Medical Booking Application",
+            "text": "Book Doctors, Hospitals, Clinics on YouMed for the order number and time frame of the previous examination",
+            "search": "Symptoms, doctors, hospitals,..."
+        }
     },
-    "user-manage": {
-        "add_new_user": "Add new user"
+    "system": {
+        "user_manage": "User management"
+    },
+    "user_manage": {
+        "add_new_user": "Add new user",
+        "preview": "Click to preview"
     },
     "toast": {
         "current_language": "Current language",

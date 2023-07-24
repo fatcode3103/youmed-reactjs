@@ -18,7 +18,7 @@ function LoginPage() {
     const [lineStyle, setLineStyle] = useState({});
     const [activeTab, setActiveTab] = useState("t1");
 
-    const { user: userState } = useSelector((state) => state);
+    const userState = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
     const { t } = useTranslation();

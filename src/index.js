@@ -7,6 +7,9 @@ import { Provider } from "react-redux";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import "./i18n";
+import "react-photo-view/dist/react-photo-view.css";
+import "../node_modules/slick-carousel/slick/slick.css";
+import "../node_modules/slick-carousel/slick/slick-theme.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import GlobalStyle from "./components/GlobalStyle";

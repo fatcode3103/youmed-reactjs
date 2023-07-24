@@ -1,12 +1,13 @@
 @import "normalize.css";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
-:root{
+:root{ 
     --height-header: 58px;
     --primary-color: #1975dc;
     --hover-backgroud: #f1f5f9;
     --edit-color: rgb(252, 197, 0);
     --delete-color: #ec4134;
+    --text-color: #1F2937;
 }
 
 *{
@@ -20,6 +21,7 @@ html{
 }
 
 body{
+    overflow-x: hidden;
     font-size: 1.6rem;
     line-height: 1.5;
     font-family: 'Roboto', sans-serif;

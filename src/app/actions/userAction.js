@@ -17,8 +17,11 @@ export const loginAction = (userData, navigate) => {
                     <Translation>
                         {(t) => (
                             <span>
-                                {t("toast.welcome")} {data.firstName}{" "}
-                                {data.lastName} !
+                                {t("toast.welcome")}{" "}
+                                <span style={{ color: "#1975dc" }}>
+                                    {data.firstName} {data.lastName}
+                                </span>{" "}
+                                !
                             </span>
                         )}
                     </Translation>

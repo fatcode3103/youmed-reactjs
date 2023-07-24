@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import classNames from "classnames/bind";
@@ -10,17 +10,23 @@ import styles from "./ModalUser.module.scss";
 import { UseForm, UseValidate } from "../../../components/CustomHook";
 import { toast } from "react-toastify";
 import { language as LANGUAGE } from "../../../utils/contants";
+import PhotoProvider from "../../../components/PhotoProvider";
 
 const cx = classNames.bind(styles);
 
 function ModalUser(props) {
-    const { render, currentUserByIdEdit, isShow, handleCloseModal, isData } =
-        props;
+    const {
+        currentUserByIdEdit,
+        isShow,
+        handleCloseModal,
+        isData,
+        bufferToBase64,
+        render,
+    } = props;
     const { t } = useTranslation();
 
-    const { admin: adminState, user: userState } = useSelector(
-        (state) => state
-    );
+    const adminState = useSelector((state) => state.admin);
+    const userState = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
     const {
@@ -41,9 +47,12 @@ function ModalUser(props) {
         gender: "",
         position: "",
         role: "",
+        img: null,
+        preview: "",
     };
 
-    const [form, setForm, handleOnChangeInput, resetForm] = UseForm(initState);
+    const [form, setForm, handleOnChangeInput, handleOnChangeImg, resetForm] =
+        UseForm(initState);
 
     const {
         email,
@@ -55,6 +64,8 @@ function ModalUser(props) {
         gender,
         position,
         role,
+        img,
+        preview,
     } = form;
 
     useEffect(() => {
@@ -76,6 +87,8 @@ function ModalUser(props) {
                 gender: currentUserByIdEdit.gender,
                 position: currentUserByIdEdit.positionId,
                 role: currentUserByIdEdit.roleId,
+                img: currentUserByIdEdit.image,
+                preview: bufferToBase64,
             });
         } else {
             setForm(initState);
@@ -91,8 +104,8 @@ function ModalUser(props) {
             dispatch(actions.postUserAction(data));
             handleCloseModal();
             resetForm();
+            render();
         }
-        render();
     };
 
     const handleUpdateUser = () => {
@@ -104,8 +117,8 @@ function ModalUser(props) {
             dispatch(actions.editUserAction(data));
             handleCloseModal();
             resetForm();
+            render();
         }
-        render();
     };
 
     const handleClose = () => {
@@ -132,6 +145,7 @@ function ModalUser(props) {
                                 name="email"
                                 value={email}
                                 type="email"
+                                disabled={isData}
                                 className={cx("form-control form-control-lg")}
                             />
                         </div>
@@ -158,6 +172,7 @@ function ModalUser(props) {
                         <div className={cx("col-3")}>
                             <label>Password</label>
                             <input
+                                disabled={isData}
                                 onChange={(e) => handleOnChangeInput(e)}
                                 value={password}
                                 name="password"
@@ -267,9 +282,22 @@ function ModalUser(props) {
                         <div className={cx("col-3")}>
                             <label>Avatar</label>
                             <input
+                                onChange={(e) => {
+                                    handleOnChangeImg(e);
+                                }}
                                 type="file"
                                 className={cx("form-control form-control-lg")}
                             />
+                            <div className={cx("preview")}>
+                                <span>{t("user_manage.preview")}: </span>
+                                <PhotoProvider src={preview ? preview : ""}>
+                                    <img
+                                        src={preview ? preview : ""}
+                                        alt=""
+                                        className={cx("img-preview")}
+                                    />
+                                </PhotoProvider>
+                            </div>
                         </div>
                     </div>
                 </Modal.Body>

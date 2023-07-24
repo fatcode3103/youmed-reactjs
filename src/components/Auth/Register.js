@@ -8,16 +8,16 @@ import * as actions from "../../app/actions";
 import styles from "./Register.module.scss";
 
 function Register() {
-    const navigate = useNavigate();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [showPass, setShowPass] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
+    // const navigate = useNavigate();
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
+    // const [showPass, setShowPass] = useState(false);
+    // const [errorMessage, setErrorMessage] = useState("");
 
-    const { user: userState } = useSelector((state) => state);
-    const dispatch = useDispatch();
+    // const userState = useSelector((state) => state.user);
+    // const dispatch = useDispatch();
 
-    const { isLogin, loginErrorMessage } = userState;
+    // const { isLogin, loginErrorMessage } = userState;
 
     // useEffect(() => {
     //     setErrorMessage(loginErrorMessage);
