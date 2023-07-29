@@ -3,23 +3,21 @@ import classNames from "classnames/bind";
 import { useSelector, useDispatch } from "react-redux";
 
 import * as actions from "../../app/actions";
-import styles from "./Home.module.scss";
+import styles from "./Booking.module.scss";
 import Header from "../../components/Header";
+import BookingHomeHeader from "./BookingHomeHeader/BookingHomeHeader";
 import BufferToBase64 from "../../utils/BufferToBase64";
-import HomeHeader from "./HomeHeader";
-import DoctorSection from "./DoctorSection";
-import HospitalSection from "./HospitalSection";
-import ClinicSection from "./ClinicSection";
-import SpecialtySection from "./SpecialtySection";
-import MedicalSection from "./MedicalSection";
-import Expert from "./Expert";
-import AboutSection from "./AboutSection";
-import DownloadAppSection from "./DownloadAppSection";
+import DoctorSection from "../../containers/Home/DoctorSection";
+import HospitalSection from "../../containers/Home/HospitalSection";
+import ClinicSection from "../../containers/Home/ClinicSection";
+import SpecialtySection from "../../containers/Home/SpecialtySection";
+import AboutSection from "../../containers/Home/AboutSection";
+import DownloadAppSection from "../../containers/Home/DownloadAppSection";
 import Footer from "../../components/Footer";
 
 const cx = classNames.bind(styles);
 
-function Home() {
+function Booking() {
     const userState = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
@@ -34,16 +32,14 @@ function Home() {
     }, []);
 
     return (
-        <div className={cx("home-container")}>
+        <div className={cx("booking-container")}>
             <Header avatarBase64={avatarBase64} />
-            <div className={cx("home-content")}>
-                <HomeHeader />
+            <div className={cx("booking-content")}>
+                <BookingHomeHeader />
                 <DoctorSection />
                 <HospitalSection />
                 <ClinicSection />
                 <SpecialtySection />
-                <MedicalSection />
-                <Expert />
                 <AboutSection />
                 <DownloadAppSection />
                 <Footer />
@@ -52,4 +48,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Booking;

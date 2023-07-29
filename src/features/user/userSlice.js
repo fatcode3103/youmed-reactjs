@@ -3,9 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     language: "en",
     isLogin: false,
-    loginErrorMessage: "",
     currentUser: {},
     isLoading: false,
+    allDoctor: [],
+    doctorById: {},
 };
 
 export const userSlice = createSlice({
@@ -20,12 +21,10 @@ export const userSlice = createSlice({
             state.isLogin = true;
             state.isLoading = false;
             state.currentUser = action.payload.data;
-            state.loginErrorMessage = "";
         },
         loginFailed: (state, action) => {
             state.isLogin = false;
             state.isLoading = false;
-            state.loginErrorMessage = action.payload.message;
         },
         //logout
         logoutStart: (state, action) => {
@@ -51,6 +50,28 @@ export const userSlice = createSlice({
         changeLanguageFailed: (state, action) => {
             state.isLoading = false;
         },
+        //all doctor
+        getAllDoctorStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getAllDoctorSuccess: (state, action) => {
+            state.isLoading = false;
+            state.allDoctor = action.payload;
+        },
+        getAllDoctorFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //doctor by id
+        getDoctorByIdStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getDoctorByIdSuccess: (state, action) => {
+            state.isLoading = false;
+            state.doctorById = action.payload;
+        },
+        getDoctorByIdFailed: (state, action) => {
+            state.isLoading = false;
+        },
     },
 });
 
@@ -64,6 +85,12 @@ export const {
     changeLanguageStart,
     changeLanguageSuccess,
     changeLanguageFailed,
+    getAllDoctorStart,
+    getAllDoctorSuccess,
+    getAllDoctorFailed,
+    getDoctorByIdStart,
+    getDoctorByIdSuccess,
+    getDoctorByIdFailed,
 } = userSlice.actions;
 
 export default userSlice.reducer;

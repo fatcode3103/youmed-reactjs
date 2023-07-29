@@ -7,6 +7,7 @@ const initialState = {
     role: [],
     position: [],
     userById: {},
+    doctorDetailInfo: {},
 };
 
 export const adminSlice = createSlice({
@@ -77,6 +78,38 @@ export const adminSlice = createSlice({
         editUserFailed: (state, action) => {
             state.isLoading = false;
         },
+        //post doctor info
+        postDoctorInfoByIdStart: (state, action) => {
+            state.isLoading = true;
+        },
+        postDoctorInfoByIdSuccess: (state, action) => {
+            state.isLoading = false;
+        },
+        postDoctorInfoByIdFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //get doctor detail info
+        getDoctorDetailInfoStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getDoctorDetailInfoSuccess: (state, action) => {
+            state.isLoading = false;
+            state.doctorDetailInfo = action.payload;
+        },
+        getDoctorDetailInfoFailed: (state, action) => {
+            state.isLoading = false;
+            state.doctorDetailInfo = {};
+        },
+        //update doctor detail info
+        putDoctorDetailInfoStart: (state, action) => {
+            state.isLoading = true;
+        },
+        putDoctorDetailInfoSuccess: (state, action) => {
+            state.isLoading = false;
+        },
+        putDoctorDetailInfoFailed: (state, action) => {
+            state.isLoading = false;
+        },
     },
 });
 
@@ -99,6 +132,15 @@ export const {
     editUserStart,
     editUserSuccess,
     editUserFailed,
+    postDoctorInfoByIdStart,
+    postDoctorInfoByIdSuccess,
+    postDoctorInfoByIdFailed,
+    getDoctorDetailInfoStart,
+    getDoctorDetailInfoSuccess,
+    getDoctorDetailInfoFailed,
+    putDoctorDetailInfoStart,
+    putDoctorDetailInfoSuccess,
+    putDoctorDetailInfoFailed,
 } = adminSlice.actions;
 
 export default adminSlice.reducer;

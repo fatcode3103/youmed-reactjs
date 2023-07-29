@@ -1,19 +1,18 @@
-function UseValidate(data) {
+function UseValidate(data, omitted) {
     let isValidate = true;
     let errMessage = "";
     for (const property in data) {
-        if (property === "img" || property === "preview") {
+        if (omitted.includes(property)) {
             continue;
         }
         if (!data[property]) {
             isValidate = false;
             errMessage = `Missing parameter: ${property}`;
-            console.log(errMessage);
             break;
         }
     }
 
-    return [isValidate, errMessage];
+    return { isValidate, errMessage };
 }
 
 export default UseValidate;

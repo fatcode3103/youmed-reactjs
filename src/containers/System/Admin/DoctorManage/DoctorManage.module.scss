@@ -1,0 +1,16 @@
+.doctor-manage-content{
+    padding: calc(30px + var(--height-header)) 50px 10px;
+}
+
+h1{
+    text-align: center;
+}   
+
+.form{
+    margin-top: 50px;
+}
+
+.note, .introduction, .traning-process, .experience{
+    display: flex;
+    flex-direction: column;
+}

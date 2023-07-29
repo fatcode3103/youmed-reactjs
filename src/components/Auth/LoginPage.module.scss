@@ -1,10 +1,9 @@
 .login-container{
-    margin-top: var(--height-header);
     background-color: #f6f8fc;
 }
 
 .login-content{
-    padding: calc(70px + var(--height-header)) 0 100px 0;
+    padding: calc(100px + var(--height-header)) 0 100px 0;
     display: flex;
     justify-content: center;
     align-items: center;

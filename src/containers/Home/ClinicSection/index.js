@@ -1,26 +1,18 @@
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Slider from "react-slick";
+import { useRef } from "react";
 
 import styles from "./ClinicSection.module.scss";
 import Image from "../../../components/Image";
-import "./Slider.scss";
 
 const cx = classNames.bind(styles);
 
-function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return <div className={className} onClick={onClick} style={{ ...style }} />;
-}
-
-function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return <div className={className} style={{ ...style }} onClick={onClick} />;
-}
-
 function ClinicSection() {
+    const slider = useRef(null);
     const settings = {
+        swipeToSlide: true,
         autoplay: true,
         infinite: true,
         speed: 500,
@@ -28,8 +20,7 @@ function ClinicSection() {
         dots: true,
         slidesToShow: 4,
         slidesToScroll: 1,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
+        arrows: false,
         customPaging: () => <div className="ft-slick__dots--custom"></div>,
     };
 
@@ -55,7 +46,21 @@ function ClinicSection() {
                     </div>
                 </div>
                 <div className={cx("body")}>
-                    <Slider {...settings}>
+                    <div className={cx("btn-slider")}>
+                        <button
+                            className={cx("btn-prev")}
+                            onClick={() => slider.current.slickPrev()}
+                        >
+                            <FontAwesomeIcon icon={faAngleLeft} />
+                        </button>
+                        <button
+                            className={cx("btn-next")}
+                            onClick={() => slider.current.slickNext()}
+                        >
+                            <FontAwesomeIcon icon={faAngleRight} />
+                        </button>
+                    </div>
+                    <Slider {...settings} ref={slider}>
                         <div className={cx("clinic-item")}>
                             <div className={cx("card")}>
                                 <Image

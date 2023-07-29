@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 
-import { path } from "../../utils/contants";
+import { path } from "../../utils/constant";
 import * as actions from "../../app/actions";
 import styles from "./Register.module.scss";
 

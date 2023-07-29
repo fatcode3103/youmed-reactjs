@@ -1,18 +1,18 @@
 import { Translation } from "react-i18next";
 import { toast } from "react-toastify";
 
-import { postLoginApi } from "../../services/userService";
-import * as userAction from "../../features/user/userSlice";
-import { path } from "../../utils/contants";
+import * as userService from "../../services/userService";
+import * as userSlice from "../../features/user/userSlice";
+import { path } from "../../utils/constant";
 
 export const loginAction = (userData, navigate) => {
     return async (dispatch) => {
-        dispatch(userAction.loginStart());
+        dispatch(userSlice.loginStart());
         try {
-            let res = await postLoginApi(userData);
+            let res = await userService.postLoginApi(userData);
             let { data, message } = res.data;
             if (res && res.data.errorCode === 0) {
-                dispatch(userAction.loginSuccess({ data }));
+                dispatch(userSlice.loginSuccess({ data }));
                 toast.success(
                     <Translation>
                         {(t) => (
@@ -29,7 +29,7 @@ export const loginAction = (userData, navigate) => {
                 navigate(path.HOME);
             } else {
                 toast.error(message);
-                dispatch(userAction.loginFailed({ message }));
+                dispatch(userSlice.loginFailed());
             }
         } catch (e) {
             toast.error(
@@ -37,16 +37,16 @@ export const loginAction = (userData, navigate) => {
                     {(t) => <span>{t("toast.login_failed")} !</span>}
                 </Translation>
             );
-            dispatch(userAction.loginFailed());
+            dispatch(userSlice.loginFailed());
         }
     };
 };
 
 export const logoutAction = (navigate) => {
     return async (dispatch) => {
-        dispatch(userAction.logoutStart());
+        dispatch(userSlice.logoutStart());
         try {
-            dispatch(userAction.logoutSuccess());
+            dispatch(userSlice.logoutSuccess());
             toast.success(
                 <Translation>
                     {(t) => <span>{t("toast.logout_successful")} !</span>}
@@ -59,16 +59,16 @@ export const logoutAction = (navigate) => {
                     {(t) => <span>{t("toast.logout_failed")} !</span>}
                 </Translation>
             );
-            dispatch(userAction.logoutFailed());
+            dispatch(userSlice.logoutFailed());
         }
     };
 };
 
 export const changeLanguageAction = (code, title) => {
     return async (dispatch) => {
-        dispatch(userAction.changeLanguageStart());
+        dispatch(userSlice.changeLanguageStart());
         try {
-            dispatch(userAction.changeLanguageSuccess(code));
+            dispatch(userSlice.changeLanguageSuccess(code));
             toast.success(
                 <Translation>
                     {(t) => (
@@ -79,12 +79,44 @@ export const changeLanguageAction = (code, title) => {
                 </Translation>
             );
         } catch (e) {
-            dispatch(userAction.changeLanguageFailed());
+            dispatch(userSlice.changeLanguageFailed());
             toast.error(
                 <Translation>
                     {(t) => <span>{t("toast.language_error")} !</span>}
                 </Translation>
             );
+        }
+    };
+};
+
+export const getAllDoctorAction = () => {
+    return async (dispatch) => {
+        dispatch(userSlice.getAllDoctorStart());
+        try {
+            let res = await userService.getAllDoctorApi();
+            if (res && res.data.errorCode === 0) {
+                dispatch(userSlice.getAllDoctorSuccess(res.data.data));
+            } else {
+                dispatch(userSlice.getAllDoctorFailed());
+            }
+        } catch (e) {
+            dispatch(userSlice.getAllDoctorFailed());
+        }
+    };
+};
+
+export const getDoctorByIdAction = (doctorId) => {
+    return async (dispatch) => {
+        dispatch(userSlice.getDoctorByIdStart());
+        try {
+            let res = await userService.getDoctorByIdApi(doctorId);
+            if (res && res.data.errorCode === 0) {
+                dispatch(userSlice.getDoctorByIdSuccess(res.data.data));
+            } else {
+                dispatch(userSlice.getDoctorByIdFailed());
+            }
+        } catch (e) {
+            dispatch(userSlice.getDoctorByIdFailed());
         }
     };
 };

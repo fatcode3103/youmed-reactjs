@@ -9,7 +9,7 @@ import * as actions from "../../../app/actions";
 import styles from "./ModalUser.module.scss";
 import { UseForm, UseValidate } from "../../../components/CustomHook";
 import { toast } from "react-toastify";
-import { language as LANGUAGE } from "../../../utils/contants";
+import { language as LANGUAGE } from "../../../utils/constant";
 import PhotoProvider from "../../../components/PhotoProvider";
 
 const cx = classNames.bind(styles);
@@ -21,10 +21,9 @@ function ModalUser(props) {
         handleCloseModal,
         isData,
         bufferToBase64,
-        render,
     } = props;
     const { t } = useTranslation();
-
+    const [refresh, setRefresh] = useState(false);
     const adminState = useSelector((state) => state.admin);
     const userState = useSelector((state) => state.user);
     const dispatch = useDispatch();
@@ -51,7 +50,7 @@ function ModalUser(props) {
         preview: "",
     };
 
-    const [form, setForm, handleOnChangeInput, handleOnChangeImg, resetForm] =
+    const { form, setForm, handleOnChangeInput, handleOnChangeImg, resetForm } =
         UseForm(initState);
 
     const {
@@ -75,6 +74,10 @@ function ModalUser(props) {
     }, [dispatch]);
 
     useEffect(() => {
+        dispatch(actions.getAllUserAction());
+    }, [refresh]);
+
+    useEffect(() => {
         if (isData) {
             setForm({
                 id: currentUserByIdEdit.id,
@@ -87,7 +90,7 @@ function ModalUser(props) {
                 gender: currentUserByIdEdit.gender,
                 position: currentUserByIdEdit.positionId,
                 role: currentUserByIdEdit.roleId,
-                img: currentUserByIdEdit.image,
+                img: bufferToBase64,
                 preview: bufferToBase64,
             });
         } else {
@@ -95,8 +98,15 @@ function ModalUser(props) {
         }
     }, [currentUserByIdEdit]);
 
+    const render = () => {
+        setRefresh(!refresh);
+    };
+
     const handleSaveUser = () => {
-        const [isValidate, errMessage] = UseValidate(form);
+        const { isValidate, errMessage } = UseValidate(form, [
+            "img",
+            "preview",
+        ]);
         if (!isValidate) {
             toast.warning(errMessage);
         } else {
@@ -109,7 +119,10 @@ function ModalUser(props) {
     };
 
     const handleUpdateUser = () => {
-        const [isValidate, errMessage] = UseValidate(form);
+        const { isValidate, errMessage } = UseValidate(form, [
+            "img",
+            "preview",
+        ]);
         if (!isValidate) {
             toast.warning(errMessage);
         } else {

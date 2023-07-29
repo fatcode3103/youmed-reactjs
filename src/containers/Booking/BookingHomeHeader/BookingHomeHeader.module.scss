@@ -1,0 +1,102 @@
+.booking-home-header-content{
+    position: relative;
+}
+
+.booking-home-header-image {
+    position: relative;
+}
+
+.booking-home-header-intro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 3.8rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.text {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+}
+
+.search {
+    position: relative;
+}
+
+.search input {
+    padding: 12px 20px;
+    width: 900px;
+    height: 50px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+}
+
+.icon-search {
+    position: absolute;
+    color: #9ca3af;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+    font-size: 2rem;
+}
+
+.footer{
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.1rem;
+    font-weight: 500;
+}
+
+.footer-item{
+    position: relative;
+    padding: 50px;
+    
+    &::after{
+        position: absolute;
+        content: "";
+        display: block;
+        height: 20%;
+        width: 2px;
+        background-color: #22c55e;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: -30px;
+        opacity: 0.6;
+        transition: all 0.2s linear;
+    }
+
+    &:hover{
+        &::after{
+            opacity: 1;
+            width: 3px;
+            height: 40%;
+        }
+    }
+}
+
+.footer-item p{
+    cursor: pointer;
+    color: #fff;
+}
+
+.footer-item p:first-child{
+    font-size: 3rem;
+    font-weight: 500;
+    margin: 0;
+}

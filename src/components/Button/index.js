@@ -19,6 +19,7 @@ function Button(props) {
         onClick,
         primary,
         none,
+        update = false,
         ...other
     } = props;
 
@@ -51,6 +52,7 @@ function Button(props) {
         disabled: disabled,
         onlyLink: onlyLink,
         primary: primary,
+        update: update,
         ...obj,
     });
 

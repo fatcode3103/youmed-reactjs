@@ -30,7 +30,7 @@ function UseForm(initState) {
         setForm(initState);
     };
 
-    return [form, setForm, handleOnChangeInput, handleOnChangeImg, resetForm];
+    return { form, setForm, handleOnChangeInput, handleOnChangeImg, resetForm };
 }
 
 export default UseForm;

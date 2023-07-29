@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faRemove, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 
 import * as actions from "../../../app/actions";
@@ -28,7 +28,6 @@ function UserManage() {
 
     useEffect(() => {
         dispatch(actions.getAllUserAction());
-        console.log("123");
     }, [dispatch, refresh]);
 
     const render = () => {
@@ -44,7 +43,11 @@ function UserManage() {
     //edit
     const handleEditUserClick = (user) => {
         dispatch(actions.getUserByIdAction(user.id));
-        setBufferToBase64(BufferToBase64(user.image.data));
+        if (user.image) {
+            setBufferToBase64(BufferToBase64(user.image.data));
+        } else if (user.image === null) {
+            setBufferToBase64(BufferToBase64([]));
+        }
         handleOpenModal();
         setIsData(true);
     };
@@ -68,7 +71,6 @@ function UserManage() {
             <HeaderSystem />
             <div className={cx("user-manage-container")}>
                 <ModalUser
-                    render={render}
                     bufferToBase64={bufferToBase64}
                     isData={isData}
                     isShow={isShow}

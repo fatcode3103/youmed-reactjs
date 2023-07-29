@@ -17,8 +17,10 @@ function Footer() {
     return (
         <div className={cx("login-footer")}>
             <div className={cx("row form-group")}>
-                <div className={cx("col-3 ")}>
-                    <b>CÔNG TY TNHH YOUMED VIỆT NAM</b>
+                <div className={cx("col-3")}>
+                    <p className={cx("text-uppercase fw-bolder")}>
+                        CÔNG TY TNHH YOUMED VIỆT NAM
+                    </p>
                     <p>VPĐD: 523 Tô Hiến Thành, P.14, Q.10, TP. HCM</p>
                     <p>Hotline: 1900-2805 (8:30 - 20:30 từ T2 đến T7)</p>
                     <p>
@@ -27,15 +29,17 @@ function Footer() {
                     </p>
                     <p>Chịu trách nhiệm nội dung: Dược sĩ Dương Anh Hoàng.</p>
                 </div>
-                <div className={cx("col-3")}>
-                    <b>Về YouMed</b>
+                <div className={cx("col-3", "ps-100")}>
+                    <p className={cx("text-capitalize fw-bolder ")}>
+                        Về YouMed
+                    </p>
                     <p>Giới thiệu về YouMed</p>
                     <p>Ban điều hành</p>
                     <p>Nhân sự & Tuyển dụng</p>
                     <p>Liên hệ</p>
                 </div>
-                <div className={cx("col-3 ")}>
-                    <b>Dịch vụ</b>
+                <div className={cx("col-3", "ps-50")}>
+                    <p className={cx("text-capitalize fw-bolder")}>Dịch vụ</p>
                     <p>Đặt khám Bác sĩ </p>
                     <p>Đặt khám Bệnh viện</p>
                     <p>Đặt khám Phòng khám</p>
@@ -43,8 +47,8 @@ function Footer() {
                     <p>Y360</p>
                     <p>YouMed Clinic</p>
                 </div>
-                <div className={cx("col-3 ")}>
-                    <b>Hỗ trợ</b>
+                <div className={cx("col-3")}>
+                    <p className={cx("text-capitalize fw-bolder")}>Hỗ trợ</p>
                     <p>Câu hỏi thường gặp</p>
                     <p>Điều khoản sử dụng</p>
                     <p>Chính sách bảo mật</p>
@@ -53,7 +57,7 @@ function Footer() {
                 </div>
                 <div className={cx("connection")}>
                     <div className={cx("social")}>
-                        <b>Kết nối với chúng tôi</b>
+                        <p>Kết nối với chúng tôi</p>
                         <div className={cx("social-icon")}>
                             <Button
                                 target="_blank"

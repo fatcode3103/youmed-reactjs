@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import styles from "./PageLocked.module.scss";
 import images from "../assets/image";
-import { path } from "../utils/contants";
+import { path } from "../utils/constant";
 
 const cx = classNames.bind(styles);
 

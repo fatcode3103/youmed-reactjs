@@ -35,6 +35,31 @@ const editUserApi = async (data) => {
     return res;
 };
 
+const getAllDoctorApi = async () => {
+    let res = await httpRequest.get(`get-all-doctor`);
+    return res;
+};
+
+const getDoctorByIdApi = async (doctorId) => {
+    let res = await httpRequest.get(`get-doctor-by-id?doctorId=${doctorId}`);
+    return res;
+};
+
+const postDoctorInfoByIdApi = async (data) => {
+    let res = await httpRequest.post(`post-doctor-info-by-id`, data);
+    return res;
+};
+
+const getDoctorDetailInfoApi = async (id) => {
+    let res = await httpRequest.get(`get-doctor-detail-info?id=${id}`);
+    return res;
+};
+
+const putDoctorDetailInfoApi = async (data) => {
+    let res = await httpRequest.put(`update-doctor-detail-info`, data);
+    return res;
+};
+
 export {
     postLoginApi,
     getAllUserApi,
@@ -43,4 +68,9 @@ export {
     deleteUserApi,
     editUserApi,
     getUserByIdApi,
+    getAllDoctorApi,
+    getDoctorByIdApi,
+    postDoctorInfoByIdApi,
+    getDoctorDetailInfoApi,
+    putDoctorDetailInfoApi,
 };

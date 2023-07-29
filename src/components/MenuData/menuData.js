@@ -1,6 +1,6 @@
 import { Translation } from "react-i18next";
 
-import { path, language } from "../../utils/contants";
+import { path, language } from "../../utils/constant";
 
 export const menuAppointment = [
     {

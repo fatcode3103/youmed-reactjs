@@ -16,7 +16,7 @@ function Expert() {
                     <div className={cx("content-left")}>
                         <div className={cx("expert-item")}>
                             <Image
-                                br={true}
+                                br="true"
                                 size="m"
                                 src="https://cdn1.youmed.vn/tin-tuc/wp-content/uploads/2022/06/thac-si-bac-si-nguyen-hong-van-khanh.jpg?width=140&aspect_ratio=1:1"
                             />
@@ -27,7 +27,7 @@ function Expert() {
                         </div>
                         <div className={cx("expert-item")}>
                             <Image
-                                br={true}
+                                br="true"
                                 size="m"
                                 src="https://cdn1.youmed.vn/tin-tuc/wp-content/uploads/2022/06/thac-si-bac-si-nguyen-hong-van-khanh.jpg?width=140&aspect_ratio=1:1"
                             />
@@ -38,7 +38,7 @@ function Expert() {
                         </div>
                         <div className={cx("expert-item")}>
                             <Image
-                                br={true}
+                                br="true"
                                 size="m"
                                 src="https://cdn1.youmed.vn/tin-tuc/wp-content/uploads/2022/06/thac-si-bac-si-nguyen-hong-van-khanh.jpg?width=140&aspect_ratio=1:1"
                             />
@@ -49,7 +49,7 @@ function Expert() {
                         </div>
                         <div className={cx("expert-item")}>
                             <Image
-                                br={true}
+                                br="true"
                                 size="m"
                                 src="https://cdn1.youmed.vn/tin-tuc/wp-content/uploads/2022/06/thac-si-bac-si-nguyen-hong-van-khanh.jpg?width=140&aspect_ratio=1:1"
                             />

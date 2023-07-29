@@ -11,7 +11,7 @@
     &:hover{
         cursor: pointer;
         opacity: 0.8;
-        color: #fff;
+        color: #fff !important;
     }
 }
 
@@ -46,7 +46,7 @@
 .onlyLink{
     &:hover{
         cursor: pointer;
-        color: #000;
+        // color: #000;
     }
 }
 
@@ -54,13 +54,37 @@
     background-color: var(--primary-color);
 }
 
+.update{
+    border: none;
+    background-color: #ff9800;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    transition: all 0.2s linear;
+
+    &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+        color: #fff !important;
+    }
+}
+
 //size
 .s{
     max-width: 200px;
+    text-align: center;
 }
 
 .l{
+    text-align: center;
     min-width: 340px;
+}
+
+.xl {
+    text-align: center;
+    min-width: 760px;
 }
 
 

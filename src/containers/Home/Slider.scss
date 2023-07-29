@@ -1,36 +1,5 @@
-.slick-initialized{
-    height: 100%;
-}
-
-.slick-list{
-    height: 100%;
-}
-
-.slick-track{
-    height: 100%;
-}
-
-.slick-slide div{
+.slick-initialized, .slick-list, .slick-track, .slick-slide div{
     height: 100% ;
-}
-
-.slick-prev::before, .slick-next::before{
-    position: absolute;
-    font-size: 4rem !important;
-    color: #d0d0d0 !important;
-    transition: all 0.14s ease;
-}
-
-.slick-prev:hover:before, .slick-next:hover:before{
-    color: var(--primary-color) !important;
-}
-
-.slick-prev::before{
-    left: -5px !important;
-}
-
-.slick-next::before{
-    right: -6px !important;
 }
 
 //dot

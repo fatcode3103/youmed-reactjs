@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "./System.module.scss";
 import { useEffect } from "react";
-import { path } from "../../utils/contants";
+import { path } from "../../utils/constant";
 import PageLoked from "../../components/PageLocked";
 import HeaderSystem from "../../components/Header/HeaderSystem";
 
@@ -18,6 +18,8 @@ function System() {
     useEffect(() => {
         if (!isLogin) {
             navigate(path.LOGIN);
+        } else {
+            navigate(path.USER_MANAGE);
         }
     }, [isLogin, navigate]);
 
@@ -30,9 +32,7 @@ function System() {
                     {role === "R1" ? (
                         <div>
                             <HeaderSystem />
-                            <div className={cx("system-container")}>
-                                <div></div>
-                            </div>
+                            <div className={cx("system-container")}></div>
                         </div>
                     ) : (
                         <div>

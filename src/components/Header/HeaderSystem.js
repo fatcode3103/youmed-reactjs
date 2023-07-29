@@ -1,21 +1,29 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { path, language as LANGUAGE } from "../../utils/contants";
+import { path, language as LANGUAGE } from "../../utils/constant";
 import Menu from "../Menu/Menu";
 import images from "../../assets/image";
 import MenuUser from "../Menu/MenuUser";
 import styles from "./HeaderSystem.module.scss";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(styles);
 
 function HeaderSystem() {
     const navigate = useNavigate();
     const { t } = useTranslation();
+
+    const menuUserManageSystem = [
+        {
+            title: t("system.doctor_manage"),
+            to: path.DOCTOR_MANAGE,
+        },
+    ];
 
     const userState = useSelector((state) => state.user);
 
@@ -35,11 +43,31 @@ function HeaderSystem() {
                     <img src={images.logo} alt="logo" />
                 </div>
                 <div className={cx("header-text")}>
-                    <Link to={path.USER_MANAGE}>
-                        <span className={cx("user-manage")}>
-                            <span>{t("system.user_manage")}</span>
+                    <Menu item={menuUserManageSystem}>
+                        <NavLink
+                            className={(state) =>
+                                state.isActive ? cx("active") : ""
+                            }
+                            to={path.USER_MANAGE}
+                        >
+                            <span className={cx("text-manage")}>
+                                <span>
+                                    {t("system.user_manage")}{" "}
+                                    <FontAwesomeIcon icon={faCaretDown} />
+                                </span>
+                            </span>
+                        </NavLink>
+                    </Menu>
+                    <NavLink
+                        className={(state) =>
+                            state.isActive ? cx("active") : ""
+                        }
+                        to={path.SPECIALTY_MANAGE}
+                    >
+                        <span className={cx("text-manage")}>
+                            <span>{t("system.specialty_manage")}</span>
                         </span>
-                    </Link>
+                    </NavLink>
                 </div>
                 <div className={cx("header-account")}>
                     <Menu item={MenuUser()}>

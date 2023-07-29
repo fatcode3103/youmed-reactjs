@@ -2,70 +2,79 @@ import { toast } from "react-toastify";
 import { Translation } from "react-i18next";
 
 import * as userService from "../../services/userService";
-import * as adminAction from "../../features/admin/adminslice";
+import * as adminslice from "../../features/admin/adminslice";
 
 export const getAllUserAction = () => {
     return async (dispatch) => {
-        dispatch(adminAction.getAllUserStart());
+        dispatch(adminslice.getAllUserStart());
         try {
             let res = await userService.getAllUserApi();
             if (res && res.data.errorCode === 0) {
-                dispatch(adminAction.getAllUserSuccess(res.data.data));
+                dispatch(adminslice.getAllUserSuccess(res.data.data));
             } else {
-                dispatch(adminAction.getAllUserFailed());
+                dispatch(adminslice.getAllUserFailed());
             }
         } catch (e) {
-            dispatch(adminAction.getAllUserFailed());
+            dispatch(adminslice.getAllUserFailed());
         }
     };
 };
 
 export const getAllCodeAction = (type) => {
     return async (dispatch) => {
-        dispatch(adminAction.getAllCodeStart());
+        dispatch(adminslice.getAllCodeStart());
         try {
             let res = await userService.getAllCodeApi(type);
             if (res && res.data.errorCode === 0) {
                 dispatch(
-                    adminAction.getAllCodeSuccess({
+                    adminslice.getAllCodeSuccess({
                         type: type,
                         data: res.data.data,
                     })
                 );
             } else {
-                dispatch(adminAction.getAllCodeFailed());
+                dispatch(adminslice.getAllCodeFailed());
             }
         } catch (e) {
-            dispatch(adminAction.getAllCodeFailed());
+            dispatch(adminslice.getAllCodeFailed());
         }
     };
 };
 
 export const postUserAction = (data) => {
     return async (dispatch) => {
-        dispatch(adminAction.postUserStart());
+        dispatch(adminslice.postUserStart());
         try {
             let res = await userService.postUserApi(data);
             if (res && res.data.errorCode === 0) {
-                dispatch(adminAction.postUserSuccess());
+                dispatch(adminslice.postUserSuccess());
                 toast.success(
                     <Translation>
                         {(t) => <span>{t("toast.post_user_success")} !</span>}
                     </Translation>
                 );
             } else {
-                dispatch(adminAction.postUserFailed());
+                dispatch(adminslice.postUserFailed());
                 toast.error(
                     <Translation>
-                        {(t) => <span>{t("toast.post_user_failed")} !</span>}
+                        {(t) => (
+                            <>
+                                <p>{t("toast.post_user_failed")} !</p>
+                                <span>{res.data.message}</span>
+                            </>
+                        )}
                     </Translation>
                 );
             }
         } catch (e) {
-            dispatch(adminAction.postUserFailed());
+            dispatch(adminslice.postUserFailed());
             toast.error(
                 <Translation>
-                    {(t) => <span>{t("toast.post_user_failed")} !</span>}
+                    {(t) => (
+                        <span>
+                            {t("toast.post_user_failed")} <span>{e}</span>
+                        </span>
+                    )}
                 </Translation>
             );
         }
@@ -74,18 +83,18 @@ export const postUserAction = (data) => {
 
 export const deleteUserAction = (id) => {
     return async (dispatch) => {
-        dispatch(adminAction.deleteUserStart());
+        dispatch(adminslice.deleteUserStart());
         try {
             let res = await userService.deleteUserApi(id);
             if (res && res.data.errorCode === 0) {
-                dispatch(adminAction.deleteUserSuccess());
+                dispatch(adminslice.deleteUserSuccess());
                 toast.success(
                     <Translation>
                         {(t) => <span>{t("toast.delete_user_success")} !</span>}
                     </Translation>
                 );
             } else {
-                dispatch(adminAction.deleteUserFailed());
+                dispatch(adminslice.deleteUserFailed());
                 toast.error(
                     <Translation>
                         {(t) => <span>{t("toast.delete_user_failed")} !</span>}
@@ -93,10 +102,14 @@ export const deleteUserAction = (id) => {
                 );
             }
         } catch (e) {
-            dispatch(adminAction.deleteUserFailed());
+            dispatch(adminslice.deleteUserFailed());
             toast.error(
                 <Translation>
-                    {(t) => <span>{t("toast.delete_user_failed")} !</span>}
+                    {(t) => (
+                        <span>
+                            {t("toast.delete_user_failed")} <span>{e}</span>
+                        </span>
+                    )}
                 </Translation>
             );
         }
@@ -105,34 +118,34 @@ export const deleteUserAction = (id) => {
 
 export const getUserByIdAction = (id) => {
     return async (dispatch) => {
-        dispatch(adminAction.getUserByIdStart());
+        dispatch(adminslice.getUserByIdStart());
         try {
             let res = await userService.getUserByIdApi(id);
             if (res && res.data.errorCode === 0) {
-                dispatch(adminAction.getUserByIdSuccess(res.data.data));
+                dispatch(adminslice.getUserByIdSuccess(res.data.data));
             } else {
-                dispatch(adminAction.getUserByIdFailed());
+                dispatch(adminslice.getUserByIdFailed());
             }
         } catch (e) {
-            dispatch(adminAction.getUserByIdFailed());
+            dispatch(adminslice.getUserByIdFailed());
         }
     };
 };
 
 export const editUserAction = (data) => {
     return async (dispatch) => {
-        dispatch(adminAction.editUserStart());
+        dispatch(adminslice.editUserStart());
         try {
             let res = await userService.editUserApi(data);
             if (res && res.data.errorCode === 0) {
-                dispatch(adminAction.editUserSuccess());
+                dispatch(adminslice.editUserSuccess());
                 toast.success(
                     <Translation>
                         {(t) => <span>{t("toast.edit_user_success")} !</span>}
                     </Translation>
                 );
             } else {
-                dispatch(adminAction.editUserFailed());
+                dispatch(adminslice.editUserFailed());
                 toast.error(
                     <Translation>
                         {(t) => <span>{t("toast.edit_user_failed")} !</span>}
@@ -140,13 +153,117 @@ export const editUserAction = (data) => {
                 );
             }
         } catch (e) {
-            dispatch(adminAction.editUserFailed());
+            dispatch(adminslice.editUserFailed());
             toast.error(
                 <Translation>
-                    {(t) => <span>{t("toast.edit_user_failed")} !</span>}
+                    {(t) => <span>{t("toast.edit_user_failed")}</span>}
+                    <span>{e}</span>
                 </Translation>
             );
             throw e;
+        }
+    };
+};
+
+export const postDoctorInfoByIdAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.postDoctorInfoByIdStart());
+        try {
+            let res = await userService.postDoctorInfoByIdApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.postDoctorInfoByIdSuccess());
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>{t("toast.post_doctor_info_success")} !</span>
+                        )}
+                    </Translation>
+                );
+            } else {
+                dispatch(adminslice.postDoctorInfoByIdFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <>
+                                <p>{t("toast.post_doctor_info_failed")} !</p>
+                                <span>{res.data.message}</span>
+                            </>
+                        )}
+                    </Translation>
+                );
+            }
+        } catch (e) {
+            dispatch(adminslice.postDoctorInfoByIdFailed());
+            toast.error(
+                <Translation>
+                    {(t) => (
+                        <span>
+                            {t("toast._doctor_info_failed")} <span>{e}</span>
+                        </span>
+                    )}
+                </Translation>
+            );
+        }
+    };
+};
+
+export const getDoctorDetailInfoAction = (id) => {
+    return async (dispatch) => {
+        dispatch(adminslice.getDoctorDetailInfoStart());
+        try {
+            let res = await userService.getDoctorDetailInfoApi(id);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.getDoctorDetailInfoSuccess(res.data.data));
+            } else {
+                dispatch(adminslice.getDoctorDetailInfoFailed());
+            }
+        } catch (e) {
+            dispatch(adminslice.getDoctorDetailInfoFailed());
+        }
+    };
+};
+
+export const putDoctorDetailInfoAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.putDoctorDetailInfoStart());
+        try {
+            let res = await userService.putDoctorDetailInfoApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.putDoctorDetailInfoSuccess());
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.put_doctor_detail_info_success")} !
+                            </span>
+                        )}
+                    </Translation>
+                );
+            } else {
+                dispatch(adminslice.putDoctorDetailInfoFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.put_doctor_detail_info_failed")}
+                                <span>{res.data.message}</span>
+                            </span>
+                        )}
+                    </Translation>
+                );
+            }
+        } catch (e) {
+            dispatch(adminslice.putDoctorDetailInfoFailed());
+            toast.error(
+                <Translation>
+                    {(t) => (
+                        <span>
+                            {t("toast.put_doctor_detail_info_failed")} !
+                            <span>{e}</span>
+                        </span>
+                    )}
+                </Translation>
+            );
         }
     };
 };

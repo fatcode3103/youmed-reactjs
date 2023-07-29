@@ -1,26 +1,20 @@
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-
+import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { useRef } from "react";
 import Slider from "react-slick";
+
 import styles from "./HospitalSection.module.scss";
 import Image from "../../../components/Image";
-import "./Slider.scss";
+import "../Slider.scss";
 
 const cx = classNames.bind(styles);
 
-function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return <div className={className} onClick={onClick} style={{ ...style }} />;
-}
-
-function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return <div className={className} style={{ ...style }} onClick={onClick} />;
-}
-
 function HospitalSection() {
+    const slider = useRef(null);
+
     const settings = {
+        swipeToSlide: true,
         infinite: true,
         speed: 500,
         autoplay: true,
@@ -28,8 +22,7 @@ function HospitalSection() {
         dots: true,
         slidesToShow: 4,
         slidesToScroll: 1,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
+        arrows: false,
         customPaging: () => <div className="ft-slick__dots--custom"></div>,
     };
 
@@ -56,7 +49,21 @@ function HospitalSection() {
                     </div>
                 </div>
                 <div className={cx("body")}>
-                    <Slider {...settings}>
+                    <div className={cx("btn-slider")}>
+                        <button
+                            className={cx("btn-prev")}
+                            onClick={() => slider.current.slickPrev()}
+                        >
+                            <FontAwesomeIcon icon={faAngleLeft} />
+                        </button>
+                        <button
+                            className={cx("btn-next")}
+                            onClick={() => slider.current.slickNext()}
+                        >
+                            <FontAwesomeIcon icon={faAngleRight} />
+                        </button>
+                    </div>
+                    <Slider {...settings} ref={slider}>
                         <div className={cx("hospital-item")}>
                             <div className={cx("card")}>
                                 <Image

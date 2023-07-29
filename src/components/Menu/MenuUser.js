@@ -1,4 +1,4 @@
-import { path, language } from "../../utils/contants";
+import { path, language } from "../../utils/constant";
 import { useTranslation } from "react-i18next";
 
 function MenuAppointment() {

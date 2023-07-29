@@ -12,13 +12,13 @@ const resources = {
     },
 };
 
-let user = JSON.parse(localStorage.getItem("persist:root")).user;
-let curretnLanguage = JSON.parse(user).language;
+let test = JSON.parse(localStorage.getItem("persist:user")).language;
+let curretnLanguage = JSON.parse(test); // "vi" => vi
 
 i18n.use(initReactI18next) // passes i18n down to react-i18next
     .init({
         resources,
-        lng: curretnLanguage || "en",
+        lng: curretnLanguage || "vi",
         ns: ["trans"],
         interpolation: {
             escapeValue: false, // react already safes from xss

@@ -94,6 +94,7 @@ function Menu(props) {
 
     return (
         <Tippy
+            appendTo={document.body}
             delay={[0, 100]}
             interactive={true}
             render={renderResult}

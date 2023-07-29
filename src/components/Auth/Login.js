@@ -22,7 +22,7 @@ function Login() {
 
     const dispatch = useDispatch();
 
-    const handleLogin = (e) => {
+    const handleLogin = () => {
         dispatch(actions.loginAction({ email, password }, navigate));
     };
 
@@ -94,7 +94,7 @@ function Login() {
                         />
                         <label
                             className={cx("form-check-label")}
-                            for="flexCheckDefault"
+                            htmlFor="flexCheckDefault"
                         >
                             {t("login.remember_password")}
                         </label>
@@ -107,8 +107,8 @@ function Login() {
                 </div>
                 <Button
                     size="l"
-                    normal={true}
-                    onClick={(e) => handleLogin(e)}
+                    normal="true"
+                    onClick={() => handleLogin()}
                     className={["mt-2"]}
                 >
                     {t("login.login")}

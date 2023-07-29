@@ -5,23 +5,22 @@ import storage from "redux-persist/lib/storage";
 import userReducer from "../features/user/userSlice";
 import adminReducer from "../features/admin/adminslice";
 
-const persistConfig = {
-    key: "root",
+const userPersistConfig = {
+    key: "user",
     storage,
-    blacklist: ["user.loginErrorMessage", "admin"],
+    whitelist: ["currentUser", "language", "isLogin"],
 };
 
 const rootReducer = combineReducers({
-    user: userReducer,
+    user: persistReducer(userPersistConfig, userReducer),
     admin: adminReducer,
 }); /// cau hinh vao 1 reducer
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 export const store = configureStore({
-    reducer: persistedReducer,
-    // middleware: (getDefaultMiddleware) =>
-    //     getDefaultMiddleware({
-    //         serializableCheck: false,
-    //     }),
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            immutableCheck: false,
+            serializableCheck: false,
+        }),
 });

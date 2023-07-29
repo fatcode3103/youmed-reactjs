@@ -30,7 +30,7 @@
 .header-text {
 }
 
-.user-manage {
+.text-manage {
     padding: 10px 26px;
     font-size: 1.6rem;
     font-weight: 500;
@@ -61,4 +61,8 @@
     width: 30px;
     border-radius: 50%;
     margin-right: 10px;
+}
+
+.active{
+    color: var(--primary-color);
 }

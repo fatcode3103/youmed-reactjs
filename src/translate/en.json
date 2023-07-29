@@ -27,7 +27,9 @@
         }
     },
     "system": {
-        "user_manage": "User management"
+        "user_manage": "User management",
+        "specialty_manage": "Specialty management",
+        "doctor_manage": "Doctor management"
     },
     "user_manage": {
         "add_new_user": "Add new user",
@@ -45,7 +47,11 @@
         "delete_user_success": "Delete user successfully",
         "delete_user_failed": "Delete user failed",
         "edit_user_success": "Edit user success",
-        "edit_user_failed": "Edit user failed"
+        "edit_user_failed": "Edit user failed",
+        "post_doctor_info_success": "Create doctor info success",
+        "post_doctor_info_failed": "Create doctor info failed",
+        "put_doctor_detail_info_success": "Update doctor detail info success",
+        "put_doctor_detail_info_failed": "Update doctor detail info failed"
     },
     "login":{
         "email": "Email",
@@ -54,5 +60,11 @@
         "forgot_password": "Forgot password",
         "login": "Log in",
         "register": "Register"
+    },
+    "booking": {
+        "connecting_hospital": "Connecting Hospital",
+        "doctor_present" : "Doctor Present",
+        "polyclinic": "Polyclinic",
+        "specialty": "Specialty"
     }
 }

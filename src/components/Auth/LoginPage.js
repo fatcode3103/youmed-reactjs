@@ -48,41 +48,52 @@ function LoginPage() {
         <>
             {!isLogin ? (
                 <>
-                    <Header />
-                    <div className={cx("login-container")}>
-                        {isLoading && <Loading />}
-                        <div className={cx("login-content")}>
-                            <div className={cx("login-image")}>
-                                <img src={images.imgLogin} alt="login-img" />
-                            </div>
-                            <div className={cx("form")}>
-                                <div className={cx("header")}>
-                                    {tab.map((item, index) => {
-                                        return (
-                                            <div
-                                                className={cx("text", {
-                                                    active:
-                                                        item.key === activeTab,
-                                                })}
-                                                key={index}
-                                                onClick={(e) =>
-                                                    handelClickTab(e, item)
-                                                }
-                                            >
-                                                {item.title}
-                                            </div>
-                                        );
-                                    })}
-                                    <div
-                                        className={cx("line")}
-                                        style={lineStyle}
-                                    ></div>
+                    {isLoading ? (
+                        <Loading />
+                    ) : (
+                        <div className={cx("login-container")}>
+                            <Header />
+                            <div className={cx("login-content")}>
+                                <div className={cx("login-image")}>
+                                    <img
+                                        src={images.imgLogin}
+                                        alt="login-img"
+                                    />
                                 </div>
-                                {activeTab === "t1" ? <Login /> : <Register />}
+                                <div className={cx("form")}>
+                                    <div className={cx("header")}>
+                                        {tab.map((item, index) => {
+                                            return (
+                                                <div
+                                                    className={cx("text", {
+                                                        active:
+                                                            item.key ===
+                                                            activeTab,
+                                                    })}
+                                                    key={index}
+                                                    onClick={(e) =>
+                                                        handelClickTab(e, item)
+                                                    }
+                                                >
+                                                    {item.title}
+                                                </div>
+                                            );
+                                        })}
+                                        <div
+                                            className={cx("line")}
+                                            style={lineStyle}
+                                        ></div>
+                                    </div>
+                                    {activeTab === "t1" ? (
+                                        <Login />
+                                    ) : (
+                                        <Register />
+                                    )}
+                                </div>
                             </div>
+                            <Footer />
                         </div>
-                        <Footer />
-                    </div>
+                    )}
                 </>
             ) : (
                 <PageNotFound />
