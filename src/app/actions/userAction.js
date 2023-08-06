@@ -120,3 +120,49 @@ export const getDoctorByIdAction = (doctorId) => {
         }
     };
 };
+
+export const getDoctorScheduleByIdAction = (id) => {
+    return async (dispatch) => {
+        dispatch(userSlice.getDoctorScheduleByIdStart());
+        try {
+            let res = await userService.getDoctorScheduleByIdApi(id);
+            if (res && res.data.errorCode === 0) {
+                dispatch(userSlice.getDoctorScheduleByIdSuccess(res.data.data));
+            } else {
+                dispatch(userSlice.getDoctorScheduleByIdFailed());
+            }
+        } catch (e) {
+            dispatch(userSlice.getDoctorScheduleByIdFailed());
+        }
+    };
+};
+
+export const setScheduleTimeAction = (time) => {
+    return async (dispatch) => {
+        try {
+            dispatch(userSlice.setScheduleTime(time));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
+
+export const setSelectedDateAction = (date) => {
+    return async (dispatch) => {
+        try {
+            dispatch(userSlice.setSelectedDate(date));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
+
+export const setDateDefaultAction = (date) => {
+    return async (dispatch) => {
+        try {
+            dispatch(userSlice.setDateDefault(date));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};

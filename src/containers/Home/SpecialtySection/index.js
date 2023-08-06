@@ -30,7 +30,7 @@ function SpecialtySection() {
         <div className={cx("specialty-section-container")}>
             <div className={cx("specialty-section-content")}>
                 <div className={cx("title")}>
-                    <h2>Đặt lịch theo Chuyên khoa</h2>
+                    <h4>Đặt lịch theo Chuyên khoa</h4>
                     <p>
                         Thuận tiện, an toàn và nhanh chóng trong việc đặt lịch
                         và nhận kết quả

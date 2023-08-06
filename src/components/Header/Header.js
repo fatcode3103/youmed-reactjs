@@ -122,7 +122,7 @@ function Header(props) {
                                     className={cx("header-language")}
                                 />
                             </Menu>
-                            <Button to={path.LOGIN} outline={true} size="s">
+                            <Button to={path.LOGIN} outline="true" size="s">
                                 {t("home.login")}
                             </Button>
                         </>

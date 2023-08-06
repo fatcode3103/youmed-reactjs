@@ -53,7 +53,7 @@ function DoctorSection() {
             <div className={cx("doctor-section-content")}>
                 <div className={cx("title")}>
                     <div className={cx("content-left")}>
-                        <h2>Đặt khám Bác sĩ</h2>
+                        <h4>Đặt khám Bác sĩ</h4>
                         <p>
                             Đặt lịch hẹn với các bác sĩ giỏi, luôn tận tâm chăm
                             sóc sức khoẻ của bạn và gia đình
@@ -94,7 +94,7 @@ function DoctorSection() {
                                 }
                                 return (
                                     <NavLink
-                                        to={`/booking/doctor-detail/${item.id}`}
+                                        to={`/booking/doctor-detail/id=/${item.id}`}
                                         className={cx("doctor-item")}
                                         key={index}
                                     >

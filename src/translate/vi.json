@@ -52,7 +52,12 @@
         "post_doctor_info_success": "Tạo thông tin bác sĩ thành công",
         "post_doctor_info_failed": "Tạo thông tin bác sĩ thất bại",
         "put_doctor_detail_info_success": "Cập nhật thông tin chi tiết bác sĩ thành công",
-        "put_doctor_detail_info_failed": "Cập nhật thông tin chi tiết bác sĩ thất bại"
+        "put_doctor_detail_info_failed": "Cập nhật thông tin chi tiết bác sĩ thất bại",
+        "post_doctor_schedule_failed": "Tạo lịch khám bác sĩ thất bại",
+        "post_doctor_schedule_success": "Tạo lịch khám bác sĩ thành công",
+        "update_doctor_schedule_success": "Cập nhật lịch khám bác sĩ thành công",
+        "update_doctor_schedule_failed": "Cập nhật lịch khám bác sĩ thất bại",
+        "login_redirect": "Hãy đăng nhập"
     },
     "login":{
         "email": "Địa chỉ email",

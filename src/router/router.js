@@ -7,17 +7,29 @@ import PageNotFound from "../components/PageNotFound";
 import DoctorDetail from "../containers/Booking/DoctorDetail/DoctorDetail";
 import { UserManage, SpecialtyManage } from "../containers/System/Admin";
 import Booking from "../containers/Booking";
-import DoctorManage from "../containers/System/Admin/DoctorManage";
+import {
+    DoctorInfoManage,
+    DoctorSchedule,
+} from "../containers/System/Admin/DoctorManage";
+import BookingAppointment from "../containers/Booking/BookingAppointmentDoctor";
 
 export const routerPublic = [
     { path: path.HOME, component: Home },
     { path: path.LOGIN, component: LoginPage },
     { path: path.REGISTER, component: Register },
-    { path: path.SYSTEM, component: System },
-    { path: path.USER_MANAGE, component: UserManage },
-    { path: path.SPECIALTY_MANAGE, component: SpecialtyManage },
     { path: path.DOCTOR_DETAIL, component: DoctorDetail },
     { path: path.BOOKING, component: Booking },
-    { path: path.DOCTOR_MANAGE, component: DoctorManage },
     { path: "*", component: PageNotFound },
+];
+
+export const routerPrivate = [
+    { path: path.SYSTEM, component: System },
+    { path: path.USER_MANAGE, component: UserManage },
+    { path: path.DOCTOR_MANAGE, component: DoctorInfoManage },
+    { path: path.DOCTOR_SCHEDULE, component: DoctorSchedule },
+    { path: path.SPECIALTY_MANAGE, component: SpecialtyManage },
+];
+
+export const routerLogin = [
+    { path: path.BOOKING_BY_DOCTOR, component: BookingAppointment },
 ];

@@ -31,7 +31,7 @@ function HospitalSection() {
             <div className={cx("hospital-section-content")}>
                 <div className={cx("title")}>
                     <div className={cx("content-left")}>
-                        <h2>Đặt khám Bệnh viện</h2>
+                        <h4>Đặt khám Bệnh viện</h4>
                         <p>
                             Hiện tại, bạn có thể đặt khám và thanh toán trực
                             tuyến với các bệnh viện: Răng Hàm Mặt TP.HCM, Y Học

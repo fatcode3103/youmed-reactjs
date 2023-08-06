@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
@@ -10,7 +10,8 @@ import Menu from "../Menu/Menu";
 import images from "../../assets/image";
 import MenuUser from "../Menu/MenuUser";
 import styles from "./HeaderSystem.module.scss";
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faHome } from "@fortawesome/free-solid-svg-icons";
+import Tippy from "@tippyjs/react/headless";
 
 const cx = classNames.bind(styles);
 
@@ -21,7 +22,13 @@ function HeaderSystem() {
     const menuUserManageSystem = [
         {
             title: t("system.doctor_manage"),
-            to: path.DOCTOR_MANAGE,
+            key: "none",
+            menuSub: {
+                data: [
+                    { title: "Thông tin", to: path.DOCTOR_MANAGE },
+                    { title: "Lịch khám", to: path.DOCTOR_SCHEDULE },
+                ],
+            },
         },
     ];
 
@@ -36,12 +43,27 @@ function HeaderSystem() {
     return (
         <div className={cx("header-container")}>
             <div className={cx("header-content")}>
-                <div
-                    className={cx("header-logo")}
-                    onClick={() => handlebackToHomeSystem()}
-                >
+                <Link to={path.HOME} className={cx("header-logo")}>
                     <img src={images.logo} alt="logo" />
-                </div>
+                </Link>
+                <Tippy
+                    render={(attrs) => (
+                        <span
+                            className={cx("home-tippy")}
+                            tabIndex="-1"
+                            {...attrs}
+                        >
+                            system home
+                        </span>
+                    )}
+                >
+                    <FontAwesomeIcon
+                        icon={faHome}
+                        className={cx("icon-home-system")}
+                        onClick={() => handlebackToHomeSystem()}
+                    />
+                </Tippy>
+
                 <div className={cx("header-text")}>
                     <Menu item={menuUserManageSystem}>
                         <NavLink

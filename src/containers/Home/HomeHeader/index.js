@@ -40,7 +40,7 @@ function HomeHeader() {
                     </div>
                 </div>
                 <div className={cx("header-home-text")}>
-                    <h1>Đặt lịch khám trực tuyến</h1>
+                    <h2>Đặt lịch khám trực tuyến</h2>
                     <p>Tìm Bác sĩ chính xác - Đặt lịch khám dễ dàng</p>
                 </div>
             </div>

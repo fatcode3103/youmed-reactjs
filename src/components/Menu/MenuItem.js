@@ -10,7 +10,7 @@ function MenuItem(props) {
 
     return (
         <Button
-            onlyLink={true}
+            onlyLink="true"
             to={data.to}
             onClick={onClick}
             href={data.href}

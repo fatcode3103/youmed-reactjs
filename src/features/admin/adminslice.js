@@ -5,9 +5,11 @@ const initialState = {
     allUser: [],
     gender: [],
     role: [],
+    time: [],
     position: [],
     userById: {},
     doctorDetailInfo: {},
+    doctorSchedule: {},
 };
 
 export const adminSlice = createSlice({
@@ -90,7 +92,7 @@ export const adminSlice = createSlice({
         },
         //get doctor detail info
         getDoctorDetailInfoStart: (state, action) => {
-            state.isLoading = true;
+            state.isLoading = false;
         },
         getDoctorDetailInfoSuccess: (state, action) => {
             state.isLoading = false;
@@ -108,6 +110,38 @@ export const adminSlice = createSlice({
             state.isLoading = false;
         },
         putDoctorDetailInfoFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //create doctor schedule
+        postDoctorScheduleStart: (state, action) => {
+            state.isLoading = true;
+        },
+        postDoctorScheduleSuccess: (state, action) => {
+            state.isLoading = false;
+        },
+        postDoctorScheduleFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //get doctor schedule
+        getDoctorScheduleStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getDoctorScheduleSuccess: (state, action) => {
+            state.isLoading = false;
+            state.doctorSchedule = action.payload;
+        },
+        getDoctorScheduleFailed: (state, action) => {
+            state.isLoading = false;
+            state.doctorSchedule = {};
+        },
+        //update doctor schedule
+        updateDoctorScheduleStart: (state, action) => {
+            state.isLoading = true;
+        },
+        updateDoctorScheduleSuccess: (state, action) => {
+            state.isLoading = false;
+        },
+        updateDoctorScheduleFailed: (state, action) => {
             state.isLoading = false;
         },
     },
@@ -141,6 +175,15 @@ export const {
     putDoctorDetailInfoStart,
     putDoctorDetailInfoSuccess,
     putDoctorDetailInfoFailed,
+    postDoctorScheduleStart,
+    postDoctorScheduleSuccess,
+    postDoctorScheduleFailed,
+    getDoctorScheduleStart,
+    getDoctorScheduleSuccess,
+    getDoctorScheduleFailed,
+    updateDoctorScheduleStart,
+    updateDoctorScheduleSuccess,
+    updateDoctorScheduleFailed,
 } = adminSlice.actions;
 
 export default adminSlice.reducer;

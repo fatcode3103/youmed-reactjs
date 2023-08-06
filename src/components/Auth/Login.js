@@ -47,7 +47,7 @@ function Login() {
     return (
         <div className={cx("login-container")}>
             <div className={cx("login-content")}>
-                <div className={cx("input-group-lg")}>
+                <div className={cx("input-group-sm")}>
                     <label className={cx("mt-2")}>{t("login.email")}</label>
                     <input
                         type="text"
@@ -57,7 +57,7 @@ function Login() {
                         onKeyDown={(e) => handleOnKeyDown(e)}
                     />
                 </div>
-                <div className={cx("input-group-lg mt-3 mb-4")}>
+                <div className={cx("input-group-sm mt-3 mb-4")}>
                     <label>{t("login.password")}</label>
                     <input
                         className={cx("form-control p-2 form-control-lg")}
@@ -105,12 +105,7 @@ function Login() {
                         </span>
                     </div>
                 </div>
-                <Button
-                    size="l"
-                    normal="true"
-                    onClick={() => handleLogin()}
-                    className={["mt-2"]}
-                >
+                <Button size="l" normal="true" onClick={() => handleLogin()}>
                     {t("login.login")}
                 </Button>
             </div>

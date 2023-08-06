@@ -11,6 +11,9 @@ import { UseForm, UseValidate } from "../../../components/CustomHook";
 import { toast } from "react-toastify";
 import { language as LANGUAGE } from "../../../utils/constant";
 import PhotoProvider from "../../../components/PhotoProvider";
+import DatePicker from "react-datepicker";
+import moment from "moment";
+import { date as DATE } from "../../../utils/constant";
 
 const cx = classNames.bind(styles);
 
@@ -21,12 +24,14 @@ function ModalUser(props) {
         handleCloseModal,
         isData,
         bufferToBase64,
+        render,
     } = props;
     const { t } = useTranslation();
-    const [refresh, setRefresh] = useState(false);
     const adminState = useSelector((state) => state.admin);
     const userState = useSelector((state) => state.user);
     const dispatch = useDispatch();
+
+    const [hasChangeDateOfBirth, setHasChangeDateOfBirth] = useState(false);
 
     const {
         gender: genderArr,
@@ -41,6 +46,7 @@ function ModalUser(props) {
         firstName: "",
         lastName: "",
         password: "",
+        date: new Date(),
         address: "",
         phoneNumber: "",
         gender: "",
@@ -59,6 +65,7 @@ function ModalUser(props) {
         lastName,
         password,
         address,
+        date,
         phoneNumber,
         gender,
         position,
@@ -74,10 +81,6 @@ function ModalUser(props) {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(actions.getAllUserAction());
-    }, [refresh]);
-
-    useEffect(() => {
         if (isData) {
             setForm({
                 id: currentUserByIdEdit.id,
@@ -86,6 +89,7 @@ function ModalUser(props) {
                 lastName: currentUserByIdEdit.lastName,
                 password: currentUserByIdEdit.password,
                 address: currentUserByIdEdit.address,
+                date: +currentUserByIdEdit.dateOfBirth,
                 phoneNumber: currentUserByIdEdit.phoneNumber,
                 gender: currentUserByIdEdit.gender,
                 position: currentUserByIdEdit.positionId,
@@ -98,36 +102,37 @@ function ModalUser(props) {
         }
     }, [currentUserByIdEdit]);
 
-    const render = () => {
-        setRefresh(!refresh);
-    };
-
-    const handleSaveUser = () => {
+    const handleSaveUser = async () => {
+        let dateTimestamp = date.getTime();
         const { isValidate, errMessage } = UseValidate(form, [
             "img",
             "preview",
+            "date",
         ]);
         if (!isValidate) {
             toast.warning(errMessage);
         } else {
-            let data = { ...form };
-            dispatch(actions.postUserAction(data));
+            let data = { ...form, date: dateTimestamp };
+            await dispatch(actions.postUserAction(data));
             handleCloseModal();
             resetForm();
             render();
         }
     };
 
-    const handleUpdateUser = () => {
+    const handleUpdateUser = async () => {
+        let dateTimestamp = hasChangeDateOfBirth ? date.getTime() : date;
         const { isValidate, errMessage } = UseValidate(form, [
+            "id",
             "img",
             "preview",
+            "date",
         ]);
         if (!isValidate) {
             toast.warning(errMessage);
         } else {
-            let data = { ...form };
-            dispatch(actions.editUserAction(data));
+            let data = { ...form, date: dateTimestamp };
+            await dispatch(actions.editUserAction(data));
             handleCloseModal();
             resetForm();
             render();
@@ -141,6 +146,7 @@ function ModalUser(props) {
 
     return (
         <>
+            {console.log("check onchange date:>>. ", hasChangeDateOfBirth)}
             <Modal
                 show={isShow}
                 onHide={() => {
@@ -151,7 +157,7 @@ function ModalUser(props) {
             >
                 <Modal.Body className={cx("p-5")}>
                     <div className={cx("row form- mb-4")}>
-                        <div className={cx("col-3")}>
+                        <div className={cx("col-4")}>
                             <label>Email</label>
                             <input
                                 onChange={(e) => handleOnChangeInput(e)}
@@ -159,30 +165,30 @@ function ModalUser(props) {
                                 value={email}
                                 type="email"
                                 disabled={isData}
-                                className={cx("form-control form-control-lg")}
+                                className={cx("form-control")}
                             />
                         </div>
-                        <div className={cx("col-3")}>
+                        <div className={cx("col-4")}>
                             <label>First Name</label>
                             <input
                                 onChange={(e) => handleOnChangeInput(e)}
                                 value={firstName}
                                 name="firstName"
                                 type="text"
-                                className={cx("form-control form-control-lg")}
+                                className={cx("form-control ")}
                             />
                         </div>
-                        <div className={cx("col-3")}>
+                        <div className={cx("col-4")}>
                             <label>Last Name</label>
                             <input
                                 onChange={(e) => handleOnChangeInput(e)}
                                 value={lastName}
                                 name="lastName"
                                 type="text"
-                                className={cx("form-control form-control-lg")}
+                                className={cx("form-control ")}
                             />
                         </div>
-                        <div className={cx("col-3")}>
+                        <div className={cx("col-4")}>
                             <label>Password</label>
                             <input
                                 disabled={isData}
@@ -190,29 +196,54 @@ function ModalUser(props) {
                                 value={password}
                                 name="password"
                                 type="password"
-                                className={cx("form-control form-control-lg")}
+                                className={cx("form-control ")}
                             />
                         </div>
-                    </div>
-                    <div className={cx("row form-group mb-4")}>
-                        <div className={cx("col-6")}>
-                            <label>Address</label>
-                            <input
-                                onChange={(e) => handleOnChangeInput(e)}
-                                value={address}
-                                name="address"
-                                type="text"
-                                className={cx("form-control form-control-lg")}
-                            />
-                        </div>
-                        <div className={cx("col-6")}>
+                        <div className={cx("col-8")}>
                             <label>Phone Number</label>
                             <input
                                 onChange={(e) => handleOnChangeInput(e)}
                                 value={phoneNumber}
                                 name="phoneNumber"
                                 type="text"
-                                className={cx("form-control form-control-lg")}
+                                className={cx("form-control ")}
+                            />
+                        </div>
+                        <div className={cx("col-3")}>
+                            <label>Date of birth</label>
+                            <DatePicker
+                                dateFormat={
+                                    language === LANGUAGE.VN
+                                        ? DATE.DATE_BIRTH_PICKER_CLIENT_VI
+                                        : DATE.DATE_BIRTH_PICKER_CLIENT_EN
+                                }
+                                maxDate={new Date()}
+                                scrollableYearDropdown
+                                showYearDropdown
+                                yearDropdownItemNumber={100}
+                                showMonthDropdown
+                                withPortal
+                                selected={date}
+                                onChange={(e) => {
+                                    setHasChangeDateOfBirth(true);
+                                    handleOnChangeInput({
+                                        target: {
+                                            name: "date",
+                                            value: e,
+                                        },
+                                    });
+                                }}
+                                className={cx("form-control")}
+                            />
+                        </div>
+                        <div className={cx("col-9")}>
+                            <label>Address</label>
+                            <input
+                                onChange={(e) => handleOnChangeInput(e)}
+                                value={address}
+                                name="address"
+                                type="text"
+                                className={cx("form-control ")}
                             />
                         </div>
                     </div>
@@ -222,7 +253,7 @@ function ModalUser(props) {
                             <select
                                 value={gender}
                                 name="gender"
-                                className={cx("form-control form-control-lg")}
+                                className={cx("form-control ")}
                                 onChange={(e) => handleOnChangeInput(e)}
                             >
                                 <option>---</option>
@@ -247,7 +278,7 @@ function ModalUser(props) {
                             <select
                                 value={position}
                                 name="position"
-                                className={cx("form-control form-control-lg")}
+                                className={cx("form-control ")}
                                 onChange={(e) => handleOnChangeInput(e)}
                             >
                                 <option>---</option>
@@ -272,7 +303,7 @@ function ModalUser(props) {
                             <select
                                 value={role}
                                 name="role"
-                                className={cx("form-control form-control-lg")}
+                                className={cx("form-control ")}
                                 onChange={(e) => handleOnChangeInput(e)}
                             >
                                 <option>---</option>
@@ -299,7 +330,7 @@ function ModalUser(props) {
                                     handleOnChangeImg(e);
                                 }}
                                 type="file"
-                                className={cx("form-control form-control-lg")}
+                                className={cx("form-control ")}
                             />
                             <div className={cx("preview")}>
                                 <span>{t("user_manage.preview")}: </span>
@@ -318,7 +349,7 @@ function ModalUser(props) {
                     <Button
                         variant="secondary"
                         onClick={() => handleClose()}
-                        size="lg"
+                        size="xm"
                     >
                         Close
                     </Button>
@@ -326,7 +357,7 @@ function ModalUser(props) {
                         <Button
                             variant="primary"
                             onClick={() => handleSaveUser()}
-                            size="lg"
+                            size="xm"
                         >
                             Save
                         </Button>
@@ -334,7 +365,7 @@ function ModalUser(props) {
                         <Button
                             variant="warning"
                             onClick={() => handleUpdateUser()}
-                            size="lg"
+                            size="xm"
                         >
                             Update
                         </Button>

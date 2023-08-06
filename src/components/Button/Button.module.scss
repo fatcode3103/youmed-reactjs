@@ -4,7 +4,7 @@
     color: #fff;
     padding: 10px 16px;
     border-radius: 5px;
-    font-size: 1.5rem;
+    font-size: 15px;
     font-weight: 500;
     transition: all 0.2s linear;
 
@@ -19,7 +19,7 @@
     outline: none;
     background-color: #fff;
     color: rgb(15, 123, 255);
-    font-size: 1.5rem;
+    font-size: 15px;
     font-weight: 500;
     border: 1px solid var(--primary-color);
     padding: 10px 16px;
@@ -39,7 +39,7 @@
     padding: 10px 16px;
     border-radius: 5px;
     background-color: #ccc;
-    font-size: 1.5rem;
+    font-size: 15px;
     font-weight: 500;
 }
 
@@ -60,7 +60,7 @@
     color: #fff;
     padding: 10px 16px;
     border-radius: 5px;
-    font-size: 1.5rem;
+    font-size: 15px;
     font-weight: 500;
     transition: all 0.2s linear;
 
@@ -85,22 +85,4 @@
 .xl {
     text-align: center;
     min-width: 760px;
-}
-
-
-//
-.mb-4{
-    margin-bottom: 4rem;
-}
-
-.mb-2 {
-    margin-bottom: 2rem;
-}
-
-.ml-2{
-    margin-left: 2rem;
-}
-
-.mt-2 {
-    margin-top: 2rem;
 }

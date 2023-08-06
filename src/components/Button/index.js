@@ -23,14 +23,6 @@ function Button(props) {
         ...other
     } = props;
 
-    // custom classname
-    let obj = {};
-    Array.isArray(className) &&
-        className.forEach((item) => {
-            obj[item] = true;
-        });
-    //
-
     const prop = { onClick };
 
     let Btn = "button";
@@ -53,7 +45,7 @@ function Button(props) {
         onlyLink: onlyLink,
         primary: primary,
         update: update,
-        ...obj,
+        [className]: className,
     });
 
     return (

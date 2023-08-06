@@ -1,4 +1,13 @@
-import { hospital, like, lock, card, apple, chplay } from "./svgHtml";
+import {
+    hospital,
+    like,
+    lock,
+    card,
+    apple,
+    chplay,
+    folder1,
+    folder2,
+} from "./svgHtml";
 
 const images = {
     imgLogin: require("../image/Login.png"),
@@ -15,6 +24,8 @@ const images = {
     like: like,
     lock: lock,
     card: card,
+    folder1: folder1,
+    folder2: folder2,
 };
 
 export default images;

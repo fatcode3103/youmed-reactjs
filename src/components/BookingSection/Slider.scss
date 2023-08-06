@@ -1,0 +1,12 @@
+.slick-initialized,
+.slick-list,
+.slick-track,
+.slick-slide div {
+    height: 100%;
+}
+
+.slick-slide{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}

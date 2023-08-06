@@ -3,6 +3,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import * as router from "./router/";
+import PrivateRoute from "./utils/PrivateRouter";
+import LoginRoute from "./utils/LoginRoute";
 
 function App() {
     return (
@@ -17,6 +19,28 @@ function App() {
                                     key={index}
                                     path={item.path}
                                     element={<Page />}
+                                />
+                            );
+                        })}
+                        {router.routerPrivate.map((item, index) => {
+                            const Page = item.component;
+                            return (
+                                <Route
+                                    path={item.path}
+                                    key={index}
+                                    element={
+                                        <PrivateRoute element={<Page />} />
+                                    }
+                                />
+                            );
+                        })}
+                        {router.routerLogin.map((item, index) => {
+                            const Page = item.component;
+                            return (
+                                <Route
+                                    path={item.path}
+                                    key={index}
+                                    element={<LoginRoute element={<Page />} />}
                                 />
                             );
                         })}

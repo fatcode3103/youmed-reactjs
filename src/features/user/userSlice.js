@@ -7,6 +7,10 @@ const initialState = {
     isLoading: false,
     allDoctor: [],
     doctorById: {},
+    doctorScheduleById: [],
+    selectedScheduleTime: {},
+    selectedDate: {},
+    dateDefault: {},
 };
 
 export const userSlice = createSlice({
@@ -72,6 +76,27 @@ export const userSlice = createSlice({
         getDoctorByIdFailed: (state, action) => {
             state.isLoading = false;
         },
+        //get doctor schedule
+        getDoctorScheduleByIdStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getDoctorScheduleByIdSuccess: (state, action) => {
+            state.isLoading = false;
+            state.doctorScheduleById = action.payload;
+        },
+        getDoctorScheduleByIdFailed: (state, action) => {
+            state.isLoading = false;
+            state.doctorScheduleById = {};
+        },
+        setScheduleTime: (state, action) => {
+            state.selectedScheduleTime = action.payload;
+        },
+        setSelectedDate: (state, action) => {
+            state.selectedDate = action.payload;
+        },
+        setDateDefault: (state, action) => {
+            state.dateDefault = action.payload;
+        },
     },
 });
 
@@ -91,6 +116,12 @@ export const {
     getDoctorByIdStart,
     getDoctorByIdSuccess,
     getDoctorByIdFailed,
+    getDoctorScheduleByIdStart,
+    getDoctorScheduleByIdSuccess,
+    getDoctorScheduleByIdFailed,
+    setScheduleTime,
+    setSelectedDate,
+    setDateDefault,
 } = userSlice.actions;
 
 export default userSlice.reducer;

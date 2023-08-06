@@ -35,8 +35,8 @@ function UserManage() {
     };
 
     //delete
-    const handleDeleteUser = (user) => {
-        dispatch(actions.deleteUserAction(user.id));
+    const handleDeleteUser = async (user) => {
+        await dispatch(actions.deleteUserAction(user.id));
         render();
     };
 
@@ -76,10 +76,11 @@ function UserManage() {
                     isShow={isShow}
                     handleCloseModal={handleCloseModal}
                     currentUserByIdEdit={currentUserByIdEdit}
+                    render={render}
                 />
 
                 <Button
-                    className={["mb-2"]}
+                    className={cx("btn-save-user")}
                     size="s"
                     onClick={() => {
                         handleAddNewUser();
@@ -102,43 +103,47 @@ function UserManage() {
                         </tr>
                     </thead>
                     <tbody>
-                        {allUser &&
-                            allUser.length > 0 &&
-                            allUser.map((item, index) => {
-                                return (
-                                    <tr key={index}>
-                                        <td>{index + 1}</td>
-                                        <td>{item.email}</td>
-                                        <td>{item.firstName}</td>
-                                        <td>{item.lastName}</td>
-                                        <td>{item.address}</td>
-                                        <td>{item.phoneNumber}</td>
-                                        <td>{item.roleId}</td>
-                                        <td>
-                                            <div className={cx("action-icon")}>
-                                                <FontAwesomeIcon
-                                                    className={cx("edit-icon")}
-                                                    icon={faEdit}
-                                                    onClick={() => {
-                                                        handleEditUserClick(
-                                                            item
-                                                        );
-                                                    }}
-                                                />
-                                                <FontAwesomeIcon
-                                                    className={cx(
-                                                        "delete-icon"
-                                                    )}
-                                                    icon={faTrash}
-                                                    onClick={() =>
-                                                        handleDeleteUser(item)
-                                                    }
-                                                />
-                                            </div>
-                                        </td>
-                                    </tr>
-                                );
-                            })}
+                        {allUser && allUser.length > 0
+                            ? allUser.map((item, index) => {
+                                  return (
+                                      <tr key={index}>
+                                          <td>{index + 1}</td>
+                                          <td>{item.email}</td>
+                                          <td>{item.firstName}</td>
+                                          <td>{item.lastName}</td>
+                                          <td>{item.address}</td>
+                                          <td>{item.phoneNumber}</td>
+                                          <td>{item.roleId}</td>
+                                          <td>
+                                              <div
+                                                  className={cx("action-icon")}
+                                              >
+                                                  <FontAwesomeIcon
+                                                      className={cx(
+                                                          "edit-icon"
+                                                      )}
+                                                      icon={faEdit}
+                                                      onClick={() => {
+                                                          handleEditUserClick(
+                                                              item
+                                                          );
+                                                      }}
+                                                  />
+                                                  <FontAwesomeIcon
+                                                      className={cx(
+                                                          "delete-icon"
+                                                      )}
+                                                      icon={faTrash}
+                                                      onClick={() =>
+                                                          handleDeleteUser(item)
+                                                      }
+                                                  />
+                                              </div>
+                                          </td>
+                                      </tr>
+                                  );
+                              })
+                            : "NO DATA"}
                     </tbody>
                 </table>
             </div>

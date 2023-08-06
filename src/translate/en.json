@@ -51,7 +51,12 @@
         "post_doctor_info_success": "Create doctor info success",
         "post_doctor_info_failed": "Create doctor info failed",
         "put_doctor_detail_info_success": "Update doctor detail info success",
-        "put_doctor_detail_info_failed": "Update doctor detail info failed"
+        "put_doctor_detail_info_failed": "Update doctor detail info failed",
+        "post_doctor_schedule_failed": "Create doctor schedule failed",
+        "post_doctor_schedule_success": "Create doctor schedule success",
+        "update_doctor_schedule_success": "Update doctor schedule success",
+        "update_doctor_schedule_failed": "Update doctor schedule failed",
+        "login_redirect": "Please login"
     },
     "login":{
         "email": "Email",

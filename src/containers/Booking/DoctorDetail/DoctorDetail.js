@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import moment from "moment";
+import { useTranslation } from "react-i18next";
 
 import styles from "./DoctorDetail.module.scss";
 import * as actions from "../../../app/actions";
@@ -11,9 +13,9 @@ import Header from "../../../components/Header";
 import Loading from "../../../components/Loading";
 import {
     faCircleCheck,
+    faCircleExclamation,
     faCircleChevronDown,
     faCircleChevronUp,
-    faCircleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../../components/Button";
 import { language as LANGUAGE } from "../../../utils/constant";
@@ -23,16 +25,17 @@ import Footer from "../../../components/Footer";
 import DownloadAppSection from "../../Home/DownloadAppSection";
 import AddressMap from "../../../components/AddressMap";
 import MarkdownPreview from "../../../components/MarkdownPreview";
+import BookingSection from "../../../components/BookingSection";
 
 const cx = classNames.bind(styles);
 
 function DoctorDetail() {
-    const { id } = useParams();
     const [isShowSchedule, setIsShowSchedule] = useState(false);
+    const { id } = useParams();
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
-    const { doctorById, isLoading, language } = user;
+    const { doctorById, isLoading, language, dateDefault } = user;
     const { detailInfoData } = doctorById;
 
     useEffect(() => {
@@ -63,6 +66,16 @@ function DoctorDetail() {
         }
     };
 
+    const handleNameUrl = (doctor) => {
+        const name = doctor.firstName + " " + doctor.lastName;
+        const nameUrl = name
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/(\s+)/g, "-");
+        return nameUrl;
+    };
+
     const handleImageBase64 = (doctor) => {
         let imgBase64 = "";
         if (doctor.image) {
@@ -75,11 +88,15 @@ function DoctorDetail() {
         return Object.keys(objectName).length === 0;
     };
 
+    const handleBtnBooking = () => {
+        dispatch(actions.setScheduleTimeAction({}));
+        dispatch(actions.setSelectedDateAction(dateDefault));
+    };
+
     return (
         <div>
             {isLoading && <Loading />}
             <div className={cx("detail-doctor-container")}>
-                {console.log("doctorById", doctorById)}
                 <Header />
                 <div className={cx("detail-doctor-content")}>
                     <div className={cx("info-short")}>
@@ -117,9 +134,10 @@ function DoctorDetail() {
                             </p>
                             <p className={cx("specialty")}>
                                 <span>Chuyên khoa</span>
+                                {/* //load dong chuyen khoa */}
                                 <span>Sản phụ khoa</span>
                             </p>
-                            <p className={cx("position")}>
+                            <div className={cx("position")}>
                                 <span>Chức vụ</span>
                                 <span>
                                     {doctorById &&
@@ -127,48 +145,44 @@ function DoctorDetail() {
                                         doctorById.positionData &&
                                         handleRenderDoctorPosition(doctorById)}
                                 </span>
-                            </p>
-                            <p className={cx("hospital")}>
+                            </div>
+                            <div className={cx("hospital")}>
                                 <span>Nơi công tác</span>
-                                <span>
+                                <div>
                                     {detailInfoData &&
                                     detailInfoData.length > 0 &&
-                                    detailInfoData[0].workPlace ? (
-                                        <MarkdownPreview
-                                            markdown={
-                                                detailInfoData[0].workPlace
-                                            }
-                                        />
-                                    ) : (
-                                        ""
-                                    )}
-                                </span>
-                            </p>
+                                    detailInfoData[0].workPlace
+                                        ? detailInfoData[0].workPlace
+                                        : ""}
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className={cx("note")}>
-                        <p>
-                            <FontAwesomeIcon icon={faCircleExclamation} />
-                            <span>Lưu ý </span>
-                        </p>
-                        <div className={cx("note-text")}>
-                            {detailInfoData &&
-                            detailInfoData.length > 0 &&
-                            detailInfoData[0].note ? (
+                    <div className={cx("note-text")}>
+                        {detailInfoData &&
+                        detailInfoData.length > 0 &&
+                        detailInfoData[0].note ? (
+                            <div className={cx("note")}>
+                                <p>
+                                    <FontAwesomeIcon
+                                        icon={faCircleExclamation}
+                                    />
+                                    <span>Lưu ý </span>
+                                </p>
                                 <MarkdownPreview
                                     markdown={detailInfoData[0].note}
                                 />
-                            ) : (
-                                ""
-                            )}
-                        </div>
+                            </div>
+                        ) : (
+                            ""
+                        )}
                     </div>
                     <div className={cx("schedule")}>
                         <div
                             className={cx("schedule-title")}
                             onClick={() => setIsShowSchedule(!isShowSchedule)}
                         >
-                            <p>Đặt khám nhanh</p>
+                            <p className={cx("section-title")}>Đặt khám</p>
                             {isShowSchedule ? (
                                 <FontAwesomeIcon
                                     icon={faCircleChevronUp}
@@ -181,10 +195,14 @@ function DoctorDetail() {
                                 />
                             )}
                         </div>
-                        {isShowSchedule ? <div> schedule content</div> : ""}
+                        <div className={cx("schedule-content")}>
+                            {!isShowSchedule && (
+                                <BookingSection doctorId={id} />
+                            )}
+                        </div>
                     </div>
                     <div className={cx("introduction")}>
-                        <p>Giới thiệu</p>
+                        <p className={cx("section-title")}>Giới thiệu</p>
                         <div>
                             <span>
                                 {doctorById &&
@@ -204,11 +222,17 @@ function DoctorDetail() {
                         </div>
                     </div>
                     <div className={cx("address-map")}>
-                        <p>Địa chỉ</p>
-                        <AddressMap src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29793.980453103966!2d105.81636405641534!3d21.022778419324332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9bd9861ca1%3A0xe7887f7b72ca17a9!2zSMOgIE7hu5lpLCBIb8OgbiBLaeG6v20sIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1690428611816!5m2!1svi!2s" />
+                        <p className={cx("section-title")}>Địa chỉ</p>
+                        {detailInfoData &&
+                        detailInfoData.length > 0 &&
+                        detailInfoData[0].address ? (
+                            <AddressMap src={detailInfoData[0].address} />
+                        ) : (
+                            ""
+                        )}
                     </div>
                     <div className={cx("training")}>
-                        <p>Quá trình đào tạo</p>
+                        <p className={cx("section-title")}>Quá trình đào tạo</p>
                         <div>
                             {detailInfoData &&
                             detailInfoData.length > 0 &&
@@ -222,7 +246,7 @@ function DoctorDetail() {
                         </div>
                     </div>
                     <div className={cx("experience")}>
-                        <p>Kinh nghiệm</p>
+                        <p className={cx("section-title")}>Kinh nghiệm</p>
                         <div>
                             {detailInfoData &&
                             detailInfoData.length > 0 &&
@@ -240,7 +264,14 @@ function DoctorDetail() {
                     <a href="tel:19002805" target="_blank" rel="noreferrer">
                         Hỗ trợ đặt khám
                     </a>
-                    <Button to="/" normal size="xl">
+                    <Button
+                        onClick={() => handleBtnBooking()}
+                        to={`/booking/${handleNameUrl(doctorById)}/id=/${
+                            doctorById.id
+                        }/booking`}
+                        normal
+                        size="xl"
+                    >
                         ĐẶT KHÁM NGAY
                     </Button>
                 </div>

@@ -41,16 +41,12 @@ function Menu(props) {
             current.data &&
             current.data.length > 0 &&
             current.data.map((item, index) => {
-                let val = false;
-                if (item.key === "none") {
-                    val = true;
-                }
                 let sub = !!item.menuSub;
                 return (
                     <MenuItem
                         key={index}
                         data={item}
-                        none={val}
+                        none={true}
                         onClick={() => {
                             if (item.key === "logout") {
                                 handleUserLogout();

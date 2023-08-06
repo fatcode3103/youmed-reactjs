@@ -60,6 +60,28 @@ const putDoctorDetailInfoApi = async (data) => {
     return res;
 };
 
+const postDoctorScheduleApi = async (data) => {
+    let res = await httpRequest.post(`post-doctor-schedule`, data);
+    return res;
+};
+
+const getDoctorScheduleApi = async (data) => {
+    let res = await httpRequest.get(
+        `get-doctor-schedule?date=${data.date}&doctorId=${data.doctorId}`
+    );
+    return res;
+};
+
+const getDoctorScheduleByIdApi = async (id) => {
+    let res = await httpRequest.get(`get-doctor-schedule-by-id?id=${id}`);
+    return res;
+};
+
+const updateDoctorScheduleApi = async (data) => {
+    let res = await httpRequest.put(`update-doctor-schedule`, data);
+    return res;
+};
+
 export {
     postLoginApi,
     getAllUserApi,
@@ -73,4 +95,8 @@ export {
     postDoctorInfoByIdApi,
     getDoctorDetailInfoApi,
     putDoctorDetailInfoApi,
+    postDoctorScheduleApi,
+    getDoctorScheduleApi,
+    updateDoctorScheduleApi,
+    getDoctorScheduleByIdApi,
 };

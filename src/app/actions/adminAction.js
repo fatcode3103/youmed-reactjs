@@ -267,3 +267,109 @@ export const putDoctorDetailInfoAction = (data) => {
         }
     };
 };
+
+export const postDoctorScheduleAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.postDoctorScheduleStart());
+        try {
+            let res = await userService.postDoctorScheduleApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.postDoctorScheduleSuccess());
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.post_doctor_schedule_success")} !
+                            </span>
+                        )}
+                    </Translation>
+                );
+            } else {
+                dispatch(adminslice.postDoctorScheduleFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.post_doctor_schedule_failed")}
+                                <span>{res.data.message}</span>
+                            </span>
+                        )}
+                    </Translation>
+                );
+            }
+        } catch (e) {
+            dispatch(adminslice.postDoctorScheduleFailed());
+            toast.error(
+                <Translation>
+                    {(t) => (
+                        <span>
+                            {t("toast.post_doctor_schedule_failed")} !
+                            <span>{e}</span>
+                        </span>
+                    )}
+                </Translation>
+            );
+        }
+    };
+};
+
+export const getDoctorScheduleAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.getDoctorScheduleStart());
+        try {
+            let res = await userService.getDoctorScheduleApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.getDoctorScheduleSuccess(res.data.data));
+            } else {
+                dispatch(adminslice.getDoctorScheduleFailed());
+            }
+        } catch (e) {
+            dispatch(adminslice.getDoctorScheduleFailed());
+        }
+    };
+};
+
+export const updateDoctorScheduleAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.updateDoctorScheduleStart());
+        try {
+            let res = await userService.updateDoctorScheduleApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.updateDoctorScheduleSuccess());
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.update_doctor_schedule_success")} !
+                            </span>
+                        )}
+                    </Translation>
+                );
+            } else {
+                dispatch(adminslice.updateDoctorScheduleFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.update_doctor_schedule_failed")}
+                                <span>{res.data.message}</span>
+                            </span>
+                        )}
+                    </Translation>
+                );
+            }
+        } catch (e) {
+            dispatch(adminslice.updateDoctorScheduleFailed());
+            toast.error(
+                <Translation>
+                    {(t) => (
+                        <span>
+                            {t("toast.pupdate_doctor_schedule_failed")} !
+                            <span>{e}</span>
+                        </span>
+                    )}
+                </Translation>
+            );
+        }
+    };
+};

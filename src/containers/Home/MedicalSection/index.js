@@ -47,7 +47,7 @@ function MedicalSection() {
         <div className={cx("medical-container")}>
             <div className={cx("medical-content")}>
                 <div className={cx("title")}>
-                    <h2>Tin Y tế</h2>
+                    <h3>Tin Y tế</h3>
                     <p>Chính thống - Minh bạch - Trung lập</p>
                 </div>
                 <div className={cx("body")}>

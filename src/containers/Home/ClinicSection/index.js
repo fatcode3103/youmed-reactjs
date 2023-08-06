@@ -29,7 +29,7 @@ function ClinicSection() {
             <div className={cx("clinic-section-content")}>
                 <div className={cx("title")}>
                     <div className={cx("content-left")}>
-                        <h2>Đặt khám Phòng khám</h2>
+                        <h4>Đặt khám Phòng khám</h4>
                         <p>
                             Đa dạng phòng khám với nhiều chuyên khoa khác nhau
                             như Sản - Nhi, Tai Mũi họng, Da Liễu, Tiêu Hoá...
