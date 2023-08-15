@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Slider from "react-slick";
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 import styles from "./ClinicSection.module.scss";
 import Image from "../../../components/Image";
@@ -10,6 +11,7 @@ import Image from "../../../components/Image";
 const cx = classNames.bind(styles);
 
 function ClinicSection() {
+    const { t } = useTranslation();
     const slider = useRef(null);
     const settings = {
         swipeToSlide: true,
@@ -29,15 +31,12 @@ function ClinicSection() {
             <div className={cx("clinic-section-content")}>
                 <div className={cx("title")}>
                     <div className={cx("content-left")}>
-                        <h4>Đặt khám Phòng khám</h4>
-                        <p>
-                            Đa dạng phòng khám với nhiều chuyên khoa khác nhau
-                            như Sản - Nhi, Tai Mũi họng, Da Liễu, Tiêu Hoá...
-                        </p>
+                        <h4>{t("home.clinic_section.book_clinic")}</h4>
+                        <p>{t("home.clinic_section.text")}</p>
                     </div>
                     <div className={cx("content-right")}>
                         <button className={cx("more-btn")}>
-                            <span>Xem thêm</span>
+                            <span>{t("home.clinic_section.see_more")}</span>
                             <FontAwesomeIcon
                                 icon={faAngleRight}
                                 className={cx("icon-arrow")}

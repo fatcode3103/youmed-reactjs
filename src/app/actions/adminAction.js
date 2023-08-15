@@ -3,6 +3,7 @@ import { Translation } from "react-i18next";
 
 import * as userService from "../../services/userService";
 import * as adminslice from "../../features/admin/adminslice";
+import * as specialtyService from "../../services/specialtyService";
 
 export const getAllUserAction = () => {
     return async (dispatch) => {
@@ -364,7 +365,47 @@ export const updateDoctorScheduleAction = (data) => {
                 <Translation>
                     {(t) => (
                         <span>
-                            {t("toast.pupdate_doctor_schedule_failed")} !
+                            {t("toast.update_doctor_schedule_failed")} !
+                            <span>{e}</span>
+                        </span>
+                    )}
+                </Translation>
+            );
+        }
+    };
+};
+
+export const createSpecialtyAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.createSpecialtyStart());
+        try {
+            let res = await specialtyService.createSpecialtyApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.createSpecialtySuccess());
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>{t("toast.create_specialty_success")} !</span>
+                        )}
+                    </Translation>
+                );
+            } else {
+                dispatch(adminslice.createSpecialtyFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <span>{t("toast.create_specialty_failed")} !</span>
+                        )}
+                    </Translation>
+                );
+            }
+        } catch (e) {
+            dispatch(adminslice.createSpecialtyFailed());
+            toast.error(
+                <Translation>
+                    {(t) => (
+                        <span>
+                            {t("toast.create_specialty_failed")} !
                             <span>{e}</span>
                         </span>
                     )}

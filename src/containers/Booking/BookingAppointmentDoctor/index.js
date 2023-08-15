@@ -31,8 +31,11 @@ const cx = classNames.bind(styles);
 function BookingAppointment() {
     let { id } = useParams();
     const [selectedTime, setSelectedTime] = useState({});
+    const [clickedBooking, setClickedBooking] = useState(false);
 
     const user = useSelector((state) => state.user);
+    const admin = useSelector((state) => state.admin);
+    const { userById } = admin;
     const {
         selectedScheduleTime,
         doctorById,
@@ -46,11 +49,16 @@ function BookingAppointment() {
 
     useEffect(() => {
         dispatch(actions.getDoctorByIdAction(id));
+        dispatch(actions.getUserByIdAction(currentUser.id));
     }, [dispatch]);
 
     useEffect(() => {
         setSelectedTime(selectedScheduleTime);
     }, [selectedScheduleTime]);
+
+    useEffect(() => {
+        document.documentElement.scrollTop = 0;
+    }, []);
 
     const handleImageBase64 = (doctor) => {
         let imgBase64 = "";
@@ -101,6 +109,48 @@ function BookingAppointment() {
         } else {
             return `${user.firstName} ${user.lastName}`;
         }
+    };
+
+    const renderSpecialty = (doctor) => {
+        if (doctor && doctor.specialtyData && doctor.specialtyData.length > 0) {
+            let specialtyArr = doctor.specialtyData.map((item, index) => {
+                return language === LANGUAGE.VN ? item.valueVi : item.valueEn;
+            });
+            return specialtyArr.join(", ");
+        }
+    };
+
+    //sent data to server
+    const handleClickBtnBooking = async (data) => {
+        if (data) {
+            let dataSentToServer = {
+                ...data,
+                date: selectedDate.date,
+                timeType: selectedTime.keyMap,
+                doctorId: doctorById.id,
+                patientId: userById.id,
+                sendToEmail: {
+                    date: renderSelectedDate(selectedDate),
+                    time: renderSelectedTime(selectedTime),
+                    doctor: {
+                        address: doctorById.detailInfoData.address,
+                        specialty: renderSpecialty(doctorById),
+                        doctorName: handleRenderDoctorName(doctorById),
+                    },
+                    patient: {
+                        patientName: renderNamePatient(userById),
+                        phoneNumber: userById.phoneNumber,
+                        email: userById.email,
+                    },
+                    language: language,
+                },
+            };
+            // console.log("check dataSentToServer:>>> ", userById);
+            await dispatch(
+                actions.postPatientBookAppointmentAction(dataSentToServer)
+            );
+        }
+        setClickedBooking(!clickedBooking);
     };
 
     return (
@@ -172,7 +222,12 @@ function BookingAppointment() {
                                         </div>
                                         <FontAwesomeIcon icon={faAngleDown} />
                                     </div>
-                                    <PatientProfile />
+                                    <PatientProfile
+                                        handleClickBtnBooking={
+                                            handleClickBtnBooking
+                                        }
+                                        clickedBooking={clickedBooking}
+                                    />
                                 </div>
                             )}
                         </div>
@@ -190,7 +245,7 @@ function BookingAppointment() {
                                 <div className={cx("doctor-info")}>
                                     <Image
                                         size="s"
-                                        br
+                                        br="true"
                                         src={handleImageBase64(doctorById)}
                                     />
                                     <div className={cx("short-info-doctor")}>
@@ -202,8 +257,12 @@ function BookingAppointment() {
                                                 )}
                                         </p>
                                         <p className={cx("doctor-address")}>
-                                            01 Đường 270 Khu nhà ở Nam Hoà, P.
-                                            Phước Long A, Q.9, TP.HCM
+                                            {doctorById &&
+                                            doctorById.detailInfoData &&
+                                            doctorById.detailInfoData.address
+                                                ? doctorById.detailInfoData
+                                                      .address
+                                                : ""}
                                         </p>
                                     </div>
                                 </div>
@@ -236,8 +295,8 @@ function BookingAppointment() {
                                     <div className={cx("schedule-info-item")}>
                                         <span>Bệnh nhân</span>
                                         <span>
-                                            {currentUser &&
-                                                renderNamePatient(currentUser)}
+                                            {userById &&
+                                                renderNamePatient(userById)}
                                         </span>
                                     </div>
                                 </div>
@@ -245,7 +304,9 @@ function BookingAppointment() {
                                     <Button
                                         className={cx("btn-booking")}
                                         size="l"
-                                        normal
+                                        disnabel={_.isEmpty(selectedTime)}
+                                        normal={!_.isEmpty(selectedTime)}
+                                        onClick={() => handleClickBtnBooking()}
                                     >
                                         Đặt lịch
                                     </Button>

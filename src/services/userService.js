@@ -82,6 +82,11 @@ const updateDoctorScheduleApi = async (data) => {
     return res;
 };
 
+const postPatientBookAppointmentApi = async (data) => {
+    let res = await httpRequest.post(`post-patient-book-appointment`, data);
+    return res;
+};
+
 export {
     postLoginApi,
     getAllUserApi,
@@ -99,4 +104,5 @@ export {
     getDoctorScheduleApi,
     updateDoctorScheduleApi,
     getDoctorScheduleByIdApi,
+    postPatientBookAppointmentApi,
 };

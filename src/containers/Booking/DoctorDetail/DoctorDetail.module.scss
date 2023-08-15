@@ -35,7 +35,7 @@
 }
 
 .name{
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 500;
 }
 
@@ -44,7 +44,7 @@
     align-items: center;
 }
 
-.role span:first-child{
+.content-left{
     color: var(--primary-color);
     font-size: 16px;
     font-weight: 500;
@@ -64,6 +64,12 @@
     }
 }
 
+.content-right span:first-child{
+    font-size: 17px;
+    font-weight: 600;
+    margin-right: 6px;
+}
+
 .icon-check{
     margin-right: 5px;
 }
@@ -71,18 +77,20 @@
 .specialty span:first-child, .position span:first-child, .hospital span:first-child{
     margin-right: 10px;
     font-size: 15px;
-    color: var(--text-color) !important;
+    color: var(--text-color);
     opacity: 0.8;
+}
+
+.specialty-item {
+    color: var(--primary-color) !important;
+    font-size: 17px !important;
+    font-weight: 500;
 }
 
 .hospital{
     display: flex;
     align-items: center;
     margin-top: 3px;
-}
-
-.specialty span{
-    color: var(--primary-color);
 }
 
 .position span .hospital span {

@@ -68,10 +68,10 @@ export const menuUserInfo = [
             ],
         },
     },
-    {
-        title: <Translation>{(t) => t("home.payment_history")}</Translation>,
-        to: path.PAYMENT_HISTORY,
-    },
+    // {
+    //     title: <Translation>{(t) => t("home.payment_history")}</Translation>,
+    //     to: path.PAYMENT_HISTORY,
+    // },
     {
         title: <Translation>{(t) => t("home.profile")}</Translation>,
         to: path.PROFILE,

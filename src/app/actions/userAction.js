@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import * as userService from "../../services/userService";
 import * as userSlice from "../../features/user/userSlice";
 import { path } from "../../utils/constant";
+import * as specialtyService from "../../services/specialtyService";
 
 export const loginAction = (userData, navigate) => {
     return async (dispatch) => {
@@ -163,6 +164,76 @@ export const setDateDefaultAction = (date) => {
             dispatch(userSlice.setDateDefault(date));
         } catch (e) {
             console.log(e);
+        }
+    };
+};
+
+export const getAllSpecialtyAction = () => {
+    return async (dispatch) => {
+        dispatch(userSlice.getAllSpecialtyStart());
+        try {
+            let res = await specialtyService.getAllSpecialtyApi();
+            if (res && res.data.errorCode === 0) {
+                dispatch(userSlice.getAllSpecialtySuccess(res.data.data));
+            } else {
+                dispatch(userSlice.getAllSpecialtyFailed());
+            }
+        } catch (e) {
+            dispatch(userSlice.getAllSpecialtyFailed());
+        }
+    };
+};
+
+export const postPatientBookAppointmentAction = (data) => {
+    return async (dispatch) => {
+        dispatch(userSlice.postPatientBookAppointmentStart());
+        try {
+            let res = await userService.postPatientBookAppointmentApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(userSlice.postPatientBookAppointmentSuccess());
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.create_book_appointment_successful")}!
+                            </span>
+                        )}
+                    </Translation>
+                );
+            } else if (res && res.data.errorCode === -1) {
+                dispatch(userSlice.postPatientBookAppointmentFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.book_appointment_available")}!
+                            </span>
+                        )}
+                    </Translation>
+                );
+            } else {
+                dispatch(userSlice.postPatientBookAppointmentFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.create_book_appointment_failed")}!
+                            </span>
+                        )}
+                    </Translation>
+                );
+            }
+        } catch (e) {
+            dispatch(userSlice.postPatientBookAppointmentFailed());
+            toast.error(
+                <Translation>
+                    {(t) => (
+                        <span>
+                            {t("toast.create_book_appointment_failed")}!
+                        </span>
+                    )}
+                </Translation>
+            );
         }
     };
 };

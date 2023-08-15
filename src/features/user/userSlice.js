@@ -11,6 +11,7 @@ const initialState = {
     selectedScheduleTime: {},
     selectedDate: {},
     dateDefault: {},
+    allSpecialty: [],
 };
 
 export const userSlice = createSlice({
@@ -97,6 +98,27 @@ export const userSlice = createSlice({
         setDateDefault: (state, action) => {
             state.dateDefault = action.payload;
         },
+        //get all specialty
+        getAllSpecialtyStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getAllSpecialtySuccess: (state, action) => {
+            state.isLoading = false;
+            state.allSpecialty = action.payload;
+        },
+        getAllSpecialtyFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //post PatientBookAppointment
+        postPatientBookAppointmentStart: (state, action) => {
+            state.isLoading = true;
+        },
+        postPatientBookAppointmentSuccess: (state, action) => {
+            state.isLoading = false;
+        },
+        postPatientBookAppointmentFailed: (state, action) => {
+            state.isLoading = false;
+        },
     },
 });
 
@@ -122,6 +144,12 @@ export const {
     setScheduleTime,
     setSelectedDate,
     setDateDefault,
+    getAllSpecialtyStart,
+    getAllSpecialtySuccess,
+    getAllSpecialtyFailed,
+    postPatientBookAppointmentStart,
+    postPatientBookAppointmentSuccess,
+    postPatientBookAppointmentFailed,
 } = userSlice.actions;
 
 export default userSlice.reducer;

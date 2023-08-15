@@ -1,15 +1,18 @@
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faLanguage } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 import { path, language as LANGUAGE } from "../../utils/constant";
 import styles from "./Header.module.scss";
 import Menu from "../Menu/Menu";
 import images from "../../assets/image";
 import Button from "../Button";
+import * as actions from "../../app/actions";
+import BufferToBase64 from "../../utils/BufferToBase64";
 
 import {
     menuAppointment,
@@ -17,16 +20,18 @@ import {
     menuUserInfo,
 } from "../MenuData/menuData";
 import Image from "../Image";
+import { useEffect } from "react";
 
 const cx = classNames.bind(styles);
 
 function Header(props) {
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const { avatarBase64 } = props;
     const userState = useSelector((state) => state.user);
-
+    const admin = useSelector((state) => state.admin);
+    const dispatch = useDispatch();
     const { isLogin, currentUser, language } = userState;
+    const { userById } = admin;
 
     const menuLanguage = [
         {
@@ -40,6 +45,10 @@ function Header(props) {
             key: "none",
         },
     ];
+
+    useEffect(() => {
+        dispatch(actions.getUserByIdAction(currentUser.id));
+    }, [dispatch]);
 
     const handlebackToHome = () => {
         navigate(path.HOME);
@@ -93,8 +102,12 @@ function Header(props) {
                                         br="true"
                                         size="xs"
                                         src={
-                                            avatarBase64
-                                                ? avatarBase64
+                                            currentUser &&
+                                            currentUser.image &&
+                                            currentUser.image.data
+                                                ? BufferToBase64(
+                                                      currentUser.image.data
+                                                  )
                                                 : images.noImage
                                         }
                                         alt="avatar"
@@ -102,13 +115,13 @@ function Header(props) {
                                     />
                                     {language === LANGUAGE.VN ? (
                                         <span>
-                                            {currentUser.lastName}{" "}
-                                            {currentUser.firstName}
+                                            {userById.lastName}{" "}
+                                            {userById.firstName}
                                         </span>
                                     ) : (
                                         <span>
-                                            {currentUser.firstName}{" "}
-                                            {currentUser.lastName}
+                                            {userById.firstName}{" "}
+                                            {userById.lastName}
                                         </span>
                                     )}
                                 </div>

@@ -1,21 +1,40 @@
 import React from "react";
+import Image from "../Image";
+import classNames from "classnames/bind";
 
-const AddressMap = ({ src }) => {
+import styles from "./AddressMap.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
+
+const cx = classNames.bind(styles);
+
+const AddressMap = ({ src, nameAddress }) => {
     return (
-        <div className="google-map-code">
-            <iframe
-                title="This is the map"
-                style={{
-                    borderRadius: "16px",
-                    border: "2px solid #1975dc",
-                }}
-                src={src}
-                width="450"
-                height="300"
-                allowFullScreen=""
-                loading="lazy"
-                referrerolicy="no-referrer-when-downgrade"
-            ></iframe>
+        <div className={cx("map-container")}>
+            <a
+                href={src}
+                target="_blank"
+                rel="noreferrer"
+                className={cx("map-content")}
+            >
+                <Image
+                    className={cx("map-img")}
+                    size="xl-no-stretch"
+                    src="https://youmed.vn/dat-kham/assets/img/booking/map.webp"
+                />
+                <div className={cx("color-on-top")}></div>
+                <div className={cx("info")}>
+                    <div className={cx("info-title")}>Địa chỉ</div>
+                    <div className={cx("info-address-text")}>{nameAddress}</div>
+                    <div className={cx("info-btn")}>
+                        <FontAwesomeIcon
+                            icon={faBookOpen}
+                            className={cx("icon")}
+                        />
+                        <p className={cx("info-btn-text")}>Mở bản đồ</p>
+                    </div>
+                </div>
+            </a>
         </div>
     );
 };

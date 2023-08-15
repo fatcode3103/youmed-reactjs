@@ -12,6 +12,7 @@ import Loading from "../../../components/Loading";
 import ModalUser from "../Admin/ModalUser";
 import Button from "../../../components/Button";
 import BufferToBase64 from "../../../utils/BufferToBase64";
+import NoDataPage from "../../../components/NoDataPage";
 
 const cx = classNames.bind(styles);
 
@@ -67,7 +68,6 @@ function UserManage() {
 
     return (
         <div>
-            {isLoading && <Loading />}
             <HeaderSystem />
             <div className={cx("user-manage-container")}>
                 <ModalUser
@@ -87,65 +87,63 @@ function UserManage() {
                     }}
                     normal
                 >
-                    + {t("user_manage.add_new_user")}
+                    + {t("system.user_manage.add_new_user")}
                 </Button>
                 <table className={cx("user-manage-tabel")}>
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Email</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Address</th>
-                            <th>Phone Number</th>
-                            <th>Role</th>
+                            <th>{t("system.form.no")}</th>
+                            <th>{t("system.form.email")}</th>
+                            <th>{t("system.form.first_name")}</th>
+                            <th>{t("system.form.last_name")}</th>
+                            <th>{t("system.form.address")}</th>
+                            <th>{t("system.form.phone_number")}</th>
+                            <th>{t("system.form.role")}</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {allUser && allUser.length > 0
-                            ? allUser.map((item, index) => {
-                                  return (
-                                      <tr key={index}>
-                                          <td>{index + 1}</td>
-                                          <td>{item.email}</td>
-                                          <td>{item.firstName}</td>
-                                          <td>{item.lastName}</td>
-                                          <td>{item.address}</td>
-                                          <td>{item.phoneNumber}</td>
-                                          <td>{item.roleId}</td>
-                                          <td>
-                                              <div
-                                                  className={cx("action-icon")}
-                                              >
-                                                  <FontAwesomeIcon
-                                                      className={cx(
-                                                          "edit-icon"
-                                                      )}
-                                                      icon={faEdit}
-                                                      onClick={() => {
-                                                          handleEditUserClick(
-                                                              item
-                                                          );
-                                                      }}
-                                                  />
-                                                  <FontAwesomeIcon
-                                                      className={cx(
-                                                          "delete-icon"
-                                                      )}
-                                                      icon={faTrash}
-                                                      onClick={() =>
-                                                          handleDeleteUser(item)
-                                                      }
-                                                  />
-                                              </div>
-                                          </td>
-                                      </tr>
-                                  );
-                              })
-                            : "NO DATA"}
+                        {allUser &&
+                            allUser.length > 0 &&
+                            allUser.map((item, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td>{index + 1}</td>
+                                        <td>{item.email}</td>
+                                        <td>{item.firstName}</td>
+                                        <td>{item.lastName}</td>
+                                        <td>{item.address}</td>
+                                        <td>{item.phoneNumber}</td>
+                                        <td>{item.roleId}</td>
+                                        <td>
+                                            <div className={cx("action-icon")}>
+                                                <FontAwesomeIcon
+                                                    className={cx("edit-icon")}
+                                                    icon={faEdit}
+                                                    onClick={() => {
+                                                        handleEditUserClick(
+                                                            item
+                                                        );
+                                                    }}
+                                                />
+                                                <FontAwesomeIcon
+                                                    className={cx(
+                                                        "delete-icon"
+                                                    )}
+                                                    icon={faTrash}
+                                                    onClick={() =>
+                                                        handleDeleteUser(item)
+                                                    }
+                                                />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
                     </tbody>
                 </table>
+                {isLoading && <Loading />}
+                {!allUser.length > 0 && <NoDataPage />}
             </div>
         </div>
     );

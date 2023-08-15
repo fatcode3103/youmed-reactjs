@@ -2,30 +2,34 @@ import classNames from "classnames/bind";
 
 import styles from "./DownloadAppSection.module.scss";
 import images from "../../../assets/image";
+import { useTranslation } from "react-i18next";
 
 const cx = classNames.bind(styles);
 
 function DownloadAppSection() {
+    const { t } = useTranslation();
     return (
         <div className={cx("download-app-container")}>
             <div className={cx("download-app-content")}>
                 <div className={cx("content-left")}>
-                    <h1>Tải ứng dụng YouMed</h1>
+                    <h1>{t("home.download_app_section.title")}</h1>
                     <p>
                         {images.hospital}
-                        <span>Đặt lịch khám bệnh và xét nghiệm</span>
+                        <span>{t("home.download_app_section.schedule")}</span>
                     </p>
                     <p>
                         {images.like}
-                        <span>Tư vấn trực tuyến với Bác sĩ</span>
+                        <span>
+                            {t("home.download_app_section.consultation")}
+                        </span>
                     </p>
                     <p>
                         {images.lock}
-                        <span>Lưu trữ hồ sơ sức khỏe</span>
+                        <span>{t("home.download_app_section.maintain")}</span>
                     </p>
                     <p>
                         {images.card}
-                        <span>Thanh toán dịch vụ trực tuyến</span>
+                        <span>{t("home.download_app_section.payment")}</span>
                     </p>
                     <div className={cx("download-logo")}>
                         <a

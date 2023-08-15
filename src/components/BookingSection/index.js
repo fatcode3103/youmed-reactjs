@@ -2,7 +2,11 @@ import classNames from "classnames/bind";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import {
+    faAngleLeft,
+    faAngleRight,
+    faCalendarXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import Slider from "react-slick";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
@@ -19,7 +23,7 @@ var _ = require("lodash");
 const cx = classNames.bind(styles);
 
 function BookingAppointment(props) {
-    const { lessList, doctorId, getDateDefault } = props;
+    const { lessList, doctorId } = props;
     const slider = useRef();
     const { t } = useTranslation();
     const [isDateActive, setIsDateActive] = useState(0);
@@ -40,7 +44,8 @@ function BookingAppointment(props) {
     const dispatch = useDispatch();
 
     const { time } = admin;
-    const { doctorById, language, isLogin, doctorScheduleById } = user;
+    const { doctorById, language, isLogin, doctorScheduleById, dateDefault } =
+        user;
 
     useEffect(() => {
         dispatch(actions.getDoctorScheduleByIdAction(doctorId));
@@ -49,14 +54,15 @@ function BookingAppointment(props) {
     }, [dispatch, doctorId]);
 
     useEffect(() => {
-        setDoctorTime(filterCurrentFutureDate()[0]);
-    }, [doctorScheduleById]);
+        setDoctorTime(dateDefault);
+    }, [doctorScheduleById, dateDefault]);
 
     const handleClickBtnTime = (time) => {
         if (!isLogin) {
             toast.info(t("toast.login_redirect"));
         } else {
             dispatch(actions.setScheduleTimeAction(time));
+            dispatch(actions.setSelectedDateAction(doctorTime));
         }
     };
 
@@ -94,7 +100,7 @@ function BookingAppointment(props) {
         isDateActive !== index && setIsDateActive(index);
     };
 
-    const handleClickDateTag = (item = filterCurrentFutureDate()[0], index) => {
+    const handleClickDateTag = (item = dateDefault, index) => {
         handleDateActive(index);
         setDoctorTime(item);
         dispatch(actions.setSelectedDateAction(item));
@@ -118,26 +124,27 @@ function BookingAppointment(props) {
 
     return (
         <div className={cx("schedule")}>
-            <div className={cx("schedule-content")}>
-                <div className={cx("date")}>
-                    <div className={cx("btn-slider")}>
-                        <button
-                            className={cx("btn-prev")}
-                            onClick={() => slider.current.slickPrev()}
-                        >
-                            <FontAwesomeIcon icon={faAngleLeft} />
-                        </button>
-                        <button
-                            className={cx("btn-next")}
-                            onClick={() => slider.current.slickNext()}
-                        >
-                            <FontAwesomeIcon icon={faAngleRight} />
-                        </button>
-                    </div>
-                    <Slider {...settings} ref={slider}>
-                        {doctorScheduleById &&
-                            doctorScheduleById.length > 0 &&
-                            filterCurrentFutureDate().map((item, index) => {
+            {doctorScheduleById &&
+            doctorScheduleById.length > 0 &&
+            filterCurrentFutureDate().length > 0 ? (
+                <div className={cx("schedule-content")}>
+                    <div className={cx("date")}>
+                        <div className={cx("btn-slider")}>
+                            <button
+                                className={cx("btn-prev")}
+                                onClick={() => slider.current.slickPrev()}
+                            >
+                                <FontAwesomeIcon icon={faAngleLeft} />
+                            </button>
+                            <button
+                                className={cx("btn-next")}
+                                onClick={() => slider.current.slickNext()}
+                            >
+                                <FontAwesomeIcon icon={faAngleRight} />
+                            </button>
+                        </div>
+                        <Slider {...settings} ref={slider}>
+                            {filterCurrentFutureDate().map((item, index) => {
                                 return (
                                     <div
                                         key={index}
@@ -171,13 +178,22 @@ function BookingAppointment(props) {
                                     </div>
                                 );
                             })}
-                    </Slider>
+                        </Slider>
+                    </div>
+                    <div className={cx("time-content")}>
+                        {!_.isEmpty(doctorTime) &&
+                            handleRenderTimeByLanguage(doctorTime)}
+                    </div>
                 </div>
-                <div className={cx("time-content")}>
-                    {!_.isEmpty(doctorTime) &&
-                        handleRenderTimeByLanguage(doctorTime)}
+            ) : (
+                <div>
+                    <FontAwesomeIcon
+                        icon={faCalendarXmark}
+                        className={cx("icon-no-schedule")}
+                    />
+                    Không có lịch khám nào, vui lòng chọn bác sĩ khác !
                 </div>
-            </div>
+            )}
         </div>
     );
 }

@@ -23,19 +23,110 @@
         "header": {
             "title": "Ứng dụng Đặt khám",
             "text": "Đặt khám Bác sĩ, Bệnh viện, Phòng khám trên YouMed để có số thứ tự và khung giờ khám trước",
-            "search": "Symptoms, doctors, hospitals,..."
+            "search": "Symptoms, doctors, hospitals,...",
+            "booking_online": "Đặt lịch khám trực tuyến",
+            "find_doctor": "Tìm Bác sĩ chính xác - Đặt lịch khám dễ dàng"
+        },
+        "doctor_section": {
+            "book_doctor": "Đặt khám Bác sĩ",
+            "booking": "Đặt lịch hẹn với các bác sĩ giỏi, luôn tận tâm chăm sóc sức khoẻ của bạn và gia đình",
+            "see_more": "Xem thêm",
+            "book_appointment": "Đặt lịch khám"
+        },
+        "hospital_section": {
+            "see_more": "See more",
+            "book_hospital": "Đặt khám Bệnh viện",
+            "payment": "Hiện tại, bạn có thể đặt khám và thanh toán trực tuyến với các bệnh viện: Răng Hàm Mặt TP.HCM, Y Học Cổ Truyền, Tai Mũi Họng TP.HCM"
+        },
+        "clinic_section": {
+            "see_more": "Xem thêm",
+            "book_clinic": "Đăt lịch phòng khám",
+            "text": "Đa dạng phòng khám với nhiều chuyên khoa khác nhau như Sản - Nhi, Tai Mũi họng, Da Liễu, Tiêu Hoá..."
+        },
+        "specialty_section": {
+            "hide": "Ẩn bớt",
+            "see_more": "Xem thêm",
+            "book_specialty": "Đặt lịch theo Chuyên khoa",
+            "text": "Thuận tiện, an toàn và nhanh chóng trong việc đặt lịch và nhận kết quả"
+        },
+        "medical_section": {
+            "title": "Tin Y tế",
+            "text": "Chính thống - Minh bạch - Trung lập"
+        },
+        "expert_section":{
+            "title": "Đội ngũ chuyên gia",
+            "text": "Hội đồng tham vấn y khoa cùng đội ngũ biên tập viên là các bác sĩ, dược sĩ đảm bảo nội dung chúng tôi cung cấp chính xác về mặt y khoa và cập nhật những thông tin mới nhất."
+        },
+        "about_section":{
+            "title_1": "Hướng dẫn tải và sử dụng app YouMed",
+            "title_2": "Tin tưởng ở YouMed"
+        },
+        "download_app_section": {
+            "title": "Tải ứng dụng YouMed",
+            "schedule": "Đặt lịch khám bệnh và xét nghiệm",
+            "consultation": "Tư vấn trực tuyến với Bác sĩ",
+            "maintain": "Lưu trữ hồ sơ sức khỏe",
+            "payment": "Thanh toán dịch vụ trực tuyến"
+        },
+        "footer_section": {
+            "company": {
+                "title": "Công ty TNHH YOUMED VIỆT NAM",
+                "text_1": "VPĐD: 523 Tô Hiến Thành, P.14, Q.10, TP. HCM",
+                "text_2": "Hotline: 1900-2805 (8:30 - 20:30 từ T2 đến T7)",
+                "text_3": "Số ĐKKD 0315268642 do Sở Kế hoạch và Đầu tư TP. Hồ Chí Minh cấp lần đầu ngày 14/09/2018.",
+                "text_4": "Chịu trách nhiệm nội dung: Dược sĩ Dương Anh Hoàng."
+            },
+            
+            "about_youmed": {
+                "title": "Về YouMed",
+                "text_1": "Giới thiệu về YouMed",
+                "text_2": "Ban điều hành",
+                "text_3": "Nhân sự & Tuyển dụng",
+                "text_4": "Liên hệ"
+            },
+            "service": {
+                "title": "Dịch vụ",
+                "text_1": "Đặt khám Bác sĩ",
+                "text_2": "Đặt khám Bệnh viện",
+                "text_3": "Đặt khám Phòng khám"
+            },
+            "support": {
+                "title": "Hỗ trợ",
+                "text_1": "Câu hỏi thường gặp",
+                "text_2": "Điều khoản sử dụng",
+                "text_3": "Chính sách bảo mật",
+                "text_4": "Chính sách giải quyết khiếu nại",
+                "text_5": "Hỗ trợ khách hàng: cskh@youmed.vn"
+            },
+            "connect": "Kết nối với chúng tôi",
+            "info": {
+                "text_1": "Các thông tin trên YouMed chỉ dành cho mục đích tham khảo, tra cứu và không thay thế cho việc chẩn đoán hoặc điều trị y khoa.",
+                "text_2": "Cần tuyệt đối tuân theo hướng dẫn của Bác sĩ và Nhân viên y tế.",
+                "text_3": "Bản quyền © 2018 - 2023 Công ty TNHH YouMed Việt Nam."
+            }
         }
-
     },
     "system": {
-        "user_manage": "Quản lý người dùng",
+        "user_manage_title": "Quản lý người dùng",
         "specialty_manage": "Quản lý chuyên khoa",
-        "doctor_manage": "Quản lý bác sĩ"
-    },
-    "user_manage": {
+        "doctor_manage": "Quản lý bác sĩ",
+        "form": {
+            "no": "Stt",
+            "email": "Email",
+            "first_name": "Tên",
+            "last_name": "Tên đệm",
+            "address": "Địa chỉ",
+            "phone_number": "Số điện thoại",
+            "role": "Vai trò"
+        },
+        "user_manage": {
         "add_new_user": "Thêm người dùng mới",
         "preview": "Nhấp để xem trước"
+        },
+        "info": "Thông tin",
+        "schedule": "Lịch khám"
     },
+    
     "toast":{
         "current_language": "Ngôn ngữ hiện tại",
         "language_error": "Lỗi chuyển đổi ngôn ngữ",
@@ -57,7 +148,12 @@
         "post_doctor_schedule_success": "Tạo lịch khám bác sĩ thành công",
         "update_doctor_schedule_success": "Cập nhật lịch khám bác sĩ thành công",
         "update_doctor_schedule_failed": "Cập nhật lịch khám bác sĩ thất bại",
-        "login_redirect": "Hãy đăng nhập"
+        "login_redirect": "Hãy đăng nhập",
+        "create_specialty_success": "Cập nhật chuyên khoa thành công",
+        "create_specialty_failed": "Cập nhật chuyên khoa thất bại",
+        "create_book_appointment_successful": "Tạo lịch hẹn bệnh nhân thành công",
+        "create_book_appointment_failed": "Tạo lịch hẹn bệnh nhân thất bại",
+        "book_appointment_available": "Lịch hẹn đã có sẵn"
     },
     "login":{
         "email": "Địa chỉ email",

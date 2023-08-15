@@ -1,16 +1,18 @@
 import classNames from "classnames/bind";
 
 import styles from "./AboutSection.module.scss";
+import { useTranslation } from "react-i18next";
 
 const cx = classNames.bind(styles);
 
 function AboutSection() {
+    const { t } = useTranslation();
     return (
         <div className={cx("about-container")}>
             <div className={cx("about-content")}>
                 <div className={cx("content-left")}>
                     <div className={cx("title")}>
-                        Hướng dẫn tải và sử dụng app YouMed
+                        {t("home.about_section.title_1")}
                     </div>
                     <div>
                         <iframe
@@ -26,7 +28,9 @@ function AboutSection() {
                     </div>
                 </div>
                 <div className={cx("content-right")}>
-                    <div className={cx("title")}>Tin tưởng ở YouMed</div>
+                    <div className={cx("title")}>
+                        {t("home.about_section.title_2")}
+                    </div>
                 </div>
             </div>
         </div>

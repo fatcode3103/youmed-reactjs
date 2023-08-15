@@ -28,10 +28,10 @@ function MenuAppointment() {
                 ],
             },
         },
-        {
-            title: t("home.payment_history"),
-            to: path.PAYMENT_HISTORY,
-        },
+        // {
+        //     title: t("home.payment_history"),
+        //     to: path.PAYMENT_HISTORY,
+        // },
         {
             title: t("home.profile"),
             to: path.PROFILE,

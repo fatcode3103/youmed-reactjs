@@ -10,54 +10,57 @@ import {
     faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 import Button from "../Button";
+import { useTranslation } from "react-i18next";
 
 const cx = classNames.bind(styles);
 
 function Footer() {
+    const { t } = useTranslation();
     return (
         <div className={cx("login-footer")}>
             <div className={cx("row form-group")}>
                 <div className={cx("col-3")}>
                     <p className={cx("text-uppercase fw-bolder")}>
-                        CÔNG TY TNHH YOUMED VIỆT NAM
+                        {t("home.footer_section.company.title")}
                     </p>
-                    <p>VPĐD: 523 Tô Hiến Thành, P.14, Q.10, TP. HCM</p>
-                    <p>Hotline: 1900-2805 (8:30 - 20:30 từ T2 đến T7)</p>
-                    <p>
-                        Số ĐKKD 0315268642 do Sở Kế hoạch và Đầu tư TP. Hồ Chí
-                        Minh cấp lần đầu ngày 14/09/2018.
-                    </p>
-                    <p>Chịu trách nhiệm nội dung: Dược sĩ Dương Anh Hoàng.</p>
+                    <p>{t("home.footer_section.company.text_1")}</p>
+                    <p>{t("home.footer_section.company.text_2")}</p>
+                    <p>{t("home.footer_section.company.text_3")}</p>
+                    <p>{t("home.footer_section.company.text_4")}</p>
                 </div>
                 <div className={cx("col-3", "ps-100")}>
                     <p className={cx("text-capitalize fw-bolder ")}>
-                        Về YouMed
+                        {t("home.footer_section.about_youmed.title")}
                     </p>
-                    <p>Giới thiệu về YouMed</p>
-                    <p>Ban điều hành</p>
-                    <p>Nhân sự & Tuyển dụng</p>
-                    <p>Liên hệ</p>
+                    <p>{t("home.footer_section.about_youmed.text_1")}</p>
+                    <p>{t("home.footer_section.about_youmed.text_2")}</p>
+                    <p>{t("home.footer_section.about_youmed.text_3")}</p>
+                    <p>{t("home.footer_section.about_youmed.text_4")}</p>
                 </div>
                 <div className={cx("col-3", "ps-50")}>
-                    <p className={cx("text-capitalize fw-bolder")}>Dịch vụ</p>
-                    <p>Đặt khám Bác sĩ </p>
-                    <p>Đặt khám Bệnh viện</p>
-                    <p>Đặt khám Phòng khám</p>
+                    <p className={cx("text-capitalize fw-bolder")}>
+                        {t("home.footer_section.service.title")}
+                    </p>
+                    <p>{t("home.footer_section.service.text_1")}</p>
+                    <p>{t("home.footer_section.service.text_2")}</p>
+                    <p>{t("home.footer_section.service.text_3")}</p>
                     <p>YouMed Store</p>
                     <p>Y360</p>
                     <p>YouMed Clinic</p>
                 </div>
                 <div className={cx("col-3")}>
-                    <p className={cx("text-capitalize fw-bolder")}>Hỗ trợ</p>
-                    <p>Câu hỏi thường gặp</p>
-                    <p>Điều khoản sử dụng</p>
-                    <p>Chính sách bảo mật</p>
-                    <p>Chính sách giải quyết khiếu nại</p>
-                    <p>Hỗ trợ khách hàng: cskh@youmed.vn</p>
+                    <p className={cx("text-capitalize fw-bolder")}>
+                        {t("home.footer_section.support.title")}
+                    </p>
+                    <p>{t("home.footer_section.support.text_1")}</p>
+                    <p>{t("home.footer_section.support.text_2")}</p>
+                    <p>{t("home.footer_section.support.text_3")}</p>
+                    <p>{t("home.footer_section.support.text_4")}</p>
+                    <p>{t("home.footer_section.support.text_5")}</p>
                 </div>
                 <div className={cx("connection")}>
                     <div className={cx("social")}>
-                        <p>Kết nối với chúng tôi</p>
+                        <p>{t("home.footer_section.connect")}</p>
                         <div className={cx("social-icon")}>
                             <Button
                                 target="_blank"
@@ -114,18 +117,9 @@ function Footer() {
                     }}
                 />
                 <p className={cx("more-info")}>
-                    <span>
-                        Các thông tin trên YouMed chỉ dành cho mục đích tham
-                        khảo, tra cứu và không thay thế cho việc chẩn đoán hoặc
-                        điều trị y khoa.
-                    </span>
-                    <span>
-                        Cần tuyệt đối tuân theo hướng dẫn của Bác sĩ và Nhân
-                        viên y tế.
-                    </span>
-                    <span>
-                        Copyright © 2018 - 2023 Công ty TNHH YouMed Việt Nam.
-                    </span>
+                    <span>{t("home.footer_section.info.text_1")}</span>
+                    <span>{t("home.footer_section.info.text_2")}</span>
+                    <span>{t("home.footer_section.info.text_3")}</span>
                 </p>
             </div>
         </div>

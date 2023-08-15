@@ -26,6 +26,7 @@ const images = {
     card: card,
     folder1: folder1,
     folder2: folder2,
+    noData: require("../image/no-data-concept-illustration_114.png"),
 };
 
 export default images;

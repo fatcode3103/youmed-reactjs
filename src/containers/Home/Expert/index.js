@@ -4,14 +4,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./Expert.module.scss";
 import Image from "../../../components/Image";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 const cx = classNames.bind(styles);
 
 function Expert() {
+    const { t } = useTranslation();
     return (
         <div className={cx("expert-container")}>
             <div className={cx("expert-content")}>
-                <div className={cx("title")}>Đội ngũ chuyên gia</div>
+                <div className={cx("title")}>
+                    {t("home.expert_section.title")}
+                </div>
                 <div className={cx("body")}>
                     <div className={cx("content-left")}>
                         <div className={cx("expert-item")}>
@@ -60,14 +64,9 @@ function Expert() {
                         </div>
                     </div>
                     <div className={cx("content-right")}>
-                        <p>
-                            Hội đồng tham vấn y khoa cùng đội ngũ biên tập viên
-                            là các bác sĩ, dược sĩ đảm bảo nội dung chúng tôi
-                            cung cấp chính xác về mặt y khoa và cập nhật những
-                            thông tin mới nhất.
-                        </p>
+                        <p>{t("home.expert_section.text")}</p>
                         <button className={cx("more-btn")}>
-                            <span>Đội ngũ chuyên gia</span>
+                            <span>{t("home.expert_section.title")}</span>
                             <FontAwesomeIcon
                                 icon={faAngleRight}
                                 className={cx("icon-arrow")}

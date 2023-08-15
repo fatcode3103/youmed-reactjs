@@ -13,11 +13,25 @@ import styles from "./HeaderSystem.module.scss";
 import { faCaretDown, faHome } from "@fortawesome/free-solid-svg-icons";
 import Tippy from "@tippyjs/react/headless";
 
+import Image from "../Image";
+import { useEffect, useState } from "react";
+import BufferToBase64 from "../../utils/BufferToBase64";
+
 const cx = classNames.bind(styles);
 
-function HeaderSystem() {
+function HeaderSystem(props) {
+    const [avatarBase64, setAvatarBase64] = useState("");
+
     const navigate = useNavigate();
     const { t } = useTranslation();
+    const admin = useSelector((state) => state.admin);
+    const { userById } = admin;
+
+    useEffect(() => {
+        if (userById.image) {
+            setAvatarBase64(BufferToBase64(userById.image.data));
+        }
+    }, [userById]);
 
     const menuUserManageSystem = [
         {
@@ -25,8 +39,8 @@ function HeaderSystem() {
             key: "none",
             menuSub: {
                 data: [
-                    { title: "Thông tin", to: path.DOCTOR_MANAGE },
-                    { title: "Lịch khám", to: path.DOCTOR_SCHEDULE },
+                    { title: t("system.info"), to: path.DOCTOR_MANAGE },
+                    { title: t("system.schedule"), to: path.DOCTOR_SCHEDULE },
                 ],
             },
         },
@@ -74,7 +88,7 @@ function HeaderSystem() {
                         >
                             <span className={cx("text-manage")}>
                                 <span>
-                                    {t("system.user_manage")}{" "}
+                                    {t("system.user_manage_title")}{" "}
                                     <FontAwesomeIcon icon={faCaretDown} />
                                 </span>
                             </span>
@@ -94,8 +108,16 @@ function HeaderSystem() {
                 <div className={cx("header-account")}>
                     <Menu item={MenuUser()}>
                         <div className={cx("acconut-user")}>
-                            <img
-                                src={images.noImage}
+                            <Image
+                                br="true"
+                                size="xs"
+                                src={
+                                    currentUser &&
+                                    currentUser.image &&
+                                    currentUser.image.data
+                                        ? BufferToBase64(currentUser.image.data)
+                                        : images.noImage
+                                }
                                 alt="avatar"
                                 className={cx("img-account")}
                             />

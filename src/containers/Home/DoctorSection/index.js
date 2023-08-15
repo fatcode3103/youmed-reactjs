@@ -1,9 +1,15 @@
 import classNames from "classnames/bind";
 import Slider from "react-slick";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import {
+    faAngleLeft,
+    faAngleRight,
+    faArrowRight,
+    faCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 import images from "../../../assets/image";
 import * as actions from "../../../app/actions";
@@ -17,6 +23,7 @@ import "../Slider.scss";
 const cx = classNames.bind(styles);
 
 function DoctorSection() {
+    const { t } = useTranslation();
     const slider = useRef(null);
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
@@ -53,15 +60,12 @@ function DoctorSection() {
             <div className={cx("doctor-section-content")}>
                 <div className={cx("title")}>
                     <div className={cx("content-left")}>
-                        <h4>Đặt khám Bác sĩ</h4>
-                        <p>
-                            Đặt lịch hẹn với các bác sĩ giỏi, luôn tận tâm chăm
-                            sóc sức khoẻ của bạn và gia đình
-                        </p>
+                        <h4>{t("home.doctor_section.book_doctor")}</h4>
+                        <p>{t("home.doctor_section.booking")}</p>
                     </div>
                     <div className={cx("content-right")}>
                         <button className={cx("more-btn")}>
-                            <span>Xem thêm</span>
+                            <span>{t("home.doctor_section.see_more")}</span>
                             <FontAwesomeIcon
                                 icon={faAngleRight}
                                 className={cx("icon-arrow")}
@@ -109,16 +113,56 @@ function DoctorSection() {
                                                 br="true"
                                             />
                                             <h3>
-                                                {allDoctor &&
-                                                    allDoctor.length > 0 &&
-                                                    handleRenderDoctorName(
-                                                        item
-                                                    )}
+                                                {handleRenderDoctorName(item)}
                                             </h3>
-                                            <span>Sản phụ khoa</span>
-                                            <span>Bệnh viện Phụ Sản Từ Dũ</span>
+                                            <span>
+                                                {item.specialtyData &&
+                                                    item.specialtyData.length >
+                                                        0 &&
+                                                    item.specialtyData.map(
+                                                        (specialty, index) => {
+                                                            const length =
+                                                                item
+                                                                    .specialtyData
+                                                                    .length;
+                                                            return (
+                                                                <span
+                                                                    key={index}
+                                                                >
+                                                                    {language ===
+                                                                    LANGUAGE.VN
+                                                                        ? specialty.valueVi
+                                                                        : specialty.valueEn}
+                                                                    {length >
+                                                                        1 &&
+                                                                        index <
+                                                                            length -
+                                                                                1 && (
+                                                                            <FontAwesomeIcon
+                                                                                className={cx(
+                                                                                    "icon-dot"
+                                                                                )}
+                                                                                icon={
+                                                                                    faCircle
+                                                                                }
+                                                                            />
+                                                                        )}
+                                                                </span>
+                                                            );
+                                                        }
+                                                    )}
+                                            </span>
+                                            <span>
+                                                {item.detailInfoData &&
+                                                    item.detailInfoData
+                                                        .workPlace}
+                                            </span>
                                             <p className={cx("booking")}>
-                                                <span>Đặt lịch khám</span>
+                                                <span>
+                                                    {t(
+                                                        "home.doctor_section.book_appointment"
+                                                    )}
+                                                </span>
                                                 <FontAwesomeIcon
                                                     className={cx(
                                                         "icon-arrow-legless"
@@ -129,7 +173,7 @@ function DoctorSection() {
                                                     className={cx(
                                                         "icon-arrow-legs"
                                                     )}
-                                                    icon={faAngleLeft}
+                                                    icon={faArrowRight}
                                                 />
                                             </p>
                                         </div>

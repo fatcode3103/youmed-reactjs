@@ -23,17 +23,107 @@
         "header": {
             "title": "Medical Booking Application",
             "text": "Book Doctors, Hospitals, Clinics on YouMed for the order number and time frame of the previous examination",
-            "search": "Symptoms, doctors, hospitals,..."
+            "search": "Symptoms, doctors, hospitals,...",
+            "booking_online": "Book an appointment online",
+            "find_doctor": "Find the right Doctor - Book an appointment easily"
+        },
+        "doctor_section": {
+            "book_doctor": "Book a Doctor",
+            "booking": "Make an appointment with good doctors who are always dedicated to taking care of you and your family's health",
+            "see_more": "See more",
+            "book_appointment": "Book an appointment"
+        },
+        "hospital_section": {
+            "see_more": "See more",
+            "book_hospital": "Book a Hospital",
+            "payment": "Currently, you can book and pay online with hospitals: Ho Chi Minh City Odonto-Stomatology, Ho Chi Minh City Traditional Medicine, Ho Chi Minh City Otorhinolaryngology."
+        },
+        "clinic_section": {
+            "see_more": "See more",
+            "book_clinic": "Book a Clinic",
+            "text": "Diverse clinics with many different specialties such as Obstetrics - Pediatrics, Ear, Nose and Throat, Dermatology, Gastroenterology..."
+        },
+        "specialty_section": {
+            "hide": "Hide",
+            "see_more": "See more",
+            "book_specialty": "Schedule an appointment by Specialization",
+            "text": "Convenient, safe and fast in scheduling and getting results"
+        },
+        "medical_section": {
+            "title": "Medical News",
+            "text": "Legitimacy - Transparency - Neutrality"
+        },
+        "expert_section":{
+            "title": "Team of experts",
+            "text": "The medical advisory board and editors are doctors and pharmacists to ensure that the content we provide is medically accurate and up to date with the latest information."
+        },
+        "about_section":{
+            "title_1": "Instructions for downloading and using the YouMed application",
+            "title_2": "Trust in YouMed"
+        },
+        "download_app_section": {
+            "title": "Download the YouMed app",
+            "schedule": "Schedule a medical examination and test",
+            "consultation": "Online consultation with Doctor",
+            "maintain": "Maintain health records",
+            "payment": "Online service payment"
+        },
+        "footer_section": {
+            "company": {
+                "title": "Youmed Viet Nam limited liability company",
+                "text_1": "VPĐD: 523 To Hien Thanh, P.14, Q.10, TP. HCM",
+                "text_2": "Hotline: 1900-2805 (8:30 - 20:30 from Monday to Saturday)",
+                "text_3": "Business registration number 0315268642 by the Department of Planning and Investment of Ho Chi Minh City. Ho Chi Minh City issued for the first time on September 14, 2018.",
+                "text_4": "Responsible for the content: Pharmacist Duong Anh Hoang."
+            },
+            "about_youmed": {
+                "title": "About YouMed",
+                "text_1": "Introduce about YouMed",
+                "text_2": "Executive Board",
+                "text_3": "HR & Recruitment",
+                "text_4": "Contact"
+            },
+            "service": {
+                "title": "Service",
+                "text_1": "Book a Doctor",
+                "text_2": "Book a Hospital",
+                "text_3": "Book a Clinic"
+            },
+            "support": {
+                "title": "Support",
+                "text_1": "Frequently asked questions",
+                "text_2": "Terms of use",
+                "text_3": "Privacy Policy",
+                "text_4": "Complaint handling policy",
+                "text_5": "Customer support: cskh@youmed.vn"
+            },
+            "connect": "Connect with us",
+            "info": {
+                "text_1": "The information on YouMed is for reference purposes only and is not a substitute for medical diagnosis or treatment.",
+                "text_2": "It is necessary to strictly follow the instructions of the Doctor and the staff medical staff.",
+                "text_3": "Copyright © 2018 - 2023 Youmed Viet Nam limited liability company"
+            }
         }
     },
     "system": {
-        "user_manage": "User management",
+        "user_manage_title": "User management",
         "specialty_manage": "Specialty management",
-        "doctor_manage": "Doctor management"
-    },
-    "user_manage": {
+        "doctor_manage": "Doctor management",
+        "form": {
+            "no": "No",
+            "email": "Email",
+            "first_name": "First Name",
+            "last_name": "Last Name",
+            "address": "Address",
+            "phone_number": "Phone Number",
+            "role": "Role"
+        },
+        "user_manage": {
         "add_new_user": "Add new user",
         "preview": "Click to preview"
+        },
+        "info": "Information",
+        "schedule": "Schedule"
     },
     "toast": {
         "current_language": "Current language",
@@ -56,7 +146,12 @@
         "post_doctor_schedule_success": "Create doctor schedule success",
         "update_doctor_schedule_success": "Update doctor schedule success",
         "update_doctor_schedule_failed": "Update doctor schedule failed",
-        "login_redirect": "Please login"
+        "login_redirect": "Please login",
+        "create_specialty_success": "Create specialty success",
+        "create_specialty_failed": "Create specialty failed",
+        "create_book_appointment_successful": "Create patient appointment successful",
+        "create_book_appointment_failed": "Create patient appointment failed",
+        "book_appointment_available": "Schedule is available"
     },
     "login":{
         "email": "Email",

@@ -6,10 +6,12 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import Image from "../../../components/Image";
 import Slider from "react-slick";
+import { useTranslation } from "react-i18next";
 
 const cx = classNames.bind(styles);
 
 function MedicalSection() {
+    const { t } = useTranslation();
     const [indexActive, setIndexActive] = useState("");
 
     const settings = {
@@ -47,8 +49,8 @@ function MedicalSection() {
         <div className={cx("medical-container")}>
             <div className={cx("medical-content")}>
                 <div className={cx("title")}>
-                    <h3>Tin Y tế</h3>
-                    <p>Chính thống - Minh bạch - Trung lập</p>
+                    <h3>{t("home.medical_section.title")}</h3>
+                    <p>{t("home.medical_section.text")}</p>
                 </div>
                 <div className={cx("body")}>
                     <div className={cx("search")}>

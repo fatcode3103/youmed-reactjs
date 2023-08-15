@@ -1,7 +1,7 @@
 //loading
 .loader {
     margin-left: 46%;
-    margin-top: 2%;
+    margin-top: 10%;
     border: 16px solid #f3f3f3;
     border-radius: 50%;
     border-top: 16px solid #3498db;
@@ -10,8 +10,8 @@
     -webkit-animation: spin 2s linear infinite;
     /* Safari */
     animation: spin 2s linear infinite;
-    position: absolute;
-    z-index: 100;
+    position: fixed;
+    z-index: 9999;
 }
 
 /* Safari */

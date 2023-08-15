@@ -12,19 +12,19 @@ import { toast } from "react-toastify";
 import { language as LANGUAGE } from "../../../utils/constant";
 import PhotoProvider from "../../../components/PhotoProvider";
 import DatePicker from "react-datepicker";
-import moment from "moment";
-import { date as DATE } from "../../../utils/constant";
+import { date as DATE, role as ROLE } from "../../../utils/constant";
 
 const cx = classNames.bind(styles);
 
 function ModalUser(props) {
     const {
         currentUserByIdEdit,
-        isShow,
         handleCloseModal,
-        isData,
         bufferToBase64,
-        render,
+        render = () => {},
+        isPatientAction = false,
+        isShow,
+        isData,
     } = props;
     const { t } = useTranslation();
     const adminState = useSelector((state) => state.admin);
@@ -51,7 +51,7 @@ function ModalUser(props) {
         phoneNumber: "",
         gender: "",
         position: "",
-        role: "",
+        role: isPatientAction ? ROLE.PATIENT : "",
         img: null,
         preview: "",
     };
@@ -100,6 +100,7 @@ function ModalUser(props) {
         } else {
             setForm(initState);
         }
+        setHasChangeDateOfBirth(false);
     }, [currentUserByIdEdit]);
 
     const handleSaveUser = async () => {
@@ -146,7 +147,6 @@ function ModalUser(props) {
 
     return (
         <>
-            {console.log("check onchange date:>>. ", hasChangeDateOfBirth)}
             <Modal
                 show={isShow}
                 onHide={() => {
@@ -160,7 +160,11 @@ function ModalUser(props) {
                         <div className={cx("col-4")}>
                             <label>Email</label>
                             <input
-                                onChange={(e) => handleOnChangeInput(e)}
+                                onChange={
+                                    isData
+                                        ? null
+                                        : (e) => handleOnChangeInput(e)
+                                }
                                 name="email"
                                 value={email}
                                 type="email"
@@ -192,7 +196,11 @@ function ModalUser(props) {
                             <label>Password</label>
                             <input
                                 disabled={isData}
-                                onChange={(e) => handleOnChangeInput(e)}
+                                onChange={
+                                    isData
+                                        ? null
+                                        : (e) => handleOnChangeInput(e)
+                                }
                                 value={password}
                                 name="password"
                                 type="password"
@@ -304,7 +312,12 @@ function ModalUser(props) {
                                 value={role}
                                 name="role"
                                 className={cx("form-control ")}
-                                onChange={(e) => handleOnChangeInput(e)}
+                                onChange={
+                                    isPatientAction
+                                        ? null
+                                        : (e) => handleOnChangeInput(e)
+                                }
+                                disabled={isPatientAction}
                             >
                                 <option>---</option>
                                 {roleArr &&
@@ -333,7 +346,7 @@ function ModalUser(props) {
                                 className={cx("form-control ")}
                             />
                             <div className={cx("preview")}>
-                                <span>{t("user_manage.preview")}: </span>
+                                <span>{t("system.user_manage.preview")}: </span>
                                 <PhotoProvider src={preview ? preview : ""}>
                                     <img
                                         src={preview ? preview : ""}

@@ -144,6 +144,16 @@ export const adminSlice = createSlice({
         updateDoctorScheduleFailed: (state, action) => {
             state.isLoading = false;
         },
+        //create specialty
+        createSpecialtyStart: (state, action) => {
+            state.isLoading = true;
+        },
+        createSpecialtySuccess: (state, action) => {
+            state.isLoading = false;
+        },
+        createSpecialtyFailed: (state, action) => {
+            state.isLoading = false;
+        },
     },
 });
 
@@ -184,6 +194,9 @@ export const {
     updateDoctorScheduleStart,
     updateDoctorScheduleSuccess,
     updateDoctorScheduleFailed,
+    createSpecialtyStart,
+    createSpecialtySuccess,
+    createSpecialtyFailed,
 } = adminSlice.actions;
 
 export default adminSlice.reducer;

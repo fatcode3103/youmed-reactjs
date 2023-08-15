@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import moment from "moment";
 import { useTranslation } from "react-i18next";
 
 import styles from "./DoctorDetail.module.scss";
@@ -41,6 +40,10 @@ function DoctorDetail() {
     useEffect(() => {
         dispatch(actions.getDoctorByIdAction(id));
     }, [dispatch]);
+
+    useEffect(() => {
+        document.documentElement.scrollTop = 0;
+    }, []);
 
     const handleRenderDoctorName = (doctor) => {
         if (language === LANGUAGE.VN) {
@@ -120,7 +123,7 @@ function DoctorDetail() {
                                     handleRenderDoctorName(doctorById)}
                             </p>
                             <p className={cx("role")}>
-                                <span>
+                                <span className={cx("content-left")}>
                                     <FontAwesomeIcon
                                         icon={faCircleCheck}
                                         className={cx("icon-check")}
@@ -130,12 +133,39 @@ function DoctorDetail() {
                                         doctorById.roleData &&
                                         handleRenderRole(doctorById)}
                                 </span>
-                                <span>20 năm kinh nghiệm</span>
+                                <span className={cx("content-right")}>
+                                    <span>
+                                        {detailInfoData &&
+                                        detailInfoData.yearExperience
+                                            ? detailInfoData.yearExperience
+                                            : 0}
+                                    </span>
+                                    <span>năm kinh nghiệm</span>
+                                </span>
                             </p>
                             <p className={cx("specialty")}>
                                 <span>Chuyên khoa</span>
-                                {/* //load dong chuyen khoa */}
-                                <span>Sản phụ khoa</span>
+                                <span>
+                                    {doctorById.specialtyData &&
+                                        doctorById.specialtyData.length > 0 &&
+                                        doctorById.specialtyData.map(
+                                            (specialty, index) => {
+                                                return (
+                                                    <span
+                                                        key={index}
+                                                        className={cx(
+                                                            "specialty-item"
+                                                        )}
+                                                    >
+                                                        {language ===
+                                                        LANGUAGE.VN
+                                                            ? specialty.valueVi
+                                                            : specialty.valueEn}
+                                                    </span>
+                                                );
+                                            }
+                                        )}
+                                </span>
                             </p>
                             <div className={cx("position")}>
                                 <span>Chức vụ</span>
@@ -149,19 +179,15 @@ function DoctorDetail() {
                             <div className={cx("hospital")}>
                                 <span>Nơi công tác</span>
                                 <div>
-                                    {detailInfoData &&
-                                    detailInfoData.length > 0 &&
-                                    detailInfoData[0].workPlace
-                                        ? detailInfoData[0].workPlace
+                                    {detailInfoData && detailInfoData.workPlace
+                                        ? detailInfoData.workPlace
                                         : ""}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className={cx("note-text")}>
-                        {detailInfoData &&
-                        detailInfoData.length > 0 &&
-                        detailInfoData[0].note ? (
+                        {detailInfoData && detailInfoData.note ? (
                             <div className={cx("note")}>
                                 <p>
                                     <FontAwesomeIcon
@@ -170,7 +196,7 @@ function DoctorDetail() {
                                     <span>Lưu ý </span>
                                 </p>
                                 <MarkdownPreview
-                                    markdown={detailInfoData[0].note}
+                                    markdown={detailInfoData.note}
                                 />
                             </div>
                         ) : (
@@ -210,11 +236,9 @@ function DoctorDetail() {
                                     doctorById.positionData &&
                                     handleRenderDoctorName(doctorById)}
                             </span>
-                            {detailInfoData &&
-                            detailInfoData.length > 0 &&
-                            detailInfoData[0].introduction ? (
+                            {detailInfoData && detailInfoData.introduction ? (
                                 <MarkdownPreview
-                                    markdown={detailInfoData[0].introduction}
+                                    markdown={detailInfoData.introduction}
                                 />
                             ) : (
                                 ""
@@ -224,9 +248,13 @@ function DoctorDetail() {
                     <div className={cx("address-map")}>
                         <p className={cx("section-title")}>Địa chỉ</p>
                         {detailInfoData &&
-                        detailInfoData.length > 0 &&
-                        detailInfoData[0].address ? (
-                            <AddressMap src={detailInfoData[0].address} />
+                        detailInfoData.address &&
+                        detailInfoData.addressMap ? (
+                            <AddressMap
+                                nameAddress={detailInfoData.address}
+                                src={detailInfoData.addressMap}
+                                className={cx("address-map")}
+                            />
                         ) : (
                             ""
                         )}
@@ -234,11 +262,9 @@ function DoctorDetail() {
                     <div className={cx("training")}>
                         <p className={cx("section-title")}>Quá trình đào tạo</p>
                         <div>
-                            {detailInfoData &&
-                            detailInfoData.length > 0 &&
-                            detailInfoData[0].traningProcess ? (
+                            {detailInfoData && detailInfoData.traningProcess ? (
                                 <MarkdownPreview
-                                    markdown={detailInfoData[0].traningProcess}
+                                    markdown={detailInfoData.traningProcess}
                                 />
                             ) : (
                                 ""
@@ -248,11 +274,9 @@ function DoctorDetail() {
                     <div className={cx("experience")}>
                         <p className={cx("section-title")}>Kinh nghiệm</p>
                         <div>
-                            {detailInfoData &&
-                            detailInfoData.length > 0 &&
-                            detailInfoData[0].experience ? (
+                            {detailInfoData && detailInfoData.experience ? (
                                 <MarkdownPreview
-                                    markdown={detailInfoData[0].experience}
+                                    markdown={detailInfoData.experience}
                                 />
                             ) : (
                                 ""

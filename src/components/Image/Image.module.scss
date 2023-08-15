@@ -21,8 +21,21 @@
     max-width: 180px;
     max-height: 180px;
 }
+.xxl{
+    width: 600px;
+    height: 600px;
+}
+
+.xl-no-stretch{
+    width: 450px;
+}
 
 .br{
     border-radius: 50%;
+}
+
+.center{
+    display: block;
+    margin: 0 auto;
 }
 

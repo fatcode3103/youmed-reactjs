@@ -1,0 +1,77 @@
+.patient-info {
+    padding: 14px 16px;
+    border: 2px solid var(--primary-color);
+    margin: 20px 0px;
+    border-radius: 10px;
+}
+
+.short-info {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.content-left {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    width: 50%;
+}
+
+.folder-1 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.folder-2 {
+    position: absolute;
+    top: 50%;
+    transform: translate(34%, -40%);
+}
+
+.short-name {
+    position: absolute;
+    top: 50%;
+    color: #fff;
+    left: 2.6%;
+    transform: translateY(-40%);
+}
+
+.name-patient {
+    font-size: 16px;
+    color: #000;
+    margin: 0;
+}
+
+.date-of-birth-patient {
+    font-size: 15px;
+    color: #585858;
+    margin: 0;
+}
+
+.detail-info-patient-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+    padding-bottom: 4px;
+    font-size: 15px;
+}
+
+.detail-info-patient-item:first-child {
+    margin-top: 50px;
+}
+
+.detail-info-patient-item span:first-child {
+    color: #1F2937;
+    opacity: 0.95;
+}
+
+.btn-edit-profile-patient {
+    margin-top: 16px;
+}

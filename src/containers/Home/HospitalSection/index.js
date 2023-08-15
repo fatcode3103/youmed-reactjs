@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { useRef } from "react";
 import Slider from "react-slick";
+import { useTranslation } from "react-i18next";
 
 import styles from "./HospitalSection.module.scss";
 import Image from "../../../components/Image";
@@ -11,6 +12,7 @@ import "../Slider.scss";
 const cx = classNames.bind(styles);
 
 function HospitalSection() {
+    const { t } = useTranslation();
     const slider = useRef(null);
 
     const settings = {
@@ -31,16 +33,12 @@ function HospitalSection() {
             <div className={cx("hospital-section-content")}>
                 <div className={cx("title")}>
                     <div className={cx("content-left")}>
-                        <h4>Đặt khám Bệnh viện</h4>
-                        <p>
-                            Hiện tại, bạn có thể đặt khám và thanh toán trực
-                            tuyến với các bệnh viện: Răng Hàm Mặt TP.HCM, Y Học
-                            Cổ Truyền, Tai Mũi Họng TP.HCM
-                        </p>
+                        <h4>{t("home.hospital_section.book_hospital")}</h4>
+                        <p>{t("home.hospital_section.payment")}</p>
                     </div>
                     <div className={cx("content-right")}>
                         <button className={cx("more-btn")}>
-                            <span>Xem thêm</span>
+                            <span>{t("home.hospital_section.see_more")}</span>
                             <FontAwesomeIcon
                                 icon={faAngleRight}
                                 className={cx("icon-arrow")}

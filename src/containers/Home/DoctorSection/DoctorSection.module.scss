@@ -137,7 +137,15 @@
 
 .card span{
     color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 4px;
     margin-bottom: 4px;
+}
+
+.icon-dot{
+    font-size: 5px;
+    color: #717171;
 }
 
 .card h3 {
