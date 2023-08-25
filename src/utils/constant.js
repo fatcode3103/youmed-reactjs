@@ -13,6 +13,8 @@ export const path = {
     //system
     USER_MANAGE: "/system/user-manage",
     SPECIALTY_MANAGE: "/system/specialty-manage",
+    HOSPITAL_MANAGE: "/system/hospital-manage",
+    HOSPITAL_MANAGE_DETAIL: "/system/hospital-manage-detail",
     DOCTOR_MANAGE: "/system/doctor-manage",
     DOCTOR_SCHEDULE: "/system/doctor-schedule",
     //booking
@@ -21,9 +23,12 @@ export const path = {
     HOSPITAL_APPOINTMENT: "/booking/hospital",
     CLINIC_APPOINTMENT: "/booking/clinic",
     TEST_APPOINTMENT: "/booking/test",
-    DOCTOR_DETAIL: "/booking/doctor-detail/id=/:id",
+    DOCTOR_DETAIL: "/booking/doctor-detail/:id",
     BOOKING_BY_DOCTOR: "/booking/:name/id=/:id/booking",
-    // BOOKING_BY_DOCTOR_2: "/booking/:name/id=/:id/booking",
+    //hospital
+    HOSPITAL_DETAIL: "/booking/hospital-detail/:id",
+    BOOKING_BY_HOSPITAL: "/booking/:name/:id/booking", /// booking hospital
+    VERIFY_BOOK_APPOINTMENT: "/verify-booking",
 };
 
 export const language = {

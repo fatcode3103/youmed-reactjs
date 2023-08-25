@@ -5,13 +5,12 @@ function UseValidate(data, omitted = []) {
         if (omitted.includes(property)) {
             continue;
         }
-        if (
-            !data[property] ||
-            data[property].length === 0 ||
-            Object.keys(data[property]).length === 0
-        ) {
+        if (!data[property]) {
+            if (Array.isArray(data[property])) {
+                continue;
+            }
             isValidate = false;
-            errMessage = `Missing parameter: ${property}`;
+            errMessage = `${property}`;
             break;
         }
     }

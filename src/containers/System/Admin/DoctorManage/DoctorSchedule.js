@@ -5,6 +5,7 @@ import Select from "react-select";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 import "moment/locale/vi";
+import { useTranslation } from "react-i18next";
 
 import styles from "./DoctorSchedule.module.scss";
 import HeaderSystem from "../../../../components/Header/HeaderSystem";
@@ -19,6 +20,7 @@ import { date as DATE } from "../../../../utils/constant";
 const cx = classNames.bind(styles);
 
 function DoctorSchedule() {
+    const { t } = useTranslation();
     const [selectedDoctor, setSelectedDoctor] = useState(null);
     const [startDate, setStartDate] = useState(new Date());
     const [timeActive, setTimeActive] = useState([]);
@@ -32,7 +34,7 @@ function DoctorSchedule() {
     const { time, doctorSchedule } = admin;
 
     useEffect(() => {
-        dispatch(actions.getAllDoctorAction());
+        dispatch(actions.getAllDoctorAction(""));
         dispatch(actions.getAllCodeAction("TIME"));
     }, [dispatch]);
 
@@ -114,16 +116,20 @@ function DoctorSchedule() {
             return a.id - b.id;
         });
         let date = moment(startDate).startOf("day").valueOf();
+
         let data = { selectedDoctor, date, timeSelected };
+
         const { isValidate, errMessage } = UseValidate(data, ["date"]);
         if (!isValidate) {
-            toast.warning(errMessage);
+            toast.warning(`${t("toast.missing")}: ${errMessage}`);
         } else {
+            console.log("check data from system:>>> ", data);
             timeSelected = timeSelected.map((item) => {
                 return item.keyMap;
             });
             const timeJson = JSON.stringify(timeSelected);
             const dataSent = { ...data, timeJson };
+            console.log("check dataSent from system:>>> ", dataSent);
             dispatch(actions.postDoctorScheduleAction(dataSent));
             setSelectedDoctor(null);
             setTimeActive([]);

@@ -1,0 +1,132 @@
+.booking-appointment-content {
+    padding: calc(60px + var(--height-header)) 140px 20px;
+    background-color: #f3f4f6;
+    position: relative;
+}
+
+.booking-action {
+    padding: 20px 20px 20px 40px !important;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-bottom: 18px;
+}
+
+.booking-step {
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.step1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.booking-step span:first-child {
+    background-color: #22c55e;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: #fff;
+    margin-right: 8px;
+}
+
+.booking-action-title {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.booking-action-title span:first-child {
+    padding: 2px 8px;
+    background-color: var(--primary-color);
+    color: #fff !important;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.booking-action-title span {
+    color: var(--primary-color);
+}
+
+.booking-section {
+    width: 100%;
+    margin-top: 24px;
+}
+
+.booking-info {
+    background-color: #fff;
+    border-radius: 10px;
+    position: sticky;
+    top: calc(var(--height-header) + 10px);
+}
+
+.booking-info-title p {
+    padding: 20px 24px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.patient-profile {
+    margin-top: 14px;
+}
+
+.doctor-info {
+    display: flex;
+    align-items: center;
+    padding: 8px 24px;
+}
+
+.short-info-doctor {
+    margin-left: 16px;
+}
+
+.doctor-name {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.doctor-address {
+    margin: 0;
+    font-size: 13px;
+    color: #888888;
+}
+
+.shcedule-info {
+    padding: 8px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.schedule-info-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.schedule-info-item-title{
+    font-size: 17px;
+    color: #636363;
+}
+
+.schedule-info-item div {
+    font-size: 17px;
+    color: #333;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.btn-booking-wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+.btn-booking {
+    margin: 30px 0px 40px 0px;
+}

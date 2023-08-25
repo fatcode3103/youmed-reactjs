@@ -22,8 +22,8 @@ var _ = require("lodash");
 
 const cx = classNames.bind(styles);
 
-function BookingAppointment(props) {
-    const { lessList, doctorId } = props;
+function BookingSection(props) {
+    const { lessList, id, handleCompleteStep } = props;
     const slider = useRef();
     const { t } = useTranslation();
     const [isDateActive, setIsDateActive] = useState(0);
@@ -48,10 +48,10 @@ function BookingAppointment(props) {
         user;
 
     useEffect(() => {
-        dispatch(actions.getDoctorScheduleByIdAction(doctorId));
+        dispatch(actions.getDoctorScheduleByIdAction(id));
         dispatch(actions.getAllCodeAction("TIME"));
-        dispatch(actions.getDoctorByIdAction(doctorId));
-    }, [dispatch, doctorId]);
+        dispatch(actions.getDoctorByIdAction(id));
+    }, [dispatch, id]);
 
     useEffect(() => {
         setDoctorTime(dateDefault);
@@ -63,30 +63,33 @@ function BookingAppointment(props) {
         } else {
             dispatch(actions.setScheduleTimeAction(time));
             dispatch(actions.setSelectedDateAction(doctorTime));
+            if (handleCompleteStep) {
+                handleCompleteStep();
+            }
         }
     };
 
-    const handleNameUrl = (doctor) => {
-        const name = doctor.firstName + " " + doctor.lastName;
-        const nameUrl = name
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .replace(/(\s+)/g, "-");
-        return nameUrl;
-    };
+    // const handleNameUrl = (doctor) => {
+    //     const name = doctor.firstName + " " + doctor.lastName;
+    //     const nameUrl = name
+    //         .toLowerCase()
+    //         .normalize("NFD")
+    //         .replace(/[\u0300-\u036f]/g, "")
+    //         .replace(/(\s+)/g, "-");
+    //     return nameUrl;
+    // };
 
     const handleRenderTimeByLanguage = (date) => {
         const timeArr = JSON.parse(date.timeType);
-        const nameUrl = handleNameUrl(doctorById);
         const renderTime = time.map((item, index) => {
             if (timeArr.includes(item.keyMap)) {
                 return (
                     <Button
                         key={index}
-                        to={`/booking/${nameUrl}/id=/${doctorById.id}/booking`}
+                        // to={`/booking/${nameUrl}/id=/${doctorById.id}/booking`}
                         onClick={() => handleClickBtnTime(item)}
                         outline
+                        size="s"
                     >
                         {language === LANGUAGE.VN ? item.valueVi : item.valueEn}
                     </Button>
@@ -114,6 +117,7 @@ function BookingAppointment(props) {
         const filter = doctorScheduleById.filter(
             (item) => parseInt(item.date) >= getCurrentTimestampDate()
         );
+        /// set ngay mac dinh
         dispatch(actions.setDateDefaultAction(filter[0]));
         return filter;
     };
@@ -191,11 +195,11 @@ function BookingAppointment(props) {
                         icon={faCalendarXmark}
                         className={cx("icon-no-schedule")}
                     />
-                    Không có lịch khám nào, vui lòng chọn bác sĩ khác !
+                    Không có lịch khám nào !
                 </div>
             )}
         </div>
     );
 }
 
-export default BookingAppointment;
+export default BookingSection;

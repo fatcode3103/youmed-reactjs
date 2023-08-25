@@ -58,7 +58,7 @@ function PatientProfile(props) {
                 </div>
                 <Button
                     className={cx("add-new-profile")}
-                    outline
+                    outline="true"
                     onClick={() => handleAddNewProfile()}
                 >
                     Thêm hồ sơ mới

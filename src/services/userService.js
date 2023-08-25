@@ -35,8 +35,8 @@ const editUserApi = async (data) => {
     return res;
 };
 
-const getAllDoctorApi = async () => {
-    let res = await httpRequest.get(`get-all-doctor`);
+const getAllDoctorApi = async (limit) => {
+    let res = await httpRequest.get(`get-all-doctor?limit=${limit}`);
     return res;
 };
 
@@ -87,6 +87,13 @@ const postPatientBookAppointmentApi = async (data) => {
     return res;
 };
 
+const postVerifyBookAppointmentApi = async ({ doctorId, patientId, token }) => {
+    let res = await httpRequest.post(
+        `post-veirfy-book-appointment?doctorId=${doctorId}&patientId=${patientId}&token=${token}`
+    );
+    return res;
+};
+
 export {
     postLoginApi,
     getAllUserApi,
@@ -105,4 +112,5 @@ export {
     updateDoctorScheduleApi,
     getDoctorScheduleByIdApi,
     postPatientBookAppointmentApi,
+    postVerifyBookAppointmentApi,
 };

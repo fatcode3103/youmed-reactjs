@@ -90,11 +90,11 @@ export const changeLanguageAction = (code, title) => {
     };
 };
 
-export const getAllDoctorAction = () => {
+export const getAllDoctorAction = (limit) => {
     return async (dispatch) => {
         dispatch(userSlice.getAllDoctorStart());
         try {
-            let res = await userService.getAllDoctorApi();
+            let res = await userService.getAllDoctorApi(limit);
             if (res && res.data.errorCode === 0) {
                 dispatch(userSlice.getAllDoctorSuccess(res.data.data));
             } else {
@@ -234,6 +234,28 @@ export const postPatientBookAppointmentAction = (data) => {
                     )}
                 </Translation>
             );
+        }
+    };
+};
+
+export const postVerifyBookAppointmentAction = (data) => {
+    return async (dispatch) => {
+        dispatch(userSlice.postVerifyBookAppointmentStart());
+        try {
+            let res = await userService.postVerifyBookAppointmentApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(
+                    userSlice.postVerifyBookAppointmentSuccess(res.data.message)
+                );
+            } else if (res && res.data.errorCode === 2) {
+                dispatch(
+                    userSlice.postVerifyBookAppointmentFailed(res.data.message)
+                );
+            } else {
+                dispatch(userSlice.postVerifyBookAppointmentFailed("Failed"));
+            }
+        } catch (e) {
+            dispatch(userSlice.postVerifyBookAppointmentFailed(e));
         }
     };
 };

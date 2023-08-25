@@ -31,7 +31,7 @@ function DoctorSection() {
     const { allDoctor, language } = user;
 
     useEffect(() => {
-        dispatch(actions.getAllDoctorAction());
+        dispatch(actions.getAllDoctorAction("6"));
     }, [dispatch]);
 
     const settings = {
@@ -98,7 +98,7 @@ function DoctorSection() {
                                 }
                                 return (
                                     <NavLink
-                                        to={`/booking/doctor-detail/id=/${item.id}`}
+                                        to={`/booking/doctor-detail/${item.id}`}
                                         className={cx("doctor-item")}
                                         key={index}
                                     >
@@ -119,38 +119,50 @@ function DoctorSection() {
                                                 {item.specialtyData &&
                                                     item.specialtyData.length >
                                                         0 &&
-                                                    item.specialtyData.map(
-                                                        (specialty, index) => {
-                                                            const length =
-                                                                item
-                                                                    .specialtyData
-                                                                    .length;
-                                                            return (
-                                                                <span
-                                                                    key={index}
-                                                                >
-                                                                    {language ===
-                                                                    LANGUAGE.VN
-                                                                        ? specialty.valueVi
-                                                                        : specialty.valueEn}
-                                                                    {length >
-                                                                        1 &&
-                                                                        index <
-                                                                            length -
-                                                                                1 && (
-                                                                            <FontAwesomeIcon
-                                                                                className={cx(
-                                                                                    "icon-dot"
-                                                                                )}
-                                                                                icon={
-                                                                                    faCircle
-                                                                                }
-                                                                            />
-                                                                        )}
-                                                                </span>
-                                                            );
-                                                        }
-                                                    )}
+                                                    item.specialtyData
+                                                        .slice(0, 2)
+                                                        .map(
+                                                            (
+                                                                specialty,
+                                                                index
+                                                            ) => {
+                                                                const length =
+                                                                    item
+                                                                        .specialtyData
+                                                                        .length <=
+                                                                    2
+                                                                        ? item
+                                                                              .specialtyData
+                                                                              .length
+                                                                        : 2;
+                                                                return (
+                                                                    <span
+                                                                        key={
+                                                                            index
+                                                                        }
+                                                                    >
+                                                                        {language ===
+                                                                        LANGUAGE.VN
+                                                                            ? specialty.valueVi
+                                                                            : specialty.valueEn}
+                                                                        {length >
+                                                                            1 &&
+                                                                            index <
+                                                                                length -
+                                                                                    1 && (
+                                                                                <FontAwesomeIcon
+                                                                                    className={cx(
+                                                                                        "icon-dot"
+                                                                                    )}
+                                                                                    icon={
+                                                                                        faCircle
+                                                                                    }
+                                                                                />
+                                                                            )}
+                                                                    </span>
+                                                                );
+                                                            }
+                                                        )}
                                             </span>
                                             <span>
                                                 {item.detailInfoData &&

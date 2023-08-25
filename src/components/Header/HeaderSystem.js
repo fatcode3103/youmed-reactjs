@@ -8,43 +8,18 @@ import { useTranslation } from "react-i18next";
 import { path, language as LANGUAGE } from "../../utils/constant";
 import Menu from "../Menu/Menu";
 import images from "../../assets/image";
-import MenuUser from "../Menu/MenuUser";
 import styles from "./HeaderSystem.module.scss";
 import { faCaretDown, faHome } from "@fortawesome/free-solid-svg-icons";
 import Tippy from "@tippyjs/react/headless";
-
 import Image from "../Image";
-import { useEffect, useState } from "react";
 import BufferToBase64 from "../../utils/BufferToBase64";
+import * as MenuData from "../../components/MenuData/menuData";
 
 const cx = classNames.bind(styles);
 
 function HeaderSystem(props) {
-    const [avatarBase64, setAvatarBase64] = useState("");
-
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const admin = useSelector((state) => state.admin);
-    const { userById } = admin;
-
-    useEffect(() => {
-        if (userById.image) {
-            setAvatarBase64(BufferToBase64(userById.image.data));
-        }
-    }, [userById]);
-
-    const menuUserManageSystem = [
-        {
-            title: t("system.doctor_manage"),
-            key: "none",
-            menuSub: {
-                data: [
-                    { title: t("system.info"), to: path.DOCTOR_MANAGE },
-                    { title: t("system.schedule"), to: path.DOCTOR_SCHEDULE },
-                ],
-            },
-        },
-    ];
 
     const userState = useSelector((state) => state.user);
 
@@ -79,34 +54,25 @@ function HeaderSystem(props) {
                 </Tippy>
 
                 <div className={cx("header-text")}>
-                    <Menu item={menuUserManageSystem}>
-                        <NavLink
-                            className={(state) =>
-                                state.isActive ? cx("active") : ""
-                            }
-                            to={path.USER_MANAGE}
-                        >
-                            <span className={cx("text-manage")}>
-                                <span>
-                                    {t("system.user_manage_title")}{" "}
-                                    <FontAwesomeIcon icon={faCaretDown} />
-                                </span>
-                            </span>
-                        </NavLink>
-                    </Menu>
-                    <NavLink
-                        className={(state) =>
-                            state.isActive ? cx("active") : ""
-                        }
-                        to={path.SPECIALTY_MANAGE}
-                    >
-                        <span className={cx("text-manage")}>
-                            <span>{t("system.specialty_manage")}</span>
-                        </span>
-                    </NavLink>
+                    {MenuData.menuSystemAdmin.map((item, index) => {
+                        return (
+                            <Menu item={item}>
+                                <NavLink>
+                                    <span className={cx("text-manage")}>
+                                        <span>
+                                            {item[0].titleTop}{" "}
+                                            <FontAwesomeIcon
+                                                icon={faCaretDown}
+                                            />
+                                        </span>
+                                    </span>
+                                </NavLink>
+                            </Menu>
+                        );
+                    })}
                 </div>
                 <div className={cx("header-account")}>
-                    <Menu item={MenuUser()}>
+                    <Menu item={MenuData.menuUserInfo}>
                         <div className={cx("acconut-user")}>
                             <Image
                                 br="true"

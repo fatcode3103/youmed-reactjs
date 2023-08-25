@@ -42,8 +42,8 @@ function UserManage() {
     };
 
     //edit
-    const handleEditUserClick = (user) => {
-        dispatch(actions.getUserByIdAction(user.id));
+    const handleEditUserClick = async (user) => {
+        await dispatch(actions.getUserByIdAction(user.id));
         if (user.image) {
             setBufferToBase64(BufferToBase64(user.image.data));
         } else if (user.image === null) {
@@ -142,7 +142,7 @@ function UserManage() {
                             })}
                     </tbody>
                 </table>
-                {isLoading && <Loading />}
+                {!allUser.length > 0 && <Loading />}
                 {!allUser.length > 0 && <NoDataPage />}
             </div>
         </div>

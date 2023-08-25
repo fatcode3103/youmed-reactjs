@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 const md = new Remarkable();
 
-function MarkdownPreview({ markdown, setTextareaPreview }) {
+function MarkdownPreview({ markdown, className }) {
     const [renderedHTML, setRenderedHTML] = useState("");
 
     useEffect(() => {
@@ -17,9 +17,15 @@ function MarkdownPreview({ markdown, setTextareaPreview }) {
         const html = md.render(processedMarkdown);
         setRenderedHTML(html);
     }, [markdown]);
+
+    const classes = cx({
+        [className]: className,
+        "text-markdown": true,
+    });
+
     return (
         <div
-            className={cx("text-markdown")}
+            className={classes}
             dangerouslySetInnerHTML={{ __html: renderedHTML }}
         />
     );

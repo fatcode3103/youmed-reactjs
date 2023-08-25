@@ -34,7 +34,7 @@
             "book_appointment": "Đặt lịch khám"
         },
         "hospital_section": {
-            "see_more": "See more",
+            "see_more": "Xem thêm",
             "book_hospital": "Đặt khám Bệnh viện",
             "payment": "Hiện tại, bạn có thể đặt khám và thanh toán trực tuyến với các bệnh viện: Răng Hàm Mặt TP.HCM, Y Học Cổ Truyền, Tai Mũi Họng TP.HCM"
         },
@@ -107,9 +107,14 @@
         }
     },
     "system": {
+        "user_title": "Người dùng",
+        "specialty_title": "Chuyên khoa",
+        "hospital_title": "Bệnh viện",
         "user_manage_title": "Quản lý người dùng",
         "specialty_manage": "Quản lý chuyên khoa",
         "doctor_manage": "Quản lý bác sĩ",
+        "hospital_manage": "Quản lý bệnh viện",
+        "hospital_manage_detail": "Quản lý bệnh viện chi tiết",
         "form": {
             "no": "Stt",
             "email": "Email",
@@ -153,7 +158,10 @@
         "create_specialty_failed": "Cập nhật chuyên khoa thất bại",
         "create_book_appointment_successful": "Tạo lịch hẹn bệnh nhân thành công",
         "create_book_appointment_failed": "Tạo lịch hẹn bệnh nhân thất bại",
-        "book_appointment_available": "Lịch hẹn đã có sẵn"
+        "book_appointment_available": "Lịch hẹn đã có sẵn",
+        "missing": "Bạn đã bỏ lỡ giá trị",
+        "create_hospital_success": "Tạo thông tin bệnh viện thành công",
+        "create_hospital_failed": "Tạo thông tin bệnh viện thất bại"
     },
     "login":{
         "email": "Địa chỉ email",

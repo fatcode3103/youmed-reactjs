@@ -111,7 +111,7 @@ function ModalUser(props) {
             "date",
         ]);
         if (!isValidate) {
-            toast.warning(errMessage);
+            toast.warning(`${t("toast.missing")}: ${errMessage}`);
         } else {
             let data = { ...form, date: dateTimestamp };
             await dispatch(actions.postUserAction(data));
@@ -130,7 +130,7 @@ function ModalUser(props) {
             "date",
         ]);
         if (!isValidate) {
-            toast.warning(errMessage);
+            toast.warning(`${t("toast.missing")}: ${errMessage}`);
         } else {
             let data = { ...form, date: dateTimestamp };
             await dispatch(actions.editUserAction(data));
@@ -158,7 +158,7 @@ function ModalUser(props) {
                 <Modal.Body className={cx("p-5")}>
                     <div className={cx("row form- mb-4")}>
                         <div className={cx("col-4")}>
-                            <label>Email</label>
+                            <label for="email">Email</label>
                             <input
                                 onChange={
                                     isData
@@ -167,6 +167,7 @@ function ModalUser(props) {
                                 }
                                 name="email"
                                 value={email}
+                                id="email"
                                 type="email"
                                 disabled={isData}
                                 className={cx("form-control")}
@@ -343,6 +344,7 @@ function ModalUser(props) {
                                     handleOnChangeImg(e);
                                 }}
                                 type="file"
+                                accept="image/*"
                                 className={cx("form-control ")}
                             />
                             <div className={cx("preview")}>

@@ -4,16 +4,30 @@ import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { useRef } from "react";
 import Slider from "react-slick";
 import { useTranslation } from "react-i18next";
+import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./HospitalSection.module.scss";
 import Image from "../../../components/Image";
 import "../Slider.scss";
+import { useEffect } from "react";
+import * as actions from "../../../app/actions";
+import BufferToBase64 from "../../../utils/BufferToBase64";
+import { NavLink } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
 function HospitalSection() {
     const { t } = useTranslation();
     const slider = useRef(null);
+
+    const user = useSelector((state) => state.user);
+    const admin = useSelector((state) => state.admin);
+    const dispatch = useDispatch();
+    const { allHospital } = admin;
+
+    useEffect(() => {
+        dispatch(actions.getAllHospitalAction());
+    }, [dispatch]);
 
     const settings = {
         swipeToSlide: true,
@@ -62,136 +76,56 @@ function HospitalSection() {
                         </button>
                     </div>
                     <Slider {...settings} ref={slider}>
-                        <div className={cx("hospital-item")}>
-                            <div className={cx("card")}>
-                                <Image
-                                    src="https://cdn.youmed.vn/photos/c90bc798-1748-4cfa-9472-53882038476c.png?width=300"
-                                    className={cx("img-below")}
-                                />
-                                <Image
-                                    src="https://cdn.youmed.vn/photos/d6fe2fb6-e8a2-469c-a47c-3bec31cbb602.png?width=100&aspect_ratio=1:1"
-                                    size="m"
-                                    className={cx("img-above")}
-                                />
-                                <div className={cx("info")}>
-                                    <div className={cx("short-intro")}>
-                                        <h3>Bệnh viện Ung Bướu TPHCM</h3>
-                                        <span>
-                                            47 Nguyễn Huy Lượng, p.14, Q.Bình
-                                            Thạnh, TPHCM
-                                        </span>
-                                    </div>
-                                    <div className={cx("schedule")}>
-                                        <span>Thứ 2 - Thứ 6: 7:30 - 16:30</span>
-                                        <span>Thứ 7 - CN: 7:30 - 11:30</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={cx("hospital-item")}>
-                            <div className={cx("card")}>
-                                <Image
-                                    src="https://cdn.youmed.vn/photos/c90bc798-1748-4cfa-9472-53882038476c.png?width=300"
-                                    className={cx("img-below")}
-                                />
-                                <Image
-                                    src="https://cdn.youmed.vn/photos/d6fe2fb6-e8a2-469c-a47c-3bec31cbb602.png?width=100&aspect_ratio=1:1"
-                                    size="m"
-                                    className={cx("img-above")}
-                                />
-                                <div className={cx("info")}>
-                                    <div className={cx("short-intro")}>
-                                        <h3>Bệnh viện Ung Bướu TPHCM</h3>
-                                        <span>
-                                            47 Nguyễn Huy Lượng, p.14, Q.Bình
-                                            Thạnh, TPHCM
-                                        </span>
-                                    </div>
-                                    <div className={cx("schedule")}>
-                                        <span>Thứ 2 - Thứ 6: 7:30 - 16:30</span>
-                                        <span>Thứ 7 - CN: 7:30 - 11:30</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={cx("hospital-item")}>
-                            <div className={cx("card")}>
-                                <Image
-                                    src="https://cdn.youmed.vn/photos/c90bc798-1748-4cfa-9472-53882038476c.png?width=300"
-                                    className={cx("img-below")}
-                                />
-                                <Image
-                                    src="https://cdn.youmed.vn/photos/d6fe2fb6-e8a2-469c-a47c-3bec31cbb602.png?width=100&aspect_ratio=1:1"
-                                    size="m"
-                                    className={cx("img-above")}
-                                />
-                                <div className={cx("info")}>
-                                    <div className={cx("short-intro")}>
-                                        <h3>Bệnh viện Ung Bướu TPHCM</h3>
-                                        <span>
-                                            47 Nguyễn Huy Lượng, p.14, Q.Bình
-                                            Thạnh, TPHCM
-                                        </span>
-                                    </div>
-                                    <div className={cx("schedule")}>
-                                        <span>Thứ 2 - Thứ 6: 7:30 - 16:30</span>
-                                        <span>Thứ 7 - CN: 7:30 - 11:30</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={cx("hospital-item")}>
-                            <div className={cx("card")}>
-                                <Image
-                                    src="https://cdn.youmed.vn/photos/c90bc798-1748-4cfa-9472-53882038476c.png?width=300"
-                                    className={cx("img-below")}
-                                />
-                                <Image
-                                    src="https://cdn.youmed.vn/photos/d6fe2fb6-e8a2-469c-a47c-3bec31cbb602.png?width=100&aspect_ratio=1:1"
-                                    size="m"
-                                    className={cx("img-above")}
-                                />
-                                <div className={cx("info")}>
-                                    <div className={cx("short-intro")}>
-                                        <h3>Bệnh viện Ung Bướu TPHCM</h3>
-                                        <span>
-                                            47 Nguyễn Huy Lượng, p.14, Q.Bình
-                                            Thạnh, TPHCM
-                                        </span>
-                                    </div>
-                                    <div className={cx("schedule")}>
-                                        <span>Thứ 2 - Thứ 6: 7:30 - 16:30</span>
-                                        <span>Thứ 7 - CN: 7:30 - 11:30</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={cx("hospital-item")}>
-                            <div className={cx("card")}>
-                                <Image
-                                    src="https://cdn.youmed.vn/photos/c90bc798-1748-4cfa-9472-53882038476c.png?width=300"
-                                    className={cx("img-below")}
-                                />
-                                <Image
-                                    src="https://cdn.youmed.vn/photos/d6fe2fb6-e8a2-469c-a47c-3bec31cbb602.png?width=100&aspect_ratio=1:1"
-                                    size="m"
-                                    className={cx("img-above")}
-                                />
-                                <div className={cx("info")}>
-                                    <div className={cx("short-intro")}>
-                                        <h3>Bệnh viện Ung Bướu TPHCM</h3>
-                                        <span>
-                                            47 Nguyễn Huy Lượng, p.14, Q.Bình
-                                            Thạnh, TPHCM
-                                        </span>
-                                    </div>
-                                    <div className={cx("schedule")}>
-                                        <span>Thứ 2 - Thứ 6: 7:30 - 16:30</span>
-                                        <span>Thứ 7 - CN: 7:30 - 11:30</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {allHospital &&
+                            allHospital.length > 0 &&
+                            allHospital.map((item, index) => {
+                                let logo = "",
+                                    coverImg = "";
+                                if (item.logo || item.coverImg) {
+                                    logo = BufferToBase64(item.logo.data);
+                                    coverImg = BufferToBase64(
+                                        item.coverImg.data
+                                    );
+                                }
+                                return (
+                                    <NavLink
+                                        to={`/booking/hospital-detail/${item.id}`}
+                                        className={cx("hospital-item")}
+                                        key={index}
+                                    >
+                                        <div className={cx("card")}>
+                                            <Image
+                                                src={coverImg}
+                                                className={cx("img-below")}
+                                            />
+                                            <Image
+                                                src={logo}
+                                                size="m"
+                                                className={cx("img-above")}
+                                            />
+                                            <div className={cx("info")}>
+                                                <div
+                                                    className={cx(
+                                                        "short-intro"
+                                                    )}
+                                                >
+                                                    <h3>{item.name}</h3>
+                                                    <span>{item.address}</span>
+                                                </div>
+                                                <div className={cx("schedule")}>
+                                                    <span>
+                                                        Thứ 2 - Thứ 6: 7:30 -
+                                                        16:30
+                                                    </span>
+                                                    <span>
+                                                        Thứ 7 - CN: 7:30 - 11:30
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </NavLink>
+                                );
+                            })}
                     </Slider>
                 </div>
             </div>

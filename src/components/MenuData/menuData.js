@@ -68,10 +68,6 @@ export const menuUserInfo = [
             ],
         },
     },
-    // {
-    //     title: <Translation>{(t) => t("home.payment_history")}</Translation>,
-    //     to: path.PAYMENT_HISTORY,
-    // },
     {
         title: <Translation>{(t) => t("home.profile")}</Translation>,
         to: path.PROFILE,
@@ -85,4 +81,78 @@ export const menuUserInfo = [
         key: "logout",
         to: path.HOME,
     },
+];
+
+export const menuSystemAdmin = [
+    [
+        {
+            titleTop: (
+                <Translation>{(t) => t("system.user_title")}</Translation>
+            ),
+            title: (
+                <Translation>
+                    {(t) => t("system.user_manage_title")}
+                </Translation>
+            ),
+            key: "none",
+            to: path.USER_MANAGE,
+        },
+        {
+            title: (
+                <Translation>{(t) => t("system.doctor_manage")}</Translation>
+            ),
+            key: "none",
+            menuSub: {
+                data: [
+                    {
+                        title: (
+                            <Translation>{(t) => t("system.info")}</Translation>
+                        ),
+                        to: path.DOCTOR_MANAGE,
+                    },
+                    {
+                        title: (
+                            <Translation>
+                                {(t) => t("system.schedule")}
+                            </Translation>
+                        ),
+                        to: path.DOCTOR_SCHEDULE,
+                    },
+                ],
+            },
+        },
+    ],
+    [
+        {
+            titleTop: (
+                <Translation>{(t) => t("system.specialty_title")}</Translation>
+            ),
+            title: (
+                <Translation>{(t) => t("system.specialty_manage")}</Translation>
+            ),
+            key: "none",
+            to: path.SPECIALTY_MANAGE,
+        },
+    ],
+    [
+        {
+            titleTop: (
+                <Translation>{(t) => t("system.hospital_title")}</Translation>
+            ),
+            title: (
+                <Translation>{(t) => t("system.hospital_manage")}</Translation>
+            ),
+            key: "none",
+            to: path.HOSPITAL_MANAGE,
+        },
+        {
+            title: (
+                <Translation>
+                    {(t) => t("system.hospital_manage_detail")}
+                </Translation>
+            ),
+            key: "none",
+            to: path.HOSPITAL_MANAGE_DETAIL,
+        },
+    ],
 ];

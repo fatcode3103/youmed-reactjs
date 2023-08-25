@@ -64,7 +64,7 @@ function SpecialtyManage() {
             await dispatch(actions.createSpecialtyAction(dataSent));
             resetForm();
         } else {
-            toast.warning(errMessage);
+            toast.warning(`${t("toast.missing")}: ${errMessage}`);
         }
     };
 
@@ -103,6 +103,7 @@ function SpecialtyManage() {
                             <input
                                 ref={inputFileRef}
                                 type="file"
+                                accept="image/*"
                                 className={cx("form-control")}
                                 onChange={(e) => handleOnChangeSpecialtyImg(e)}
                             />

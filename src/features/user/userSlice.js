@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     language: "en",
+    verifyMessage: "",
     isLogin: false,
     currentUser: {},
     isLoading: false,
@@ -89,6 +90,7 @@ export const userSlice = createSlice({
             state.isLoading = false;
             state.doctorScheduleById = {};
         },
+        //
         setScheduleTime: (state, action) => {
             state.selectedScheduleTime = action.payload;
         },
@@ -118,6 +120,19 @@ export const userSlice = createSlice({
         },
         postPatientBookAppointmentFailed: (state, action) => {
             state.isLoading = false;
+        },
+        //post VerifyBookAppointment
+        postVerifyBookAppointmentStart: (state, action) => {
+            state.isLoading = true;
+            state.verifyMessage = "";
+        },
+        postVerifyBookAppointmentSuccess: (state, action) => {
+            state.isLoading = false;
+            state.verifyMessage = action.payload;
+        },
+        postVerifyBookAppointmentFailed: (state, action) => {
+            state.isLoading = false;
+            state.verifyMessage = action.payload;
         },
     },
 });
@@ -150,6 +165,9 @@ export const {
     postPatientBookAppointmentStart,
     postPatientBookAppointmentSuccess,
     postPatientBookAppointmentFailed,
+    postVerifyBookAppointmentStart,
+    postVerifyBookAppointmentSuccess,
+    postVerifyBookAppointmentFailed,
 } = userSlice.actions;
 
 export default userSlice.reducer;

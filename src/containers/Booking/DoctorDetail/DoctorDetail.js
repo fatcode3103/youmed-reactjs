@@ -96,6 +96,19 @@ function DoctorDetail() {
         dispatch(actions.setSelectedDateAction(dateDefault));
     };
 
+    const renderSpecialtyByLanguage = (specialtyArr) => {
+        if (specialtyArr && specialtyArr.length > 0) {
+            let renderSpecialty = specialtyArr.map((item, index) => {
+                return (
+                    <p key={index} className={cx("specialty-item")}>
+                        {language === LANGUAGE.VN ? item.valueVi : item.valueEn}
+                    </p>
+                );
+            });
+            return renderSpecialty;
+        }
+    };
+
     return (
         <div>
             {isLoading && <Loading />}
@@ -146,24 +159,9 @@ function DoctorDetail() {
                             <p className={cx("specialty")}>
                                 <span>Chuyên khoa</span>
                                 <span>
-                                    {doctorById.specialtyData &&
-                                        doctorById.specialtyData.length > 0 &&
-                                        doctorById.specialtyData.map(
-                                            (specialty, index) => {
-                                                return (
-                                                    <span
-                                                        key={index}
-                                                        className={cx(
-                                                            "specialty-item"
-                                                        )}
-                                                    >
-                                                        {language ===
-                                                        LANGUAGE.VN
-                                                            ? specialty.valueVi
-                                                            : specialty.valueEn}
-                                                    </span>
-                                                );
-                                            }
+                                    {doctorById &&
+                                        renderSpecialtyByLanguage(
+                                            doctorById.specialtyData
                                         )}
                                 </span>
                             </p>
@@ -196,6 +194,7 @@ function DoctorDetail() {
                                     <span>Lưu ý </span>
                                 </p>
                                 <MarkdownPreview
+                                    className={cx("text-markdown")}
                                     markdown={detailInfoData.note}
                                 />
                             </div>
@@ -222,9 +221,7 @@ function DoctorDetail() {
                             )}
                         </div>
                         <div className={cx("schedule-content")}>
-                            {!isShowSchedule && (
-                                <BookingSection doctorId={id} />
-                            )}
+                            {!isShowSchedule && <BookingSection id={id} />}
                         </div>
                     </div>
                     <div className={cx("introduction")}>
@@ -238,6 +235,7 @@ function DoctorDetail() {
                             </span>
                             {detailInfoData && detailInfoData.introduction ? (
                                 <MarkdownPreview
+                                    className={cx("text-markdown")}
                                     markdown={detailInfoData.introduction}
                                 />
                             ) : (
@@ -264,6 +262,7 @@ function DoctorDetail() {
                         <div>
                             {detailInfoData && detailInfoData.traningProcess ? (
                                 <MarkdownPreview
+                                    className={cx("text-markdown")}
                                     markdown={detailInfoData.traningProcess}
                                 />
                             ) : (
@@ -276,6 +275,7 @@ function DoctorDetail() {
                         <div>
                             {detailInfoData && detailInfoData.experience ? (
                                 <MarkdownPreview
+                                    className={cx("text-markdown")}
                                     markdown={detailInfoData.experience}
                                 />
                             ) : (

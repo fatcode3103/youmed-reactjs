@@ -106,9 +106,14 @@
         }
     },
     "system": {
+        "user_title": "User",
+        "specialty_title": "Specialty",
+        "hospital_title": "Hospital",
         "user_manage_title": "User management",
         "specialty_manage": "Specialty management",
         "doctor_manage": "Doctor management",
+        "hospital_manage": "Hospital management",
+        "hospital_manage_detail": "Detailed hospital management",
         "form": {
             "no": "No",
             "email": "Email",
@@ -124,6 +129,7 @@
         },
         "info": "Information",
         "schedule": "Schedule"
+        
     },
     "toast": {
         "current_language": "Current language",
@@ -132,9 +138,9 @@
         "logout_successful": "Sign out successful",
         "login_failed": "Login failed",
         "welcome": "Welcome",
-        "post_user_success": "Create user successfully",
+        "post_user_success": "Create user success",
         "post_user_failed": "Create user failed",
-        "delete_user_success": "Delete user successfully",
+        "delete_user_success": "Delete user success",
         "delete_user_failed": "Delete user failed",
         "edit_user_success": "Edit user success",
         "edit_user_failed": "Edit user failed",
@@ -149,9 +155,12 @@
         "login_redirect": "Please login",
         "create_specialty_success": "Create specialty success",
         "create_specialty_failed": "Create specialty failed",
-        "create_book_appointment_successful": "Create patient appointment successful",
+        "create_book_appointment_successful": "Create patient appointment success",
         "create_book_appointment_failed": "Create patient appointment failed",
-        "book_appointment_available": "Schedule is available"
+        "book_appointment_available": "Schedule is available",
+        "missing": "You missed the value",
+        "create_hospital_success": "Create hospital success",
+        "create_hospital_failed": "Create hospital failed"
     },
     "login":{
         "email": "Email",

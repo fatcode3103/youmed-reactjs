@@ -10,6 +10,9 @@ const initialState = {
     userById: {},
     doctorDetailInfo: {},
     doctorSchedule: {},
+    allHospital: [],
+    hospitalById: {},
+    hospitalSpecialtyById: [],
 };
 
 export const adminSlice = createSlice({
@@ -154,6 +157,59 @@ export const adminSlice = createSlice({
         createSpecialtyFailed: (state, action) => {
             state.isLoading = false;
         },
+        //create hospital
+        createHospitalStart: (state, action) => {
+            state.isLoading = true;
+        },
+        createHospitalSuccess: (state, action) => {
+            state.isLoading = false;
+        },
+        createHospitalFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //get all hospital
+        getAllHospitalStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getAllHospitalSuccess: (state, action) => {
+            state.isLoading = false;
+            state.allHospital = action.payload;
+        },
+        getAllHospitalFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //create detail hospital
+        createHospitalDetailStart: (state, action) => {
+            state.isLoading = true;
+        },
+        createHospitalDetailSuccess: (state, action) => {
+            state.isLoading = false;
+        },
+        createHospitalDetailFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //get hospital by id
+        getHospitalByIdStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getHospitalByIdSuccess: (state, action) => {
+            state.isLoading = false;
+            state.hospitalById = action.payload;
+        },
+        getHospitalByIdlFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //get specialty hospital
+        getHospitalSpecialtyByIdStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getHospitalSpecialtyByIdSuccess: (state, action) => {
+            state.isLoading = false;
+            state.hospitalSpecialtyById = action.payload;
+        },
+        getHospitalSpecialtyByIdlFailed: (state, action) => {
+            state.isLoading = false;
+        },
     },
 });
 
@@ -197,6 +253,21 @@ export const {
     createSpecialtyStart,
     createSpecialtySuccess,
     createSpecialtyFailed,
+    createHospitalStart,
+    createHospitalSuccess,
+    createHospitalFailed,
+    getAllHospitalStart,
+    getAllHospitalSuccess,
+    getAllHospitalFailed,
+    createHospitalDetailStart,
+    createHospitalDetailSuccess,
+    createHospitalDetailFailed,
+    getHospitalByIdStart,
+    getHospitalByIdSuccess,
+    getHospitalByIdlFailed,
+    // getHospitalSpecialtyByIdStart,
+    // getHospitalSpecialtyByIdSuccess,
+    // getHospitalSpecialtyByIdlFailed,
 } = adminSlice.actions;
 
 export default adminSlice.reducer;

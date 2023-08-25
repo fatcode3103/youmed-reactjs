@@ -1,0 +1,58 @@
+.header-content {
+    padding: 0px 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content-left {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 30px;
+}
+
+.logo-hospital{
+    border: 2px solid rgba(25, 117, 205, 0.5);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.content-right {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 4px;
+    font-size: 13px;
+    padding: 3px 6px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.icon-heart {
+    color: red;
+}
+
+.hospital-info-title {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.hospital-info-slogan {
+    font-size: 16px;
+    opacity: 0.7;
+    font-weight: 500;
+}
+
+.hospital-info-contact {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.icon-contact {
+    margin-right: 10px;
+    color: var(--primary-color) !important;
+}

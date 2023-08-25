@@ -15,11 +15,14 @@ function Button(props) {
         outline = false,
         disnabel = false,
         onlyLink = false,
+        blur = false,
+        bl = false,
         className,
         onClick,
         primary,
         none,
         update = false,
+        bgGray = false,
         ...other
     } = props;
 
@@ -45,6 +48,9 @@ function Button(props) {
         onlyLink: onlyLink,
         primary: primary,
         update: update,
+        blur: blur,
+        bl: bl,
+        bgGray: bgGray,
         [className]: className,
     });
 

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 import styles from "./DoctorInfoManage.module.scss";
 import HeaderSystem from "../../../../components/Header/HeaderSystem";
@@ -16,6 +17,7 @@ import { createDoctorSpecialtyApi } from "../../../../services/specialtyService"
 const cx = classNames.bind(styles);
 
 function DoctorInfoManage() {
+    const { t } = useTranslation();
     const userState = useSelector((state) => state.user);
     const adminState = useSelector((state) => state.admin);
     const { isLoading } = adminState;
@@ -28,7 +30,7 @@ function DoctorInfoManage() {
     const [getNameDoctor, setGetNameDoctor] = useState(false);
 
     useEffect(() => {
-        dispatch(actions.getAllDoctorAction());
+        dispatch(actions.getAllDoctorAction(""));
         dispatch(actions.getAllSpecialtyAction());
     }, [dispatch]);
 
@@ -38,7 +40,7 @@ function DoctorInfoManage() {
     }, [allDoctor, getNameDoctor, language, allSpecialty]);
 
     useEffect(() => {
-        if (detailInfoData && Object.keys(detailInfoData).length) {
+        if (detailInfoData && !Object.values(detailInfoData).includes(null)) {
             setForm({
                 selectedDoctor: selectedDoctor,
                 workPlace: detailInfoData.workPlace,
@@ -99,13 +101,12 @@ function DoctorInfoManage() {
             "traningProcess",
         ]);
         if (!isValidate) {
-            toast.warning(errMessage);
+            toast.warning(`${t("toast.missing")}: ${errMessage}`);
         } else {
             let dataSent = { ...form, doctorId: selectedDoctor.value };
             let bulkSpecialty = handleSelectedSpecialtyArr(
                 dataSent.selectedSpecialty
             );
-            console.log("check dataSent:>>> ", dataSent);
             await createDoctorSpecialtyApi(bulkSpecialty);
             dispatch(actions.postDoctorInfoByIdAction(dataSent));
             resetForm();
@@ -120,13 +121,12 @@ function DoctorInfoManage() {
             "traningProcess",
         ]);
         if (!isValidate) {
-            toast.warning(errMessage);
+            toast.warning(`${t("toast.missing")}: ${errMessage}`);
         } else {
             let dataSent = { ...form, doctorId: selectedDoctor.value };
             let bulkSpecialty = handleSelectedSpecialtyArr(
                 dataSent.selectedSpecialty
             );
-            console.log("check bulkSpecialty:>>> ", bulkSpecialty);
             await createDoctorSpecialtyApi(bulkSpecialty);
             dispatch(actions.putDoctorDetailInfoAction(dataSent));
             resetForm();
@@ -178,7 +178,6 @@ function DoctorInfoManage() {
 
     return (
         <div className={cx("doctor-manage-container")}>
-            {console.log(specialtyData)}
             {isLoading && <Loading />}
             <HeaderSystem />
             <div className={cx("doctor-manage-content")}>
@@ -198,7 +197,7 @@ function DoctorInfoManage() {
                                     dispatch(
                                         actions.getDoctorByIdAction(e.value)
                                     );
-                                    return handleOnChangeInput({
+                                    handleOnChangeInput({
                                         target: {
                                             name: action.name,
                                             value: e,

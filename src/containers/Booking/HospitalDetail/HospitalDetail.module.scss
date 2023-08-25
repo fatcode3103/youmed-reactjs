@@ -1,0 +1,88 @@
+.hospital-detail-content{
+    padding: calc(var(--height-header) + 50px) 0px 0px 0px;
+}
+
+.body-content{
+    padding: 0px 300px 100px 300px;
+}
+
+.img-hospital{
+    margin-bottom: 30px;
+}
+
+.booking{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.price-1, .price-2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+    color: #333;
+    transition: all 0.1s linear;
+
+    &:hover{
+        cursor: pointer;
+        opacity: 0.9;
+        color: var(--primary-color);
+    }
+}
+
+.introduction-title, .specialty-title, .switchboard-support p{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.intro-markdown{
+    font-size: 16px;
+    color: #333;
+}
+
+.specialty{
+    margin-top: 30px;
+}
+
+.specialty div{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+}
+
+.btn-specialty{
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.switchboard-support span{
+    opacity: 0.8;
+    font-size: 15px;
+}
+
+.switchboard-link{
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 4px;
+}
+
+.switchboard-link-icon{
+    margin-right: 6px;
+    color: var(--primary-color);
+    font-size: 14px;
+}
+
+.btn-booking{
+    text-align: center !important;
+    padding: 10px 130px;
+}

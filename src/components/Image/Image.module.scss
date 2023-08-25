@@ -21,6 +21,13 @@
     max-width: 180px;
     max-height: 180px;
 }
+
+.xl{
+    width: 650px;
+    height: 340px;
+    object-fit: cover;
+}
+
 .xxl{
     width: 600px;
     height: 600px;
@@ -32,6 +39,10 @@
 
 .br{
     border-radius: 50%;
+}
+
+.br10{
+    border-radius: 10px;
 }
 
 .center{

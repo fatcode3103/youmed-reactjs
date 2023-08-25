@@ -19,6 +19,7 @@ function UseForm(initState) {
             let fileUrl = URL.createObjectURL(file);
             setForm({
                 ...form,
+                [e.target.name]: base64,
                 img: base64,
                 preview: fileUrl,
             });
@@ -26,11 +27,33 @@ function UseForm(initState) {
         }
     };
 
+    /// xu ly nhieu anh
+    const handleOnChangeImages = async (e) => {
+        let fileList = e.target.value.target.files;
+        let fileListNew = Object.values(fileList);
+        const newSelectedImages = [];
+        for await (const item of fileListNew) {
+            let base64 = await FileToBase64(item);
+            newSelectedImages.push(base64);
+        }
+        setForm({
+            ...form,
+            [e.target.name]: newSelectedImages,
+        });
+    };
+
     const resetForm = () => {
         setForm(initState);
     };
 
-    return { form, setForm, handleOnChangeInput, handleOnChangeImg, resetForm };
+    return {
+        form,
+        setForm,
+        handleOnChangeInput,
+        handleOnChangeImg,
+        handleOnChangeImages,
+        resetForm,
+    };
 }
 
 export default UseForm;

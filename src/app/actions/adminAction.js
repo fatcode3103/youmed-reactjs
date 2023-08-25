@@ -4,6 +4,7 @@ import { Translation } from "react-i18next";
 import * as userService from "../../services/userService";
 import * as adminslice from "../../features/admin/adminslice";
 import * as specialtyService from "../../services/specialtyService";
+import * as hospitalService from "../../services/hospitalService";
 
 export const getAllUserAction = () => {
     return async (dispatch) => {
@@ -411,6 +412,118 @@ export const createSpecialtyAction = (data) => {
                     )}
                 </Translation>
             );
+        }
+    };
+};
+
+export const createHospitalAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.createHospitalStart());
+        try {
+            let res = await hospitalService.creatHospitalApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.createHospitalSuccess());
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>{t("toast.create_hospital_success")} !</span>
+                        )}
+                    </Translation>
+                );
+            } else {
+                dispatch(adminslice.createSpecialtyFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <span>{t("toast.create_hospital_failed")} !</span>
+                        )}
+                    </Translation>
+                );
+            }
+        } catch (e) {
+            dispatch(adminslice.createSpecialtyFailed());
+            toast.error(
+                <Translation>
+                    {(t) => (
+                        <span>
+                            {t("toast.create_hospital_failed")} !
+                            <span>{e}</span>
+                        </span>
+                    )}
+                </Translation>
+            );
+        }
+    };
+};
+
+export const getAllHospitalAction = () => {
+    return async (dispatch) => {
+        dispatch(adminslice.getAllHospitalStart());
+        try {
+            let res = await hospitalService.getAllHospitalApi();
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.getAllHospitalSuccess(res.data.data));
+            } else {
+                dispatch(adminslice.getAllHospitalFailed());
+            }
+        } catch (e) {
+            dispatch(adminslice.getAllHospitalFailed());
+        }
+    };
+};
+
+export const createHospitalDetailAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.createHospitalDetailStart());
+        try {
+            let res = await hospitalService.createHospitalDetailApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.createHospitalDetailSuccess());
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>{t("toast.create_hospital_success")} !</span>
+                        )}
+                    </Translation>
+                );
+            } else {
+                dispatch(adminslice.createHospitalDetailFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <span>{t("toast.create_hospital_failed")} !</span>
+                        )}
+                    </Translation>
+                );
+            }
+        } catch (e) {
+            dispatch(adminslice.createHospitalDetailFailed());
+            toast.error(
+                <Translation>
+                    {(t) => (
+                        <span>
+                            {t("toast.create_hospital_failed")} !
+                            <span>{e}</span>
+                        </span>
+                    )}
+                </Translation>
+            );
+        }
+    };
+};
+
+export const getHospitalByIdAction = (hospitalId) => {
+    return async (dispatch) => {
+        dispatch(adminslice.getHospitalByIdStart());
+        try {
+            let res = await hospitalService.getHospitalByIdApi(hospitalId);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.getHospitalByIdSuccess(res.data.data));
+            } else {
+                dispatch(adminslice.getHospitalByIdlFailed());
+            }
+        } catch (e) {
+            dispatch(adminslice.getHospitalByIdlFailed());
         }
     };
 };
