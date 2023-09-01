@@ -115,6 +115,7 @@
         "doctor_manage": "Quản lý bác sĩ",
         "hospital_manage": "Quản lý bệnh viện",
         "hospital_manage_detail": "Quản lý bệnh viện chi tiết",
+        "hospital_schedule": "Quản lý lịch khám bệnh viện",
         "form": {
             "no": "Stt",
             "email": "Email",
@@ -161,7 +162,11 @@
         "book_appointment_available": "Lịch hẹn đã có sẵn",
         "missing": "Bạn đã bỏ lỡ giá trị",
         "create_hospital_success": "Tạo thông tin bệnh viện thành công",
-        "create_hospital_failed": "Tạo thông tin bệnh viện thất bại"
+        "create_hospital_failed": "Tạo thông tin bệnh viện thất bại",
+        "create_hospital_schedule_success": "Tạo lịch trình bệnh viện thành công",
+        "create_hospital_schedule_failed": "Tạo lịch trình bệnh viện thất bại",
+        "update_hospital_schedule_success": "Cập nhật lịch trình bệnh viện thành công",
+        "update_hospital_schedule_failed": "Cập nhật lịch trình bệnh viện thất bại"
     },
     "login":{
         "email": "Địa chỉ email",
@@ -176,5 +181,18 @@
         "doctor_present" : "Bác sĩ hoạt động",
         "polyclinic": "Phòng khám đa khoa",
         "specialty": "Chuyên khoa"
+    },
+    "booking_detail": {
+        "examination": "Khám"
+    },
+    "email": {
+        "patient_name": "Tên bệnh nhân",
+        "patient_address": "Địa chỉ",
+        "patient_phone": "Số điện thoại",
+        "note": "Ghi chú",
+        "dynamicEntity_name": "Tên bác sĩ",
+        "dynamicEntity_specialty": "Chuyên khoa",
+        "dynamicEntity_address": "Địa chỉ",
+        "dynamicEntity_time": "Giờ khám"
     }
 }

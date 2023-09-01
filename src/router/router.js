@@ -12,13 +12,14 @@ import {
     DoctorSchedule,
 } from "../containers/System/Admin/DoctorManage";
 import BookingAppointment from "../containers/Booking/BookingAppointmentDoctor";
-import VerifyBookAppointment from "../components/VerifyBookAppointment/index.js";
+import VerifyBookAppointment from "../components/VerifyBookAppointment";
 import {
     HospitalManage,
     HospitalManageDetail,
+    HospitalSchedule,
 } from "../containers/System/Admin/HospitalManage";
 import HospitalDetail from "../containers/Booking/HospitalDetail";
-import BookingAppointmentHospital from "../containers/Booking/BookingAppointmentHospital/index.js";
+import BookingAppointmentHospital from "../containers/Booking/BookingAppointmentHospital";
 
 export const routerPublic = [
     { path: path.HOME, component: Home },
@@ -39,6 +40,7 @@ export const routerPrivate = [
     { path: path.SPECIALTY_MANAGE, component: SpecialtyManage },
     { path: path.HOSPITAL_MANAGE, component: HospitalManage },
     { path: path.HOSPITAL_MANAGE_DETAIL, component: HospitalManageDetail },
+    { path: path.HOSPITAL_SCHEDULE, component: HospitalSchedule },
 ];
 
 export const routerLogin = [

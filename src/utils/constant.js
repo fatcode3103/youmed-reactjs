@@ -15,6 +15,7 @@ export const path = {
     SPECIALTY_MANAGE: "/system/specialty-manage",
     HOSPITAL_MANAGE: "/system/hospital-manage",
     HOSPITAL_MANAGE_DETAIL: "/system/hospital-manage-detail",
+    HOSPITAL_SCHEDULE: "/system/hospital-schedule",
     DOCTOR_MANAGE: "/system/doctor-manage",
     DOCTOR_SCHEDULE: "/system/doctor-schedule",
     //booking
@@ -40,6 +41,12 @@ export const role = {
     ADMIN: "R1",
     DOCTOR: "R2",
     PATIENT: "R3",
+};
+
+export const distinguishSubjectExamination = {
+    DOCTOR: "DOCTOR",
+    HOSPITAL: "HOSPITAL",
+    CLINIC: "CLINIC",
 };
 
 export const date = {

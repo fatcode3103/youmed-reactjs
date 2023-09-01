@@ -8,7 +8,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./HospitalSection.module.scss";
 import Image from "../../../components/Image";
-import "../Slider.scss";
 import { useEffect } from "react";
 import * as actions from "../../../app/actions";
 import BufferToBase64 from "../../../utils/BufferToBase64";

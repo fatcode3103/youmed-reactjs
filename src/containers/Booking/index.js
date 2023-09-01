@@ -6,7 +6,6 @@ import * as actions from "../../app/actions";
 import styles from "./Booking.module.scss";
 import Header from "../../components/Header";
 import BookingHomeHeader from "./BookingHomeHeader/BookingHomeHeader";
-import BufferToBase64 from "../../utils/BufferToBase64";
 import DoctorSection from "../../containers/Home/DoctorSection";
 import HospitalSection from "../../containers/Home/HospitalSection";
 import ClinicSection from "../../containers/Home/ClinicSection";
@@ -18,22 +17,12 @@ import Footer from "../../components/Footer";
 const cx = classNames.bind(styles);
 
 function Booking() {
-    const userState = useSelector((state) => state.user);
-    const dispatch = useDispatch();
-
-    const [avatarBase64, setAvatarBase64] = useState("");
-
-    const { currentUser } = userState;
-
-    useEffect(() => {
-        if (currentUser.image) {
-            setAvatarBase64(BufferToBase64(currentUser.image.data));
-        }
-    }, []);
+    // const userState = useSelector((state) => state.user);
+    // const dispatch = useDispatch();
 
     return (
         <div className={cx("booking-container")}>
-            <Header avatarBase64={avatarBase64} />
+            <Header />
             <div className={cx("booking-content")}>
                 <BookingHomeHeader />
                 <DoctorSection />

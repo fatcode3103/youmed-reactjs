@@ -13,12 +13,16 @@ import { UseForm, UseValidate } from "../../../../components/CustomHook";
 import { language as LANGUAGE } from "../../../../utils/constant";
 import { createHospitalSpecialtylApi } from "../../../../services/hospitalService";
 import { toast } from "react-toastify";
+import Loading from "../../../../components/Loading";
+
+var _ = require("lodash");
 
 const cx = classNames.bind(styles);
 
 function HospitalManageDetail() {
     const [selectHospital, setSelectHospital] = useState([]);
     const [selectSpecialty, setSelectSpecialty] = useState([]);
+    const [isData, setIsData] = useState(false);
     const [intro, setIntro] = useState("");
     const { t } = useTranslation();
 
@@ -26,8 +30,8 @@ function HospitalManageDetail() {
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
-    const { allHospital } = admin;
-    const { language, allSpecialty } = user;
+    const { allHospital, hospitalById } = admin;
+    const { language, allSpecialty, isLoading } = user;
 
     const initialState = {
         selectedHospital: null,
@@ -64,9 +68,44 @@ function HospitalManageDetail() {
     } = form;
 
     useEffect(() => {
+        if (
+            hospitalById &&
+            !_.isEmpty(hospitalById) &&
+            !_.isEmpty(hospitalById.hospitalDetailData) &&
+            !_.values(hospitalById).includes(null) &&
+            !_.values(hospitalById.hospitalDetailData).includes(null)
+        ) {
+            setForm({
+                selectedHospital: selectedHospital,
+                slogan: hospitalById.hospitalDetailData.slogan,
+                linkWeb: hospitalById.hospitalDetailData.linkweb,
+                images: JSON.parse(hospitalById.hospitalDetailData.images),
+                addressMap: hospitalById.hospitalDetailData.addressMap,
+                switchboard: hospitalById.hospitalDetailData.switchboard,
+                servicePrice: hospitalById.hospitalDetailData.servicePrice,
+                billPrice: hospitalById.hospitalDetailData.billPrice,
+                selectedSpecialty: buildDataSelect(
+                    hospitalById.specialtyData,
+                    "SPECIALTY"
+                ),
+            });
+            setIntro(hospitalById.hospitalDetailData.introduction);
+            setIsData(true);
+        } else {
+            setForm(initialState);
+            setIntro("");
+            setIsData(false);
+        }
+    }, [hospitalById]);
+
+    useEffect(() => {
         dispatch(actions.getAllHospitalAction());
         dispatch(actions.getAllSpecialtyAction());
     }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(actions.getHospitalByIdAction(selectedHospital));
+    }, [selectedHospital, dispatch]);
 
     useEffect(() => {
         setSelectHospital(buildDataSelect(allHospital));
@@ -78,28 +117,30 @@ function HospitalManageDetail() {
 
     const buildDataSelect = (data, type = "") => {
         let arr = [];
-        data.forEach((item) => {
-            let obj = {};
-            if (language === LANGUAGE.VN) {
-                if (type === "SPECIALTY") {
-                    obj.value = item.id;
-                    obj.label = item.valueVi;
+        if (_.isArray(data) && data.length > 0) {
+            data.forEach((item) => {
+                let obj = {};
+                if (language === LANGUAGE.VN) {
+                    if (type === "SPECIALTY") {
+                        obj.value = item.id;
+                        obj.label = item.valueVi;
+                    } else {
+                        obj.value = item.id;
+                        obj.label = item.name;
+                    }
                 } else {
-                    obj.value = item.id;
-                    obj.label = item.name;
+                    if (type === "SPECIALTY") {
+                        obj.value = item.id;
+                        obj.label = item.valueEn;
+                    } else {
+                        obj.value = item.id;
+                        obj.label = item.name;
+                    }
                 }
-            } else {
-                if (type === "SPECIALTY") {
-                    obj.value = item.id;
-                    obj.label = item.valueEn;
-                } else {
-                    obj.value = item.id;
-                    obj.label = item.name;
-                }
-            }
-            arr.push(obj);
-        });
-        return arr;
+                arr.push(obj);
+            });
+            return arr;
+        }
     };
 
     const handleSelectedSpecialtyArr = (data) => {
@@ -130,17 +171,25 @@ function HospitalManageDetail() {
 
         if (isValidate) {
             await createHospitalSpecialtylApi(bulkSpecialty);
-            await dispatch(actions.createHospitalDetailAction(dataSent));
+            console.log(dataSent);
+
+            isData
+                ? await dispatch(actions.updateHospitalDetailAction(dataSent))
+                : await dispatch(actions.createHospitalDetailAction(dataSent));
+
             inputFileImg.current.value = null;
             setIntro("");
             resetForm();
+            setIsData(false);
         } else {
+            setIsData(isData);
             toast.warning(`${t("toast.missing")}: ${errMessage}`);
         }
     };
 
     return (
         <div className={cx("hospital-detail-container")}>
+            {isLoading && <Loading />}
             <HeaderSystem />
             <div className={cx("hospital-detail-content")}>
                 <h2>HospitalManageDetail page</h2>
@@ -150,14 +199,14 @@ function HospitalManageDetail() {
                             <label>Chọn bệnh viện</label>
                             <Select
                                 value={selectedHospital ? undefined : null}
-                                onChange={(e) =>
+                                onChange={(e) => {
                                     handleOnChangeInput({
                                         target: {
                                             name: "selectedHospital",
                                             value: e.value,
                                         },
-                                    })
-                                }
+                                    });
+                                }}
                                 options={selectHospital}
                             />
                         </div>
@@ -260,7 +309,7 @@ function HospitalManageDetail() {
                         </div>
                     </div>
                     <div className={cx("row mb-3")}>
-                        <div className={cx("col-12")}>
+                        <div className={cx("col-12")} data-color-mode="light">
                             <label>Giới thiệu</label>
                             <MDEditor
                                 value={intro}
@@ -272,10 +321,11 @@ function HospitalManageDetail() {
                 </div>
                 <Button
                     onClick={() => handleSave()}
-                    outline="true"
+                    outline={!isData}
+                    update={isData}
                     className={cx("btn-save")}
                 >
-                    Save
+                    {isData ? "Update" : "Save"}
                 </Button>
             </div>
         </div>

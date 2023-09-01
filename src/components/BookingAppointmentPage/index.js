@@ -8,11 +8,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faAngleDown,
     faArrowRightLong,
+    faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import Button from "../Button";
-import BufferToBase64 from "../../utils/BufferToBase64";
-import { language as LANGUAGE } from "../../utils/constant";
+import { language as LANGUAGE, role } from "../../utils/constant";
 import * as actions from "../../app/actions";
+import { useTranslation } from "react-i18next";
+import { distinguishSubjectExamination } from "../../utils/constant";
 
 var _ = require("lodash");
 
@@ -23,36 +25,34 @@ function BookingAppoimentPage(props) {
     const {
         id,
         sectionStepData,
-        infoById,
-        renderSelectedDate,
+        avatarBookingBase64,
+        nameBooking,
+        addressBooking,
+        scheduleById,
+        dynamicEntity,
         renderSelectedTime,
-        renderNamePatient,
+        distinguishSubjectExamination,
     } = props;
 
-    //state
-    const [selectedTime, setSelectedTime] = useState({});
-    const [clickedBooking, setClickedBooking] = useState(false);
-    const [visibleComponent, setVisibleComponent] = useState(0);
+    const { t } = useTranslation();
 
-    //redux
+    //state
+    const [visibleComponent, setVisibleComponent] = useState(0);
+    const [dataFormChildrenComponent, setDataFormChildrenComponent] = useState(
+        {}
+    );
+
     const user = useSelector((state) => state.user);
-    const admin = useSelector((state) => state.admin);
-    const { userById } = admin;
-    const { language, selectedDate, selectedScheduleTime } = user;
+    const { language, selectedScheduleTime } = user;
+
     const dispatch = useDispatch();
 
     useEffect(() => {
-        setSelectedTime(selectedScheduleTime);
-    }, [selectedScheduleTime]);
-
-    //function
-    const handleRenderName = (doctor) => {
-        if (language === LANGUAGE.VN) {
-            return `${doctor.positionData.valueVi}, ${doctor.lastName} ${doctor.firstName}`;
-        } else {
-            return `${doctor.positionData.valueEn}, ${doctor.firstName} ${doctor.lastName}`;
-        }
-    };
+        setDataFormChildrenComponent((prev) => ({
+            ...prev,
+            language: language,
+        }));
+    }, [language]);
 
     const renderSpecialty = (doctor) => {
         if (doctor && doctor.specialtyData && doctor.specialtyData.length > 0) {
@@ -61,14 +61,6 @@ function BookingAppoimentPage(props) {
             });
             return specialtyArr.join(", ");
         }
-    };
-
-    const handleImageBase64 = (doctor) => {
-        let imgBase64 = "";
-        if (doctor && doctor.image) {
-            imgBase64 = BufferToBase64(doctor.image.data);
-        }
-        return imgBase64;
     };
 
     const handleClickTitleComponent = (index) => {
@@ -80,37 +72,46 @@ function BookingAppoimentPage(props) {
     };
 
     //sent data to server
-    // booking
-    const handleClickBtnBooking = async (data) => {
-        if (data) {
-            let dataSentToServer = {
-                ...data,
-                date: selectedDate.date,
-                timeType: selectedTime.keyMap,
-                doctorId: infoById.id,
-                patientId: userById.id,
-                sendToEmail: {
-                    date: renderSelectedDate(selectedDate),
-                    time: renderSelectedTime(selectedTime),
-                    doctor: {
-                        address: infoById.detailInfoData.address,
-                        specialty: renderSpecialty(infoById),
-                        doctorName: handleRenderName(infoById),
-                    },
-                    patient: {
-                        patientName: renderNamePatient(userById),
-                        phoneNumber: userById.phoneNumber,
-                        email: userById.email,
-                    },
-                    language: language,
-                },
+    const handleClickBtnBooking = async () => {
+        if (!_.isEmpty(dataFormChildrenComponent)) {
+            let dataSendToServer = {
+                ...dataFormChildrenComponent,
             };
-            console.log("check dataSentToServer:>>> ", dataSentToServer);
+            console.log("check data send to server: >>> ", dataSendToServer);
             await dispatch(
-                actions.postPatientBookAppointmentAction(dataSentToServer)
+                actions.postPatientBookAppointmentAction(dataSendToServer)
             );
         }
-        setClickedBooking(!clickedBooking);
+    };
+
+    const getDataFromChildrenComponent = (value) => {
+        if (!_.isEmpty(value)) {
+            setDataFormChildrenComponent((prev) => ({
+                ...prev,
+                ...value,
+                distinguishSubjectExamination: distinguishSubjectExamination,
+                entityId: dynamicEntity.id,
+                language: language,
+                entityInfo: [
+                    {
+                        label: t("email.dynamicEntity_name"),
+                        value: nameBooking,
+                    },
+                    {
+                        label: t("email.dynamicEntity_specialty"),
+                        value: renderSpecialty(dynamicEntity),
+                    },
+                    {
+                        label: t("email.dynamicEntity_address"),
+                        value: addressBooking,
+                    },
+                    {
+                        label: t("email.dynamicEntity_time"),
+                        value: renderSelectedTime(selectedScheduleTime),
+                    },
+                ],
+            }));
+        }
     };
 
     return (
@@ -123,7 +124,7 @@ function BookingAppoimentPage(props) {
                         .slice(0, visibleComponent + 1)
                         .map((item, index) => {
                             return (
-                                <div>
+                                <div key={index}>
                                     {index <= visibleComponent && (
                                         <div>
                                             <span>{index + 1}</span>
@@ -154,11 +155,10 @@ function BookingAppoimentPage(props) {
                             .map((item, index) => {
                                 let Component = item.component;
                                 return (
-                                    <div>
+                                    <div key={index}>
                                         {index <= visibleComponent && (
                                             <div
                                                 className={cx("booking-action")}
-                                                key={index}
                                             >
                                                 <div
                                                     className={cx(
@@ -189,14 +189,14 @@ function BookingAppoimentPage(props) {
                                                         <Component
                                                             lessList="5"
                                                             id={id}
-                                                            handleClickBtnBooking={
-                                                                handleClickBtnBooking
-                                                            }
-                                                            clickedBooking={
-                                                                clickedBooking
-                                                            }
                                                             handleCompleteStep={
                                                                 handleCompleteStep
+                                                            }
+                                                            scheduleById={
+                                                                scheduleById
+                                                            }
+                                                            getDataFromChildrenComponent={
+                                                                getDataFromChildrenComponent
                                                             }
                                                         />
                                                     </div>
@@ -225,20 +225,14 @@ function BookingAppoimentPage(props) {
                             <Image
                                 size="s"
                                 br="true"
-                                src={handleImageBase64(infoById)}
+                                src={avatarBookingBase64}
                             />
                             <div className={cx("short-info-doctor")}>
                                 <p className={cx("doctor-name")}>
-                                    {infoById &&
-                                        infoById.positionData &&
-                                        handleRenderName(infoById)}
+                                    {nameBooking ?? "updating"}
                                 </p>
                                 <p className={cx("doctor-address")}>
-                                    {infoById &&
-                                    infoById.detailInfoData &&
-                                    infoById.detailInfoData.address
-                                        ? infoById.detailInfoData.address
-                                        : ""}
+                                    {addressBooking ?? "updating"}
                                 </p>
                             </div>
                         </div>
@@ -273,9 +267,13 @@ function BookingAppoimentPage(props) {
                                                                             indx
                                                                         }
                                                                     >
-                                                                        {
-                                                                            e.value
-                                                                        }
+                                                                        {e.value ?? (
+                                                                            <FontAwesomeIcon
+                                                                                icon={
+                                                                                    faInfoCircle
+                                                                                }
+                                                                            />
+                                                                        )}
                                                                     </span>
                                                                 );
                                                             }
@@ -288,7 +286,6 @@ function BookingAppoimentPage(props) {
                         <div className={cx("btn-booking-wrapper")}>
                             <Button
                                 className={cx("btn-booking")}
-                                size="l"
                                 disnabel={
                                     sectionStepData.length >
                                     visibleComponent + 1

@@ -520,10 +520,134 @@ export const getHospitalByIdAction = (hospitalId) => {
             if (res && res.data.errorCode === 0) {
                 dispatch(adminslice.getHospitalByIdSuccess(res.data.data));
             } else {
-                dispatch(adminslice.getHospitalByIdlFailed());
+                dispatch(adminslice.getHospitalByIdFailed());
             }
         } catch (e) {
-            dispatch(adminslice.getHospitalByIdlFailed());
+            dispatch(adminslice.getHospitalByIdFailed());
+        }
+    };
+};
+
+export const updateHospitalDetailAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.updateHospitalDetailStart());
+        try {
+            let res = await hospitalService.updateHospitalDetailApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.updateHospitalDetailSuccess(res.data.data));
+            } else {
+                dispatch(adminslice.updateHospitalDetailFailed());
+            }
+        } catch (e) {
+            dispatch(adminslice.updateHospitalDetailFailed());
+        }
+    };
+};
+
+export const createHospitalScheduleAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.createHospitalDetailStart());
+        try {
+            let res = await hospitalService.createHospitalScheduleApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(
+                    adminslice.createHospitalScheduleSuccess(res.data.data)
+                );
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.create_hospital_schedule_success")} !
+                            </span>
+                        )}
+                    </Translation>
+                );
+            } else {
+                dispatch(adminslice.createHospitalScheduleFailed());
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.create_hospital_schedule_failed")} !
+                            </span>
+                        )}
+                    </Translation>
+                );
+            }
+        } catch (e) {
+            dispatch(adminslice.createHospitalScheduleFailed());
+            toast.success(
+                <Translation>
+                    {(t) => (
+                        <span>
+                            {t("toast.create_hospital_schedule_failed")} {e}!
+                        </span>
+                    )}
+                </Translation>
+            );
+        }
+    };
+};
+
+export const getHospitalScheduleAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.getHospitalScheduleByIdStart());
+        try {
+            let res = await hospitalService.getHospitalScheduleApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(
+                    adminslice.getHospitalScheduleByIdSuccess(res.data.data)
+                );
+            } else {
+                dispatch(adminslice.getHospitalScheduleByIdFailed());
+            }
+        } catch (e) {
+            dispatch(adminslice.getHospitalScheduleByIdFailed());
+        }
+    };
+};
+
+export const updateHospitalcheduleAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.updateHospitalScheduleByIdStart());
+        try {
+            let res = await hospitalService.updateHospitalScheduleApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.updateHospitalScheduleByIdSuccess());
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.update_hospital_schedule_success")} !
+                            </span>
+                        )}
+                    </Translation>
+                );
+            } else {
+                dispatch(adminslice.updateHospitalScheduleByIdFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.update_hospital_schedule_failed")}
+                                <span>{res.data.message}</span>
+                            </span>
+                        )}
+                    </Translation>
+                );
+            }
+        } catch (e) {
+            dispatch(adminslice.updateHospitalScheduleByIdFailed());
+            toast.error(
+                <Translation>
+                    {(t) => (
+                        <span>
+                            {t("toast.update_hospital_schedule_failed")} !
+                            <span>{e}</span>
+                        </span>
+                    )}
+                </Translation>
+            );
         }
     };
 };

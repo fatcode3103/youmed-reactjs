@@ -20,7 +20,6 @@ import HeaderContentDetail from "../../../components/HeaderContentDetail";
 import Button from "../../../components/Button";
 import Image from "../../../components/Image";
 import Slider from "react-slick";
-import "./Slider.scss";
 import * as actions from "../../../app/actions";
 import MarkdownPreview from "../../../components/MarkdownPreview";
 import { language as LANGUAGE } from "../../../utils/constant";
@@ -59,6 +58,7 @@ function HospitalDetail() {
         arrow: false,
         autoplay: true,
         autoplaySpeed: 2000,
+        pauseOnHover: false,
     };
 
     useEffect(() => {
@@ -166,23 +166,25 @@ function HospitalDetail() {
                     )}
                 <hr style={{ color: "#aaa", margin: "40px 0px" }} />
                 <div className={cx("body-content")}>
-                    <Slider {...settings}>
-                        {hospitalById &&
-                            hospitalById.hospitalDetailData &&
-                            hospitalById.hospitalDetailData.images &&
-                            handleImagesArr(
-                                hospitalById.hospitalDetailData.images
-                            ).map((item, index) => {
-                                return (
-                                    <Image
-                                        key={index}
-                                        className={cx("img-hospital")}
-                                        src={item}
-                                        size="xl"
-                                    />
-                                );
-                            })}
-                    </Slider>
+                    <div className={cx("slider-wrapper")}>
+                        <Slider {...settings}>
+                            {hospitalById &&
+                                hospitalById.hospitalDetailData &&
+                                hospitalById.hospitalDetailData.images &&
+                                handleImagesArr(
+                                    hospitalById.hospitalDetailData.images
+                                ).map((item, index) => {
+                                    return (
+                                        <Image
+                                            key={index}
+                                            className={cx("img-hospital")}
+                                            src={item}
+                                            size="xl"
+                                        />
+                                    );
+                                })}
+                        </Slider>
+                    </div>
                     <div className={cx("booking")}>
                         <div className={cx("price")}>
                             {hospitalById &&

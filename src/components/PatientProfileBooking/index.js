@@ -6,25 +6,54 @@ import Button from "../Button";
 import { useEffect, useState } from "react";
 import ModalUser from "../../containers/System/Admin/ModalUser";
 import PatientInfo from "../PatientInfo";
+import { language as LANGUAGE } from "../../utils/constant";
+import { useTranslation } from "react-i18next";
+
+var _ = require("lodash");
 
 const cx = classNames.bind(styles);
 
 function PatientProfile(props) {
-    const { handleClickBtnBooking, clickedBooking } = props;
+    const { getDataFromChildrenComponent } = props;
+    const { t } = useTranslation();
 
     const [isShowModal, setIsShowModal] = useState(false);
-    const [note, setNote] = useState("");
+    const [note, setNote] = useState(null);
     const [isData, setIsData] = useState(false);
     const admin = useSelector((state) => state.admin);
+    const user = useSelector((state) => state.user);
     const { userById } = admin;
+    const { language } = user;
 
     useEffect(() => {
-        let data = { note, patient: { ...userById } };
-        if (clickedBooking) {
-            handleClickBtnBooking(data);
-            setNote("");
-        }
-    }, [clickedBooking]);
+        getDataFromChildrenComponent({
+            patientId: userById.id,
+            namePatient: renderNamePatient(userById),
+            emailPatient: userById.email,
+            patientInfo: [
+                {
+                    label: t("email.patient_name"),
+                    value: renderNamePatient(userById),
+                },
+                {
+                    label: "Email",
+                    value: userById.email,
+                },
+                {
+                    label: t("email.patient_address"),
+                    value: userById.address,
+                },
+                {
+                    label: t("email.patient_phone"),
+                    value: userById.phoneNumber,
+                },
+                {
+                    label: t("email.note"),
+                    value: note,
+                },
+            ],
+        });
+    }, [note]);
 
     const handleAddNewProfile = () => {
         setIsData(false);
@@ -33,6 +62,16 @@ function PatientProfile(props) {
 
     const handleCloseModal = () => {
         setIsShowModal(false);
+    };
+
+    const renderNamePatient = (user) => {
+        if (!_.isEmpty(user)) {
+            if (language === LANGUAGE.VN) {
+                return `${user.lastName} ${user.firstName}`;
+            } else {
+                return `${user.firstName} ${user.lastName}`;
+            }
+        }
     };
 
     const handleChangeNote = (e) => {

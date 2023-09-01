@@ -9,10 +9,12 @@ const initialState = {
     allDoctor: [],
     doctorById: {},
     doctorScheduleById: [],
+    hospitalScheduleById: [],
     selectedScheduleTime: {},
     selectedDate: {},
     dateDefault: {},
     allSpecialty: [],
+    examination: {},
 };
 
 export const userSlice = createSlice({
@@ -88,7 +90,7 @@ export const userSlice = createSlice({
         },
         getDoctorScheduleByIdFailed: (state, action) => {
             state.isLoading = false;
-            state.doctorScheduleById = {};
+            state.doctorScheduleById = [];
         },
         //
         setScheduleTime: (state, action) => {
@@ -99,6 +101,9 @@ export const userSlice = createSlice({
         },
         setDateDefault: (state, action) => {
             state.dateDefault = action.payload;
+        },
+        setExamination: (state, action) => {
+            state.examination = action.payload;
         },
         //get all specialty
         getAllSpecialtyStart: (state, action) => {
@@ -134,6 +139,18 @@ export const userSlice = createSlice({
             state.isLoading = false;
             state.verifyMessage = action.payload;
         },
+        //get hospital schedule
+        getHospitalScheduleByIdStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getHospitalScheduleByIdSuccess: (state, action) => {
+            state.isLoading = false;
+            state.hospitalScheduleById = action.payload;
+        },
+        getHospitalScheduleByIdFailed: (state, action) => {
+            state.isLoading = false;
+            state.hospitalScheduleById = [];
+        },
     },
 });
 
@@ -159,6 +176,7 @@ export const {
     setScheduleTime,
     setSelectedDate,
     setDateDefault,
+    setExamination,
     getAllSpecialtyStart,
     getAllSpecialtySuccess,
     getAllSpecialtyFailed,
@@ -168,6 +186,9 @@ export const {
     postVerifyBookAppointmentStart,
     postVerifyBookAppointmentSuccess,
     postVerifyBookAppointmentFailed,
+    getHospitalScheduleByIdStart,
+    getHospitalScheduleByIdSuccess,
+    getHospitalScheduleByIdFailed,
 } = userSlice.actions;
 
 export default userSlice.reducer;

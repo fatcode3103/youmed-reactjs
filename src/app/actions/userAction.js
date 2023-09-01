@@ -5,6 +5,7 @@ import * as userService from "../../services/userService";
 import * as userSlice from "../../features/user/userSlice";
 import { path } from "../../utils/constant";
 import * as specialtyService from "../../services/specialtyService";
+import * as hospitalService from "../../services/hospitalService";
 
 export const loginAction = (userData, navigate) => {
     return async (dispatch) => {
@@ -168,6 +169,16 @@ export const setDateDefaultAction = (date) => {
     };
 };
 
+export const setExaminationAction = (examination) => {
+    return async (dispatch) => {
+        try {
+            dispatch(userSlice.setExamination(examination));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+};
+
 export const getAllSpecialtyAction = () => {
     return async (dispatch) => {
         dispatch(userSlice.getAllSpecialtyStart());
@@ -256,6 +267,26 @@ export const postVerifyBookAppointmentAction = (data) => {
             }
         } catch (e) {
             dispatch(userSlice.postVerifyBookAppointmentFailed(e));
+        }
+    };
+};
+
+export const getHospitalScheduleByIdAction = (hospitalId) => {
+    return async (dispatch) => {
+        dispatch(userSlice.getHospitalScheduleByIdStart());
+        try {
+            let res = await hospitalService.getHospitalScheduleByIdApi(
+                hospitalId
+            );
+            if (res && res.data.errorCode === 0) {
+                dispatch(
+                    userSlice.getHospitalScheduleByIdSuccess(res.data.data)
+                );
+            } else {
+                dispatch(userSlice.getHospitalScheduleByIdFailed());
+            }
+        } catch (e) {
+            dispatch(userSlice.getHospitalScheduleByIdFailed());
         }
     };
 };

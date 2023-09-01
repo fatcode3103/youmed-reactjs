@@ -114,6 +114,7 @@
         "doctor_manage": "Doctor management",
         "hospital_manage": "Hospital management",
         "hospital_manage_detail": "Detailed hospital management",
+        "hospital_schedule": "Hospital schedule management",
         "form": {
             "no": "No",
             "email": "Email",
@@ -160,7 +161,11 @@
         "book_appointment_available": "Schedule is available",
         "missing": "You missed the value",
         "create_hospital_success": "Create hospital success",
-        "create_hospital_failed": "Create hospital failed"
+        "create_hospital_failed": "Create hospital failed",
+        "create_hospital_schedule_success": "Create successful hospital schedule",
+        "create_hospital_schedule_failed": "Create failed hospital schedule",
+        "update_hospital_schedule_success": "Update hospital schedule success",
+        "update_hospital_schedule_failed": "Update hospital schedule failed"
     },
     "login":{
         "email": "Email",
@@ -175,5 +180,18 @@
         "doctor_present" : "Doctor Present",
         "polyclinic": "Polyclinic",
         "specialty": "Specialty"
+    },
+    "booking_detail": {
+        "examination": "examination"
+    },
+    "email": {
+        "patient_name": "Patient name",
+        "patient_address": "Address",
+        "patient_phone": "Phonenumber",
+        "note": "Note",
+        "dynamicEntity_name": "Doctor name",
+        "dynamicEntity_specialty": "Specialty",
+        "dynamicEntity_address": "Address",
+        "dynamicEntity_time": "Time"
     }
 }

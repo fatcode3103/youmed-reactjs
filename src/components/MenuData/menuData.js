@@ -154,5 +154,14 @@ export const menuSystemAdmin = [
             key: "none",
             to: path.HOSPITAL_MANAGE_DETAIL,
         },
+        {
+            title: (
+                <Translation>
+                    {(t) => t("system.hospital_schedule")}
+                </Translation>
+            ),
+            key: "none",
+            to: path.HOSPITAL_SCHEDULE,
+        },
     ],
 ];

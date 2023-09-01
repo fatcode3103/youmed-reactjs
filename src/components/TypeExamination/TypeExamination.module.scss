@@ -1,0 +1,21 @@
+.examination-container {
+}
+
+.examination-content{
+}  
+
+.examination-item{
+   outline: 1.5px solid #ccc;
+   padding: 18px 20px;
+   border-radius: 6px;
+   box-sizing: border-box;
+
+   &:hover{
+      cursor: pointer;
+      outline: 2.5px solid var(--primary-color);
+   }
+}
+
+.active{
+   outline: 2.5px solid var(--primary-color);
+}

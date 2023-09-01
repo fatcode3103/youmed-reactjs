@@ -7,7 +7,7 @@ import moment from "moment";
 import "moment/locale/vi";
 import { useTranslation } from "react-i18next";
 
-import styles from "./DoctorSchedule.module.scss";
+import styles from "./HospitalSchedule.module.scss";
 import HeaderSystem from "../../../../components/Header/HeaderSystem";
 import Loading from "../../../../components/Loading";
 import * as actions from "../../../../app/actions";
@@ -19,9 +19,9 @@ import { date as DATE } from "../../../../utils/constant";
 
 const cx = classNames.bind(styles);
 
-function DoctorSchedule() {
+function HospitalSchedule() {
     const { t } = useTranslation();
-    const [selectedDoctor, setSelectedDoctor] = useState(null);
+    const [selectHospital, setSelectHospital] = useState(null);
     const [startDate, setStartDate] = useState(new Date());
     const [timeActive, setTimeActive] = useState([]);
     const [isDataTime, setIsDataTime] = useState(false);
@@ -30,37 +30,38 @@ function DoctorSchedule() {
     const user = useSelector((state) => state.user);
     const admin = useSelector((state) => state.admin);
     const dispatch = useDispatch();
-    const { isLoading, allDoctor, language } = user;
-    const { time, doctorSchedule } = admin;
+    const { isLoading, language } = user;
+    const { time, allHospital, hospitalSchedule } = admin;
 
     useEffect(() => {
-        dispatch(actions.getAllDoctorAction(""));
+        dispatch(actions.getAllHospitalAction());
         dispatch(actions.getAllCodeAction("TIME"));
     }, [dispatch]);
 
+    // get time by hospital
     useEffect(() => {
         if (startDate !== null) {
             let date = moment(startDate).startOf("day").valueOf();
-            if (selectedDoctor) {
+            if (selectHospital) {
                 const data = {
                     date: date,
-                    doctorId: selectedDoctor.value,
+                    hospitalId: selectHospital.value,
                 };
-                dispatch(actions.getDoctorScheduleAction(data));
+                dispatch(actions.getHospitalScheduleAction(data));
             }
         }
-    }, [startDate, selectedDoctor, dispatch]);
+    }, [startDate, selectHospital, dispatch]);
 
     useEffect(() => {
-        if (doctorSchedule && doctorSchedule.timeType) {
-            const timeFromDb = JSON.parse(doctorSchedule.timeType);
+        if (hospitalSchedule && hospitalSchedule.timeType) {
+            const timeFromDb = JSON.parse(hospitalSchedule.timeType);
             setTimeActive(timeFromDb);
             setIsDataTime(true);
         } else {
             setTimeActive([]);
             setIsDataTime(false);
         }
-    }, [doctorSchedule, time]);
+    }, [hospitalSchedule, time]);
 
     useEffect(() => {
         const arr = [];
@@ -88,13 +89,8 @@ function DoctorSchedule() {
         let arr = [];
         data.forEach((item) => {
             let obj = {};
-            if (language === LANGUAGE.VN) {
-                obj.value = item.id;
-                obj.label = `${item.lastName} ${item.firstName}`;
-            } else {
-                obj.value = item.id;
-                obj.label = `${item.firstName} ${item.lastName}`;
-            }
+            obj.value = item.id;
+            obj.label = `${item.name}`;
             arr.push(obj);
         });
         return arr;
@@ -117,7 +113,7 @@ function DoctorSchedule() {
         });
         let date = moment(startDate).startOf("day").valueOf();
 
-        let data = { selectedDoctor, date };
+        let data = { selectHospital, date };
 
         const { isValidate, errMessage } = UseValidate(data, ["date"]);
         if (!isValidate) {
@@ -128,8 +124,8 @@ function DoctorSchedule() {
             });
             const timeJson = JSON.stringify(timeSelected);
             const dataSent = { ...data, timeJson };
-            dispatch(actions.postDoctorScheduleAction(dataSent));
-            setSelectedDoctor(null);
+            dispatch(actions.createHospitalScheduleAction(dataSent));
+            setSelectHospital(null);
             setTimeActive([]);
             setTimeSelected([]);
             setIsDataTime(false);
@@ -142,12 +138,12 @@ function DoctorSchedule() {
         });
         const timeJson = JSON.stringify(timeSelected);
         const dataSent = {
-            date: doctorSchedule.date,
-            doctorId: doctorSchedule.doctorId,
+            date: hospitalSchedule.date,
+            hospitalId: hospitalSchedule.hospitalId,
             time: timeJson,
         };
-        dispatch(actions.updateDoctorScheduleAction(dataSent));
-        setSelectedDoctor(null);
+        dispatch(actions.updateHospitalcheduleAction(dataSent));
+        setSelectHospital(null);
         setTimeActive([]);
         setTimeSelected([]);
         setIsDataTime(false);
@@ -164,18 +160,21 @@ function DoctorSchedule() {
     ));
 
     return (
-        <div className={cx("doctor-schedule-container")}>
+        <div className={cx("hospital-schedule-container")}>
+            {/* {console.log(hospitalSchedule)} */}
             {isLoading && <Loading />}
             <HeaderSystem />
-            <div className={cx("doctor-schedule-content")}>
+            <div className={cx("hospital-schedule-content")}>
                 <h1>Schedule Manage</h1>
                 <div className={cx("row", "form")}>
                     <div className={cx("col-4")}>
-                        <label>Chọn bác sĩ</label>
+                        <label>Chọn bệnh viện</label>
                         <Select
-                            value={selectedDoctor}
-                            onChange={(e) => setSelectedDoctor(e)}
-                            options={allDoctor && buildDataSelect(allDoctor)}
+                            value={selectHospital}
+                            onChange={(e) => setSelectHospital(e)}
+                            options={
+                                allHospital && buildDataSelect(allHospital)
+                            }
                         />
                     </div>
                     <div className={cx("col-4", "date")}>
@@ -198,7 +197,6 @@ function DoctorSchedule() {
                             }
                         />
                     </div>
-                    <div className={cx("col-12")}></div>
                 </div>
                 <div className={cx("time")}>
                     {time &&
@@ -242,4 +240,4 @@ function DoctorSchedule() {
     );
 }
 
-export default DoctorSchedule;
+export default HospitalSchedule;

@@ -23,7 +23,14 @@ var _ = require("lodash");
 const cx = classNames.bind(styles);
 
 function BookingSection(props) {
-    const { lessList, id, handleCompleteStep } = props;
+    const {
+        lessList,
+        id,
+        handleCompleteStep,
+        type,
+        scheduleById,
+        getDataFromChildrenComponent,
+    } = props;
     const slider = useRef();
     const { t } = useTranslation();
     const [isDateActive, setIsDateActive] = useState(0);
@@ -44,18 +51,16 @@ function BookingSection(props) {
     const dispatch = useDispatch();
 
     const { time } = admin;
-    const { doctorById, language, isLogin, doctorScheduleById, dateDefault } =
-        user;
+
+    const { language, isLogin, dateDefault, doctorById } = user;
 
     useEffect(() => {
-        dispatch(actions.getDoctorScheduleByIdAction(id));
         dispatch(actions.getAllCodeAction("TIME"));
-        dispatch(actions.getDoctorByIdAction(id));
     }, [dispatch, id]);
 
     useEffect(() => {
         setDoctorTime(dateDefault);
-    }, [doctorScheduleById, dateDefault]);
+    }, [dateDefault]);
 
     const handleClickBtnTime = (time) => {
         if (!isLogin) {
@@ -63,21 +68,25 @@ function BookingSection(props) {
         } else {
             dispatch(actions.setScheduleTimeAction(time));
             dispatch(actions.setSelectedDateAction(doctorTime));
+            getDataFromChildrenComponent({
+                timeType: time.keyMap,
+                date: doctorTime.date,
+            });
             if (handleCompleteStep) {
                 handleCompleteStep();
             }
         }
     };
 
-    // const handleNameUrl = (doctor) => {
-    //     const name = doctor.firstName + " " + doctor.lastName;
-    //     const nameUrl = name
-    //         .toLowerCase()
-    //         .normalize("NFD")
-    //         .replace(/[\u0300-\u036f]/g, "")
-    //         .replace(/(\s+)/g, "-");
-    //     return nameUrl;
-    // };
+    const handleNameUrl = (doctor) => {
+        const name = doctor.firstName + " " + doctor.lastName;
+        const nameUrl = name
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/(\s+)/g, "-");
+        return nameUrl;
+    };
 
     const handleRenderTimeByLanguage = (date) => {
         const timeArr = JSON.parse(date.timeType);
@@ -86,7 +95,13 @@ function BookingSection(props) {
                 return (
                     <Button
                         key={index}
-                        // to={`/booking/${nameUrl}/id=/${doctorById.id}/booking`}
+                        to={
+                            type === "doctor"
+                                ? `/booking/${handleNameUrl(
+                                      doctorById
+                                  )}/id=/${id}/booking`
+                                : null
+                        }
                         onClick={() => handleClickBtnTime(item)}
                         outline
                         size="s"
@@ -114,7 +129,7 @@ function BookingSection(props) {
     };
 
     const filterCurrentFutureDate = () => {
-        const filter = doctorScheduleById.filter(
+        const filter = scheduleById.filter(
             (item) => parseInt(item.date) >= getCurrentTimestampDate()
         );
         /// set ngay mac dinh
@@ -128,8 +143,8 @@ function BookingSection(props) {
 
     return (
         <div className={cx("schedule")}>
-            {doctorScheduleById &&
-            doctorScheduleById.length > 0 &&
+            {scheduleById &&
+            scheduleById.length > 0 &&
             filterCurrentFutureDate().length > 0 ? (
                 <div className={cx("schedule-content")}>
                     <div className={cx("date")}>

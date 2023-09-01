@@ -31,7 +31,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: start;
 }
 
 .name{
@@ -83,6 +83,7 @@
 
 .specialty-item {
     display: inline-block;
+    transform: translateY(10%);
     margin-right: 6px;
     color: var(--primary-color) !important;
     font-size: 17px !important;
@@ -190,12 +191,18 @@
 .booking-now a{
     font-size: 17px;
     display: block;
-    width: 200px;
+    width: 10%;
 
     &:hover{
         cursor: pointer;
         color: var(--primary-color);
     }
+}
+
+.btn-booking{
+    flex: 1;
+    margin-left: 20px;
+    text-align: center;
 }
 
 .text-markdown p{

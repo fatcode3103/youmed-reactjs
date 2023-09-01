@@ -7,12 +7,14 @@ const initialState = {
     role: [],
     time: [],
     position: [],
+    examination: [],
     userById: {},
     doctorDetailInfo: {},
     doctorSchedule: {},
     allHospital: [],
     hospitalById: {},
     hospitalSpecialtyById: [],
+    hospitalSchedule: {},
 };
 
 export const adminSlice = createSlice({
@@ -196,7 +198,7 @@ export const adminSlice = createSlice({
             state.isLoading = false;
             state.hospitalById = action.payload;
         },
-        getHospitalByIdlFailed: (state, action) => {
+        getHospitalByIdFailed: (state, action) => {
             state.isLoading = false;
         },
         //get specialty hospital
@@ -208,6 +210,48 @@ export const adminSlice = createSlice({
             state.hospitalSpecialtyById = action.payload;
         },
         getHospitalSpecialtyByIdlFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //update detail hospital
+        updateHospitalDetailStart: (state, action) => {
+            state.isLoading = true;
+        },
+        updateHospitalDetailSuccess: (state, action) => {
+            state.isLoading = false;
+        },
+        updateHospitalDetailFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //create hospital schedule
+        createHospitalScheduleStart: (state, action) => {
+            state.isLoading = true;
+        },
+        createHospitalScheduleSuccess: (state, action) => {
+            state.isLoading = false;
+        },
+        createHospitalScheduleFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //get hospital schedule by id
+        getHospitalScheduleByIdStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getHospitalScheduleByIdSuccess: (state, action) => {
+            state.isLoading = false;
+            state.hospitalSchedule = action.payload;
+        },
+        getHospitalScheduleByIdFailed: (state, action) => {
+            state.isLoading = false;
+            state.hospitalSchedule = {};
+        },
+        //update hospital schedule by id
+        updateHospitalScheduleByIdStart: (state, action) => {
+            state.isLoading = true;
+        },
+        updateHospitalScheduleByIdSuccess: (state, action) => {
+            state.isLoading = false;
+        },
+        updateHospitalScheduleByIdFailed: (state, action) => {
             state.isLoading = false;
         },
     },
@@ -264,10 +308,19 @@ export const {
     createHospitalDetailFailed,
     getHospitalByIdStart,
     getHospitalByIdSuccess,
-    getHospitalByIdlFailed,
-    // getHospitalSpecialtyByIdStart,
-    // getHospitalSpecialtyByIdSuccess,
-    // getHospitalSpecialtyByIdlFailed,
+    getHospitalByIdFailed,
+    updateHospitalDetailStart,
+    updateHospitalDetailSuccess,
+    updateHospitalDetailFailed,
+    createHospitalScheduleStart,
+    createHospitalScheduleSuccess,
+    createHospitalScheduleFailed,
+    getHospitalScheduleByIdStart,
+    getHospitalScheduleByIdSuccess,
+    getHospitalScheduleByIdFailed,
+    updateHospitalScheduleByIdStart,
+    updateHospitalScheduleByIdSuccess,
+    updateHospitalScheduleByIdFailed,
 } = adminSlice.actions;
 
 export default adminSlice.reducer;

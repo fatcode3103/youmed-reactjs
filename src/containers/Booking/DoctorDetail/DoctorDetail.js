@@ -34,11 +34,13 @@ function DoctorDetail() {
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
-    const { doctorById, isLoading, language, dateDefault } = user;
+    const { doctorById, isLoading, language, dateDefault, doctorScheduleById } =
+        user;
     const { detailInfoData } = doctorById;
 
     useEffect(() => {
         dispatch(actions.getDoctorByIdAction(id));
+        dispatch(actions.getDoctorScheduleByIdAction(id));
     }, [dispatch]);
 
     useEffect(() => {
@@ -221,7 +223,13 @@ function DoctorDetail() {
                             )}
                         </div>
                         <div className={cx("schedule-content")}>
-                            {!isShowSchedule && <BookingSection id={id} />}
+                            {!isShowSchedule && (
+                                <BookingSection
+                                    id={id}
+                                    type="doctor"
+                                    scheduleById={doctorScheduleById}
+                                />
+                            )}
                         </div>
                     </div>
                     <div className={cx("introduction")}>
@@ -294,7 +302,7 @@ function DoctorDetail() {
                             doctorById.id
                         }/booking`}
                         normal
-                        size="xl"
+                        className={cx("btn-booking")}
                     >
                         ĐẶT KHÁM NGAY
                     </Button>
