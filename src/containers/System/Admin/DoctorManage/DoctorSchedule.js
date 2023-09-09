@@ -26,6 +26,7 @@ function DoctorSchedule() {
     const [timeActive, setTimeActive] = useState([]);
     const [isDataTime, setIsDataTime] = useState(false);
     let [timeSelected, setTimeSelected] = useState([]);
+    const [isAllTimeSelected, setIsAllTimeSelected] = useState(false);
 
     const user = useSelector((state) => state.user);
     const admin = useSelector((state) => state.admin);
@@ -72,6 +73,17 @@ function DoctorSchedule() {
         setTimeSelected(arr);
     }, [timeActive]);
 
+    useEffect(() => {
+        if (isAllTimeSelected) {
+            let allKeyTime = time.map((item) => {
+                return item.keyMap;
+            });
+            setTimeActive((prev) => [...prev, ...allKeyTime]);
+        } else {
+            setTimeActive([]);
+        }
+    }, [isAllTimeSelected]);
+
     const handleChangeDate = (date) => {
         setStartDate(date);
     };
@@ -107,7 +119,6 @@ function DoctorSchedule() {
             );
         } else {
             setTimeActive((prev) => [...prev, time.keyMap]);
-            setTimeSelected((prev) => [...prev, time]);
         }
     };
 
@@ -133,6 +144,7 @@ function DoctorSchedule() {
             setTimeActive([]);
             setTimeSelected([]);
             setIsDataTime(false);
+            setIsAllTimeSelected(false);
         }
     };
 
@@ -151,6 +163,11 @@ function DoctorSchedule() {
         setTimeActive([]);
         setTimeSelected([]);
         setIsDataTime(false);
+        setIsAllTimeSelected(false);
+    };
+
+    const handleSelectAllTime = () => {
+        setIsAllTimeSelected(!isAllTimeSelected);
     };
 
     const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -168,7 +185,7 @@ function DoctorSchedule() {
             {isLoading && <Loading />}
             <HeaderSystem />
             <div className={cx("doctor-schedule-content")}>
-                <h1>Schedule Manage</h1>
+                <h1>Doctor schedule management</h1>
                 <div className={cx("row", "form")}>
                     <div className={cx("col-4")}>
                         <label>Chọn bác sĩ</label>
@@ -219,6 +236,17 @@ function DoctorSchedule() {
                                 </Button>
                             );
                         })}
+                </div>
+                <div className={cx("form-check form-switch", "mt-3")}>
+                    <input
+                        className={cx("form-check-input")}
+                        type="checkbox"
+                        onClick={() => handleSelectAllTime()}
+                        checked={isAllTimeSelected}
+                    />
+                    <label>
+                        {isAllTimeSelected ? "Bỏ chọn tất cả" : "Chọn tất cả"}
+                    </label>
                 </div>
                 {isDataTime ? (
                     <Button

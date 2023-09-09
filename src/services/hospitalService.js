@@ -5,8 +5,8 @@ const creatHospitalApi = async (data) => {
     return res;
 };
 
-const getAllHospitalApi = async () => {
-    let res = await httpRequest.get(`get-all-hospital`);
+const getAllHospitalApi = async (limit) => {
+    let res = await httpRequest.get(`get-all-hospital?limit=${limit}`);
     return res;
 };
 

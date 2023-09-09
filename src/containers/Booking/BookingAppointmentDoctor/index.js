@@ -95,6 +95,15 @@ function BookingAppointment(props) {
         return imgBase64;
     };
 
+    const renderSpecialty = (specialtyArr) => {
+        if (specialtyArr && specialtyArr.length > 0) {
+            let arr = specialtyArr.map((item) => {
+                return language === LANGUAGE.VN ? item.valueVi : item.valueEn;
+            });
+            return arr.join(", ");
+        }
+    };
+
     const sectionStepData = [
         {
             title: "Ngày và giờ khám",
@@ -138,12 +147,16 @@ function BookingAppointment(props) {
                     doctorById.image &&
                     doctorById.image.data &&
                     doctorById.detailInfoData &&
-                    doctorById.detailInfoData.address && (
+                    doctorById.detailInfoData.address &&
+                    doctorById.specialtyData && (
                         <BookingAppoimentPage
                             id={id}
                             sectionStepData={sectionStepData}
                             avatarBookingBase64={handleImageBase64(
                                 doctorById.image.data
+                            )}
+                            specialty={renderSpecialty(
+                                doctorById.specialtyData
                             )}
                             nameBooking={handleRenderNameDoctor(doctorById)}
                             addressBooking={doctorById.detailInfoData.address}

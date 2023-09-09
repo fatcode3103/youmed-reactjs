@@ -25,6 +25,7 @@ function HospitalSchedule() {
     const [startDate, setStartDate] = useState(new Date());
     const [timeActive, setTimeActive] = useState([]);
     const [isDataTime, setIsDataTime] = useState(false);
+    const [isAllTimeSelected, setIsAllTimeSelected] = useState(false);
     let [timeSelected, setTimeSelected] = useState([]);
 
     const user = useSelector((state) => state.user);
@@ -34,7 +35,7 @@ function HospitalSchedule() {
     const { time, allHospital, hospitalSchedule } = admin;
 
     useEffect(() => {
-        dispatch(actions.getAllHospitalAction());
+        dispatch(actions.getAllHospitalAction(""));
         dispatch(actions.getAllCodeAction("TIME"));
     }, [dispatch]);
 
@@ -52,6 +53,7 @@ function HospitalSchedule() {
         }
     }, [startDate, selectHospital, dispatch]);
 
+    // update
     useEffect(() => {
         if (hospitalSchedule && hospitalSchedule.timeType) {
             const timeFromDb = JSON.parse(hospitalSchedule.timeType);
@@ -72,6 +74,17 @@ function HospitalSchedule() {
         });
         setTimeSelected(arr);
     }, [timeActive]);
+
+    useEffect(() => {
+        if (isAllTimeSelected) {
+            let allKeyTime = time.map((item) => {
+                return item.keyMap;
+            });
+            setTimeActive((prev) => [...prev, ...allKeyTime]);
+        } else {
+            setTimeActive([]);
+        }
+    }, [isAllTimeSelected]);
 
     const handleChangeDate = (date) => {
         setStartDate(date);
@@ -103,8 +116,11 @@ function HospitalSchedule() {
             );
         } else {
             setTimeActive((prev) => [...prev, time.keyMap]);
-            setTimeSelected((prev) => [...prev, time]);
         }
+    };
+
+    const handleSelectAllTime = () => {
+        setIsAllTimeSelected(!isAllTimeSelected);
     };
 
     const handleSaveDoctorSchedule = () => {
@@ -129,6 +145,7 @@ function HospitalSchedule() {
             setTimeActive([]);
             setTimeSelected([]);
             setIsDataTime(false);
+            setIsAllTimeSelected(false);
         }
     };
 
@@ -147,6 +164,7 @@ function HospitalSchedule() {
         setTimeActive([]);
         setTimeSelected([]);
         setIsDataTime(false);
+        setIsAllTimeSelected(false);
     };
 
     const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -161,11 +179,10 @@ function HospitalSchedule() {
 
     return (
         <div className={cx("hospital-schedule-container")}>
-            {/* {console.log(hospitalSchedule)} */}
             {isLoading && <Loading />}
             <HeaderSystem />
             <div className={cx("hospital-schedule-content")}>
-                <h1>Schedule Manage</h1>
+                <h1>Hospital schedule management</h1>
                 <div className={cx("row", "form")}>
                     <div className={cx("col-4")}>
                         <label>Chọn bệnh viện</label>
@@ -217,6 +234,17 @@ function HospitalSchedule() {
                                 </Button>
                             );
                         })}
+                </div>
+                <div className={cx("form-check form-switch", "mt-3")}>
+                    <input
+                        className={cx("form-check-input")}
+                        type="checkbox"
+                        onClick={() => handleSelectAllTime()}
+                        checked={isAllTimeSelected}
+                    />
+                    <label>
+                        {isAllTimeSelected ? "Bỏ chọn tất cả" : "Chọn tất cả"}
+                    </label>
                 </div>
                 {isDataTime ? (
                     <Button

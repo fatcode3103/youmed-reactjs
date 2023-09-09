@@ -1,0 +1,34 @@
+.clinic-detail-content{
+    padding: calc(var(--height-header) + 50px) 0px 50px 0px;
+}
+
+.clinic-detail-img{
+    padding: 0px 300px;
+}
+
+.view-images{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.infomartion{
+    padding: 0px 300px;
+}
+
+.btn-booking-wrapper{
+    margin-top: 50px;
+    text-align: right;
+}
+
+.btn-booking{
+    padding: 10px 130px;
+    margin-top: 40px;
+}
+
+.introduction-title, .schedule-title{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+

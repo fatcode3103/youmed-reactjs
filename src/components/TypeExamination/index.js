@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import styles from "./TypeExamination.module.scss";
-import Loading from "../Loading";
 import * as actions from "../../app/actions";
 import { language as LANGUAGE } from "../../utils/constant";
 
@@ -13,7 +12,7 @@ var _ = require("lodash");
 const cx = classNames.bind(styles);
 
 function TypeExamination(props) {
-    const { handleCompleteStep } = props;
+    const { handleCompleteStep, getDataFromChildrenComponent } = props;
 
     const { t } = useTranslation();
 
@@ -21,7 +20,7 @@ function TypeExamination(props) {
 
     const admin = useSelector((state) => state.admin);
     const user = useSelector((state) => state.user);
-    const { isLoading, language } = user;
+    const { language } = user;
     const { examination } = admin;
 
     const dispatch = useDispatch();
@@ -30,6 +29,12 @@ function TypeExamination(props) {
     useEffect(() => {
         dispatch(actions.getAllCodeAction("EXAMINATION"));
     }, [dispatch]);
+
+    const renderExamination = (examinationCurrent) => {
+        return language === LANGUAGE.VN
+            ? examinationCurrent.valueVi
+            : examinationCurrent.valueEn;
+    };
 
     const areObjectEqual = (obj1, obj2) => {
         return _.isEqualWith(obj1, obj2, (a, b) => a.id === b.id);
@@ -43,6 +48,12 @@ function TypeExamination(props) {
             setExaminationItemClicked([examinationCurrent]);
         }
         dispatch(actions.setExaminationAction(examinationCurrent));
+        getDataFromChildrenComponent({
+            examination: {
+                label: t("email.examination"),
+                value: renderExamination(examinationCurrent),
+            },
+        });
         handleCompleteStep();
     };
 
@@ -69,6 +80,7 @@ function TypeExamination(props) {
 
     return (
         <div className={cx("examination-container")}>
+            {console.log("check examination:>>> ", examination)}
             <div className={cx("examination-content")}>
                 {examination &&
                     examination.length > 0 &&

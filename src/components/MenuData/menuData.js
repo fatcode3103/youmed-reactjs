@@ -1,6 +1,7 @@
 import { Translation } from "react-i18next";
 
 import { path, language } from "../../utils/constant";
+import images from "../../assets/image";
 
 export const menuAppointment = [
     {
@@ -21,11 +22,6 @@ export const menuAppointment = [
         title: <Translation>{(t) => t("home.appointmnet_clinic")}</Translation>,
         text: <Translation>{(t) => t("home.diverse_specialties")}</Translation>,
         to: path.CLINIC_APPOINTMENT,
-    },
-    {
-        title: <Translation>{(t) => t("home.appointment_test")}</Translation>,
-        text: <Translation>{(t) => t("home.take_samples")}</Translation>,
-        to: path.TEST_APPOINTMENT,
     },
 ];
 
@@ -51,26 +47,23 @@ export const menuUserInfo = [
     },
     {
         title: <Translation>{(t) => t("home.language")}</Translation>,
-        key: "none",
         menuSub: {
             title: <Translation>{(t) => t("home.language")}</Translation>,
             data: [
                 {
                     title: "English",
                     code: language.EN,
-                    key: "none",
                 },
                 {
                     title: "Vietnamese",
                     code: language.VN,
-                    key: "none",
                 },
             ],
         },
     },
     {
         title: <Translation>{(t) => t("home.profile")}</Translation>,
-        to: path.PROFILE,
+        to: path.PROFILE_USER,
     },
     {
         title: <Translation>{(t) => t("home.login_system")}</Translation>,
@@ -78,8 +71,22 @@ export const menuUserInfo = [
     },
     {
         title: <Translation>{(t) => t("home.log_out")}</Translation>,
-        key: "logout",
-        to: path.HOME,
+        to: path.LOGOUT,
+    },
+];
+
+export const menuBar = [
+    {
+        title: <Translation>{(t) => t("home.schedule")}</Translation>,
+        to: path.SCHEDULE,
+    },
+    {
+        title: <Translation>{(t) => t("home.profile")}</Translation>,
+        to: path.PROFILE_USER,
+    },
+    {
+        title: <Translation>{(t) => t("home.log_out")}</Translation>,
+        to: path.LOGOUT,
     },
 ];
 
@@ -94,14 +101,12 @@ export const menuSystemAdmin = [
                     {(t) => t("system.user_manage_title")}
                 </Translation>
             ),
-            key: "none",
             to: path.USER_MANAGE,
         },
         {
             title: (
                 <Translation>{(t) => t("system.doctor_manage")}</Translation>
             ),
-            key: "none",
             menuSub: {
                 data: [
                     {
@@ -130,7 +135,6 @@ export const menuSystemAdmin = [
             title: (
                 <Translation>{(t) => t("system.specialty_manage")}</Translation>
             ),
-            key: "none",
             to: path.SPECIALTY_MANAGE,
         },
     ],
@@ -142,7 +146,6 @@ export const menuSystemAdmin = [
             title: (
                 <Translation>{(t) => t("system.hospital_manage")}</Translation>
             ),
-            key: "none",
             to: path.HOSPITAL_MANAGE,
         },
         {
@@ -151,7 +154,6 @@ export const menuSystemAdmin = [
                     {(t) => t("system.hospital_manage_detail")}
                 </Translation>
             ),
-            key: "none",
             to: path.HOSPITAL_MANAGE_DETAIL,
         },
         {
@@ -160,8 +162,50 @@ export const menuSystemAdmin = [
                     {(t) => t("system.hospital_schedule")}
                 </Translation>
             ),
-            key: "none",
             to: path.HOSPITAL_SCHEDULE,
         },
     ],
+    [
+        {
+            titleTop: (
+                <Translation>{(t) => t("system.clinic_title")}</Translation>
+            ),
+            title: (
+                <Translation>{(t) => t("system.clinic_manage")}</Translation>
+            ),
+            to: path.CLINIC_MANAGE,
+        },
+        {
+            title: (
+                <Translation>
+                    {(t) => t("system.clinic_manage_detail")}
+                </Translation>
+            ),
+            to: path.CLINIC_MANAGE_DETAIL,
+        },
+        {
+            title: (
+                <Translation>{(t) => t("system.clinic_schedule")}</Translation>
+            ),
+            to: path.CLINIC_SCHEDULE,
+        },
+    ],
+];
+
+export const navBooking = [
+    {
+        title: "Đặt khám Bác sĩ",
+        icon: images.iconDoctorBooking,
+        to: path.DOCTOR_APPOINTMENT,
+    },
+    {
+        title: "Đặt khám Bệnh viện",
+        icon: images.iconHospitalBooking,
+        to: path.HOSPITAL_APPOINTMENT,
+    },
+    {
+        title: "Đặt khám Phòng khám",
+        icon: images.iconClinicBooking,
+        to: path.CLINIC_APPOINTMENT,
+    },
 ];

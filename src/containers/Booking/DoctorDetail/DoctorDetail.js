@@ -298,7 +298,7 @@ function DoctorDetail() {
                     </a>
                     <Button
                         onClick={() => handleBtnBooking()}
-                        to={`/booking/${handleNameUrl(doctorById)}/id=/${
+                        to={`/booking/doctor/${handleNameUrl(doctorById)}/${
                             doctorById.id
                         }/booking`}
                         normal

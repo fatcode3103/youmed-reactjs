@@ -23,6 +23,7 @@ function Button(props) {
         none,
         update = false,
         bgGray = false,
+        style,
         ...other
     } = props;
 
@@ -57,7 +58,7 @@ function Button(props) {
     return (
         <Btn
             className={classes}
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none", ...style }}
             {...prop}
             {...other}
         >

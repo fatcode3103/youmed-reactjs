@@ -15,6 +15,7 @@ import Expert from "./Expert";
 import AboutSection from "./AboutSection";
 import DownloadAppSection from "./DownloadAppSection";
 import Footer from "../../components/Footer";
+import Loading from "../../components/Loading";
 
 const cx = classNames.bind(styles);
 
@@ -22,7 +23,7 @@ function Home() {
     const userState = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
-    const { currentUser } = userState;
+    const { currentUser, isLoading } = userState;
 
     useEffect(() => {
         dispatch(actions.getUserByIdAction(currentUser.id));
@@ -35,6 +36,7 @@ function Home() {
     return (
         <div className={cx("home-container")}>
             <Header />
+            {isLoading && <Loading />}
             <div className={cx("home-content")}>
                 <HomeHeader />
                 <DoctorSection />

@@ -7,6 +7,9 @@ import {
     chplay,
     folder1,
     folder2,
+    iconDoctorBooking,
+    iconHospitalBooking,
+    iconClinicBooking,
 } from "./svgHtml";
 
 const images = {
@@ -27,6 +30,10 @@ const images = {
     folder1: folder1,
     folder2: folder2,
     noData: require("../image/no-data-concept-illustration_114.png"),
+    congratulations: require("../image/75_smile.gif"),
+    iconDoctorBooking: iconDoctorBooking,
+    iconHospitalBooking: iconHospitalBooking,
+    iconClinicBooking: iconClinicBooking,
 };
 
 export default images;

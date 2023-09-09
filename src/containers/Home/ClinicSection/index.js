@@ -4,9 +4,14 @@ import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Slider from "react-slick";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 import styles from "./ClinicSection.module.scss";
 import Image from "../../../components/Image";
+import { useEffect } from "react";
+import * as actions from "../../../app/actions";
+import BufferToBase64 from "../../../utils/BufferToBase64";
 
 const cx = classNames.bind(styles);
 
@@ -25,6 +30,15 @@ function ClinicSection() {
         arrows: false,
         customPaging: () => <div className="ft-slick__dots--custom"></div>,
     };
+
+    const admin = useSelector((state) => state.admin);
+    const { allClinic } = admin;
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(actions.getAllClinicAction("5"));
+    }, [dispatch]);
 
     return (
         <div className={cx("clinic-section-container")}>
@@ -60,71 +74,31 @@ function ClinicSection() {
                         </button>
                     </div>
                     <Slider {...settings} ref={slider}>
-                        <div className={cx("clinic-item")}>
-                            <div className={cx("card")}>
-                                <Image
-                                    src="https://cdn.youmed.vn/photos/4e3d5cb4-ec08-4e46-9396-968c349e880d.png?width=100&aspect_ratio=1:1"
-                                    size="s"
-                                    className={cx("img")}
-                                />
-                                <h3>Phòng khám SIM Medical Center Tân Phú</h3>
-                                <span>
-                                    307 Tô Hiến Thành, P .13, Q .10, TPHCM
-                                </span>
-                            </div>
-                        </div>
-                        <div className={cx("clinic-item")}>
-                            <div className={cx("card")}>
-                                <Image
-                                    src="https://cdn.youmed.vn/photos/4e3d5cb4-ec08-4e46-9396-968c349e880d.png?width=100&aspect_ratio=1:1"
-                                    size="s"
-                                    className={cx("img")}
-                                />
-                                <h3>Phòng khám SIM Medical Center Tân Phú</h3>
-                                <span>
-                                    307 Tô Hiến Thành, P .13, Q .10, TPHCM
-                                </span>
-                            </div>
-                        </div>
-                        <div className={cx("clinic-item")}>
-                            <div className={cx("card")}>
-                                <Image
-                                    src="https://cdn.youmed.vn/photos/4e3d5cb4-ec08-4e46-9396-968c349e880d.png?width=100&aspect_ratio=1:1"
-                                    size="s"
-                                    className={cx("img")}
-                                />
-                                <h3>Phòng khám SIM Medical Center Tân Phú</h3>
-                                <span>
-                                    307 Tô Hiến Thành, P .13, Q .10, TPHCM
-                                </span>
-                            </div>
-                        </div>
-                        <div className={cx("clinic-item")}>
-                            <div className={cx("card")}>
-                                <Image
-                                    src="https://cdn.youmed.vn/photos/4e3d5cb4-ec08-4e46-9396-968c349e880d.png?width=100&aspect_ratio=1:1"
-                                    size="s"
-                                    className={cx("img")}
-                                />
-                                <h3>Phòng khám SIM Medical Center Tân Phú</h3>
-                                <span>
-                                    307 Tô Hiến Thành, P .13, Q .10, TPHCM
-                                </span>
-                            </div>
-                        </div>
-                        <div className={cx("clinic-item")}>
-                            <div className={cx("card")}>
-                                <Image
-                                    src="https://cdn.youmed.vn/photos/4e3d5cb4-ec08-4e46-9396-968c349e880d.png?width=100&aspect_ratio=1:1"
-                                    size="s"
-                                    className={cx("img")}
-                                />
-                                <h3>Phòng khám SIM Medical Center Tân Phú</h3>
-                                <span>
-                                    307 Tô Hiến Thành, P .13, Q .10, TPHCM
-                                </span>
-                            </div>
-                        </div>
+                        {allClinic &&
+                            allClinic.length > 0 &&
+                            allClinic.map((item, index) => {
+                                let imgBase64 = "";
+                                if (item.logo) {
+                                    imgBase64 = BufferToBase64(item.logo.data);
+                                }
+                                return (
+                                    <NavLink
+                                        className={cx("clinic-item")}
+                                        key={index}
+                                        to={`/booking/clinic-detail/${item.id}`}
+                                    >
+                                        <div className={cx("card")}>
+                                            <Image
+                                                src={imgBase64}
+                                                size="s"
+                                                className={cx("img")}
+                                            />
+                                            <h3>{item.name}</h3>
+                                            <span>{item.address}</span>
+                                        </div>
+                                    </NavLink>
+                                );
+                            })}
                     </Slider>
                 </div>
             </div>

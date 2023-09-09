@@ -15,6 +15,9 @@ const initialState = {
     dateDefault: {},
     allSpecialty: [],
     examination: {},
+    clinicById: {},
+    clinicScheduleById: {},
+    errorCodeSuccessBooking: -1,
 };
 
 export const userSlice = createSlice({
@@ -151,6 +154,41 @@ export const userSlice = createSlice({
             state.isLoading = false;
             state.hospitalScheduleById = [];
         },
+        //get clinic by id
+        getClinicByIdStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getClinicByIdSuccess: (state, action) => {
+            state.isLoading = false;
+            state.clinicById = action.payload;
+        },
+        getClinicByIdFailed: (state, action) => {
+            state.isLoading = false;
+            state.hospitalScheduleById = [];
+        },
+        //get clinic schedule by id
+        getClinicScheduleByIdStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getClinicScheduleByIdSuccess: (state, action) => {
+            state.isLoading = false;
+            state.clinicScheduleById = action.payload;
+        },
+        getClinicScheduleByIdFailed: (state, action) => {
+            state.isLoading = false;
+            state.hospitalScheduleById = [];
+        },
+        //get clinic schedule by id
+        postSuccessBookAppointmentStart: (state, action) => {
+            state.isLoading = true;
+        },
+        postSuccessBookAppointmentSuccess: (state, action) => {
+            state.isLoading = false;
+            state.errorCodeSuccessBooking = action.payload;
+        },
+        postSuccessBookAppointmentFailed: (state, action) => {
+            state.isLoading = false;
+        },
     },
 });
 
@@ -189,6 +227,15 @@ export const {
     getHospitalScheduleByIdStart,
     getHospitalScheduleByIdSuccess,
     getHospitalScheduleByIdFailed,
+    getClinicByIdStart,
+    getClinicByIdSuccess,
+    getClinicByIdFailed,
+    getClinicScheduleByIdStart,
+    getClinicScheduleByIdSuccess,
+    getClinicScheduleByIdFailed,
+    postSuccessBookAppointmentStart,
+    postSuccessBookAppointmentSuccess,
+    postSuccessBookAppointmentFailed,
 } = userSlice.actions;
 
 export default userSlice.reducer;

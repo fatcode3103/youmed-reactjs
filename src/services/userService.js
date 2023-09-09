@@ -87,9 +87,20 @@ const postPatientBookAppointmentApi = async (data) => {
     return res;
 };
 
-const postVerifyBookAppointmentApi = async ({ doctorId, patientId, token }) => {
+const postVerifyBookAppointmentApi = async ({
+    validEntity,
+    patientId,
+    token,
+}) => {
     let res = await httpRequest.post(
-        `post-veirfy-book-appointment?doctorId=${doctorId}&patientId=${patientId}&token=${token}`
+        `post-verify-book-appointment?${validEntity.key}=${validEntity.value}&patientId=${patientId}&token=${token}`
+    );
+    return res;
+};
+
+const postSuccessBookAppointmentApi = async ({ patientId, token }) => {
+    let res = await httpRequest.post(
+        `post-success-appointment?patientId=${patientId}&token=${token}`
     );
     return res;
 };
@@ -113,4 +124,5 @@ export {
     getDoctorScheduleByIdApi,
     postPatientBookAppointmentApi,
     postVerifyBookAppointmentApi,
+    postSuccessBookAppointmentApi,
 };

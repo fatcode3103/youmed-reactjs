@@ -130,7 +130,11 @@
         "preview": "Nhấp để xem trước"
         },
         "info": "Thông tin",
-        "schedule": "Lịch khám"
+        "schedule": "Lịch khám",
+        "clinic_title": "Phòng khám",
+        "clinic_manage": "Quản lý phòng khám",
+        "clinic_manage_detail": "Quản lý phòng khám chi tiết",
+        "clinic_schedule": "Quản lý lịch khám phòng khám"
     },
     
     "toast":{
@@ -163,10 +167,22 @@
         "missing": "Bạn đã bỏ lỡ giá trị",
         "create_hospital_success": "Tạo thông tin bệnh viện thành công",
         "create_hospital_failed": "Tạo thông tin bệnh viện thất bại",
-        "create_hospital_schedule_success": "Tạo lịch trình bệnh viện thành công",
-        "create_hospital_schedule_failed": "Tạo lịch trình bệnh viện thất bại",
-        "update_hospital_schedule_success": "Cập nhật lịch trình bệnh viện thành công",
-        "update_hospital_schedule_failed": "Cập nhật lịch trình bệnh viện thất bại"
+        "create_hospital_schedule_success": "Tạo lịch khám bệnh viện thành công",
+        "create_hospital_schedule_failed": "Tạo lịch khám bệnh viện thất bại",
+        "update_hospital_schedule_success": "Cập nhật lịch khám bệnh viện thành công",
+        "update_hospital_schedule_failed": "Cập nhật lịch khám bệnh viện thất bại",
+        "create_clinic_success": "Tạo phòng khám thành công",
+        "create_clinic_failed": "Tạo phòng khám thất bại",
+        "create_clinic_detail_success": "Tạo chi tiết phòng khám thành công",
+        "create_clinic_detail_failed": "Tạo chi tiết phòng khám thất bại",
+        "updatde_hospital_detail_success": "Cập nhật chi tiết bệnh viện thành công",
+        "updatde_hospital_detail_failed": "Cập nhật chi tiết bệnh viện thất bại",
+        "updatde_clinic_detail_success": "Cập nhật chi tiết phòng khám thành công",
+        "updatde_clinic_detail_failed": "Cập nhật chi tiết phòng khám thất bại",
+        "create_clinic_schedule_success": "Tạo lịch khám phòng khám thành công",
+        "create_clinic_schedule_failed": "Tạo lịch khám phòng khám thất bại",
+        "update_clinic_schedule_success": "Cập nhật lịch khám phòng khám thành công",
+        "update_clinic_schedule_failed": "Cập nhật lịch khám phòng khám thất bại"
     },
     "login":{
         "email": "Địa chỉ email",
@@ -183,16 +199,18 @@
         "specialty": "Chuyên khoa"
     },
     "booking_detail": {
-        "examination": "Khám"
+        "examination": "Khám",
+        "updating": "Đang cập nhật"
     },
     "email": {
         "patient_name": "Tên bệnh nhân",
         "patient_address": "Địa chỉ",
         "patient_phone": "Số điện thoại",
         "note": "Ghi chú",
-        "dynamicEntity_name": "Tên bác sĩ",
+        "dynamicEntity_name": "Tên",
         "dynamicEntity_specialty": "Chuyên khoa",
         "dynamicEntity_address": "Địa chỉ",
-        "dynamicEntity_time": "Giờ khám"
+        "dynamicEntity_time": "Giờ khám",
+        "examination": "Loại hình khám"
     }
 }

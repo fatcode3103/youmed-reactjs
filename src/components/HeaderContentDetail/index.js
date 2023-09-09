@@ -1,4 +1,5 @@
 import classNames from "classnames/bind";
+import { useSelector } from "react-redux";
 
 import styles from "./HeaderContentDetail.module.scss";
 import Image from "../../components/Image";
@@ -27,73 +28,74 @@ function HeaderContentDetail(props) {
     return (
         <div className={cx("header-content")}>
             <div className={cx("content-left")}>
-                <Image
-                    className={cx("logo-hospital")}
-                    src={
-                        dataInput && dataInput.logo && dataInput.logo.data
-                            ? BufferToBase64(dataInput.logo.data)
-                            : null
-                    }
-                    size="m"
-                    br10
-                />
+                {dataInput && dataInput.logo && (
+                    <Image
+                        className={cx("logo-hospital")}
+                        src={
+                            dataInput.logo.data
+                                ? BufferToBase64(dataInput.logo.data)
+                                : null
+                        }
+                        size="m"
+                        br10
+                    />
+                )}
                 <div className={cx("hospital-info")}>
-                    <div className={cx("hospital-info-title")}>
-                        {dataInput && dataInput.name ? dataInput.name : ""}
-                    </div>
-                    <div className={cx("hospital-info-slogan")}>
-                        {dataInput && dataInput.slogan ? dataInput.slogan : ""}
-                    </div>
+                    {dataInput && dataInput.name && (
+                        <div className={cx("hospital-info-title")}>
+                            {dataInput.name}
+                        </div>
+                    )}
+                    {dataInput && dataInput.slogan && (
+                        <div className={cx("hospital-info-slogan")}>
+                            {dataInput.slogan}
+                        </div>
+                    )}
                     <div className={cx("hospital-info-contact")}>
-                        <Button
-                            href={
-                                dataInput && dataInput.linkweb
-                                    ? dataInput.linkweb
-                                    : ""
-                            }
-                            blur="true"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            <FontAwesomeIcon
-                                className={cx("icon-contact")}
-                                icon={faEarthAmerica}
-                            />
-                            <span>Website</span>
-                        </Button>
-                        <Button
-                            href={
-                                dataInput && dataInput.addressMap
-                                    ? dataInput.addressMap
-                                    : ""
-                            }
-                            blur="true"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            <FontAwesomeIcon
-                                className={cx("icon-contact")}
-                                icon={faMapLocation}
-                            />
-                            <span>Địa chỉ</span>
-                        </Button>
-                        <Button
-                            href="https://www.facebook.com/profile.php?id=100034110155872"
-                            blur="true"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            <FontAwesomeIcon
-                                className={cx("icon-contact")}
-                                icon={faPhone}
-                            />
-                            <span>
-                                Tổng đài đặt khám{" "}
-                                {dataInput && dataInput.switchboard
-                                    ? dataInput.switchboard
-                                    : ""}
-                            </span>
-                        </Button>
+                        {dataInput && dataInput.linkweb && (
+                            <Button
+                                href={dataInput.linkweb}
+                                blur="true"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <FontAwesomeIcon
+                                    className={cx("icon-contact")}
+                                    icon={faEarthAmerica}
+                                />
+                                <span>Website</span>
+                            </Button>
+                        )}
+                        {dataInput && dataInput.addressMap && (
+                            <Button
+                                href={dataInput.addressMap}
+                                blur="true"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <FontAwesomeIcon
+                                    className={cx("icon-contact")}
+                                    icon={faMapLocation}
+                                />
+                                <span>Địa chỉ</span>
+                            </Button>
+                        )}
+                        {dataInput && dataInput.switchboard && (
+                            <Button
+                                href="https://www.facebook.com/profile.php?id=100034110155872"
+                                blur="true"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <FontAwesomeIcon
+                                    className={cx("icon-contact")}
+                                    icon={faPhone}
+                                />
+                                <span>
+                                    Tổng đài đặt khám {dataInput.switchboard}
+                                </span>
+                            </Button>
+                        )}
                     </div>
                 </div>
             </div>

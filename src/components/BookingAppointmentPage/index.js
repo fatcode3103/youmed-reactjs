@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./BookingAppointmentPage.module.scss";
 import Image from "../Image";
@@ -11,10 +12,9 @@ import {
     faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import Button from "../Button";
-import { language as LANGUAGE, role } from "../../utils/constant";
+import { language as LANGUAGE } from "../../utils/constant";
 import * as actions from "../../app/actions";
 import { useTranslation } from "react-i18next";
-import { distinguishSubjectExamination } from "../../utils/constant";
 
 var _ = require("lodash");
 
@@ -31,6 +31,7 @@ function BookingAppoimentPage(props) {
         scheduleById,
         dynamicEntity,
         renderSelectedTime,
+        specialty,
         distinguishSubjectExamination,
     } = props;
 
@@ -47,21 +48,14 @@ function BookingAppoimentPage(props) {
 
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         setDataFormChildrenComponent((prev) => ({
             ...prev,
             language: language,
         }));
     }, [language]);
-
-    const renderSpecialty = (doctor) => {
-        if (doctor && doctor.specialtyData && doctor.specialtyData.length > 0) {
-            let specialtyArr = doctor.specialtyData.map((item, index) => {
-                return language === LANGUAGE.VN ? item.valueVi : item.valueEn;
-            });
-            return specialtyArr.join(", ");
-        }
-    };
 
     const handleClickTitleComponent = (index) => {
         setVisibleComponent(index);
@@ -77,9 +71,11 @@ function BookingAppoimentPage(props) {
             let dataSendToServer = {
                 ...dataFormChildrenComponent,
             };
-            console.log("check data send to server: >>> ", dataSendToServer);
             await dispatch(
-                actions.postPatientBookAppointmentAction(dataSendToServer)
+                actions.postPatientBookAppointmentAction(
+                    dataSendToServer,
+                    navigate
+                )
             );
         }
     };
@@ -99,7 +95,7 @@ function BookingAppoimentPage(props) {
                     },
                     {
                         label: t("email.dynamicEntity_specialty"),
-                        value: renderSpecialty(dynamicEntity),
+                        value: specialty,
                     },
                     {
                         label: t("email.dynamicEntity_address"),

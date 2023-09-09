@@ -1,0 +1,21 @@
+.column p{
+    border-bottom: 1px solid #e5e7eb;
+    width: 100%;
+    margin: 0px 0px 16px 0px;
+    padding: 0px 0px 8px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.active{
+    color: #22c55e !important;
+    font-weight: 500;
+}
+
+.column p span:first-child{
+    font-weight: 500;
+}
+
+.column p span:nth-child(2){
+    font-size: 16px;
+}

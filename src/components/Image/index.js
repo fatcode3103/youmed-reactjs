@@ -12,6 +12,7 @@ const Image = ({
     className,
     center = false,
     br10 = false,
+    alignToCenter = false,
 }) => {
     const classes = cx({
         [size]: size,
@@ -19,9 +20,10 @@ const Image = ({
         br10: br10,
         [className]: className,
         center: center,
+        alignToCenter: alignToCenter,
     });
 
-    return <img src={src} alt={alt} className={classes} br={br} />;
+    return <img src={src} alt={alt} className={classes} />;
 };
 
 export default Image;

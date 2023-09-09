@@ -24,6 +24,7 @@ import * as actions from "../../../app/actions";
 import MarkdownPreview from "../../../components/MarkdownPreview";
 import { language as LANGUAGE } from "../../../utils/constant";
 import Loading from "../../../components/Loading";
+import SevenDaySchedule from "../../../components/SenvenDaySchedule";
 
 var _ = require("lodash");
 
@@ -32,7 +33,7 @@ const cx = classNames.bind(styles);
 function HospitalDetail() {
     const { id } = useParams();
 
-    const [displayedText, setDisplayedText] = useState("");
+    const [displayedIntro, setDisplayedIntro] = useState("");
     const [isCollapsed, setIsCollapsed] = useState(false);
 
     const admin = useSelector((state) => state.admin);
@@ -40,10 +41,10 @@ function HospitalDetail() {
     const dispatch = useDispatch();
 
     const { hospitalById } = admin;
-    const { language, isLoading } = user;
+    const { language, isLoading, hospitalScheduleById } = user;
     const { hospitalDetailData } = hospitalById;
 
-    const paragraph =
+    const introduction =
         hospitalDetailData && hospitalDetailData.introduction
             ? hospitalDetailData.introduction
             : "";
@@ -67,19 +68,20 @@ function HospitalDetail() {
 
     useEffect(() => {
         dispatch(actions.getHospitalByIdAction(id));
+        dispatch(actions.getHospitalScheduleByIdAction(id));
     }, [dispatch, id]);
 
     useEffect(() => {
-        setDisplayedText(paragraph.slice(0, 500));
-    }, [paragraph]);
+        setDisplayedIntro(introduction.slice(0, 500));
+    }, [introduction]);
 
     const handleCollapseText = (textSize) => {
-        setDisplayedText(paragraph.slice(0, textSize));
+        setDisplayedIntro(introduction.slice(0, textSize));
         setIsCollapsed(!isCollapsed);
     };
 
     const handleExpandText = () => {
-        setDisplayedText(paragraph);
+        setDisplayedIntro(introduction);
         setIsCollapsed(!isCollapsed);
     };
 
@@ -223,7 +225,7 @@ function HospitalDetail() {
                         </div>
                         <div>
                             <Button
-                                to={`/booking/${handleNameUrl(
+                                to={`/booking/hospital/${handleNameUrl(
                                     hospitalById
                                 )}/${id}/booking`}
                                 normal="true"
@@ -239,12 +241,10 @@ function HospitalDetail() {
                                 Giới thiệu
                             </p>
                             <div>
-                                {
-                                    <MarkdownPreview
-                                        markdown={displayedText}
-                                        className={cx("intro-markdown")}
-                                    />
-                                }
+                                <MarkdownPreview
+                                    markdown={displayedIntro}
+                                    className={cx("intro-markdown")}
+                                />
                                 <span
                                     onClick={() =>
                                         isCollapsed
@@ -271,43 +271,59 @@ function HospitalDetail() {
                                 </div>
                             </div>
                         </div>
-                        <div
-                            className={cx("switchboard-support", "col-6 ps-4")}
-                        >
-                            <p>Tổng đài hỗ trợ</p>
-                            <span>
-                                Trong trường hợp bạn cần hỗ trợ thêm thông tin,
-                                vui lòng liên hệ tổng đài bên dưới để được trợ
-                                giúp.
-                            </span>
-                            <div className={cx("switchboard-link")}>
-                                <Button href="/">
-                                    <FontAwesomeIcon
-                                        icon={faPhone}
-                                        className={cx("switchboard-link-icon")}
-                                    />
-                                    Tổng đài đặt khám: 1900636223
-                                </Button>
-                                <Button href="/">
-                                    <FontAwesomeIcon
-                                        icon={faEarthAmerica}
-                                        className={cx("switchboard-link-icon")}
-                                    />
-                                    Hỗ trợ kỹ thuật: 19002805 (1.000đ/phút)
-                                </Button>
+                        <div className={cx("col-6 ps-4")}>
+                            <div className={cx("switchboard-support")}>
+                                <p>Tổng đài hỗ trợ</p>
+                                <span>
+                                    Trong trường hợp bạn cần hỗ trợ thêm thông
+                                    tin, vui lòng liên hệ tổng đài bên dưới để
+                                    được trợ giúp.
+                                </span>
+                                <div className={cx("switchboard-link")}>
+                                    <Button href="/">
+                                        <FontAwesomeIcon
+                                            icon={faPhone}
+                                            className={cx(
+                                                "switchboard-link-icon"
+                                            )}
+                                        />
+                                        Tổng đài đặt khám: 1900636223
+                                    </Button>
+                                    <Button href="/">
+                                        <FontAwesomeIcon
+                                            icon={faEarthAmerica}
+                                            className={cx(
+                                                "switchboard-link-icon"
+                                            )}
+                                        />
+                                        Hỗ trợ kỹ thuật: 19002805 (1.000đ/phút)
+                                    </Button>
 
-                                <Button href="/">
-                                    <FontAwesomeIcon
-                                        icon={faHeadphones}
-                                        className={cx("switchboard-link-icon")}
-                                    />
-                                    Tư vấn đặt khám
-                                </Button>
+                                    <Button href="/">
+                                        <FontAwesomeIcon
+                                            icon={faHeadphones}
+                                            className={cx(
+                                                "switchboard-link-icon"
+                                            )}
+                                        />
+                                        Tư vấn đặt khám
+                                    </Button>
+                                </div>
+                            </div>
+                            <div className={cx("schedule")}>
+                                <p className={cx("schedule-title")}>
+                                    Giờ làm việc
+                                </p>
+                                <SevenDaySchedule
+                                    startDate={1}
+                                    dataScheduleFromDb={hospitalScheduleById}
+                                />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <hr style={{ color: "#aaa", margin: "40px 0px" }} />
             <Footer />
         </div>
     );

@@ -1,0 +1,47 @@
+.booking-content{
+    padding: calc(var(--height-header)) 0px 40px 0px;
+}
+
+.booking-body{
+    margin: 0px 100px;
+}
+
+.booking-navbar{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.booking-navbar-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 16px;
+    border-bottom: 2px solid #dbeafe;
+
+    &:hover{
+        cursor: pointer;
+        color: var(--primary-color);
+    }
+
+    &:hover .booking-navbar-item-icon{
+        filter: invert(31%) sepia(82%) saturate(1511%) hue-rotate(193deg) brightness(98%) contrast(88%);
+    }
+}
+
+.booking-navbar-item-icon{
+    display: block;
+    width: 24px;
+    margin-right: 10px;
+}
+
+.booking-catalog{
+    margin-top: 30px;
+}
+
+.active{
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    filter: invert(31%) sepia(82%) saturate(1511%) hue-rotate(193deg) brightness(98%) contrast(88%);
+}

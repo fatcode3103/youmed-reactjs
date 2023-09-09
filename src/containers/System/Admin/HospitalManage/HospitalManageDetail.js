@@ -92,20 +92,16 @@ function HospitalManageDetail() {
             setIntro(hospitalById.hospitalDetailData.introduction);
             setIsData(true);
         } else {
-            setForm(initialState);
+            setForm({ ...initialState, selectedHospital: selectedHospital });
             setIntro("");
             setIsData(false);
         }
     }, [hospitalById]);
 
     useEffect(() => {
-        dispatch(actions.getAllHospitalAction());
+        dispatch(actions.getAllHospitalAction(""));
         dispatch(actions.getAllSpecialtyAction());
     }, [dispatch]);
-
-    useEffect(() => {
-        dispatch(actions.getHospitalByIdAction(selectedHospital));
-    }, [selectedHospital, dispatch]);
 
     useEffect(() => {
         setSelectHospital(buildDataSelect(allHospital));
@@ -114,6 +110,10 @@ function HospitalManageDetail() {
     useEffect(() => {
         setSelectSpecialty(buildDataSelect(allSpecialty, "SPECIALTY"));
     }, [allSpecialty, language]);
+
+    useEffect(() => {
+        dispatch(actions.getHospitalByIdAction(selectedHospital));
+    }, [selectedHospital, dispatch]);
 
     const buildDataSelect = (data, type = "") => {
         let arr = [];
@@ -189,6 +189,7 @@ function HospitalManageDetail() {
 
     return (
         <div className={cx("hospital-detail-container")}>
+            {console.log("check hospitalById:>>> ", hospitalById)}
             {isLoading && <Loading />}
             <HeaderSystem />
             <div className={cx("hospital-detail-content")}>

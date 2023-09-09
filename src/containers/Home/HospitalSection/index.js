@@ -25,7 +25,7 @@ function HospitalSection() {
     const { allHospital } = admin;
 
     useEffect(() => {
-        dispatch(actions.getAllHospitalAction());
+        dispatch(actions.getAllHospitalAction("6"));
     }, [dispatch]);
 
     const settings = {
@@ -110,15 +110,6 @@ function HospitalSection() {
                                                 >
                                                     <h3>{item.name}</h3>
                                                     <span>{item.address}</span>
-                                                </div>
-                                                <div className={cx("schedule")}>
-                                                    <span>
-                                                        Thứ 2 - Thứ 6: 7:30 -
-                                                        16:30
-                                                    </span>
-                                                    <span>
-                                                        Thứ 7 - CN: 7:30 - 11:30
-                                                    </span>
                                                 </div>
                                             </div>
                                         </div>

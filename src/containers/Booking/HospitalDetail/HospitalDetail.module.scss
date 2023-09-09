@@ -7,11 +7,12 @@
 }
 
 .slider-wrapper{
-    width: 50%;
+    width: 70%;
 }
 
 .img-hospital{
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+    object-fit: cover;
 }
 
 .booking{
@@ -41,9 +42,13 @@
     }
 }
 
-.introduction-title, .specialty-title, .switchboard-support p{
+.introduction-title, .specialty-title, .switchboard-support p, .schedule-title{
     font-size: 20px;
     font-weight: 500;
+}
+
+.schedule-title{
+    margin-top: 26px;
 }
 
 .intro-markdown{
@@ -58,7 +63,7 @@
 .specialty div{
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     gap: 10px;
 }
 
@@ -76,7 +81,7 @@
     margin-top: 14px;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     gap: 4px;
 }
 

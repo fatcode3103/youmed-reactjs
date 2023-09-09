@@ -1,0 +1,34 @@
+
+
+.catalog-item{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 24px 0px;
+    border-bottom: 1px solid #e5e5e5;
+
+    &:hover .catalog-info p:first-child{
+        color: #000;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+    }   
+    &:hover .catalog-info p:last-child {
+        color: #000;
+    }
+}
+
+.catalog-info{
+    margin-left: 14px;
+}
+
+.catalog-info p:first-child{
+    margin: 0px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.catalog-info p:last-child {
+    margin: 0px;
+    font-size: 18px;
+    opacity: 0.8;
+}

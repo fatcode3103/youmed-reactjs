@@ -5,6 +5,7 @@ import * as userService from "../../services/userService";
 import * as adminslice from "../../features/admin/adminslice";
 import * as specialtyService from "../../services/specialtyService";
 import * as hospitalService from "../../services/hospitalService";
+import * as clinicService from "../../services/clinicService";
 
 export const getAllUserAction = () => {
     return async (dispatch) => {
@@ -456,11 +457,11 @@ export const createHospitalAction = (data) => {
     };
 };
 
-export const getAllHospitalAction = () => {
+export const getAllHospitalAction = (limit) => {
     return async (dispatch) => {
         dispatch(adminslice.getAllHospitalStart());
         try {
-            let res = await hospitalService.getAllHospitalApi();
+            let res = await hospitalService.getAllHospitalApi(limit);
             if (res && res.data.errorCode === 0) {
                 dispatch(adminslice.getAllHospitalSuccess(res.data.data));
             } else {
@@ -534,12 +535,39 @@ export const updateHospitalDetailAction = (data) => {
         try {
             let res = await hospitalService.updateHospitalDetailApi(data);
             if (res && res.data.errorCode === 0) {
-                dispatch(adminslice.updateHospitalDetailSuccess(res.data.data));
+                dispatch(adminslice.updateHospitalDetailSuccess());
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.updatde_hospital_detail_success")} !
+                            </span>
+                        )}
+                    </Translation>
+                );
             } else {
                 dispatch(adminslice.updateHospitalDetailFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.updatde_hospital_detail_failed")} !
+                            </span>
+                        )}
+                    </Translation>
+                );
             }
         } catch (e) {
             dispatch(adminslice.updateHospitalDetailFailed());
+            toast.error(
+                <Translation>
+                    {(t) => (
+                        <span>
+                            {t("toast.updatde_hospital_detail_failed")} {e} !
+                        </span>
+                    )}
+                </Translation>
+            );
         }
     };
 };
@@ -644,6 +672,256 @@ export const updateHospitalcheduleAction = (data) => {
                         <span>
                             {t("toast.update_hospital_schedule_failed")} !
                             <span>{e}</span>
+                        </span>
+                    )}
+                </Translation>
+            );
+        }
+    };
+};
+
+export const createClinicAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.createClinicStart());
+        try {
+            let res = await clinicService.createClinicApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.createClinicSuccess());
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>{t("toast.create_clinic_success")} !</span>
+                        )}
+                    </Translation>
+                );
+            } else {
+                dispatch(adminslice.createClinicFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.create_clinic_failed")}
+                                <span>{res.data.message}</span>
+                            </span>
+                        )}
+                    </Translation>
+                );
+            }
+        } catch (e) {
+            dispatch(adminslice.createClinicFailed());
+            toast.error(
+                <Translation>
+                    {(t) => (
+                        <span>
+                            {t("toast.create_clinic_failed")} !<span>{e}</span>
+                        </span>
+                    )}
+                </Translation>
+            );
+        }
+    };
+};
+
+export const getAllClinicAction = (limit) => {
+    return async (dispatch) => {
+        dispatch(adminslice.getAllClinicStart());
+        try {
+            let res = await clinicService.getAllClinicApi(limit);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.getAllClinicSuccess(res.data.data));
+            } else {
+                dispatch(adminslice.getAllClinicFailed());
+            }
+        } catch (e) {
+            dispatch(adminslice.getAllClinicFailed());
+        }
+    };
+};
+
+export const createClinicDetailAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.createClinicDetailStart());
+        try {
+            let res = await clinicService.createClinicDetailApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.createClinicDetailSuccess());
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.create_clinic_detail_success")} !
+                            </span>
+                        )}
+                    </Translation>
+                );
+            } else {
+                dispatch(adminslice.createClinicDetailFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.create_clinic_detail_failed")}
+                                <span>{res.data.message}</span>
+                            </span>
+                        )}
+                    </Translation>
+                );
+            }
+        } catch (e) {
+            dispatch(adminslice.createClinicDetailFailed());
+            toast.error(
+                <Translation>
+                    {(t) => (
+                        <span>
+                            {t("toast.create_clinic_detail_failed")} !
+                            <span>{e}</span>
+                        </span>
+                    )}
+                </Translation>
+            );
+        }
+    };
+};
+
+export const updateClinicDetailAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.updateClinicDetailStart());
+        try {
+            let res = await clinicService.updateClinicDetailApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.updateClinicDetailSuccess());
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.updatde_clinic_detail_success")} !
+                            </span>
+                        )}
+                    </Translation>
+                );
+            } else {
+                dispatch(adminslice.updateClinicDetailFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.updatde_clinic_detail_failed")} !
+                            </span>
+                        )}
+                    </Translation>
+                );
+            }
+        } catch (e) {
+            dispatch(adminslice.updateClinicDetailFailed());
+            toast.error(
+                <Translation>
+                    {(t) => (
+                        <span>
+                            {t("toast.updatde_clinic_detail_failed")} {e} !
+                        </span>
+                    )}
+                </Translation>
+            );
+        }
+    };
+};
+
+export const createClinicScheduleAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.createClinicScheduleStart());
+        try {
+            let res = await clinicService.createClinicScheduleApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.createClinicScheduleSuccess());
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.create_clinic_schedule_success")} !
+                            </span>
+                        )}
+                    </Translation>
+                );
+            } else {
+                dispatch(adminslice.createClinicScheduleFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.create_clinic_schedule_failed")} !
+                            </span>
+                        )}
+                    </Translation>
+                );
+            }
+        } catch (e) {
+            dispatch(adminslice.createClinicScheduleFailed());
+            toast.error(
+                <Translation>
+                    {(t) => (
+                        <span>
+                            {t("toast.create_clinic_schedule_failed")} {e}!
+                        </span>
+                    )}
+                </Translation>
+            );
+        }
+    };
+};
+
+export const getClinicScheduleAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.getClinicScheduleStart());
+        try {
+            let res = await clinicService.getClinicScheduleApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(
+                    adminslice.getClinicScheduleSuccess(res.data.data)
+                );
+            } else {
+                dispatch(adminslice.getClinicScheduleFailed());
+            }
+        } catch (e) {
+            dispatch(adminslice.getClinicScheduleFailed());
+        }
+    };
+};
+
+export const updateClinicScheduleByIdAction = (data) => {
+    return async (dispatch) => {
+        dispatch(adminslice.updateClinicScheduleByIdStart());
+        try {
+            let res = await clinicService.updateClinicScheduleByIdApi(data);
+            if (res && res.data.errorCode === 0) {
+                dispatch(adminslice.updateClinicScheduleByIdSuccess());
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.update_clinic_schedule_success")} !
+                            </span>
+                        )}
+                    </Translation>
+                );
+            } else {
+                dispatch(adminslice.updateClinicScheduleByIdFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.update_clinic_schedule_failed")} !
+                            </span>
+                        )}
+                    </Translation>
+                );
+            }
+        } catch (e) {
+            dispatch(adminslice.updateClinicScheduleByIdFailed());
+            toast.error(
+                <Translation>
+                    {(t) => (
+                        <span>
+                            {t("toast.update_clinic_schedule_failed")} {e}!
                         </span>
                     )}
                 </Translation>

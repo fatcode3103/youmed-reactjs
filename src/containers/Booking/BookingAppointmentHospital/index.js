@@ -14,6 +14,7 @@ import { language as LANGUAGE, date } from "../../../utils/constant";
 import { useEffect } from "react";
 import * as actions from "../../../app/actions";
 import BufferToBase64 from "../../../utils/BufferToBase64";
+import { distinguishSubjectExamination } from "../../../utils/constant";
 
 var _ = require("lodash");
 
@@ -128,55 +129,31 @@ function BookingAppointmentHospital() {
         },
     ];
 
-    const dataFromBookingConfirm = {
-        date: selectedDate.date ?? "",
-        timeType: selectedScheduleTime.keyMap ?? "",
-        hospital: id ?? "",
-        patientId: userById.id ?? "",
-        sendToEmail: {
-            date: renderSelectedDate(selectedDate) ?? "",
-            time: renderSelectedTime(selectedScheduleTime) ?? "",
-            hospital: {
-                address:
-                    hospitalById && hospitalById.address
-                        ? hospitalById.address
-                        : "",
-                specialty:
-                    hospitalById && hospitalById.specialtyData
-                        ? renderSpecialty(hospitalById.specialtyData)
-                        : "",
-                hospitalName:
-                    hospitalById && hospitalById.name ? hospitalById.name : "",
-            },
-            patient: {
-                patientName: renderNamePatient(userById) ?? "",
-                phoneNumber: userById.phoneNumber ?? "",
-                email: userById.email ?? "",
-            },
-            language: language ?? "",
-        },
-    };
-
     return (
         <div>
             {isLoading && <Loading />}
-            {console.log("check hospitalById:>>> ", hospitalById)}
             <Header />
             {hospitalById &&
                 hospitalById.address &&
                 hospitalById.logo &&
                 hospitalById.logo.data &&
+                hospitalById.specialtyData &&
                 hospitalById.name && (
                     <BookingAppoimentPage
                         id={33}
                         sectionStepData={sectionStepData}
                         scheduleById={hospitalScheduleById}
-                        dataFromBookingConfirm={dataFromBookingConfirm}
                         avatarBookingBase64={BufferToBase64(
                             hospitalById.logo.data
                         )}
+                        specialty={renderSpecialty(hospitalById.specialtyData)}
                         nameBooking={hospitalById.name}
                         addressBooking={hospitalById.address}
+                        dynamicEntity={hospitalById}
+                        distinguishSubjectExamination={
+                            distinguishSubjectExamination.HOSPITAL
+                        }
+                        renderSelectedTime={renderSelectedTime}
                     />
                 )}
         </div>

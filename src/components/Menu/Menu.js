@@ -19,14 +19,9 @@ function Menu(props) {
     const { children, item = [] } = props;
 
     const [history, setHistory] = useState([{ data: item }]);
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const current = history[history.length - 1];
-
-    const handleUserLogout = () => {
-        dispatch(actions.logoutAction(navigate));
-    };
 
     const handleBackMenu = () => {
         setHistory((prev) => prev.slice(0, prev.length - 1));
@@ -48,9 +43,6 @@ function Menu(props) {
                         data={item}
                         none={true}
                         onClick={() => {
-                            if (item.key === "logout") {
-                                handleUserLogout();
-                            }
                             if (sub) {
                                 setHistory([...history, item.menuSub]);
                             }

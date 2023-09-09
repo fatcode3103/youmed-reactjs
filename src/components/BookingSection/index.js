@@ -97,9 +97,9 @@ function BookingSection(props) {
                         key={index}
                         to={
                             type === "doctor"
-                                ? `/booking/${handleNameUrl(
+                                ? `/booking/doctor/${handleNameUrl(
                                       doctorById
-                                  )}/id=/${id}/booking`
+                                  )}/${id}/booking`
                                 : null
                         }
                         onClick={() => handleClickBtnTime(item)}

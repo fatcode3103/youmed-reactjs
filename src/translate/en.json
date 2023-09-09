@@ -129,8 +129,11 @@
         "preview": "Click to preview"
         },
         "info": "Information",
-        "schedule": "Schedule"
-        
+        "schedule": "Schedule",
+        "clinic_title": "Clinic",
+        "clinic_manage": "Clinic management",
+        "clinic_manage_detail": "Detail Clinic management",
+        "clinic_schedule": "Clinic schedule management"
     },
     "toast": {
         "current_language": "Current language",
@@ -165,7 +168,19 @@
         "create_hospital_schedule_success": "Create successful hospital schedule",
         "create_hospital_schedule_failed": "Create failed hospital schedule",
         "update_hospital_schedule_success": "Update hospital schedule success",
-        "update_hospital_schedule_failed": "Update hospital schedule failed"
+        "update_hospital_schedule_failed": "Update hospital schedule failed",
+        "create_clinic_success": "Create clinic success",
+        "create_clinic_failed": "Create clinic failed",
+        "create_clinic_detail_success": "Create clinic detail success",
+        "create_clinic_detail_failed": "Create clinic detail failed",
+        "updatde_hospital_detail_success": "Update hospital detail success",
+        "updatde_hospital_detail_failed": "Update hospital detail failed",
+        "updatde_clinic_detail_success": "Update clinic detail success",
+        "updatde_clinic_detail_failed": "Update clinic detail failed",
+        "create_clinic_schedule_success": "Create clinic schedule success",
+        "create_clinic_schedule_failed": "Create clinic schedule failed",
+        "update_clinic_schedule_success": "Update clinic schedule success",
+        "update_clinic_schedule_failed": "Update clinic schedule failed"
     },
     "login":{
         "email": "Email",
@@ -182,16 +197,18 @@
         "specialty": "Specialty"
     },
     "booking_detail": {
-        "examination": "examination"
+        "examination": "examination",
+        "updating": "Updating"
     },
     "email": {
         "patient_name": "Patient name",
         "patient_address": "Address",
         "patient_phone": "Phonenumber",
         "note": "Note",
-        "dynamicEntity_name": "Doctor name",
+        "dynamicEntity_name": "Name",
         "dynamicEntity_specialty": "Specialty",
         "dynamicEntity_address": "Address",
-        "dynamicEntity_time": "Time"
+        "dynamicEntity_time": "Time",
+        "examination": "Type of examination"
     }
 }

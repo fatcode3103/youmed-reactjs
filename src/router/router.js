@@ -20,6 +20,20 @@ import {
 } from "../containers/System/Admin/HospitalManage";
 import HospitalDetail from "../containers/Booking/HospitalDetail";
 import BookingAppointmentHospital from "../containers/Booking/BookingAppointmentHospital";
+import BookingAppointmentClinic from "../containers/Booking/BookingAppointmentClinic";
+import {
+    ClinicInfoManage,
+    ClinicManageDetail,
+    ClinicSchedule,
+} from "../containers/System/Admin/ClinicManage";
+import ClinicDetail from "../containers/Booking/ClinicDetail";
+import BookingSuccessPage from "../components/BookingSuccessPage";
+import Profile from "../containers/Profile";
+import Schedule from "../containers/Schedule";
+import Logout from "../components/Auth/Logout.js";
+import BookingDoctor from "../containers/Booking/BookingDoctor";
+import BookingClinic from "../containers/Booking/BookingClinic";
+import BookingHospital from "../containers/Booking/BookingHospital";
 
 export const routerPublic = [
     { path: path.HOME, component: Home },
@@ -29,6 +43,8 @@ export const routerPublic = [
     { path: path.BOOKING, component: Booking },
     { path: path.VERIFY_BOOK_APPOINTMENT, component: VerifyBookAppointment },
     { path: path.HOSPITAL_DETAIL, component: HospitalDetail },
+    { path: path.CLINIC_DETAIL, component: ClinicDetail },
+    { path: path.LOGOUT, component: Logout },
     { path: "*", component: PageNotFound },
 ];
 
@@ -41,9 +57,19 @@ export const routerPrivate = [
     { path: path.HOSPITAL_MANAGE, component: HospitalManage },
     { path: path.HOSPITAL_MANAGE_DETAIL, component: HospitalManageDetail },
     { path: path.HOSPITAL_SCHEDULE, component: HospitalSchedule },
+    { path: path.CLINIC_MANAGE, component: ClinicInfoManage },
+    { path: path.CLINIC_MANAGE_DETAIL, component: ClinicManageDetail },
+    { path: path.CLINIC_SCHEDULE, component: ClinicSchedule },
 ];
 
 export const routerLogin = [
     { path: path.BOOKING_BY_DOCTOR, component: BookingAppointment },
     { path: path.BOOKING_BY_HOSPITAL, component: BookingAppointmentHospital },
+    { path: path.BOOKING_BY_CLINIC, component: BookingAppointmentClinic },
+    { path: path.BOOKING_SUCCESS, component: BookingSuccessPage },
+    { path: path.PROFILE_USER, component: Profile },
+    { path: path.SCHEDULE, component: Schedule },
+    { path: path.DOCTOR_APPOINTMENT, component: BookingDoctor },
+    { path: path.HOSPITAL_APPOINTMENT, component: BookingHospital },
+    { path: path.CLINIC_APPOINTMENT, component: BookingClinic },
 ];

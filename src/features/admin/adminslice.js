@@ -15,6 +15,8 @@ const initialState = {
     hospitalById: {},
     hospitalSpecialtyById: [],
     hospitalSchedule: {},
+    allClinic: [],
+    clinicSchedule: {},
 };
 
 export const adminSlice = createSlice({
@@ -254,6 +256,79 @@ export const adminSlice = createSlice({
         updateHospitalScheduleByIdFailed: (state, action) => {
             state.isLoading = false;
         },
+        //creat clinic
+        createClinicStart: (state, action) => {
+            state.isLoading = true;
+        },
+        createClinicSuccess: (state, action) => {
+            state.isLoading = false;
+        },
+        createClinicFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //get all clinic
+        getAllClinicStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getAllClinicSuccess: (state, action) => {
+            state.isLoading = false;
+            state.allClinic = action.payload;
+        },
+        getAllClinicFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //create detail clinic
+        createClinicDetailStart: (state, action) => {
+            state.isLoading = true;
+        },
+        createClinicDetailSuccess: (state, action) => {
+            state.isLoading = false;
+        },
+        createClinicDetailFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //update detail clinic
+        updateClinicDetailStart: (state, action) => {
+            state.isLoading = true;
+        },
+        updateClinicDetailSuccess: (state, action) => {
+            state.isLoading = false;
+        },
+        updateClinicDetailFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //create clinic schedule
+        createClinicScheduleStart: (state, action) => {
+            state.isLoading = true;
+        },
+        createClinicScheduleSuccess: (state, action) => {
+            state.isLoading = false;
+        },
+        createClinicScheduleFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //get clinic schedule id & date
+        getClinicScheduleStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getClinicScheduleSuccess: (state, action) => {
+            state.isLoading = false;
+            state.clinicSchedule = action.payload;
+        },
+        getClinicScheduleFailed: (state, action) => {
+            state.isLoading = false;
+            state.clinicSchedule = {};
+        },
+        //update clinic schedule id
+        updateClinicScheduleByIdStart: (state, action) => {
+            state.isLoading = true;
+        },
+        updateClinicScheduleByIdSuccess: (state, action) => {
+            state.isLoading = false;
+        },
+        updateClinicScheduleByIdFailed: (state, action) => {
+            state.isLoading = false;
+        },
     },
 });
 
@@ -321,6 +396,27 @@ export const {
     updateHospitalScheduleByIdStart,
     updateHospitalScheduleByIdSuccess,
     updateHospitalScheduleByIdFailed,
+    createClinicStart,
+    createClinicSuccess,
+    createClinicFailed,
+    getAllClinicStart,
+    getAllClinicSuccess,
+    getAllClinicFailed,
+    createClinicDetailStart,
+    createClinicDetailSuccess,
+    createClinicDetailFailed,
+    updateClinicDetailStart,
+    updateClinicDetailSuccess,
+    updateClinicDetailFailed,
+    createClinicScheduleStart,
+    createClinicScheduleSuccess,
+    createClinicScheduleFailed,
+    getClinicScheduleStart,
+    getClinicScheduleSuccess,
+    getClinicScheduleFailed,
+    updateClinicScheduleByIdStart,
+    updateClinicScheduleByIdSuccess,
+    updateClinicScheduleByIdFailed,
 } = adminSlice.actions;
 
 export default adminSlice.reducer;

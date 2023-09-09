@@ -159,9 +159,13 @@
 .info {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-flex-end;
     justify-content: space-between;
     padding: 60px 20px 10px;
+}
+
+.short-intro{
+    padding-bottom: 40px;
 }
 
 .short-intro span{
@@ -182,8 +186,8 @@
     margin-top: 60px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    align-items: start;
+    justify-content: flex-flex-end;
+    align-items: flex-start;
     width: 100%;
 }
 

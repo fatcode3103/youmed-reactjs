@@ -6,6 +6,9 @@ import * as userSlice from "../../features/user/userSlice";
 import { path } from "../../utils/constant";
 import * as specialtyService from "../../services/specialtyService";
 import * as hospitalService from "../../services/hospitalService";
+import * as clinicService from "../../services/clinicService";
+
+var _ = require("lodash");
 
 export const loginAction = (userData, navigate) => {
     return async (dispatch) => {
@@ -195,7 +198,7 @@ export const getAllSpecialtyAction = () => {
     };
 };
 
-export const postPatientBookAppointmentAction = (data) => {
+export const postPatientBookAppointmentAction = (data, navigate) => {
     return async (dispatch) => {
         dispatch(userSlice.postPatientBookAppointmentStart());
         try {
@@ -211,6 +214,7 @@ export const postPatientBookAppointmentAction = (data) => {
                         )}
                     </Translation>
                 );
+                navigate(res.data.data);
             } else if (res && res.data.errorCode === -1) {
                 dispatch(userSlice.postPatientBookAppointmentFailed());
                 toast.error(
@@ -250,10 +254,24 @@ export const postPatientBookAppointmentAction = (data) => {
 };
 
 export const postVerifyBookAppointmentAction = (data) => {
+    const { patientId, token, ...entityId } = data;
+    let validEntity;
+    for (const property in entityId) {
+        if (entityId[property] !== null) {
+            validEntity = {
+                key: property,
+                value: entityId[property],
+            };
+        }
+    }
     return async (dispatch) => {
         dispatch(userSlice.postVerifyBookAppointmentStart());
         try {
-            let res = await userService.postVerifyBookAppointmentApi(data);
+            let res = await userService.postVerifyBookAppointmentApi({
+                validEntity,
+                patientId,
+                token,
+            });
             if (res && res.data.errorCode === 0) {
                 dispatch(
                     userSlice.postVerifyBookAppointmentSuccess(res.data.message)
@@ -287,6 +305,62 @@ export const getHospitalScheduleByIdAction = (hospitalId) => {
             }
         } catch (e) {
             dispatch(userSlice.getHospitalScheduleByIdFailed());
+        }
+    };
+};
+
+export const getClinicByIdAction = (clinicId) => {
+    return async (dispatch) => {
+        dispatch(userSlice.getClinicByIdStart());
+        try {
+            let res = await clinicService.getClinicByIdApi(clinicId);
+            if (res && res.data.errorCode === 0) {
+                dispatch(userSlice.getClinicByIdSuccess(res.data.data));
+            } else {
+                dispatch(userSlice.getClinicByIdFailed());
+            }
+        } catch (e) {
+            dispatch(userSlice.getClinicByIdFailed());
+        }
+    };
+};
+
+export const getClinicScheduleByIdAction = (clinicId) => {
+    return async (dispatch) => {
+        dispatch(userSlice.getClinicScheduleByIdStart());
+        try {
+            let res = await clinicService.getClinicScheduleByIdApi(clinicId);
+            if (res && res.data.errorCode === 0) {
+                dispatch(userSlice.getClinicScheduleByIdSuccess(res.data.data));
+            } else {
+                dispatch(userSlice.getClinicScheduleByIdFailed());
+            }
+        } catch (e) {
+            dispatch(userSlice.getClinicScheduleByIdFailed());
+        }
+    };
+};
+
+export const postSuccessBookAppointmentAction = (data) => {
+    const { patientId, token } = data;
+    return async (dispatch) => {
+        dispatch(userSlice.postSuccessBookAppointmentStart());
+        try {
+            let res = await userService.postSuccessBookAppointmentApi({
+                patientId,
+                token,
+            });
+            if (res && res.data.errorCode === 0) {
+                dispatch(
+                    userSlice.postSuccessBookAppointmentSuccess(
+                        res.data.errorCode
+                    )
+                );
+            } else {
+                dispatch(userSlice.postSuccessBookAppointmentFailed());
+            }
+        } catch (e) {
+            dispatch(userSlice.postSuccessBookAppointmentFailed(e));
         }
     };
 };
