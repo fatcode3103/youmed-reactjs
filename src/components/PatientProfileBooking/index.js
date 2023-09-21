@@ -1,9 +1,9 @@
 import classNames from "classnames/bind";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import styles from "./PatientProfileBooking.module.scss";
 import Button from "../Button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ModalUser from "../../containers/System/Admin/ModalUser";
 import PatientInfo from "../PatientInfo";
 import { language as LANGUAGE } from "../../utils/constant";
@@ -14,18 +14,41 @@ var _ = require("lodash");
 const cx = classNames.bind(styles);
 
 function PatientProfile(props) {
-    const { getDataFromChildrenComponent } = props;
+    const { getDataFromChildrenComponent, handleCompleteStep } = props;
     const { t } = useTranslation();
 
     const [isShowModal, setIsShowModal] = useState(false);
-    const [note, setNote] = useState(null);
+    const [note, setNote] = useState("");
     const [isData, setIsData] = useState(false);
     const admin = useSelector((state) => state.admin);
     const user = useSelector((state) => state.user);
     const { userById } = admin;
     const { language } = user;
 
-    useEffect(() => {
+    const handleAddNewProfile = () => {
+        setIsData(false);
+        setIsShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsShowModal(false);
+    };
+
+    const renderNamePatient = (user) => {
+        if (!_.isEmpty(user)) {
+            if (language === LANGUAGE.VN) {
+                return `${user.lastName} ${user.firstName}`;
+            } else {
+                return `${user.firstName} ${user.lastName}`;
+            }
+        }
+    };
+
+    const handleChangeNote = (e) => {
+        setNote(e.target.value);
+    };
+
+    const handleConfirmInfo = () => {
         getDataFromChildrenComponent({
             patientId: userById.id,
             namePatient: renderNamePatient(userById),
@@ -52,30 +75,9 @@ function PatientProfile(props) {
                     value: note,
                 },
             ],
+            note: note,
         });
-    }, [note]);
-
-    const handleAddNewProfile = () => {
-        setIsData(false);
-        setIsShowModal(true);
-    };
-
-    const handleCloseModal = () => {
-        setIsShowModal(false);
-    };
-
-    const renderNamePatient = (user) => {
-        if (!_.isEmpty(user)) {
-            if (language === LANGUAGE.VN) {
-                return `${user.lastName} ${user.firstName}`;
-            } else {
-                return `${user.firstName} ${user.lastName}`;
-            }
-        }
-    };
-
-    const handleChangeNote = (e) => {
-        setNote(e.target.value);
+        handleCompleteStep();
     };
 
     return (
@@ -89,19 +91,27 @@ function PatientProfile(props) {
                     <div className={cx("add-info-note")}>
                         <label>Ghi chú</label>
                         <textarea
-                            value={note}
                             className={cx("form-control", "note")}
                             onChange={(e) => handleChangeNote(e)}
                         ></textarea>
                     </div>
                 </div>
-                <Button
-                    className={cx("add-new-profile")}
-                    outline="true"
-                    onClick={() => handleAddNewProfile()}
-                >
-                    Thêm hồ sơ mới
-                </Button>
+                <div className={cx("btn-wrapper")}>
+                    <Button
+                        className={cx("add-new-profile")}
+                        outline="true"
+                        onClick={() => handleAddNewProfile()}
+                    >
+                        Thêm hồ sơ mới
+                    </Button>
+                    <Button
+                        className={cx("confirm-info")}
+                        normal="true"
+                        onClick={() => handleConfirmInfo()}
+                    >
+                        Xác nhận
+                    </Button>
+                </div>
             </div>
             <ModalUser
                 handleCloseModal={handleCloseModal}

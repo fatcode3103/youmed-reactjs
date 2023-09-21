@@ -13,6 +13,9 @@ import Button from "../../../components/Button";
 import Footer from "../../../components/Footer";
 import MarkdownPreview from "../../../components/MarkdownPreview";
 import SevenDaySchedule from "../../../components/SenvenDaySchedule";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { language as LANGUAGE } from "../../../utils/constant";
+import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 
 const cx = classNames.bind(styles);
 
@@ -24,7 +27,7 @@ function ClinicDetail() {
 
     const user = useSelector((state) => state.user);
 
-    const { isLoading, clinicById, clinicScheduleById } = user;
+    const { isLoading, clinicById, clinicScheduleById, language } = user;
 
     const { clinicDetailData } = clinicById;
 
@@ -84,6 +87,29 @@ function ClinicDetail() {
         }
     };
 
+    const renderSpecialtyByLanguage = (specialtyArr) => {
+        if (specialtyArr && specialtyArr.length > 0) {
+            const renderedButtons = specialtyArr.map((item, index) => {
+                return (
+                    <Button to="/" key={index}>
+                        <span className={cx("btn-specialty")}>
+                            <FontAwesomeIcon
+                                icon={faCircleCheck}
+                                style={{
+                                    marginRight: "6px",
+                                }}
+                            />
+                            {language === LANGUAGE.VN
+                                ? item.valueVi
+                                : item.valueEn}
+                        </span>
+                    </Button>
+                );
+            });
+            return renderedButtons;
+        }
+    };
+
     return (
         <div className={cx("clinic-detail-container")}>
             {isLoading && <Loading />}
@@ -124,28 +150,44 @@ function ClinicDetail() {
                         </Button>
                     </div>
                     <div className={cx("row mt-5")}>
-                        <div className={cx("introduction", "col-6 pe-5")}>
-                            <div className={cx("introduction-title")}>
-                                Giới thiệu
+                        <div className={cx("col-6 pe-5")}>
+                            <div className={cx("introduction")}>
+                                <div className={cx("introduction-title")}>
+                                    Giới thiệu
+                                </div>
+                                <div className={cx("introduction-content")}>
+                                    <MarkdownPreview
+                                        markdown={displayedIntro}
+                                        className={cx("intro-markdown")}
+                                    />
+                                    <span
+                                        onClick={() =>
+                                            isCollapsed
+                                                ? handleCollapseText(500)
+                                                : handleExpandText()
+                                        }
+                                        style={{
+                                            color: "#1975dc",
+                                            cursor: "pointer",
+                                        }}
+                                    >
+                                        {isCollapsed
+                                            ? "Thu gọn"
+                                            : "...Xem thêm"}
+                                    </span>
+                                </div>
                             </div>
-                            <div className={cx("introduction-content")}>
-                                <MarkdownPreview
-                                    markdown={displayedIntro}
-                                    className={cx("intro-markdown")}
-                                />
-                                <span
-                                    onClick={() =>
-                                        isCollapsed
-                                            ? handleCollapseText(500)
-                                            : handleExpandText()
-                                    }
-                                    style={{
-                                        color: "#1975dc",
-                                        cursor: "pointer",
-                                    }}
-                                >
-                                    {isCollapsed ? "Thu gọn" : "...Xem thêm"}
-                                </span>
+                            <div className={cx("specialty")}>
+                                <p className={cx("specialty-title")}>
+                                    Chuyên khoa
+                                </p>
+                                <div>
+                                    {clinicById &&
+                                        clinicById.specialtyData &&
+                                        renderSpecialtyByLanguage(
+                                            clinicById.specialtyData
+                                        )}
+                                </div>
                             </div>
                         </div>
                         <div className={cx("schedule", "col-6")}>

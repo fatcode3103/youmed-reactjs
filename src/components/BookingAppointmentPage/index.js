@@ -24,15 +24,16 @@ function BookingAppoimentPage(props) {
     ///props
     const {
         id,
-        sectionStepData,
-        avatarBookingBase64,
-        nameBooking,
-        addressBooking,
-        scheduleById,
-        dynamicEntity,
+        sectionStepData = [],
+        avatarBookingBase64 = "",
+        nameBooking = "",
+        addressBooking = "",
+        scheduleById = {},
+        dynamicEntity = {},
         renderSelectedTime,
-        specialty,
-        distinguishSubjectExamination,
+        renderSelectedDate,
+        specialty = "",
+        distinguishSubjectExamination = "",
     } = props;
 
     const { t } = useTranslation();
@@ -44,7 +45,7 @@ function BookingAppoimentPage(props) {
     );
 
     const user = useSelector((state) => state.user);
-    const { language, selectedScheduleTime } = user;
+    const { language, selectedScheduleTime, selectedDate } = user;
 
     const dispatch = useDispatch();
 
@@ -104,6 +105,10 @@ function BookingAppoimentPage(props) {
                     {
                         label: t("email.dynamicEntity_time"),
                         value: renderSelectedTime(selectedScheduleTime),
+                    },
+                    {
+                        label: t("email.dynamicEntity_datde"),
+                        value: renderSelectedDate(selectedDate),
                     },
                 ],
             }));
@@ -225,10 +230,12 @@ function BookingAppoimentPage(props) {
                             />
                             <div className={cx("short-info-doctor")}>
                                 <p className={cx("doctor-name")}>
-                                    {nameBooking ?? "updating"}
+                                    {nameBooking ? nameBooking : "updating"}
                                 </p>
                                 <p className={cx("doctor-address")}>
-                                    {addressBooking ?? "updating"}
+                                    {addressBooking
+                                        ? addressBooking
+                                        : "updating"}
                                 </p>
                             </div>
                         </div>
@@ -263,7 +270,9 @@ function BookingAppoimentPage(props) {
                                                                             indx
                                                                         }
                                                                     >
-                                                                        {e.value ?? (
+                                                                        {e.value ? (
+                                                                            e.value
+                                                                        ) : (
                                                                             <FontAwesomeIcon
                                                                                 icon={
                                                                                     faInfoCircle
@@ -283,12 +292,10 @@ function BookingAppoimentPage(props) {
                             <Button
                                 className={cx("btn-booking")}
                                 disnabel={
-                                    sectionStepData.length >
-                                    visibleComponent + 1
+                                    sectionStepData.length > visibleComponent
                                 }
                                 normal={
-                                    sectionStepData.length <=
-                                    visibleComponent + 1
+                                    sectionStepData.length <= visibleComponent
                                 }
                                 onClick={() => handleClickBtnBooking()}
                             >

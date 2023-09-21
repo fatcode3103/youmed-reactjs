@@ -11,9 +11,6 @@ const cx = classNames.bind(styles);
 function MenuBar() {
     const location = useLocation();
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
     return (
         <div className={cx("menu-bar-container")}>
             <div className={cx("menu-bar-content")}>

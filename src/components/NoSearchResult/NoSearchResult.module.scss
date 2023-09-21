@@ -1,0 +1,28 @@
+.not-found-search {
+    padding: 30px 0px 10px 20px;
+}
+
+.not-found-search p:nth-child(2) {
+    font-size: 17px;
+    font-weight: 500;
+    color: #000;
+    padding: 0;
+    margin: 14px 0px;
+}
+
+.not-found-search p:nth-child(3) {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 14px;
+    padding: 0;
+    opacity: 1;
+}
+
+.not-found-search li {
+    font-size: 14px;
+    list-style: disc;
+}
+
+.not-found-search-img {
+    color: #d1d5db;
+}

@@ -11,7 +11,6 @@ import "react-photo-view/dist/react-photo-view.css";
 import "../node_modules/slick-carousel/slick/slick.css";
 import "../node_modules/slick-carousel/slick/slick-theme.css";
 import "../node_modules/react-datepicker/dist/react-datepicker.css";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import GlobalStyle from "./components/GlobalStyle";
 

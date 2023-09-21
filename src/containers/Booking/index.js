@@ -1,12 +1,11 @@
 import classNames from "classnames/bind";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
 
 import styles from "./BookingPage.module.scss";
 import Header from "../../components/Header";
 import Loading from "../../components/Loading";
 import BookingHomeHeader from "./BookingHomeHeader/BookingHomeHeader";
-import DataCatalog from "../../components/DataCatalog";
 import DownloadAppSection from "../Home/DownloadAppSection";
 import Footer from "../../components/Footer";
 import { navBooking } from "../../components/MenuData/menuData";
@@ -17,7 +16,6 @@ function BookingPage({ children }) {
     const location = useLocation();
 
     const user = useSelector((state) => state.user);
-    const dispatch = useDispatch();
 
     const { isLoading } = user;
 

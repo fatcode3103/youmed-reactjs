@@ -11,13 +11,13 @@ import {
     DoctorInfoManage,
     DoctorSchedule,
 } from "../containers/System/Admin/DoctorManage";
-import BookingAppointment from "../containers/Booking/BookingAppointmentDoctor";
 import VerifyBookAppointment from "../components/VerifyBookAppointment";
 import {
     HospitalManage,
     HospitalManageDetail,
     HospitalSchedule,
 } from "../containers/System/Admin/HospitalManage";
+import BookingAppointment from "../containers/Booking/BookingAppointmentDoctor";
 import HospitalDetail from "../containers/Booking/HospitalDetail";
 import BookingAppointmentHospital from "../containers/Booking/BookingAppointmentHospital";
 import BookingAppointmentClinic from "../containers/Booking/BookingAppointmentClinic";
@@ -34,6 +34,11 @@ import Logout from "../components/Auth/Logout.js";
 import BookingDoctor from "../containers/Booking/BookingDoctor";
 import BookingClinic from "../containers/Booking/BookingClinic";
 import BookingHospital from "../containers/Booking/BookingHospital";
+import AdviseOnline from "../containers/AdviseOnline";
+import HcpPage from "../containers/HcpPage";
+import SearchPage from "../containers/SearchPage";
+import SearchSpecilatyPage from "../containers/SearchSpecialtyPage";
+import MedicalNews from "../containers/MedicalNews";
 
 export const routerPublic = [
     { path: path.HOME, component: Home },
@@ -44,6 +49,11 @@ export const routerPublic = [
     { path: path.VERIFY_BOOK_APPOINTMENT, component: VerifyBookAppointment },
     { path: path.HOSPITAL_DETAIL, component: HospitalDetail },
     { path: path.CLINIC_DETAIL, component: ClinicDetail },
+    { path: path.ADVISE_ONLINE, component: AdviseOnline },
+    { path: path.SEARCH, component: SearchPage },
+    { path: path.SEARCH_SPECIALTY, component: SearchSpecilatyPage },
+    { path: path.MEDICAL_NEWS, component: MedicalNews },
+    { path: path.HCP, component: HcpPage },
     { path: path.LOGOUT, component: Logout },
     { path: "*", component: PageNotFound },
 ];

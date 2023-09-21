@@ -44,9 +44,10 @@ function BookingClinic() {
             <Booking>
                 <div className={cx("booking-clinic-content")}>
                     <div className={cx("booking-clinic-title")}>
-                        <p>Đặt khám trực tuyến với các Bệnh viện</p>
+                        <p>Đa dạng phòng khám</p>
                         <span>
-                            Chủ động chọn lịch hẹn - Đi khám không đợi chờ
+                            Đặt khám dễ dàng và tiện lợi hơn với các phòng khám
+                            cùng nhiều chuyên khoa
                         </span>
                     </div>
                     {data && data.length > 0 && <DataCatalog data={data} />}

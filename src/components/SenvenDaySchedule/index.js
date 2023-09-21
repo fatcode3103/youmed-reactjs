@@ -23,36 +23,39 @@ function SevenDaySchedule({ startDate, dataScheduleFromDb = [] }) {
     const { time } = admin;
 
     useEffect(() => {
-        async function fetchScheduleClinic() {
-            let start = moment().day(startDate);
-            let arrDate = [];
-            for (let i = 0; i < 7; i++) {
-                let obj = {};
-                if (language === LANGUAGE.VN) {
-                    obj.label = capitalizeFirstLetter(
-                        moment(start)
-                            .add(i, "days")
-                            .local(LANGUAGE.VN)
-                            .format(date.DATE_CLIENT_VI)
-                    );
-                } else {
-                    obj.label = capitalizeFirstLetter(
-                        moment(start)
-                            .add(i, "days")
-                            .locale(LANGUAGE.EN)
-                            .format(date.DATE_CLIENT_EN)
-                    );
-                }
-                obj.value = moment(start)
-                    .add(i, "day")
-                    .startOf("day")
-                    .valueOf()
-                    .toString();
-                arrDate.push(obj);
-            }
-            setAllDates(arrDate);
+        let start = moment().day(startDate);
+
+        // take it back to 1 week ago
+        if (new Date().getDay() === 0) {
+            start = start.subtract(1, "weeks");
         }
-        fetchScheduleClinic();
+
+        let arrDate = [];
+        for (let i = 0; i < 7; i++) {
+            let obj = {};
+            if (language === LANGUAGE.VN) {
+                obj.label = capitalizeFirstLetter(
+                    moment(start)
+                        .add(i, "days")
+                        .local(LANGUAGE.VN)
+                        .format(date.DATE_CLIENT_VI)
+                );
+            } else {
+                obj.label = capitalizeFirstLetter(
+                    moment(start)
+                        .add(i, "days")
+                        .locale(LANGUAGE.EN)
+                        .format(date.DATE_CLIENT_EN)
+                );
+            }
+            obj.value = moment(start)
+                .add(i, "day")
+                .startOf("day")
+                .valueOf()
+                .toString();
+            arrDate.push(obj);
+        }
+        setAllDates(arrDate);
     }, [language, startDate]);
 
     useEffect(() => {
@@ -135,6 +138,7 @@ function SevenDaySchedule({ startDate, dataScheduleFromDb = [] }) {
 
     return (
         <div className={cx("row")}>
+            {/* {console.log("allDates:>> ", allDates)} */}
             <div className={cx("column")}>{renderDateTime(allDates)}</div>
         </div>
     );

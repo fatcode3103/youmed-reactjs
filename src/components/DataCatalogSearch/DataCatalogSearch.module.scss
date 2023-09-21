@@ -1,0 +1,47 @@
+.catalog-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    &:hover{
+        color: #000;
+    }
+
+    &:hover .catalog-info-name{
+        text-decoration: underline;
+    }
+}
+
+.catalog-wrapper{
+    padding: 14px;
+}
+
+.content-left{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+}
+
+.catalog-info p{
+    margin: 0px;
+    padding: 3px;
+}
+
+.catalog-info-name{
+    font-size: 20px !important;
+    font-weight: 500;
+}
+
+.catalog-info-specialty{
+    border-radius: 30px;
+    background-color: #eeeff1; 
+    padding: 2px 10px;
+    margin-right: 2px;
+}
+
+.btn-booking{
+    padding: 10px 40px;
+}

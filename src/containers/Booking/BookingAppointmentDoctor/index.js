@@ -88,16 +88,14 @@ function BookingAppointment(props) {
     };
 
     const handleImageBase64 = (image) => {
-        let imgBase64 = "";
-        if (image) {
-            imgBase64 = BufferToBase64(image);
+        if (image.image && image.image.data) {
+            return BufferToBase64(image.image.data);
         }
-        return imgBase64;
     };
 
-    const renderSpecialty = (specialtyArr) => {
-        if (specialtyArr && specialtyArr.length > 0) {
-            let arr = specialtyArr.map((item) => {
+    const renderSpecialty = (doctor) => {
+        if (doctor.specialtyData && doctor.specialtyData.length > 0) {
+            let arr = doctor.specialtyData.map((item) => {
                 return language === LANGUAGE.VN ? item.valueVi : item.valueEn;
             });
             return arr.join(", ");
@@ -132,7 +130,7 @@ function BookingAppointment(props) {
         dispatch(actions.getDoctorByIdAction(id));
         dispatch(actions.getUserByIdAction(currentUser.id));
         dispatch(actions.getDoctorScheduleByIdAction(id));
-    }, [dispatch]);
+    }, [dispatch, currentUser, id]);
 
     useEffect(() => {
         document.documentElement.scrollTop = 0;
@@ -143,31 +141,30 @@ function BookingAppointment(props) {
             {isLoading && <Loading />}
             <div className={cx("booking-appointment-container")}>
                 <Header />
-                {doctorById &&
-                    doctorById.image &&
-                    doctorById.image.data &&
-                    doctorById.detailInfoData &&
-                    doctorById.detailInfoData.address &&
-                    doctorById.specialtyData && (
-                        <BookingAppoimentPage
-                            id={id}
-                            sectionStepData={sectionStepData}
-                            avatarBookingBase64={handleImageBase64(
-                                doctorById.image.data
-                            )}
-                            specialty={renderSpecialty(
-                                doctorById.specialtyData
-                            )}
-                            nameBooking={handleRenderNameDoctor(doctorById)}
-                            addressBooking={doctorById.detailInfoData.address}
-                            scheduleById={doctorScheduleById}
-                            dynamicEntity={doctorById}
-                            renderSelectedTime={renderSelectedTime}
-                            distinguishSubjectExamination={
-                                distinguishSubjectExamination.DOCTOR
-                            }
-                        />
-                    )}
+                {doctorById && (
+                    <BookingAppoimentPage
+                        id={id}
+                        sectionStepData={sectionStepData}
+                        avatarBookingBase64={handleImageBase64(doctorById)}
+                        specialty={renderSpecialty(doctorById)}
+                        nameBooking={
+                            doctorById && handleRenderNameDoctor(doctorById)
+                        }
+                        addressBooking={
+                            doctorById.detailInfoData &&
+                            doctorById.detailInfoData.address
+                                ? doctorById.detailInfoData.address
+                                : ""
+                        }
+                        scheduleById={doctorScheduleById}
+                        dynamicEntity={doctorById ? doctorById : {}}
+                        renderSelectedTime={renderSelectedTime}
+                        renderSelectedDate={renderSelectedDate}
+                        distinguishSubjectExamination={
+                            distinguishSubjectExamination.DOCTOR
+                        }
+                    />
+                )}
                 <DownloadAppSection />
                 <Footer />
             </div>

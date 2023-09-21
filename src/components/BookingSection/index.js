@@ -24,11 +24,11 @@ const cx = classNames.bind(styles);
 
 function BookingSection(props) {
     const {
-        lessList,
+        lessList = "",
         id,
         handleCompleteStep,
         type,
-        scheduleById,
+        scheduleById = [],
         getDataFromChildrenComponent,
     } = props;
     const slider = useRef();
@@ -68,10 +68,12 @@ function BookingSection(props) {
         } else {
             dispatch(actions.setScheduleTimeAction(time));
             dispatch(actions.setSelectedDateAction(doctorTime));
-            getDataFromChildrenComponent({
-                timeType: time.keyMap,
-                date: doctorTime.date,
-            });
+            if (getDataFromChildrenComponent) {
+                getDataFromChildrenComponent({
+                    timeType: time.keyMap,
+                    date: doctorTime.date,
+                });
+            }
             if (handleCompleteStep) {
                 handleCompleteStep();
             }

@@ -54,11 +54,8 @@ function BookingDoctor() {
             <Booking>
                 <div className={cx("booking-doctor-content")}>
                     <div className={cx("booking-doctor-title")}>
-                        <p>Đa dạng phòng khám</p>
-                        <span>
-                            Đặt khám dễ dàng và tiện lợi hơn với các phòng khám
-                            cùng nhiều chuyên khoa
-                        </span>
+                        <p>Đặt lịch với các bác sĩ hàng đầu Việt Nam</p>
+                        <span>Đặt khám, tư vấn dễ dàng và tiện lợi hơn</span>
                     </div>
                     {data && data.length > 0 && <DataCatalog data={data} />}
                 </div>

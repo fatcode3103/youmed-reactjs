@@ -56,7 +56,7 @@ function HeaderSystem(props) {
                 <div className={cx("header-text")}>
                     {MenuData.menuSystemAdmin.map((item, index) => {
                         return (
-                            <Menu item={item}>
+                            <Menu item={item} key={index}>
                                 <NavLink>
                                     <span className={cx("text-manage")}>
                                         <span>

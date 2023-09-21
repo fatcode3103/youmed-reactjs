@@ -4,6 +4,7 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./SpecialtySection.module.scss";
 import Image from "../../../components/Image";
@@ -17,6 +18,8 @@ function SpecialtySection() {
     const { t } = useTranslation();
     const [show, setShow] = useState(false);
     const [newArr, setNewArr] = useState([]);
+
+    const navigate = useNavigate();
 
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
@@ -38,6 +41,16 @@ function SpecialtySection() {
         }
     }, [show, allSpecialty]);
 
+    const handleClickSpecialtyItem = (specialty) => {
+        dispatch(
+            actions.postQuerySearchSpecialtyAction({
+                specialtyId: specialty.id,
+                type: "all",
+                navigate,
+            })
+        );
+    };
+
     return (
         <div className={cx("specialty-section-container")}>
             <div className={cx("specialty-section-content")}>
@@ -46,31 +59,38 @@ function SpecialtySection() {
                     <p>{t("home.specialty_section.text")}</p>
                 </div>
                 <div className={cx("body")}>
-                    {newArr &&
-                        newArr.length > 0 &&
-                        newArr.map((item, index) => {
-                            let imageBase64 = "";
-                            if (item.image) {
-                                imageBase64 = BufferToBase64(item.image.data);
-                            }
-                            return (
-                                <div
-                                    key={index}
-                                    className={cx("specialty-item")}
-                                >
-                                    <Image
-                                        src={imageBase64 ? imageBase64 : ""}
-                                        size="s"
-                                        className={cx("img")}
-                                    />
-                                    <span style={{ textAlign: "center" }}>
-                                        {language === LANGUAGE.VN
-                                            ? item.valueVi
-                                            : item.valueEn}
-                                    </span>
-                                </div>
-                            );
-                        })}
+                    <div className={cx("wrapper-item")}>
+                        {newArr &&
+                            newArr.length > 0 &&
+                            newArr.map((item, index) => {
+                                let imageBase64 = "";
+                                if (item.image) {
+                                    imageBase64 = BufferToBase64(
+                                        item.image.data
+                                    );
+                                }
+                                return (
+                                    <div
+                                        key={index}
+                                        className={cx("specialty-item")}
+                                        onClick={() =>
+                                            handleClickSpecialtyItem(item)
+                                        }
+                                    >
+                                        <Image
+                                            src={imageBase64 ? imageBase64 : ""}
+                                            size="s"
+                                            className={cx("img")}
+                                        />
+                                        <span style={{ textAlign: "center" }}>
+                                            {language === LANGUAGE.VN
+                                                ? item.valueVi
+                                                : item.valueEn}
+                                        </span>
+                                    </div>
+                                );
+                            })}
+                    </div>
                 </div>
                 {!show ? (
                     <button

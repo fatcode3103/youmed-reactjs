@@ -93,12 +93,18 @@ function BookingAppointmentClinic() {
         }
     };
 
-    const renderSpecialty = (specialtyArr) => {
-        if (specialtyArr && specialtyArr.length > 0) {
-            let arr = specialtyArr.map((item) => {
+    const renderSpecialty = (clinic) => {
+        if (clinic.specialtyData && clinic.specialtyData.length > 0) {
+            let arr = clinic.specialtyData.map((item) => {
                 return language === LANGUAGE.VN ? item.valueVi : item.valueEn;
             });
             return arr.join(", ");
+        }
+    };
+
+    const handleImageBase64 = (image) => {
+        if (image.logo && image.logo.data) {
+            return BufferToBase64(image.logo.data);
         }
     };
 
@@ -134,31 +140,26 @@ function BookingAppointmentClinic() {
     return (
         <div>
             {isLoading && <Loading />}
-            {console.log("check clinicById:>>> ", clinicById)}
             <Header />
-            {clinicById &&
-                clinicById.address &&
-                clinicById.logo &&
-                clinicById.logo.data &&
-                clinicById.specialtyData &&
-                clinicById.name && (
-                    <BookingAppoimentPage
-                        id={id}
-                        sectionStepData={sectionStepData}
-                        scheduleById={clinicScheduleById}
-                        avatarBookingBase64={BufferToBase64(
-                            clinicById.logo.data
-                        )}
-                        specialty={renderSpecialty(clinicById.specialtyData)}
-                        nameBooking={clinicById.name}
-                        addressBooking={clinicById.address}
-                        dynamicEntity={clinicById}
-                        distinguishSubjectExamination={
-                            distinguishSubjectExamination.CLINIC
-                        }
-                        renderSelectedTime={renderSelectedTime}
-                    />
-                )}
+            {clinicById && (
+                <BookingAppoimentPage
+                    id={id}
+                    sectionStepData={sectionStepData}
+                    scheduleById={clinicScheduleById}
+                    avatarBookingBase64={handleImageBase64(clinicById)}
+                    specialty={renderSpecialty(clinicById)}
+                    nameBooking={clinicById.name ? clinicById.name : ""}
+                    addressBooking={
+                        clinicById.address ? clinicById.address : ""
+                    }
+                    dynamicEntity={clinicById ? clinicById : {}}
+                    distinguishSubjectExamination={
+                        distinguishSubjectExamination.CLINIC
+                    }
+                    renderSelectedTime={renderSelectedTime}
+                    renderSelectedDate={renderSelectedDate}
+                />
+            )}
         </div>
     );
 }

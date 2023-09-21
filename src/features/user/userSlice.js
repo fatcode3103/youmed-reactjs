@@ -18,6 +18,9 @@ const initialState = {
     clinicById: {},
     clinicScheduleById: {},
     errorCodeSuccessBooking: -1,
+    allBookingAppointmentById: [],
+    searchQueryResult: [],
+    searchQuerySpecialtyResult: [],
 };
 
 export const userSlice = createSlice({
@@ -189,6 +192,39 @@ export const userSlice = createSlice({
         postSuccessBookAppointmentFailed: (state, action) => {
             state.isLoading = false;
         },
+        //get booking appointment by id
+        getBookingAppointmentStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getBookingAppointmentSuccess: (state, action) => {
+            state.isLoading = false;
+            state.allBookingAppointmentById = action.payload;
+        },
+        getBookingAppointmentFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //search
+        postQuerySearchStart: (state, action) => {
+            state.isLoading = true;
+        },
+        postQuerySearchSuccess: (state, action) => {
+            state.isLoading = false;
+            state.searchQueryResult = action.payload;
+        },
+        postQuerySearchFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //search specialty
+        postQuerySearchSpecialtyStart: (state, action) => {
+            state.isLoading = true;
+        },
+        postQuerySearchSpecialtySuccess: (state, action) => {
+            state.isLoading = false;
+            state.searchQuerySpecialtyResult = action.payload;
+        },
+        postQuerySearchSpecialtyFailed: (state, action) => {
+            state.isLoading = false;
+        },
     },
 });
 
@@ -236,6 +272,15 @@ export const {
     postSuccessBookAppointmentStart,
     postSuccessBookAppointmentSuccess,
     postSuccessBookAppointmentFailed,
+    getBookingAppointmentStart,
+    getBookingAppointmentSuccess,
+    getBookingAppointmentFailed,
+    postQuerySearchStart,
+    postQuerySearchSuccess,
+    postQuerySearchFailed,
+    postQuerySearchSpecialtyStart,
+    postQuerySearchSpecialtySuccess,
+    postQuerySearchSpecialtyFailed,
 } = userSlice.actions;
 
 export default userSlice.reducer;

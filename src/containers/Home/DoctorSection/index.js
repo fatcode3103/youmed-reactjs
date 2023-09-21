@@ -16,9 +16,10 @@ import * as actions from "../../../app/actions";
 import styles from "./DoctorSection.module.scss";
 import Image from "../../../components/Image";
 import BufferToBase64 from "../../../utils/BufferToBase64";
-import { language as LANGUAGE } from "../../../utils/constant";
+import { language as LANGUAGE, path } from "../../../utils/constant";
 import { NavLink } from "react-router-dom";
 import "../Slider.scss";
+import Button from "../../../components/Button";
 
 const cx = classNames.bind(styles);
 
@@ -66,13 +67,16 @@ function DoctorSection() {
                         <p>{t("home.doctor_section.booking")}</p>
                     </div>
                     <div className={cx("content-right")}>
-                        <button className={cx("more-btn")}>
+                        <Button
+                            to={path.DOCTOR_APPOINTMENT}
+                            className={cx("more-btn")}
+                        >
                             <span>{t("home.doctor_section.see_more")}</span>
                             <FontAwesomeIcon
                                 icon={faAngleRight}
                                 className={cx("icon-arrow")}
                             />
-                        </button>
+                        </Button>
                     </div>
                 </div>
                 <div className={cx("body")}>

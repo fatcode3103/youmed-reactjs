@@ -6,6 +6,7 @@ const initialState = {
     gender: [],
     role: [],
     time: [],
+    status: [],
     position: [],
     examination: [],
     userById: {},

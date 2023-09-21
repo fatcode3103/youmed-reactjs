@@ -105,6 +105,13 @@ const postSuccessBookAppointmentApi = async ({ patientId, token }) => {
     return res;
 };
 
+const getBookingAppointmentApi = async (patientId) => {
+    let res = await httpRequest.get(
+        `get-booking-appointment?patientId=${patientId}`
+    );
+    return res;
+};
+
 export {
     postLoginApi,
     getAllUserApi,
@@ -125,4 +132,5 @@ export {
     postPatientBookAppointmentApi,
     postVerifyBookAppointmentApi,
     postSuccessBookAppointmentApi,
+    getBookingAppointmentApi,
 };

@@ -14,10 +14,13 @@ import { useTranslation } from "react-i18next";
 
 const cx = classNames.bind(styles);
 
-function Footer() {
+function Footer({ backGround }) {
     const { t } = useTranslation();
     return (
-        <div className={cx("login-footer")}>
+        <div
+            className={cx("login-footer")}
+            style={{ backgroundColor: backGround }}
+        >
             <div className={cx("row form-group")}>
                 <div className={cx("col-3")}>
                     <p className={cx("text-uppercase fw-bolder")}>

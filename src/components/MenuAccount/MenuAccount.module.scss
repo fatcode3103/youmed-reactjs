@@ -3,6 +3,12 @@
 }
 
 .menu-acc-content {
-    padding: calc(var(--height-header) + 30px) 300px;
-    border: 1px solid red;
+    padding: calc(var(--height-header) + 30px) 150px 50px 150px;
+    position: relative;
+}
+
+.menu-bar{
+    height: fit-content;
+    position: sticky;
+    top: calc(var(--height-header) + 10px);
 }

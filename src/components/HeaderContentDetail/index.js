@@ -1,5 +1,4 @@
 import classNames from "classnames/bind";
-import { useSelector } from "react-redux";
 
 import styles from "./HeaderContentDetail.module.scss";
 import Image from "../../components/Image";

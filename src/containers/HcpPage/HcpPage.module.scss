@@ -1,0 +1,228 @@
+.hcp-content{
+    padding: var(--height-header) 0px 40px 0px;
+}
+
+.hcp-content-header{
+    padding: 60px 140px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: linear-gradient(45deg,#e8f4fd, #fff, #e8f4fd);
+}
+
+.hcp-content-header-title-1 {
+    font-size: 50px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.hcp-content-header-title-2{
+    font-size: 38px;
+    font-weight: 500;
+    color: #333;
+}
+
+.hcp-service,
+.advise-online,
+.schedule-manage,
+.connect-doctor-wrapper,
+.clinic-manage,
+.cooperation{
+    padding: 60px 140px;
+}
+
+.hcp-service-item{
+    height: 260px;
+    padding: 26px;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px -3px #0000001a, 0 4px 6px -2px #0000000d;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:hover{
+        cursor: pointer;
+        transform: scale(1.02);
+        box-shadow: 0 0 11px #1a76e3;
+    }
+
+    &:hover .hcp-service-item-title{
+        color: var(--primary-color);
+    }
+
+    &:hover .hcp-service-item-image{
+        width: 180px;
+        transform: translateY(-50%);
+    }
+
+    &:hover .hcp-service-item-description{
+        display: block;
+    }
+}
+
+.hcp-service-item-image{
+    transition: all 0.2s ease;
+}
+
+.hcp-service-item-title{
+    position: absolute;
+    bottom: 0px;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0px 0px 30px 0px;
+}
+
+.hcp-service-item-description{
+    position: absolute;
+    bottom: 20%;
+    display: none;
+}
+
+a{
+    text-decoration: none;
+    list-style: none;
+    color: #333 ;
+}
+
+.schedule-manage-title, 
+.clinic-manage-content-title,
+.cooperation-text-title-1{
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.schedule-manage-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.schedule-manage-content-item{
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 30px;
+    transition: all 0.2s ease;
+
+    &:hover{
+        cursor: pointer;
+        color: var(--primary-color);
+        border-left: 3px solid var(--primary-color);
+    }
+}
+
+.schedule-manage-content-item:last-child {
+    border-bottom: none;
+}
+
+.schedule-manage-content-item p{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.schedule-manage-content-item span {
+    font-size: 18px;
+}
+
+.advise-online{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.advise-online-title{
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+.advise-online-image{
+    text-align: right;
+}
+
+.connect-doctor-content{
+    border-radius: 10px;
+    background-image: linear-gradient(145deg, #0dc7fa, #075ad8);
+    position: relative;
+    padding: 20px 30px 0px 0px;
+}
+
+.connect-doctor-image img{
+    position: absolute;
+    bottom: 0px;
+    width: 50%;
+}
+
+.connect-doctor-text-title{
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    color: #fff;
+}
+
+.connect-doctor-icon-wrapper{
+    display: flex;
+    justify-content: space-around;
+    color: #fff;
+    margin: 40px 0px;
+}
+
+.connect-doctor-icon-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.connect-doctor-icon-item span{
+    font-size: 20px;
+}
+
+.connect-doctor-icon-item-icon{
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.clinic-manage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clinic-manage-content-title{
+    width: fit-content;
+    margin-bottom: 30px;
+}
+
+.cooperation{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cooperation-text-title-1{
+    text-align: left;
+}
+
+.cooperation-text-title-2{
+    margin: 10px 0px 20px 0px;
+}
+
+.cooperation-text-form{
+    text-align: right;
+}
+
+.active{
+    color: var(--primary-color);
+}
+
+ul{
+    margin-bottom: 30px;
+}
+
+li{
+    list-style: none;
+    margin-bottom: 14px;
+    font-size: 18px;
+}

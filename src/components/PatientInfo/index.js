@@ -34,30 +34,36 @@ function PatientInfo() {
     }, [dispatch, refesh, currentUser]);
 
     const handleRenderUserName = (user) => {
-        if (language === LANGUAGE.VN) {
-            return `${user.lastName} ${user.firstName}`;
+        if (user.lastName && user.firstName) {
+            if (language === LANGUAGE.VN) {
+                return `${user.lastName} ${user.firstName}`;
+            } else {
+                return `${user.firstName} ${user.lastName}`;
+            }
         } else {
-            return `${user.firstName} ${user.lastName}`;
+            return "updating...";
         }
     };
     const renderDateOfBirthPatient = (user) => {
-        if (language === LANGUAGE.VN) {
-            return moment(parseInt(user.dateOfBirth)).format(
-                date.DATE_BIRTH_CLIENT_VI
-            );
+        if (user.dateOfBirth) {
+            if (language === LANGUAGE.VN) {
+                return moment(parseInt(user.dateOfBirth)).format(
+                    date.DATE_BIRTH_CLIENT_VI
+                );
+            } else {
+                return moment(parseInt(user.dateOfBirth)).format(
+                    date.DATE_BIRTH_CLIENT_EN
+                );
+            }
         } else {
-            return moment(parseInt(user.dateOfBirth)).format(
-                date.DATE_BIRTH_CLIENT_EN
-            );
+            return "updating...";
         }
     };
 
     const handleImageBase64 = (patient) => {
-        let imgBase64 = "";
-        if (patient.image) {
-            imgBase64 = BufferToBase64(patient.image.data);
+        if (patient.image && patient.image.data) {
+            return BufferToBase64(patient.image.data);
         }
-        return imgBase64;
     };
     const handleEditProfile = () => {
         setBufferToBase64(handleImageBase64(userById));
@@ -69,6 +75,7 @@ function PatientInfo() {
     const render = () => {
         setRefesh(!refesh);
     };
+
     const handleCloseModal = () => {
         setIsShowModal(false);
     };
@@ -112,7 +119,7 @@ function PatientInfo() {
                 <div className={cx("detail-info-patient")}>
                     <div className={cx("detail-info-patient-item")}>
                         <span>Mã bệnh nhân</span>
-                        <span>{userById.id}</span>
+                        <span>YMP{userById.id}</span>
                     </div>
                     <div className={cx("detail-info-patient-item")}>
                         <span>Họ và tên</span>
@@ -144,7 +151,7 @@ function PatientInfo() {
                 isShow={isShowModal}
                 isData={isData}
                 render={render}
-                currentUserByIdEdit={userById}
+                currentUserByIdEdit={isShowModal ? userById : {}}
                 bufferToBase64={bufferToBase64}
                 isPatientAction={true}
             />

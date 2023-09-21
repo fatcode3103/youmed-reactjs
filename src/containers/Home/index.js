@@ -10,7 +10,6 @@ import DoctorSection from "./DoctorSection";
 import HospitalSection from "./HospitalSection";
 import ClinicSection from "./ClinicSection";
 import SpecialtySection from "./SpecialtySection";
-import MedicalSection from "./MedicalSection";
 import Expert from "./Expert";
 import AboutSection from "./AboutSection";
 import DownloadAppSection from "./DownloadAppSection";
@@ -43,7 +42,6 @@ function Home() {
                 <HospitalSection />
                 <ClinicSection />
                 <SpecialtySection />
-                <MedicalSection />
                 <Expert />
                 <AboutSection />
                 <DownloadAppSection />

@@ -10,7 +10,6 @@ export const path = {
     HCP: "/hcp",
     CLINIC: "/clinic",
     SCHEDULE: "/schedule",
-    PAYMENT_HISTORY: "/payment-history",
     //system
     USER_MANAGE: "/system/user-manage",
     SPECIALTY_MANAGE: "/system/specialty-manage",
@@ -39,6 +38,14 @@ export const path = {
     BOOKING_BY_CLINIC: "/booking/clinic/:name/:id/booking",
     //booking success
     BOOKING_SUCCESS: "/success-booking/errorCode=0",
+    /// advise online
+    ADVISE_ONLINE: "/advise-online",
+    //medical
+    MEDICAL_NEWS: "/medical",
+    //search
+    SEARCH: "/search",
+    //search by specialty
+    SEARCH_SPECIALTY: "/search-specialty",
 };
 
 export const language = {
@@ -52,10 +59,23 @@ export const role = {
     PATIENT: "R3",
 };
 
+export const STATUS = {
+    S1: "S1",
+    S2: "S2",
+    S3: "S3",
+};
+
 export const distinguishSubjectExamination = {
     DOCTOR: "DOCTOR",
     HOSPITAL: "HOSPITAL",
     CLINIC: "CLINIC",
+};
+
+export const TYPE_SEARCH_PARAM = {
+    DOCTOR: "doctor",
+    HOSPITAL: "hospital",
+    CLINIC: "clinic",
+    ALL: "all",
 };
 
 export const date = {

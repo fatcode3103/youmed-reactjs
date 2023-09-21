@@ -7,6 +7,7 @@ import { path } from "../../utils/constant";
 import * as specialtyService from "../../services/specialtyService";
 import * as hospitalService from "../../services/hospitalService";
 import * as clinicService from "../../services/clinicService";
+import * as searchService from "../../services/searchService";
 
 var _ = require("lodash");
 
@@ -361,6 +362,67 @@ export const postSuccessBookAppointmentAction = (data) => {
             }
         } catch (e) {
             dispatch(userSlice.postSuccessBookAppointmentFailed(e));
+        }
+    };
+};
+
+export const getBookingAppointmentAction = (patientId) => {
+    return async (dispatch) => {
+        dispatch(userSlice.getBookingAppointmentStart());
+        try {
+            let res = await userService.getBookingAppointmentApi(patientId);
+            if (res && res.data.errorCode === 0) {
+                dispatch(userSlice.getBookingAppointmentSuccess(res.data.data));
+            } else {
+                dispatch(userSlice.getBookingAppointmentFailed());
+            }
+        } catch (e) {
+            dispatch(userSlice.getBookingAppointmentFailed(e));
+        }
+    };
+};
+
+export const postQuerySearchAction = ({ navigate, ...queryParameter }) => {
+    return async (dispatch) => {
+        dispatch(userSlice.postQuerySearchStart());
+        try {
+            let res = await searchService.postQuerySearchApi(queryParameter);
+            if (res && res.data.errorCode === 0) {
+                dispatch(
+                    userSlice.postQuerySearchSuccess(res.data.data.result)
+                );
+                navigate(res.data.data.linkSearchResult);
+            } else {
+                dispatch(userSlice.postQuerySearchFailed());
+            }
+        } catch (e) {
+            dispatch(userSlice.postQuerySearchFailed());
+        }
+    };
+};
+
+export const postQuerySearchSpecialtyAction = ({
+    navigate,
+    ...queryParameter
+}) => {
+    return async (dispatch) => {
+        dispatch(userSlice.postQuerySearchSpecialtyStart());
+        try {
+            let res = await searchService.postQuerySearchSpecialtyApi(
+                queryParameter
+            );
+            if (res && res.data.errorCode === 0) {
+                dispatch(
+                    userSlice.postQuerySearchSpecialtySuccess(
+                        res.data.data.result
+                    )
+                );
+                navigate(res.data.data.linkSearchResult);
+            } else {
+                dispatch(userSlice.postQuerySearchSpecialtyFailed());
+            }
+        } catch (e) {
+            dispatch(userSlice.postQuerySearchSpecialtyFailed());
         }
     };
 };

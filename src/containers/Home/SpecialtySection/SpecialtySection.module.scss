@@ -5,23 +5,29 @@
 
 .specialty-section-content{
     margin: 0 120px;
-    max-height: 400px;
+    max-width: 100%;
 }
 
 .body{
+    margin-top: 50px;
+    height: 100%;
+}
+
+.wrapper-item{
+    width: 100%;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin-top: 50px;
-    gap: 20px;
+    gap: 10px;
 }
 
 .specialty-item{
+    width: calc(100% / 6 - 10px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 198px;
+    // width: 198px;
     height: 130px;
     padding: 16px 40px;
     border-radius: 10px;

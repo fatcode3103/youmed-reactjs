@@ -51,7 +51,7 @@ function ModalUser(props) {
         phoneNumber: "",
         gender: "",
         position: "",
-        role: isPatientAction ? ROLE.PATIENT : "",
+        role: ROLE.PATIENT,
         img: null,
         preview: "",
     };
@@ -123,12 +123,8 @@ function ModalUser(props) {
 
     const handleUpdateUser = async () => {
         let dateTimestamp = hasChangeDateOfBirth ? date.getTime() : date;
-        const { isValidate, errMessage } = UseValidate(form, [
-            "id",
-            "img",
-            "preview",
-            "date",
-        ]);
+        let ignoreArr = ["id", "img", "preview", "date"];
+        const { isValidate, errMessage } = UseValidate(form, [...ignoreArr]);
         if (!isValidate) {
             toast.warning(`${t("toast.missing")}: ${errMessage}`);
         } else {
@@ -158,7 +154,7 @@ function ModalUser(props) {
                 <Modal.Body className={cx("p-5")}>
                     <div className={cx("row form- mb-4")}>
                         <div className={cx("col-4")}>
-                            <label for="email">Email</label>
+                            <label htmlFor="email">Email</label>
                             <input
                                 onChange={
                                     isData

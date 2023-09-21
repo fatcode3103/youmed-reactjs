@@ -1,0 +1,207 @@
+.advise-content{
+    padding: calc(var(--height-header) + 20px) 0px 50px 0px;
+    background-color: #f9fafb;
+}
+
+.advise-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 100px;
+    background-image: linear-gradient(230deg, #0759d8, #00c6fb);
+}
+
+.advise-header-img{
+    width: 400px;
+}
+
+.title-1, .title-2{
+    color: #fff;
+}
+
+.title-1{
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.title-2{
+    font-size: 20px;
+    margin-bottom: 14px;
+}
+
+.doctor-btn{
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+    width: fit-content;
+    margin: 18px 0px 28px 0px;
+    padding: 6px 12px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-download{
+    padding: 12px;
+    border-radius: 4px;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    border: 1px solid #fff;
+    transition: all 0.4s ease;
+
+    &:hover{
+        background-color: #fff;
+        color:#333;
+        border: 1px solid #333;
+    }
+}
+
+.advise-specialty{
+    margin-top: 80px;
+}
+
+.title-specialty-1, .advise-step-wrapper-title, .advise-health-title-1{
+    text-align: center;
+    font-size: 38px;
+    font-weight: 500;
+}
+
+.title-specialty-2, .advise-health-title-2{
+    text-align: center;
+    font-size: 15px;
+    opacity: 0.8;
+}
+
+.dot-below{
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    animation: radiate 0.4s ease-out infinite alternate;
+}
+
+.advise-step-wrapper{
+    margin-top: 80px;
+    padding: 50px 120px;
+    background-color: #fff;
+}
+
+.advise-step-wrapper-title{
+    margin-bottom: 20px;
+}
+
+.advise-step-wrapper-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.advise-step-img{
+    padding: 50px 60px;
+}
+
+.advise-step{
+    width: 100%;
+    padding-left: 50px;
+}
+
+.advise-step-item{
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 0px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &:hover{
+        cursor: pointer;
+        color: var(--primary-color);
+        border-left: 4px solid var(--primary-color);
+    }
+}
+
+.advise-step-item:last-child{
+    border-bottom: none;
+}
+
+.activeStep{
+    color: var(--primary-color);
+}
+
+.advise-health{
+    margin-top: 20px;
+    padding: 50px 120px;
+}
+
+.advise-health-content{
+    margin-top: 30px;
+}
+
+.advise-health-item{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.advise-health-item-title{
+    font-size: 18px;
+    font-weight: 500;
+    margin: 16px 0px;
+}
+
+.advise-health-item-description{
+    text-align: center;
+}
+
+.care-health{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 50px 120px;
+    background-color: #fff;
+}
+
+.care-health-doctor span{
+    margin-left: 10px;
+}
+
+.care-health-text p{
+    margin: 10px 0px 40px 0px;
+}
+
+.care-health-title{
+    font-size: 38px;
+    font-weight: 500;
+}
+
+.care-health-doctor{
+    margin-bottom: 40px;
+}
+
+.app-download-google{
+    margin-right: 20px;
+}
+
+.care-health-video{
+    width: 100%;
+    border-radius: 10px;
+}
+
+
+@keyframes radiate {
+    0% {
+            outline: 6px solid transparent;
+        }
+    
+        100% {
+            outline: 6px solid #35db72;
+        }
+}

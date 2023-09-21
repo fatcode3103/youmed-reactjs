@@ -209,6 +209,7 @@
         "dynamicEntity_specialty": "Specialty",
         "dynamicEntity_address": "Address",
         "dynamicEntity_time": "Time",
-        "examination": "Type of examination"
+        "examination": "Type of examination",
+        "dynamicEntity_datde": "Date"
     }
 }

@@ -211,6 +211,7 @@
         "dynamicEntity_specialty": "Chuyên khoa",
         "dynamicEntity_address": "Địa chỉ",
         "dynamicEntity_time": "Giờ khám",
-        "examination": "Loại hình khám"
+        "examination": "Loại hình khám",
+        "dynamicEntity_datde": "Ngày khám"
     }
 }

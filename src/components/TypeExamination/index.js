@@ -80,7 +80,6 @@ function TypeExamination(props) {
 
     return (
         <div className={cx("examination-container")}>
-            {console.log("check examination:>>> ", examination)}
             <div className={cx("examination-content")}>
                 {examination &&
                     examination.length > 0 &&

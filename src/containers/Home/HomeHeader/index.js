@@ -1,10 +1,9 @@
 import classNames from "classnames/bind";
+import { useTranslation } from "react-i18next";
 
 import styles from "./HomeHeader.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import images from "../../../assets/image";
-import { useTranslation } from "react-i18next";
+import SearchBar from "../../../components/SearchBar";
 
 const cx = classNames.bind(styles);
 
@@ -28,16 +27,7 @@ function HomeHeader() {
                 <div className={cx("home-header-intro")}>
                     <div className={cx("title")}>{t("home.header.title")}</div>
                     <div className={cx("text")}>{t("home.header.text")}</div>
-                    <div className={cx("search")}>
-                        <input
-                            type="text"
-                            placeholder={t("home.header.search")}
-                        />
-                        <FontAwesomeIcon
-                            icon={faSearch}
-                            className={cx("icon-search")}
-                        />
-                    </div>
+                    <SearchBar autoDispatch={false} />
                 </div>
                 <div className={cx("header-home-text")}>
                     <h2>{t("home.header.booking_online")}</h2>

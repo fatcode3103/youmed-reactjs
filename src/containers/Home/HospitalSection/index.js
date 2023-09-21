@@ -12,6 +12,8 @@ import { useEffect } from "react";
 import * as actions from "../../../app/actions";
 import BufferToBase64 from "../../../utils/BufferToBase64";
 import { NavLink } from "react-router-dom";
+import Button from "../../../components/Button";
+import { path } from "../../../utils/constant";
 
 const cx = classNames.bind(styles);
 
@@ -50,13 +52,16 @@ function HospitalSection() {
                         <p>{t("home.hospital_section.payment")}</p>
                     </div>
                     <div className={cx("content-right")}>
-                        <button className={cx("more-btn")}>
+                        <Button
+                            to={path.HOSPITAL_APPOINTMENT}
+                            className={cx("more-btn")}
+                        >
                             <span>{t("home.hospital_section.see_more")}</span>
                             <FontAwesomeIcon
                                 icon={faAngleRight}
                                 className={cx("icon-arrow")}
                             />
-                        </button>
+                        </Button>
                     </div>
                 </div>
                 <div className={cx("body")}>

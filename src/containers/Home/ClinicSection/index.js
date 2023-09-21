@@ -12,6 +12,8 @@ import Image from "../../../components/Image";
 import { useEffect } from "react";
 import * as actions from "../../../app/actions";
 import BufferToBase64 from "../../../utils/BufferToBase64";
+import Button from "../../../components/Button";
+import { path } from "../../../utils/constant";
 
 const cx = classNames.bind(styles);
 
@@ -49,13 +51,16 @@ function ClinicSection() {
                         <p>{t("home.clinic_section.text")}</p>
                     </div>
                     <div className={cx("content-right")}>
-                        <button className={cx("more-btn")}>
+                        <Button
+                            to={path.CLINIC_APPOINTMENT}
+                            className={cx("more-btn")}
+                        >
                             <span>{t("home.clinic_section.see_more")}</span>
                             <FontAwesomeIcon
                                 icon={faAngleRight}
                                 className={cx("icon-arrow")}
                             />
-                        </button>
+                        </Button>
                     </div>
                 </div>
                 <div className={cx("body")}>

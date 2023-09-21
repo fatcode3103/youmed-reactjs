@@ -115,13 +115,7 @@ function HospitalDetail() {
         if (specialtyArr && specialtyArr.length > 0) {
             const renderedButtons = specialtyArr.map((item, index) => {
                 return (
-                    <Button
-                        bgGray="true"
-                        outline="true"
-                        blur="true"
-                        to="/"
-                        key={index}
-                    >
+                    <Button to="/" key={index}>
                         <span className={cx("btn-specialty")}>
                             <FontAwesomeIcon
                                 icon={faCircleCheck}

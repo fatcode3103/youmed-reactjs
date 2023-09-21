@@ -16,7 +16,6 @@
 }
 
 .header-logo {
-    width: 40%;
     cursor: pointer;
 }
 
@@ -27,11 +26,12 @@
     top: 50%;
 }
 
-.header-text {
-    width: 55%;
+.header-navbar{
+    display: flex;
+    align-items: center;
 }
 
-.header-appointment {
+.header-text-item {
     padding: 10px 20px;
     font-size: 16px;
     font-weight: 500;
@@ -45,70 +45,13 @@
     }
 }
 
-.medical-staff-icon,
-.appointment-icon{
+.drop-icon{
     margin-left: 4px;
     font-size: 12px;
 }
 
-.header-advise {
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 5px;
-    transition: all 0.2s linear;
-    margin-right: 10px;
-
-    &:hover {
-        cursor: pointer;
-        background-color: #ecf0f3;
-    }
-}
-
-.header-store {
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 5px;
-    transition: all 0.2s linear;
-    margin-right: 10px;
-
-    &:hover {
-        cursor: pointer;
-        background-color: #ecf0f3;
-    }
-}
-
-.header-medical {
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 5px;
-    transition: all 0.2s linear;
-    margin-right: 10px;
-
-    &:hover {
-        cursor: pointer;
-        background-color: #ecf0f3;
-    }
-}
-
-.header-medical-staff{
-    padding: 10px 20px;
-    font-size: 15px;
-    border-radius: 5px;
-    transition: all 0.2s linear;
-    margin-right: 10px;
-
-    &:hover {
-        cursor: pointer;
-        background-color: #ecf0f3;
-    }
-}
-
 //account
 .header-account{
-    width: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -125,7 +68,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 20px;
+    margin: 0px 40px;
     cursor: pointer;
 }
 
@@ -157,3 +100,4 @@
 .link {
     text-decoration: none;
 }
+

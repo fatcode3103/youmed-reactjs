@@ -91,12 +91,18 @@ function BookingAppointmentHospital() {
         }
     };
 
-    const renderSpecialty = (specialtyArr) => {
-        if (specialtyArr && specialtyArr.length > 0) {
-            let arr = specialtyArr.map((item) => {
+    const renderSpecialty = (hospital) => {
+        if (hospital.specialtyData && hospital.specialtyData.length > 0) {
+            let arr = hospital.specialtyData.map((item) => {
                 return language === LANGUAGE.VN ? item.valueVi : item.valueEn;
             });
             return arr.join(", ");
+        }
+    };
+
+    const handleImageBase64 = (image) => {
+        if (image.logo && image.logo.data) {
+            return BufferToBase64(image.logo.data);
         }
     };
 
@@ -133,29 +139,25 @@ function BookingAppointmentHospital() {
         <div>
             {isLoading && <Loading />}
             <Header />
-            {hospitalById &&
-                hospitalById.address &&
-                hospitalById.logo &&
-                hospitalById.logo.data &&
-                hospitalById.specialtyData &&
-                hospitalById.name && (
-                    <BookingAppoimentPage
-                        id={33}
-                        sectionStepData={sectionStepData}
-                        scheduleById={hospitalScheduleById}
-                        avatarBookingBase64={BufferToBase64(
-                            hospitalById.logo.data
-                        )}
-                        specialty={renderSpecialty(hospitalById.specialtyData)}
-                        nameBooking={hospitalById.name}
-                        addressBooking={hospitalById.address}
-                        dynamicEntity={hospitalById}
-                        distinguishSubjectExamination={
-                            distinguishSubjectExamination.HOSPITAL
-                        }
-                        renderSelectedTime={renderSelectedTime}
-                    />
-                )}
+            {hospitalById && (
+                <BookingAppoimentPage
+                    id={33}
+                    sectionStepData={sectionStepData}
+                    scheduleById={hospitalScheduleById}
+                    avatarBookingBase64={handleImageBase64(hospitalById)}
+                    specialty={renderSpecialty(hospitalById)}
+                    nameBooking={hospitalById.name ? hospitalById.name : ""}
+                    addressBooking={
+                        hospitalById.address ? hospitalById.address : ""
+                    }
+                    dynamicEntity={hospitalById ? hospitalById : {}}
+                    distinguishSubjectExamination={
+                        distinguishSubjectExamination.HOSPITAL
+                    }
+                    renderSelectedTime={renderSelectedTime}
+                    renderSelectedDate={renderSelectedDate}
+                />
+            )}
         </div>
     );
 }

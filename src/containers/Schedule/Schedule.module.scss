@@ -1,0 +1,99 @@
+.schedule-content{
+    background-color: #fff;
+    border-radius: 6px;
+    margin-left: 0px !important;
+    margin-top: 2px;
+    padding: 10px;
+}
+
+.schedule-title{
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.content-left{
+    border-right: 1px solid #eee;
+    padding: 0px 10px 0px 0px;
+    margin-top: 10px;
+    overflow-y: scroll;
+    max-height: 500px;
+}
+
+.schedule-item{
+    margin-top: 14px;
+    padding: 16px;
+    border-radius: 6px;
+
+    &:hover{
+        cursor: pointer;
+        background-color: #f8f9fa;
+    }
+}
+
+.schedule-item p{
+    margin: 0px;
+}
+
+.schedule-item p:nth-child(1){
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.schedule-item p:nth-child(2), 
+.schedule-item p:nth-child(3),
+.schedule-item p:nth-child(4){
+    font-size: 15px;
+    opacity: 0.8;
+}
+
+.schedule-info-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.schedule-info-head-text p{
+    margin: 0px;
+}
+
+.schedule-info-head-text{
+    padding-left: 10px;
+}
+
+.schedule-info-head-text p:first-child{
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.schedule-info-head-text p:last-child {
+    font-size: 15px;
+    opacity: 0.8;
+}
+
+.booking-info,
+.patient-info{
+    padding: 10px;
+}
+
+.booking-info p,
+.patient-info p{
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.booking-info div,
+.patient-info div{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.booking-info div span:first-child,
+.patient-info div span:first-child{
+    color: #444;
+}
+
+.active{
+    background-color: #f8f9fa;
+}

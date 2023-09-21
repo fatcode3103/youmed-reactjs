@@ -5,6 +5,7 @@ import styles from "./MenuAccount.module.scss";
 import Header from "../../components/Header";
 import Loading from "../../components/Loading";
 import MenuBar from "../../components/MenuBar";
+import Footer from "../../components/Footer";
 
 const cx = classNames.bind(styles);
 
@@ -18,16 +19,12 @@ function MenuAccount({ children }) {
             {isLoading && <Loading />}
             <Header />
             <div className={cx("menu-acc-content", "row")}>
-                <div className={cx("col-4")}>
+                <div className={cx("col-3", "menu-bar")}>
                     <MenuBar />
                 </div>
-                <div
-                    style={{ border: "1px solid green" }}
-                    className={cx("col-8")}
-                >
-                    {children}
-                </div>
+                <div className={cx("col-9")}>{children}</div>
             </div>
+            <Footer backGround="#fff" />
         </div>
     );
 }
