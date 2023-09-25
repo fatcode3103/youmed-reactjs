@@ -429,7 +429,7 @@ export const folder2 = (
 export const iconDoctorBooking = (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="ionicon"
+        className="ionicon"
         viewBox="0 0 512 512"
     >
         <title>Medical</title>
@@ -437,9 +437,9 @@ export const iconDoctorBooking = (
             d="M429.93 174.27l-16.47-28.59a15.49 15.49 0 00-21.15-5.7l-98.39 57a4 4 0 01-6-3.5L288 80a16 16 0 00-16-16h-32a16 16 0 00-16 16l.07 113.57a4 4 0 01-6 3.5l-98.39-57a15.49 15.49 0 00-21.15 5.7l-16.46 28.6a15.42 15.42 0 005.69 21.1l98.49 57.08a4 4 0 010 6.9l-98.49 57.08a15.54 15.54 0 00-5.69 21.1l16.47 28.59a15.49 15.49 0 0021.15 5.7l98.39-57a4 4 0 016 3.5L224 432a16 16 0 0016 16h32a16 16 0 0016-16l-.07-113.67a4 4 0 016-3.5l98.39 57a15.49 15.49 0 0021.15-5.7l16.47-28.59a15.42 15.42 0 00-5.69-21.1l-98.49-57.08a4 4 0 010-6.9l98.49-57.08a15.51 15.51 0 005.68-21.11z"
             fill="none"
             stroke="#1e293b"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="32"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="32"
         />
         <script xmlns="" />
     </svg>
@@ -448,15 +448,15 @@ export const iconHospitalBooking = (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="#1e293b"
-        class="ionicon"
+        className="ionicon"
         viewBox="0 0 512 512"
     >
         <path
             fill="none"
             stroke="#1e293b"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="32"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="32"
             d="M176 416v64M80 32h192a32 32 0 0 1 32 32v412a4 4 0 0 1-4 4H48h0V64a32 32 0 0 1 32-32zm240 160h112a32 32 0 0 1 32 32v256h0-160 0V208a16 16 0 0 1 16-16z"
         />
         <path d="M98.08 431.87a16 16 0 1 1 13.79-13.79 16 16 0 0 1-13.79 13.79zm0-80a16 16 0 1 1 13.79-13.79 16 16 0 0 1-13.79 13.79zm0-80a16 16 0 1 1 13.79-13.79 16 16 0 0 1-13.79 13.79zm0-80a16 16 0 1 1 13.79-13.79 16 16 0 0 1-13.79 13.79zm0-80a16 16 0 1 1 13.79-13.79 16 16 0 0 1-13.79 13.79zm80 240a16 16 0 1 1 13.79-13.79 16 16 0 0 1-13.79 13.79zm0-80a16 16 0 1 1 13.79-13.79 16 16 0 0 1-13.79 13.79zm0-80a16 16 0 1 1 13.79-13.79 16 16 0 0 1-13.79 13.79zm0-80a16 16 0 1 1 13.79-13.79 16 16 0 0 1-13.79 13.79zm80 320a16 16 0 1 1 13.79-13.79 16 16 0 0 1-13.79 13.79zm0-80a16 16 0 1 1 13.79-13.79 16 16 0 0 1-13.79 13.79zm0-80a16 16 0 1 1 13.79-13.79 16 16 0 0 1-13.79 13.79z" />
@@ -474,7 +474,7 @@ export const iconHospitalBooking = (
 export const iconClinicBooking = (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="ionicon"
+        className="ionicon"
         viewBox="0 0 512 512"
     >
         <title>Medkit</title>
@@ -487,16 +487,16 @@ export const iconClinicBooking = (
             ry="48"
             fill="none"
             stroke="#1e293b"
-            stroke-linejoin="round"
-            stroke-width="32"
+            strokeLinejoin="round"
+            strokeWidth="32"
         />
         <path
             d="M144 112V80a32 32 0 0132-32h160a32 32 0 0132 32v32M256 208v160M336 288H176"
             fill="none"
             stroke="#1e293b"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="32"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="32"
         />
         <script xmlns="" />
     </svg>
@@ -509,27 +509,27 @@ export const notFoundSearch = (
         width="100"
         height="100"
         viewBox="0 0 512 512"
-        class="text-gray-300"
+        className="text-gray-300"
     >
         <path
             _ngcontent-serverApp-c57=""
             d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z"
             fill="none"
             stroke="currentColor"
-            stroke-miterlimit="10"
-            stroke-width="32"
+            strokeMiterlimit="10"
+            strokeWidth="32"
         ></path>
         <path
             _ngcontent-serverApp-c57=""
             d="M250.26 166.05L256 288l5.73-121.95a5.74 5.74 0 00-5.79-6h0a5.74 5.74 0 00-5.68 6z"
             fill="none"
             stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="32"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="32"
         ></path>
         <path
-            _ngcontent-serverApp-c57=""
+            ngcontentServerApp-c57=""
             fill="currentColor"
             d="M256 367.91a20 20 0 1120-20 20 20 0 01-20 20z"
         ></path>

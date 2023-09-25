@@ -15,6 +15,7 @@ function Button(props) {
         outline = false,
         disnabel = false,
         onlyLink = false,
+        cancel = false,
         blur = false,
         bl = false,
         className,
@@ -52,6 +53,7 @@ function Button(props) {
         blur: blur,
         bl: bl,
         bgGray: bgGray,
+        cancel: cancel,
         [className]: className,
     });
 

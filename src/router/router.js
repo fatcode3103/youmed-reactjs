@@ -39,6 +39,8 @@ import HcpPage from "../containers/HcpPage";
 import SearchPage from "../containers/SearchPage";
 import SearchSpecilatyPage from "../containers/SearchSpecialtyPage";
 import MedicalNews from "../containers/MedicalNews";
+import ManageAppointment from "../containers/System/Doctor/ManageAppointment";
+import SystemDoctor from "../containers/System/SystemDoctor.js";
 
 export const routerPublic = [
     { path: path.HOME, component: Home },
@@ -58,7 +60,7 @@ export const routerPublic = [
     { path: "*", component: PageNotFound },
 ];
 
-export const routerPrivate = [
+export const routerAdminPrivate = [
     { path: path.SYSTEM, component: System },
     { path: path.USER_MANAGE, component: UserManage },
     { path: path.DOCTOR_MANAGE, component: DoctorInfoManage },
@@ -70,6 +72,11 @@ export const routerPrivate = [
     { path: path.CLINIC_MANAGE, component: ClinicInfoManage },
     { path: path.CLINIC_MANAGE_DETAIL, component: ClinicManageDetail },
     { path: path.CLINIC_SCHEDULE, component: ClinicSchedule },
+];
+
+export const routerDoctorPrivate = [
+    { path: path.SYSTEM_DOCTOR, component: SystemDoctor },
+    { path: path.MANAGE_APPOINTMNET, component: ManageAppointment },
 ];
 
 export const routerLogin = [

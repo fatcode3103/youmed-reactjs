@@ -8,14 +8,11 @@
     transform: translateY(-100%);
 }
 
-.show-pass {
-    font-size: 15px;
-    cursor: pointer;
-}
-
+.show-pass,
 .hide-pass {
     font-size: 15px;
     cursor: pointer;
+    transform: translateY(-50%);
 }
 
 .more{

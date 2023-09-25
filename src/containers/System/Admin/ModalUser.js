@@ -101,7 +101,7 @@ function ModalUser(props) {
             setForm(initState);
         }
         setHasChangeDateOfBirth(false);
-    }, [currentUserByIdEdit]);
+    }, [currentUserByIdEdit, isData]);
 
     const handleSaveUser = async () => {
         let dateTimestamp = date.getTime();

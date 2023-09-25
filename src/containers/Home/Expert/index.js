@@ -1,69 +1,47 @@
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import styles from "./Expert.module.scss";
-import Image from "../../../components/Image";
+import { useSelector, useDispatch } from "react-redux";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+
+import styles from "./Expert.module.scss";
+import * as actions from "../../../app/actions";
+import BasicInfoDoctor from "../../../components/BasicInfoDoctor";
 
 const cx = classNames.bind(styles);
 
 function Expert() {
     const { t } = useTranslation();
+
+    const user = useSelector((state) => state.user);
+    const dispatch = useDispatch();
+
+    const { allExpert } = user;
+
+    const allExpert1 = allExpert.slice(0, Math.trunc(allExpert.length / 2));
+    const allExpert2 = allExpert.slice(Math.trunc(allExpert.length / 2));
+
+    useEffect(() => {
+        dispatch(actions.getAllExpertAction());
+    }, [dispatch]);
+
     return (
         <div className={cx("expert-container")}>
             <div className={cx("expert-content")}>
                 <div className={cx("title")}>
                     {t("home.expert_section.title")}
                 </div>
-                <div className={cx("body")}>
-                    <div className={cx("content-left")}>
-                        <div className={cx("expert-item")}>
-                            <Image
-                                br="true"
-                                size="m"
-                                src="https://cdn1.youmed.vn/tin-tuc/wp-content/uploads/2022/06/thac-si-bac-si-nguyen-hong-van-khanh.jpg?width=140&aspect_ratio=1:1"
-                            />
-                            <div className={cx("info")}>
-                                <p>ThS.BS Nguyễn Hồng Vân Khánh</p>
-                                <span>Gan mật tụy</span>
-                            </div>
+                <div className={cx("body", "row")}>
+                    <div className={cx("content-left", "col-8 row")}>
+                        <div className={cx("col-6")}>
+                            <BasicInfoDoctor data={allExpert1} />
                         </div>
-                        <div className={cx("expert-item")}>
-                            <Image
-                                br="true"
-                                size="m"
-                                src="https://cdn1.youmed.vn/tin-tuc/wp-content/uploads/2022/06/thac-si-bac-si-nguyen-hong-van-khanh.jpg?width=140&aspect_ratio=1:1"
-                            />
-                            <div className={cx("info")}>
-                                <p>ThS.BS Nguyễn Hồng Vân Khánh</p>
-                                <span>Gan mật tụy</span>
-                            </div>
-                        </div>
-                        <div className={cx("expert-item")}>
-                            <Image
-                                br="true"
-                                size="m"
-                                src="https://cdn1.youmed.vn/tin-tuc/wp-content/uploads/2022/06/thac-si-bac-si-nguyen-hong-van-khanh.jpg?width=140&aspect_ratio=1:1"
-                            />
-                            <div className={cx("info")}>
-                                <p>ThS.BS Nguyễn Hồng Vân Khánh</p>
-                                <span>Gan mật tụy</span>
-                            </div>
-                        </div>
-                        <div className={cx("expert-item")}>
-                            <Image
-                                br="true"
-                                size="m"
-                                src="https://cdn1.youmed.vn/tin-tuc/wp-content/uploads/2022/06/thac-si-bac-si-nguyen-hong-van-khanh.jpg?width=140&aspect_ratio=1:1"
-                            />
-                            <div className={cx("info")}>
-                                <p>ThS.BS Nguyễn Hồng Vân Khánh</p>
-                                <span>Gan mật tụy</span>
-                            </div>
+                        <div className={cx("col-6")}>
+                            <BasicInfoDoctor data={allExpert2} />
                         </div>
                     </div>
-                    <div className={cx("content-right")}>
+                    <div className={cx("content-right", "col-4")}>
                         <p>{t("home.expert_section.text")}</p>
                         <button className={cx("more-btn")}>
                             <span>{t("home.expert_section.title")}</span>

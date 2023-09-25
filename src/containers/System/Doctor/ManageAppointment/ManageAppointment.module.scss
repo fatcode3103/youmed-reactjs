@@ -1,0 +1,23 @@
+.manage-appointmnet-content{
+    padding: calc(var(--height-header) + 50px) 100px;
+}
+
+.manage-appointmnet-table{
+    width: 100%;
+}
+
+.manage-appointmnet-table td,
+.manage-appointmnet-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.manage-appointmnet-table th{
+    font-weight: 500;
+}
+
+.table-title{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}

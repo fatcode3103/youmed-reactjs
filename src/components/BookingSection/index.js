@@ -12,7 +12,6 @@ import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import moment from "moment";
 
-import "./Slider.scss";
 import styles from "./BookingSection.module.scss";
 import Button from "../Button";
 import { language as LANGUAGE, date } from "../../utils/constant";

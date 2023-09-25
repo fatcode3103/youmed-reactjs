@@ -112,6 +112,30 @@ const getBookingAppointmentApi = async (patientId) => {
     return res;
 };
 
+const getAllExpertApi = async () => {
+    let res = await httpRequest.get(`get-all-expert`);
+    return res;
+};
+
+const cancelAppointmentByIdApi = async (appointmentId) => {
+    let res = await httpRequest.put(
+        `cancel-appointment-by-id?appointmentId=${appointmentId}`
+    );
+    return res;
+};
+
+const getAppointmentDoctorByIdApi = async (doctorId) => {
+    let res = await httpRequest.get(
+        `get-appointment-doctor-by-id?doctorId=${doctorId}`
+    );
+    return res;
+};
+
+const completeAppointmetApi = async (token) => {
+    let res = await httpRequest.put(`complete-appointment?token=${token}`);
+    return res;
+};
+
 export {
     postLoginApi,
     getAllUserApi,
@@ -133,4 +157,8 @@ export {
     postVerifyBookAppointmentApi,
     postSuccessBookAppointmentApi,
     getBookingAppointmentApi,
+    getAllExpertApi,
+    cancelAppointmentByIdApi,
+    getAppointmentDoctorByIdApi,
+    completeAppointmetApi,
 };

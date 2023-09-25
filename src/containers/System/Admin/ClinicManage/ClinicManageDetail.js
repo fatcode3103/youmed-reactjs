@@ -164,7 +164,6 @@ function ClinicManageDetail() {
 
     return (
         <div className={cx("clinic-detail-container")}>
-            {clinicById && console.log("check clinicById:>>> ", clinicById)}
             <HeaderSystem />
             <div className={cx("clinic-detail-content")}>
                 <h1>ClinicManageDetail page</h1>

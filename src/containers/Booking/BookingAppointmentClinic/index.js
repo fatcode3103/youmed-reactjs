@@ -8,14 +8,12 @@ import BookingSection from "../../../components/BookingSection";
 import PatientProfile from "../../../components/PatientProfileBooking";
 import Loading from "../../../components/Loading";
 import Header from "../../../components/Header/Header";
-import TypeExamination from "../../../components/TypeExamination";
 import moment from "moment";
 import { language as LANGUAGE, date } from "../../../utils/constant";
 import { useEffect } from "react";
 import * as actions from "../../../app/actions";
 import BufferToBase64 from "../../../utils/BufferToBase64";
 import { distinguishSubjectExamination } from "../../../utils/constant";
-import OptionBooking from "../../../components/OptionBooking";
 
 var _ = require("lodash");
 
@@ -30,7 +28,6 @@ function BookingAppointmentClinic() {
         language,
         selectedDate,
         selectedScheduleTime,
-        examination,
         clinicScheduleById,
         clinicById,
     } = user;
@@ -73,16 +70,6 @@ function BookingAppointmentClinic() {
         }
     };
 
-    const renderExamination = (examinationObj) => {
-        if (!_.isEmpty(examinationObj)) {
-            if (language === LANGUAGE.VN) {
-                return examinationObj.valueVi;
-            } else {
-                return examinationObj.valueEn;
-            }
-        }
-    };
-
     const renderNamePatient = (user) => {
         if (!_.isEmpty(user)) {
             if (language === LANGUAGE.VN) {
@@ -109,11 +96,6 @@ function BookingAppointmentClinic() {
     };
 
     const sectionStepData = [
-        {
-            title: "Loại hình",
-            component: TypeExamination,
-            data: [{ value: renderExamination(examination) }],
-        },
         {
             title: "Ngày và giờ khám",
             component: BookingSection,

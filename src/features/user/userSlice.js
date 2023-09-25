@@ -21,6 +21,8 @@ const initialState = {
     allBookingAppointmentById: [],
     searchQueryResult: [],
     searchQuerySpecialtyResult: [],
+    allExpert: [],
+    examinationAppointmentDoctor: [],
 };
 
 export const userSlice = createSlice({
@@ -225,6 +227,49 @@ export const userSlice = createSlice({
         postQuerySearchSpecialtyFailed: (state, action) => {
             state.isLoading = false;
         },
+        //get all expert
+        getAllExpertStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getAllExpertSuccess: (state, action) => {
+            state.isLoading = false;
+            state.allExpert = action.payload;
+        },
+        getAllExpertFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //cancel appointment
+        cancelAppointmentByIdStart: (state, action) => {
+            state.isLoading = true;
+        },
+        cancelAppointmentByIdSuccess: (state, action) => {
+            state.isLoading = false;
+        },
+        cancelAppointmentByIdFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //get appointment doctor
+        getAppointmentDoctorByIdStart: (state, action) => {
+            state.isLoading = true;
+        },
+        getAppointmentDoctorByIdSuccess: (state, action) => {
+            state.isLoading = false;
+            state.examinationAppointmentDoctor = action.payload;
+        },
+        getAppointmentDoctorByIdFailed: (state, action) => {
+            state.isLoading = false;
+        },
+        //compelete appointment doctor
+        completeAppointmnetStart: (state, action) => {
+            state.isLoading = true;
+        },
+        completeAppointmnetSuccess: (state, action) => {
+            state.isLoading = false;
+            state.examinationAppointmentDoctor = action.payload;
+        },
+        completeAppointmnetFailed: (state, action) => {
+            state.isLoading = false;
+        },
     },
 });
 
@@ -281,6 +326,18 @@ export const {
     postQuerySearchSpecialtyStart,
     postQuerySearchSpecialtySuccess,
     postQuerySearchSpecialtyFailed,
+    getAllExpertStart,
+    getAllExpertSuccess,
+    getAllExpertFailed,
+    cancelAppointmentByIdStart,
+    cancelAppointmentByIdSuccess,
+    cancelAppointmentByIdFailed,
+    getAppointmentDoctorByIdStart,
+    getAppointmentDoctorByIdSuccess,
+    getAppointmentDoctorByIdFailed,
+    completeAppointmnetStart,
+    completeAppointmnetSuccess,
+    completeAppointmnetFailed,
 } = userSlice.actions;
 
 export default userSlice.reducer;

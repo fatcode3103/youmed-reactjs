@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 import * as userService from "../../services/userService";
 import * as userSlice from "../../features/user/userSlice";
-import { path } from "../../utils/constant";
+import { STATUS, path } from "../../utils/constant";
 import * as specialtyService from "../../services/specialtyService";
 import * as hospitalService from "../../services/hospitalService";
 import * as clinicService from "../../services/clinicService";
@@ -423,6 +423,132 @@ export const postQuerySearchSpecialtyAction = ({
             }
         } catch (e) {
             dispatch(userSlice.postQuerySearchSpecialtyFailed());
+        }
+    };
+};
+
+export const getAllExpertAction = () => {
+    return async (dispatch) => {
+        dispatch(userSlice.getAllExpertStart());
+        try {
+            let res = await userService.getAllExpertApi();
+            if (res && res.data.errorCode === 0) {
+                dispatch(userSlice.getAllExpertSuccess(res.data.data));
+            } else {
+                dispatch(userSlice.getAllExpertFailed());
+            }
+        } catch (e) {
+            dispatch(userSlice.getAllExpertFailed());
+        }
+    };
+};
+
+export const cancelAppointmentById = (appointmentId, appointmentStatus) => {
+    return async (dispatch) => {
+        if (appointmentStatus === STATUS.S4) {
+            toast.info(
+                <Translation>
+                    {(t) => <span>{t("toast.appointment_cancelled")}!</span>}
+                </Translation>
+            );
+        } else {
+            dispatch(userSlice.cancelAppointmentByIdStart());
+            try {
+                let res = await userService.cancelAppointmentByIdApi(
+                    appointmentId
+                );
+                if (res && res.data.errorCode === 0) {
+                    dispatch(userSlice.cancelAppointmentByIdSuccess());
+                    toast.success(
+                        <Translation>
+                            {(t) => (
+                                <span>
+                                    {t("toast.cancel_appointmnet_success")}!
+                                </span>
+                            )}
+                        </Translation>
+                    );
+                } else {
+                    dispatch(userSlice.cancelAppointmentByIdFailed());
+                    toast.error(
+                        <Translation>
+                            {(t) => (
+                                <span>
+                                    {t("toast.cancel_appointmnet_failed")}!
+                                </span>
+                            )}
+                        </Translation>
+                    );
+                }
+            } catch (e) {
+                dispatch(userSlice.cancelAppointmentByIdFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <span>{t("toast.cancel_appointmnet_failed")}!</span>
+                        )}
+                    </Translation>
+                );
+            }
+        }
+    };
+};
+
+export const getAppointmentDoctorByIdAction = (doctorId) => {
+    return async (dispatch) => {
+        dispatch(userSlice.getAppointmentDoctorByIdFailed());
+        try {
+            let res = await userService.getAppointmentDoctorByIdApi(doctorId);
+            if (res && res.data.errorCode === 0) {
+                dispatch(
+                    userSlice.getAppointmentDoctorByIdSuccess(res.data.data)
+                );
+            } else {
+                dispatch(userSlice.getAppointmentDoctorByIdFailed());
+            }
+        } catch (e) {
+            dispatch(userSlice.getAppointmentDoctorByIdFailed());
+        }
+    };
+};
+
+export const completeAppointmetAction = (token) => {
+    return async (dispatch) => {
+        dispatch(userSlice.completeAppointmnetStart());
+        try {
+            let res = await userService.completeAppointmetApi(token);
+            if (res && res.data.errorCode === 0) {
+                dispatch(userSlice.completeAppointmnetSuccess());
+                toast.success(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.complete_appointment_success")}!
+                            </span>
+                        )}
+                    </Translation>
+                );
+            } else {
+                dispatch(userSlice.completeAppointmnetFailed());
+                toast.error(
+                    <Translation>
+                        {(t) => (
+                            <span>
+                                {t("toast.complete_appointment_failed")}!
+                            </span>
+                        )}
+                    </Translation>
+                );
+            }
+        } catch (e) {
+            dispatch(userSlice.completeAppointmnetFailed());
+            toast.error(
+                <Translation>
+                    {(t) => (
+                        <span>{t("toast.complete_appointment_failed")}!</span>
+                    )}
+                </Translation>
+            );
         }
     };
 };

@@ -31,14 +31,12 @@ function SelectCategory({
 
     const handleCheckedSpecialty = (e, id) => {
         if (e.target.tagName === "INPUT") {
-            setIsCheckedSpecialty(id);
             onSelectionChange(id);
         }
     };
 
     const handleCheckedOther = (e, type) => {
         if (e.target.tagName === "INPUT") {
-            setIsCheckedOther(type);
             onSelectionChange(type);
         }
     };
@@ -90,6 +88,11 @@ function SelectCategory({
                                                 <input
                                                     type="radio"
                                                     id={`category-${index}`}
+                                                    onChange={() => {
+                                                        setIsCheckedSpecialty(
+                                                            item.id
+                                                        );
+                                                    }}
                                                     checked={
                                                         item.id ===
                                                         isCheckedSpecialty
@@ -153,6 +156,11 @@ function SelectCategory({
                                                 <input
                                                     type="radio"
                                                     id={`category-other-${index}`}
+                                                    onChange={() => {
+                                                        setIsCheckedOther(
+                                                            item.type
+                                                        );
+                                                    }}
                                                     checked={
                                                         item.type ===
                                                         isCheckedOther

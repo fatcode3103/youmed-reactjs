@@ -40,6 +40,76 @@ export const menuMedicalStaff = [
     },
 ];
 
+export const menuAdminInfo = [
+    {
+        title: <Translation>{(t) => t("home.schedule")}</Translation>,
+        to: path.SCHEDULE,
+    },
+    {
+        title: <Translation>{(t) => t("home.language")}</Translation>,
+        menuSub: {
+            title: <Translation>{(t) => t("home.language")}</Translation>,
+            data: [
+                {
+                    title: "English",
+                    code: language.EN,
+                },
+                {
+                    title: "Vietnamese",
+                    code: language.VN,
+                },
+            ],
+        },
+    },
+    {
+        title: <Translation>{(t) => t("home.profile")}</Translation>,
+        to: path.PROFILE_USER,
+    },
+    {
+        title: <Translation>{(t) => t("home.login_system")}</Translation>,
+        to: path.SYSTEM,
+    },
+    {
+        title: <Translation>{(t) => t("home.log_out")}</Translation>,
+        to: path.LOGOUT,
+    },
+];
+
+export const menuDoctorInfo = [
+    {
+        title: <Translation>{(t) => t("home.schedule")}</Translation>,
+        to: path.SCHEDULE,
+    },
+    {
+        title: <Translation>{(t) => t("home.language")}</Translation>,
+        menuSub: {
+            title: <Translation>{(t) => t("home.language")}</Translation>,
+            data: [
+                {
+                    title: "English",
+                    code: language.EN,
+                },
+                {
+                    title: "Vietnamese",
+                    code: language.VN,
+                },
+            ],
+        },
+    },
+    {
+        title: <Translation>{(t) => t("home.profile")}</Translation>,
+        to: path.PROFILE_USER,
+    },
+    {
+        title: <Translation>{(t) => t("home.login_system")}</Translation>,
+        to: path.SYSTEM_DOCTOR,
+    },
+    {
+        title: <Translation>{(t) => t("home.log_out")}</Translation>,
+        to: path.LOGOUT,
+    },
+];
+
 export const menuUserInfo = [
     {
         title: <Translation>{(t) => t("home.schedule")}</Translation>,
@@ -153,10 +223,6 @@ export const menuHeader = [
             to: path.HCP,
         },
         {
-            title: "YouMed Clinic",
-            to: path.CLINIC,
-        },
-        {
             title: "Y360",
             href: "https://y360.vn/",
         },
@@ -261,6 +327,16 @@ export const menuSystemAdmin = [
                 <Translation>{(t) => t("system.clinic_schedule")}</Translation>
             ),
             to: path.CLINIC_SCHEDULE,
+        },
+    ],
+];
+
+export const menuSystemDoctor = [
+    [
+        {
+            titleTop: "Quản lý",
+            title: "Quản lý lịch đặt khám",
+            to: path.MANAGE_APPOINTMNET,
         },
     ],
 ];

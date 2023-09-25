@@ -2,32 +2,25 @@ import { Link, NavLink } from "react-router-dom";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { path, language as LANGUAGE } from "../../utils/constant";
 import Menu from "../Menu/Menu";
 import images from "../../assets/image";
-import styles from "./HeaderSystem.module.scss";
-import { faCaretDown, faHome } from "@fortawesome/free-solid-svg-icons";
-import Tippy from "@tippyjs/react/headless";
+import styles from "./HeaderSystemDoctor.module.scss";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import Image from "../Image";
 import BufferToBase64 from "../../utils/BufferToBase64";
 import * as MenuData from "../../components/MenuData/menuData";
 
 const cx = classNames.bind(styles);
 
-function HeaderSystem(props) {
-    const navigate = useNavigate();
+function HeaderSystemDoctor(props) {
     const { t } = useTranslation();
 
     const userState = useSelector((state) => state.user);
 
     const { currentUser, language } = userState;
-
-    const handlebackToHomeSystem = () => {
-        navigate(path.SYSTEM);
-    };
 
     return (
         <div className={cx("header-container")}>
@@ -35,26 +28,9 @@ function HeaderSystem(props) {
                 <Link to={path.HOME} className={cx("header-logo")}>
                     <img src={images.logo} alt="logo" />
                 </Link>
-                <Tippy
-                    render={(attrs) => (
-                        <span
-                            className={cx("home-tippy")}
-                            tabIndex="-1"
-                            {...attrs}
-                        >
-                            system home
-                        </span>
-                    )}
-                >
-                    <FontAwesomeIcon
-                        icon={faHome}
-                        className={cx("icon-home-system")}
-                        onClick={() => handlebackToHomeSystem()}
-                    />
-                </Tippy>
 
                 <div className={cx("header-text")}>
-                    {MenuData.menuSystemAdmin.map((item, index) => {
+                    {MenuData.menuSystemDoctor.map((item, index) => {
                         return (
                             <Menu item={item} key={index}>
                                 <NavLink>
@@ -72,7 +48,7 @@ function HeaderSystem(props) {
                     })}
                 </div>
                 <div className={cx("header-account")}>
-                    <Menu item={MenuData.menuAdminInfo}>
+                    <Menu item={MenuData.menuDoctorInfo}>
                         <div className={cx("acconut-user")}>
                             <Image
                                 br="true"
@@ -106,4 +82,4 @@ function HeaderSystem(props) {
     );
 }
 
-export default HeaderSystem;
+export default HeaderSystemDoctor;

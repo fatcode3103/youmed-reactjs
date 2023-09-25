@@ -36,6 +36,10 @@ function LoginPage() {
         },
     ];
 
+    useEffect(() => {
+        document.documentElement.scrollTop = 0;
+    }, [activeTab]);
+
     const handelClickTab = (e, item) => {
         setActiveTab(item.key);
         setLineStyle({
@@ -87,7 +91,7 @@ function LoginPage() {
                                     {activeTab === "t1" ? (
                                         <Login />
                                     ) : (
-                                        <Register />
+                                        <Register setActiveTab={setActiveTab} />
                                     )}
                                 </div>
                             </div>

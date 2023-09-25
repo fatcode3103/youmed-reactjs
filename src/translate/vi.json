@@ -182,7 +182,12 @@
         "create_clinic_schedule_success": "Tạo lịch khám phòng khám thành công",
         "create_clinic_schedule_failed": "Tạo lịch khám phòng khám thất bại",
         "update_clinic_schedule_success": "Cập nhật lịch khám phòng khám thành công",
-        "update_clinic_schedule_failed": "Cập nhật lịch khám phòng khám thất bại"
+        "update_clinic_schedule_failed": "Cập nhật lịch khám phòng khám thất bại",
+        "cancel_appointmnet_success": "Hủy lịch khám thành công",
+        "cancel_appointment_failed": "Hủy lịch khám thất bại",
+        "appointment_cancelled": "Lịch khám đã được hủy",
+        "complete_appointment_success": "Cập nhật trạng thái hoàn thành lịch khám thành công",
+        "complete_appointment_failed": "Cập nhật trạng thái hoàn thành lịch khám thất bại"
     },
     "login":{
         "email": "Địa chỉ email",

@@ -21,7 +21,7 @@ function Footer({ backGround }) {
             className={cx("login-footer")}
             style={{ backgroundColor: backGround }}
         >
-            <div className={cx("row form-group")}>
+            <div className={cx("row form-group flex-nowrap")}>
                 <div className={cx("col-3")}>
                     <p className={cx("text-uppercase fw-bolder")}>
                         {t("home.footer_section.company.title")}
@@ -31,7 +31,7 @@ function Footer({ backGround }) {
                     <p>{t("home.footer_section.company.text_3")}</p>
                     <p>{t("home.footer_section.company.text_4")}</p>
                 </div>
-                <div className={cx("col-3", "ps-100")}>
+                <div className={cx("col-3", "ms-5")}>
                     <p className={cx("text-capitalize fw-bolder ")}>
                         {t("home.footer_section.about_youmed.title")}
                     </p>
@@ -61,70 +61,70 @@ function Footer({ backGround }) {
                     <p>{t("home.footer_section.support.text_4")}</p>
                     <p>{t("home.footer_section.support.text_5")}</p>
                 </div>
-                <div className={cx("connection")}>
-                    <div className={cx("social")}>
-                        <p>{t("home.footer_section.connect")}</p>
-                        <div className={cx("social-icon")}>
-                            <Button
-                                target="_blank"
-                                href="https://www.facebook.com/profile.php?id=100034110155872"
-                            >
-                                <FontAwesomeIcon
-                                    icon={faFacebook}
-                                    className={cx("social-icon-1")}
-                                />
-                            </Button>
-                            <FontAwesomeIcon
-                                icon={faInstagram}
-                                className={cx("social-icon-2")}
-                            />
-                            <FontAwesomeIcon
-                                icon={faYoutube}
-                                className={cx("social-icon-3")}
-                            />
-                            <FontAwesomeIcon
-                                icon={faTiktok}
-                                className={cx("social-icon-4")}
-                            />
-                        </div>
-                    </div>
-                    <div className={cx("license")}>
+            </div>
+            <div className={cx("connection")}>
+                <div className={cx("social")}>
+                    <p>{t("home.footer_section.connect")}</p>
+                    <div className={cx("social-icon")}>
                         <Button
                             target="_blank"
-                            href="http://online.gov.vn/HomePage/WebsiteDisplay.aspx?DocId=53817"
+                            href="https://www.facebook.com/profile.php?id=100034110155872"
                         >
-                            <img
-                                src={images.btc}
-                                alt=""
-                                className={cx("license-1")}
+                            <FontAwesomeIcon
+                                icon={faFacebook}
+                                className={cx("social-icon-1")}
                             />
                         </Button>
-                        <Button
-                            target="_blank"
-                            href="https://www.dmca.com/Protection/Status.aspx?ID=a74b3497-ddcd-4860-89c3-fce83c39f12a&refurl=https://youmed.vn/dat-kham/login"
-                        >
-                            <img
-                                src={images.dmca}
-                                alt=""
-                                className={cx("license-2")}
-                            />
-                        </Button>
+                        <FontAwesomeIcon
+                            icon={faInstagram}
+                            className={cx("social-icon-2")}
+                        />
+                        <FontAwesomeIcon
+                            icon={faYoutube}
+                            className={cx("social-icon-3")}
+                        />
+                        <FontAwesomeIcon
+                            icon={faTiktok}
+                            className={cx("social-icon-4")}
+                        />
                     </div>
                 </div>
-                <hr
-                    style={{
-                        height: "1px",
-                        color: "#bbb",
-                        width: "100%",
-                        margin: "20px 0 20px 0",
-                    }}
-                />
-                <p className={cx("more-info")}>
-                    <span>{t("home.footer_section.info.text_1")}</span>
-                    <span>{t("home.footer_section.info.text_2")}</span>
-                    <span>{t("home.footer_section.info.text_3")}</span>
-                </p>
+                <div className={cx("license")}>
+                    <Button
+                        target="_blank"
+                        href="http://online.gov.vn/HomePage/WebsiteDisplay.aspx?DocId=53817"
+                    >
+                        <img
+                            src={images.btc}
+                            alt=""
+                            className={cx("license-1")}
+                        />
+                    </Button>
+                    <Button
+                        target="_blank"
+                        href="https://www.dmca.com/Protection/Status.aspx?ID=a74b3497-ddcd-4860-89c3-fce83c39f12a&refurl=https://youmed.vn/dat-kham/login"
+                    >
+                        <img
+                            src={images.dmca}
+                            alt=""
+                            className={cx("license-2")}
+                        />
+                    </Button>
+                </div>
             </div>
+            <hr
+                style={{
+                    height: "1px",
+                    color: "#bbb",
+                    width: "100%",
+                    margin: "20px 0 20px 0",
+                }}
+            />
+            <p className={cx("more-info")}>
+                <span>{t("home.footer_section.info.text_1")}</span>
+                <span>{t("home.footer_section.info.text_2")}</span>
+                <span>{t("home.footer_section.info.text_3")}</span>
+            </p>
         </div>
     );
 }

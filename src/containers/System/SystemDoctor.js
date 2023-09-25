@@ -3,25 +3,18 @@ import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import styles from "./System.module.scss";
+import styles from "./SystemDoctor.module.scss";
 import { path } from "../../utils/constant";
-import HeaderSystem from "../../components/Header/HeaderSystem";
+import HeaderSystemDoctor from "../../components/Header/HeaderSystemDoctor";
 import * as actions from "../../app/actions";
 
 const cx = classNames.bind(styles);
 
-function System() {
+function SystemDoctor() {
     const userState = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
     const { isLogin, currentUser } = userState;
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (isLogin) {
-            navigate(path.USER_MANAGE);
-        }
-    }, []);
 
     useEffect(() => {
         dispatch(actions.getUserByIdAction(currentUser.id));
@@ -29,10 +22,10 @@ function System() {
 
     return (
         <div>
-            <HeaderSystem />
+            <HeaderSystemDoctor />
             <div className={cx("system-container")}></div>
         </div>
     );
 }
 
-export default System;
+export default SystemDoctor;

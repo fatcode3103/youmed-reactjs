@@ -46,6 +46,9 @@ export const path = {
     SEARCH: "/search",
     //search by specialty
     SEARCH_SPECIALTY: "/search-specialty",
+    // system doctor
+    SYSTEM_DOCTOR: "/system-doctor",
+    MANAGE_APPOINTMNET: "/system-doctor/manage-appointment",
 };
 
 export const language = {
@@ -59,10 +62,18 @@ export const role = {
     PATIENT: "R3",
 };
 
+export const position = {
+    NONE: "P1",
+    DOCTOR: "P2",
+    PROFESSOR: "P3",
+    NO_POSITION: "P4",
+};
+
 export const STATUS = {
     S1: "S1",
     S2: "S2",
     S3: "S3",
+    S4: "S4",
 };
 
 export const distinguishSubjectExamination = {

@@ -29,7 +29,6 @@ function BookingAppointmentHospital() {
         language,
         selectedDate,
         selectedScheduleTime,
-        examination,
         hospitalScheduleById,
     } = user;
     const admin = useSelector((state) => state.admin);
@@ -71,16 +70,6 @@ function BookingAppointmentHospital() {
         }
     };
 
-    const renderExamination = (examinationObj) => {
-        if (!_.isEmpty(examinationObj)) {
-            if (language === LANGUAGE.VN) {
-                return examinationObj.valueVi;
-            } else {
-                return examinationObj.valueEn;
-            }
-        }
-    };
-
     const renderNamePatient = (user) => {
         if (!_.isEmpty(user)) {
             if (language === LANGUAGE.VN) {
@@ -107,11 +96,6 @@ function BookingAppointmentHospital() {
     };
 
     const sectionStepData = [
-        {
-            title: "Loại hình",
-            component: TypeExamination,
-            data: [{ value: renderExamination(examination) }],
-        },
         {
             title: "Ngày và giờ khám",
             component: BookingSection,

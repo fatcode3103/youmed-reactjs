@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import * as router from "./router/";
 import PrivateRoute from "./utils/PrivateRouter";
 import LoginRoute from "./utils/LoginRoute";
+import PrivateRouterDoctor from "./utils/PrivateRouterDoctor";
 
 function App() {
     return (
@@ -22,7 +23,7 @@ function App() {
                                 />
                             );
                         })}
-                        {router.routerPrivate.map((item, index) => {
+                        {router.routerAdminPrivate.map((item, index) => {
                             const Page = item.component;
                             return (
                                 <Route
@@ -30,6 +31,20 @@ function App() {
                                     key={index}
                                     element={
                                         <PrivateRoute element={<Page />} />
+                                    }
+                                />
+                            );
+                        })}
+                        {router.routerDoctorPrivate.map((item, index) => {
+                            const Page = item.component;
+                            return (
+                                <Route
+                                    path={item.path}
+                                    key={index}
+                                    element={
+                                        <PrivateRouterDoctor
+                                            element={<Page />}
+                                        />
                                     }
                                 />
                             );

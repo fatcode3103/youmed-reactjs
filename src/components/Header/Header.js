@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { path, language as LANGUAGE } from "../../utils/constant";
+import { path, language as LANGUAGE, role } from "../../utils/constant";
 import styles from "./Header.module.scss";
 import Menu from "../Menu/Menu";
 import images from "../../assets/image";
@@ -13,10 +13,10 @@ import Button from "../Button";
 import BufferToBase64 from "../../utils/BufferToBase64";
 
 import {
-    menuAppointment,
-    menuMedicalStaff,
     menuUserInfo,
     menuHeader,
+    menuAdminInfo,
+    menuDoctorInfo,
 } from "../MenuData/menuData";
 import Image from "../Image";
 
@@ -43,6 +43,19 @@ function Header(props) {
 
     const handlebackToHome = () => {
         navigate(path.HOME);
+    };
+
+    const getMenuInfoByRole = (roleInput) => {
+        switch (roleInput) {
+            case role.PATIENT:
+                return menuUserInfo;
+            case role.DOCTOR:
+                return menuDoctorInfo;
+            case role.ADMIN:
+                return menuAdminInfo;
+            default:
+                return [];
+        }
     };
 
     return (
@@ -88,7 +101,9 @@ function Header(props) {
                     <div className={cx("header-account")}>
                         {isLogin ? (
                             <>
-                                <Menu item={menuUserInfo}>
+                                <Menu
+                                    item={getMenuInfoByRole(currentUser.roleId)}
+                                >
                                     <div className={cx("acconut-user")}>
                                         <Image
                                             br="true"

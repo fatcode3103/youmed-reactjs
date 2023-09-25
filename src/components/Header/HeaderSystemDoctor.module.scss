@@ -1,0 +1,90 @@
+.header-container {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: #fff;
+    z-index: 3;
+    box-shadow: 0px 0px 1px 1px #bbb;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--height-header);
+    padding: 0 10px;
+    position: relative;
+}
+
+.img-account {
+    border: 1px solid #eee;
+}
+
+.header-logo {
+    cursor: pointer;
+}
+
+.header-logo img {
+    position: absolute;
+    width: 150px;
+    transform: translateY(-50%);
+    top: 50%;
+}
+
+.home-tippy {
+    background-color: #717171;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.icon-home-system {
+    cursor: pointer;
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translateY(-55%);
+    padding: 20px;
+
+    &:hover {
+        color: var(--primary-color);
+    }
+}
+
+.text-manage {
+    padding: 10px 26px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: all 0.2s linear;
+    margin-right: 10px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #ecf0f3;
+    }
+}
+
+//account
+.header-account {
+    margin-right: 20px;
+}
+
+.acconut-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.img-account {
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.active {
+    color: var(--primary-color);
+}

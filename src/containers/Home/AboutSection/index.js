@@ -27,11 +27,6 @@ function AboutSection() {
                         ></iframe>
                     </div>
                 </div>
-                <div className={cx("content-right")}>
-                    <div className={cx("title")}>
-                        {t("home.about_section.title_2")}
-                    </div>
-                </div>
             </div>
         </div>
     );

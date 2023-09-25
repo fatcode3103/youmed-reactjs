@@ -4,7 +4,6 @@
 
 .expert-content{
     margin: 0px 120px;
-    max-height: 500px;
 }
 
 .title{
@@ -22,46 +21,11 @@
     justify-content: space-between;
 }
 
-.content-left{
-    flex: 2;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.expert-item{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.info{
-    margin-left: 20px;
-}
-
-.info p{
-    margin: 0;
-    font-size: 16px;
-    font-weight: 400;
-}
-
-.info span{
-    opacity: 0.9;
-    font-size: 14px;
-}
-
 .content-right{
-    flex: 1;    
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: 40px;
 }
 
 .content-right p {

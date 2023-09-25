@@ -181,6 +181,10 @@ function ClinicDetail() {
                                 <p className={cx("specialty-title")}>
                                     Chuyên khoa
                                 </p>
+                                {console.log(
+                                    "check clinicById:>> ",
+                                    clinicById
+                                )}
                                 <div>
                                     {clinicById &&
                                         clinicById.specialtyData &&

@@ -45,6 +45,7 @@ function DoctorSection() {
         slidesToShow: 4,
         slidesToScroll: 1,
         arrows: false,
+        initialSlide: 0,
         customPaging: () => (
             <div className={cx("ft-slick__dots--custom")}></div>
         ),

@@ -3,6 +3,9 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { faBell, faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch } from "react-redux";
+import Modal from "react-bootstrap/Modal";
+import ButtonBootstrap from "react-bootstrap/Button";
 
 import styles from "./RenderBookingInfo.module.scss";
 import Image from "../Image";
@@ -12,6 +15,9 @@ import {
     STATUS,
 } from "../../utils/constant";
 import BufferToBase64 from "../../utils/BufferToBase64";
+import Button from "../Button";
+import { faBan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import * as actions from "../../app/actions";
 
 const cx = classNames.bind(styles);
 
@@ -20,6 +26,9 @@ function RenderBookingInfo(props) {
 
     const [iconStatus, setIconStatus] = useState("");
     const [colorIconStatus, setColorIconStatus] = useState("");
+    const [show, setShow] = useState(false);
+
+    const dispatch = useDispatch();
 
     const {
         doctorBookingData,
@@ -34,6 +43,22 @@ function RenderBookingInfo(props) {
 
     const dynamicEntity =
         doctorBookingData || hospitalBookingData || clinicBookingData;
+
+    useEffect(() => {
+        if (status === STATUS.S1) {
+            setIconStatus(faBell);
+            setColorIconStatus("#1975dc");
+        } else if (status === STATUS.S2) {
+            setIconStatus(faPenToSquare);
+            setColorIconStatus("#03b964");
+        } else if (status === STATUS.S3) {
+            setIconStatus(faCircleCheck);
+            setColorIconStatus("#03b964");
+        } else if (status === STATUS.S4) {
+            setIconStatus(faBan);
+            setColorIconStatus("#666");
+        }
+    }, [status]);
 
     const capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -106,18 +131,49 @@ function RenderBookingInfo(props) {
         return language === LANGUAGE.VN ? data.valueVi : data.valueEn;
     };
 
-    useEffect(() => {
-        if (status === STATUS.S1) {
-            setIconStatus(faBell);
-            setColorIconStatus("#1975dc");
-        } else if (status === STATUS.S2) {
-            setIconStatus(faCircleCheck);
-            setColorIconStatus("#03b964");
-        }
-    }, [status]);
+    const handleCloseConfirmCancel = () => setShow(false);
+
+    const handleShowConfirmCancel = () => {
+        renderModalConfirmCancel();
+        setShow(true);
+    };
+
+    const handleConfirmCancel = () => {
+        dispatch(actions.cancelAppointmentById(data.id, data.status));
+        setShow(false);
+    };
+
+    const handleCancelAppointment = () => {
+        handleShowConfirmCancel();
+    };
+
+    const renderModalConfirmCancel = () => {
+        return (
+            <Modal show={show} onHide={handleCloseConfirmCancel} centered>
+                <Modal.Body>
+                    Bạn chắc chắn muốn hủy lịch khám này không ?
+                </Modal.Body>
+                <Modal.Footer>
+                    <ButtonBootstrap
+                        variant="secondary"
+                        onClick={handleCloseConfirmCancel}
+                    >
+                        Hủy
+                    </ButtonBootstrap>
+                    <ButtonBootstrap
+                        variant="primary"
+                        onClick={handleConfirmCancel}
+                    >
+                        Đồng ý
+                    </ButtonBootstrap>
+                </Modal.Footer>
+            </Modal>
+        );
+    };
 
     return (
         <div className={cx("booking-info")}>
+            {renderModalConfirmCancel()}
             <div className={cx("booking-status")}>
                 <FontAwesomeIcon
                     icon={iconStatus}
@@ -198,6 +254,15 @@ function RenderBookingInfo(props) {
                     <span>Ghi chú</span>
                     <span>{note ? note : "updating..."}</span>
                 </div>
+            </div>
+            <div className={cx("btn-cancel")}>
+                <Button
+                    disnabel={status === STATUS.S3}
+                    cancel="true"
+                    onClick={() => handleCancelAppointment()}
+                >
+                    {status === STATUS.S3 ? "Đã khám xong" : "Hủy lịch khám"}
+                </Button>
             </div>
         </div>
     );

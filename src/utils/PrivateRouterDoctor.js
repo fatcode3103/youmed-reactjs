@@ -5,12 +5,12 @@ import { path } from "./constant";
 import { role } from "./constant";
 import PageLoked from "../components/PageLocked";
 
-function PrivateRoute(props) {
+function PrivateRouterDoctor(props) {
     const user = useSelector((state) => state.user);
     const { isLogin, currentUser } = user;
     let { element } = props;
     if (isLogin) {
-        return currentUser.roleId === role.ADMIN ? (
+        return currentUser.roleId === role.DOCTOR ? (
             element
         ) : (
             <div>
@@ -31,4 +31,4 @@ function PrivateRoute(props) {
     }
 }
 
-export default PrivateRoute;
+export default PrivateRouterDoctor;
