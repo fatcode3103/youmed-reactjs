@@ -74,10 +74,12 @@ function SpecialtyManage() {
             <HeaderSystem />
             <div className={cx("specialty-manage-container")}>
                 <div className={cx("specialty-manage-content")}>
-                    <h2>Quản lý chuyên khoa</h2>
+                    <h2>{t("system.specialty_manage_page.title")}</h2>
                     <div className={cx("row mt-5")}>
                         <div className={cx("specialty-name", "col-4")}>
-                            <label>Tên chuyên khoa tiếng việt</label>
+                            <label>
+                                {t("system.specialty_manage_page.input_1")}
+                            </label>
                             <input
                                 value={specialtyNameVi}
                                 type="text"
@@ -88,7 +90,9 @@ function SpecialtyManage() {
                             />
                         </div>
                         <div className={cx("specialty-name", "col-4")}>
-                            <label>Tên chuyên khoa tiếng anh</label>
+                            <label>
+                                {t("system.specialty_manage_page.input_2")}
+                            </label>
                             <input
                                 value={specialtyNameEn}
                                 type="text"
@@ -99,7 +103,9 @@ function SpecialtyManage() {
                             />
                         </div>
                         <div className={cx("specialty-img", "col-4")}>
-                            <label>Ảnh chuyên khoa</label>
+                            <label>
+                                {t("system.specialty_manage_page.input_3")}
+                            </label>
                             <input
                                 ref={inputFileRef}
                                 type="file"
@@ -109,7 +115,9 @@ function SpecialtyManage() {
                             />
                         </div>
                         <div className={cx("col-2")}>
-                            <label>Preview image</label>
+                            <label>
+                                {t("system.specialty_manage_page.input_4")}
+                            </label>
                             {previewImg && (
                                 <PhotoProvider src={previewImg}>
                                     <div className={cx("preview-img")}>
@@ -124,7 +132,7 @@ function SpecialtyManage() {
                         onClick={() => handleClickSaveSpecialty()}
                         className={cx("btn-save-specialty")}
                     >
-                        Save
+                        {t("system.specialty_manage_page.save")}
                     </Button>
                 </div>
             </div>

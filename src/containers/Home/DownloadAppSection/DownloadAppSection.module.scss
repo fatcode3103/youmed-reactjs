@@ -1,11 +1,13 @@
 .download-app-container{
     margin: 50px 0px 100px 0px;
+    width: 100%;
+    background: linear-gradient(90deg, #1975dc, #3f8ce2);
 }
 
 .download-app-content{
-    padding: 0 120px;
-    background: linear-gradient(90deg,#1975dc, #3f8ce2);
+    margin: 0 auto;
     max-height: 500px;
+    width: 80%;
     display: flex;
     justify-content: space-between;
     align-items: center;

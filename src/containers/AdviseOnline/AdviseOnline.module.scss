@@ -3,12 +3,17 @@
     background-color: #f9fafb;
 }
 
+.advise-header-wrapper{
+    width: 100%;
+    background-image: linear-gradient(230deg, #0759d8, #00c6fb);
+}
+
 .advise-header{
+    width: 80%;
+    margin: 0px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 100px;
-    background-image: linear-gradient(230deg, #0759d8, #00c6fb);
 }
 
 .advise-header-img{
@@ -82,20 +87,22 @@
     animation: radiate 0.4s ease-out infinite alternate;
 }
 
-.advise-step-wrapper{
-    margin-top: 80px;
-    padding: 50px 120px;
+.advise-step-wrapper-container{
+    width: 100%;
     background-color: #fff;
+    margin: 40px;
 }
 
 .advise-step-wrapper-title{
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .advise-step-wrapper-content{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 80%;
+    margin: 0px auto;
 }
 
 .advise-step-img{
@@ -131,13 +138,14 @@
     color: var(--primary-color);
 }
 
-.advise-health{
-    margin-top: 20px;
-    padding: 50px 120px;
+.advise-health-wrapper{
+    width: 100%;
+    background-color: #fff;
 }
 
-.advise-health-content{
-    margin-top: 30px;
+.advise-health{
+    width: 80%;
+    margin: 0px auto;
 }
 
 .advise-health-item{
@@ -147,7 +155,6 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    background-color: #fff;
 }
 
 .advise-health-item-title{
@@ -160,13 +167,17 @@
     text-align: center;
 }
 
+.care-health-wrapper{
+    width: 100%;
+    background-color: #fff;
+}
+
 .care-health{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
-    padding: 50px 120px;
-    background-color: #fff;
+    width: 80%;
+    margin: 30px auto !important;
 }
 
 .care-health-doctor span{

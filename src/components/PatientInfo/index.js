@@ -4,6 +4,7 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import styles from "./PatientInfo.module.scss";
 import images from "../../assets/image";
@@ -17,6 +18,7 @@ import * as actions from "../../app/actions";
 const cx = classNames.bind(styles);
 
 function PatientInfo() {
+    const { t } = useTranslation();
     const [isShowInfoPatient, setIsShowInfoPatient] = useState(false);
     const [isShowModal, setIsShowModal] = useState(false);
     const [refesh, setRefesh] = useState(false);
@@ -118,23 +120,23 @@ function PatientInfo() {
             {isShowInfoPatient && (
                 <div className={cx("detail-info-patient")}>
                     <div className={cx("detail-info-patient-item")}>
-                        <span>Mã bệnh nhân</span>
+                        <span>{t("booking_page.patient_key")}</span>
                         <span>YMP{userById.id}</span>
                     </div>
                     <div className={cx("detail-info-patient-item")}>
-                        <span>Họ và tên</span>
+                        <span>{t("booking_page.patient_name")}</span>
                         <span>{handleRenderUserName(userById)}</span>
                     </div>
                     <div className={cx("detail-info-patient-item")}>
-                        <span>Ngày sinh</span>
+                        <span>{t("booking_page.patient_date")}</span>
                         <span>{renderDateOfBirthPatient(userById)}</span>
                     </div>
                     <div className={cx("detail-info-patient-item")}>
-                        <span>Số điện thoại</span>
+                        <span>{t("booking_page.patient_phone")}</span>
                         <span>{userById.phoneNumber}</span>
                     </div>
                     <div className={cx("detail-info-patient-item")}>
-                        <span>Địa chỉ</span>
+                        <span>{t("booking_page.patient_address")}</span>
                         <span>{userById.address}</span>
                     </div>
                     <Button
@@ -142,7 +144,7 @@ function PatientInfo() {
                         className={cx("btn-edit-profile-patient")}
                         onClick={() => handleEditProfile()}
                     >
-                        Chỉnh sửa hồ sơ
+                        {t("booking_page.edit_profile")}
                     </Button>
                 </div>
             )}

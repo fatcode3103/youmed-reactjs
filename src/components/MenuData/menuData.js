@@ -343,17 +343,17 @@ export const menuSystemDoctor = [
 
 export const navBooking = [
     {
-        title: "Đặt khám Bác sĩ",
+        title: <Translation>{(t) => t("booking.title_doctor")}</Translation>,
         icon: images.iconDoctorBooking,
         to: path.DOCTOR_APPOINTMENT,
     },
     {
-        title: "Đặt khám Bệnh viện",
+        title: <Translation>{(t) => t("booking.title_hospital")}</Translation>,
         icon: images.iconHospitalBooking,
         to: path.HOSPITAL_APPOINTMENT,
     },
     {
-        title: "Đặt khám Phòng khám",
+        title: <Translation>{(t) => t("booking.title_clinic")}</Translation>,
         icon: images.iconClinicBooking,
         to: path.CLINIC_APPOINTMENT,
     },
@@ -361,107 +361,192 @@ export const navBooking = [
 
 export const dataEntitySearch = [
     {
-        title: "Tất cả",
+        title: <Translation>{(t) => t("search.all")}</Translation>,
         type: TYPE_SEARCH_PARAM.ALL,
     },
     {
-        title: "Bác sĩ",
+        title: <Translation>{(t) => t("search.doctor")}</Translation>,
         type: TYPE_SEARCH_PARAM.DOCTOR,
     },
     {
-        title: "Bệnh viện",
+        title: <Translation>{(t) => t("search.hospital")}</Translation>,
         type: TYPE_SEARCH_PARAM.HOSPITAL,
     },
     {
-        title: "Phòng khám",
+        title: <Translation>{(t) => t("search.clinic")}</Translation>,
         type: TYPE_SEARCH_PARAM.CLINIC,
     },
 ];
 
 export const dataStepScheduleHcp = [
     {
-        title: "Quản lý lịch khám",
+        title: (
+            <Translation>
+                {(t) => t("hcp.menu_data.schedule_manage")}
+            </Translation>
+        ),
         image: images.scheduleManage,
-        description:
-            "Lịch khám bệnh nhân được thống kê ngay trên ứng dụng. Bác sĩ dễ dàng kiểm tra bất cứ lúc nào.",
+        description: (
+            <Translation>
+                {(t) => t("hcp.menu_data.schedule_manage_des")}
+            </Translation>
+        ),
     },
     {
-        title: "Quản lý hồ sơ",
+        title: (
+            <Translation>
+                {(t) => t("hcp.menu_data.profile_manage")}
+            </Translation>
+        ),
         image: images.profileManage,
-        description:
-            "Hồ sơ bệnh nhân được lưu trữ tự động ngay trên ứng dụng. Bác sĩ dễ dàng theo dõi và tìm lại.",
+        description: (
+            <Translation>
+                {(t) => t("hcp.menu_data.profile_manage_des")}
+            </Translation>
+        ),
     },
     {
-        title: "Tư vấn trực tuyến",
+        title: (
+            <Translation>{(t) => t("hcp.menu_data.advise_online")}</Translation>
+        ),
         image: images.adviseStep2,
-        description:
-            "Tính năng tư vấn trực tuyến cho phép Bác sĩ tư vấn và thăm khám sức khỏe người bệnh từ xa.",
+        description: (
+            <Translation>
+                {(t) => t("hcp.menu_data.advise_online_des")}
+            </Translation>
+        ),
     },
     {
-        title: "Đặt khám miễn phí",
+        title: (
+            <Translation>
+                {(t) => t("hcp.menu_data.free_examination")}
+            </Translation>
+        ),
         image: images.bookingStepSchedule,
-        description:
-            "Bệnh nhân đặt khám miễn phí trên ứng dụng YouMed. Trả kết quả, đơn thuốc và nhắc tái khám.",
+        description: (
+            <Translation>
+                {(t) => t("hcp.menu_data.free_examination_des")}
+            </Translation>
+        ),
     },
 ];
 
 export const dataServiceHcp = [
     {
-        title: "Phần mềm Quản lý phòng khám",
+        title: (
+            <Translation>{(t) => t("hcp.menu_data.clinic_manage")}</Translation>
+        ),
         image: images.hcpSetting,
-        description: "Quản lý khám bệnh, lưu trữ,...",
+        description: (
+            <Translation>
+                {(t) => t("hcp.menu_data.clinic_manage_des")}
+            </Translation>
+        ),
         redirect: "#schedule-manage",
     },
     {
-        title: "Ứng dụng Quản lý lịch khám",
+        title: (
+            <Translation>
+                {(t) => t("hcp.menu_data.app_schedule_manage")}
+            </Translation>
+        ),
         image: images.hcpCalendar,
-        description: "Quản lý lịch khám, hồ sơ,...",
+        description: (
+            <Translation>
+                {(t) => t("hcp.menu_data.app_schedule_manage_des")}
+            </Translation>
+        ),
         redirect: "#clinic-manage",
     },
     {
-        title: "Nền tảng Tư vấn trực tuyến",
+        title: (
+            <Translation>
+                {(t) => t("hcp.menu_data.consulting_platform")}
+            </Translation>
+        ),
         image: images.hcpPhone,
-        description: "Chủ động thời gian, khám nhanh, kịp thời,...",
+        description: (
+            <Translation>
+                {(t) => t("hcp.menu_data.consulting_platform_des")}
+            </Translation>
+        ),
         redirect: "#advise-online",
     },
 ];
 
 export const dataAdviseStepImage = [
     {
-        title: "Bước 1: Chọn bác sĩ chuyên khoa",
+        title: (
+            <Translation>
+                {(t) => t("advise_online.menu_data.step_1")}
+            </Translation>
+        ),
         image: images.adviseStep1,
     },
     {
-        title: "Bước 2: Gọi ngay hoặc Đặt lịch tư vấn",
+        title: (
+            <Translation>
+                {(t) => t("advise_online.menu_data.step_2")}
+            </Translation>
+        ),
         image: images.adviseStep2,
     },
     {
-        title: "Bước 3: Tư vấn với bác sĩ qua video/ audio",
+        title: (
+            <Translation>
+                {(t) => t("advise_online.menu_data.step_3")}
+            </Translation>
+        ),
         image: images.adviseStep2,
     },
     {
-        title: "Bước 4: Nhận kết quả tư vấn",
+        title: (
+            <Translation>
+                {(t) => t("advise_online.menu_data.step_4")}
+            </Translation>
+        ),
         image: images.adviseStep3,
     },
 ];
 
 export const dataAdviseHeath = [
     {
-        title: "Kết nối với bác sĩ chuyên khoa 24/7",
-        description:
-            "Gọi ngay hoặc chủ động Đặt lịch tư vấn với các bác sĩ đầu ngành của YouMed.",
+        title: (
+            <Translation>
+                {(t) => t("advise_online.menu_data.health_1")}
+            </Translation>
+        ),
+        description: (
+            <Translation>
+                {(t) => t("advise_online.menu_data.health_1_des")}
+            </Translation>
+        ),
         image: images.heath1,
     },
     {
-        title: "Bảo mật thông tin",
-        description:
-            "Tuân theo đạo luật HIPAA và ứng dụng công nghệ cao, YouMed cam kết bảo mật toàn bộ thông tin cuộc tư vấn của bạn với bác sĩ.",
+        title: (
+            <Translation>
+                {(t) => t("advise_online.menu_data.health_2")}
+            </Translation>
+        ),
+        description: (
+            <Translation>
+                {(t) => t("advise_online.menu_data.health_2_des")}
+            </Translation>
+        ),
         image: images.heath2,
     },
     {
-        title: "Tiện lợi và Tiết kiệm",
-        description:
-            "Không tốn công di chuyển, không cần chờ khám. Kết nối với các bác sĩ đầu ngành chỉ với chiếc điện thoại của bạn.",
+        title: (
+            <Translation>
+                {(t) => t("advise_online.menu_data.health_3")}
+            </Translation>
+        ),
+        description: (
+            <Translation>
+                {(t) => t("advise_online.menu_data.health_3_des")}
+            </Translation>
+        ),
         image: images.heath3,
     },
 ];

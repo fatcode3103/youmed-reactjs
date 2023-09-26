@@ -29,6 +29,7 @@ import BookingSection from "../../../components/BookingSection";
 const cx = classNames.bind(styles);
 
 function DoctorDetail() {
+    const { t } = useTranslation();
     const [isShowSchedule, setIsShowSchedule] = useState(false);
     const { id } = useParams();
     const user = useSelector((state) => state.user);
@@ -155,11 +156,11 @@ function DoctorDetail() {
                                             ? detailInfoData.yearExperience
                                             : 0}
                                     </span>
-                                    <span>năm kinh nghiệm</span>
+                                    <span>{t("doctor_detail.exp")}</span>
                                 </span>
                             </p>
                             <p className={cx("specialty")}>
-                                <span>Chuyên khoa</span>
+                                <span>{t("doctor_detail.specialty")}</span>
                                 <span>
                                     {doctorById &&
                                         renderSpecialtyByLanguage(
@@ -168,7 +169,7 @@ function DoctorDetail() {
                                 </span>
                             </p>
                             <div className={cx("position")}>
-                                <span>Chức vụ</span>
+                                <span>{t("doctor_detail.position")}</span>
                                 <span>
                                     {doctorById &&
                                         !isObjectEmpty(doctorById) &&
@@ -177,7 +178,7 @@ function DoctorDetail() {
                                 </span>
                             </div>
                             <div className={cx("hospital")}>
-                                <span>Nơi công tác</span>
+                                <span>{t("doctor_detail.work_place")}</span>
                                 <div>
                                     {detailInfoData && detailInfoData.workPlace
                                         ? detailInfoData.workPlace
@@ -193,7 +194,7 @@ function DoctorDetail() {
                                     <FontAwesomeIcon
                                         icon={faCircleExclamation}
                                     />
-                                    <span>Lưu ý </span>
+                                    <span>{t("doctor_detail.note")}</span>
                                 </p>
                                 <MarkdownPreview
                                     className={cx("text-markdown")}
@@ -209,7 +210,9 @@ function DoctorDetail() {
                             className={cx("schedule-title")}
                             onClick={() => setIsShowSchedule(!isShowSchedule)}
                         >
-                            <p className={cx("section-title")}>Đặt khám</p>
+                            <p className={cx("section-title")}>
+                                {t("doctor_detail.booking")}
+                            </p>
                             {isShowSchedule ? (
                                 <FontAwesomeIcon
                                     icon={faCircleChevronUp}
@@ -233,7 +236,9 @@ function DoctorDetail() {
                         </div>
                     </div>
                     <div className={cx("introduction")}>
-                        <p className={cx("section-title")}>Giới thiệu</p>
+                        <p className={cx("section-title")}>
+                            {t("doctor_detail.intro")}
+                        </p>
                         <div>
                             <span>
                                 {doctorById &&
@@ -252,7 +257,9 @@ function DoctorDetail() {
                         </div>
                     </div>
                     <div className={cx("address-map")}>
-                        <p className={cx("section-title")}>Địa chỉ</p>
+                        <p className={cx("section-title")}>
+                            {t("doctor_detail.address")}
+                        </p>
                         {detailInfoData &&
                         detailInfoData.address &&
                         detailInfoData.addressMap ? (
@@ -266,7 +273,9 @@ function DoctorDetail() {
                         )}
                     </div>
                     <div className={cx("training")}>
-                        <p className={cx("section-title")}>Quá trình đào tạo</p>
+                        <p className={cx("section-title")}>
+                            {t("doctor_detail.training_process")}
+                        </p>
                         <div>
                             {detailInfoData && detailInfoData.traningProcess ? (
                                 <MarkdownPreview
@@ -279,7 +288,9 @@ function DoctorDetail() {
                         </div>
                     </div>
                     <div className={cx("experience")}>
-                        <p className={cx("section-title")}>Kinh nghiệm</p>
+                        <p className={cx("section-title")}>
+                            {t("doctor_detail.experience")}
+                        </p>
                         <div>
                             {detailInfoData && detailInfoData.experience ? (
                                 <MarkdownPreview
@@ -294,7 +305,7 @@ function DoctorDetail() {
                 </div>
                 <div className={cx("booking-now")}>
                     <a href="tel:19002805" target="_blank" rel="noreferrer">
-                        Hỗ trợ đặt khám
+                        {t("doctor_detail.support_appointmnet")}
                     </a>
                     <Button
                         onClick={() => handleBtnBooking()}
@@ -304,7 +315,7 @@ function DoctorDetail() {
                         normal
                         className={cx("btn-booking")}
                     >
-                        ĐẶT KHÁM NGAY
+                        {t("doctor_detail.booking_now")}
                     </Button>
                 </div>
                 <DownloadAppSection />

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
 
 import styles from "./BookingAppointmentDoctor.module.scss";
 import Header from "../../../components/Header/Header";
@@ -22,6 +23,7 @@ var _ = require("lodash");
 const cx = classNames.bind(styles);
 
 function BookingAppointment(props) {
+    const { t } = useTranslation();
     let { id } = useParams();
 
     const user = useSelector((state) => state.user);
@@ -104,7 +106,7 @@ function BookingAppointment(props) {
 
     const sectionStepData = [
         {
-            title: "Ngày và giờ khám",
+            title: t("booking.date_and_time"),
             component: BookingSection,
             data: [
                 {
@@ -116,7 +118,7 @@ function BookingAppointment(props) {
             ],
         },
         {
-            title: "Bệnh nhân",
+            title: t("booking.patient"),
             component: PatientProfile,
             data: [
                 {

@@ -182,10 +182,12 @@ function HospitalSchedule() {
             {isLoading && <Loading />}
             <HeaderSystem />
             <div className={cx("hospital-schedule-content")}>
-                <h1>Hospital schedule management</h1>
+                <h1>{t("system.hospital_manage_schedule_page.title")}</h1>
                 <div className={cx("row", "form")}>
                     <div className={cx("col-4")}>
-                        <label>Chọn bệnh viện</label>
+                        <label>
+                            {t("system.hospital_manage_schedule_page.input_1")}
+                        </label>
                         <Select
                             value={selectHospital}
                             onChange={(e) => setSelectHospital(e)}
@@ -195,7 +197,9 @@ function HospitalSchedule() {
                         />
                     </div>
                     <div className={cx("col-4", "date")}>
-                        <label>Chọn ngày</label>
+                        <label>
+                            {t("system.hospital_manage_schedule_page.input_2")}
+                        </label>
                         <DatePicker
                             minDate={new Date()}
                             showYearDropdown
@@ -243,7 +247,13 @@ function HospitalSchedule() {
                         checked={isAllTimeSelected}
                     />
                     <label>
-                        {isAllTimeSelected ? "Bỏ chọn tất cả" : "Chọn tất cả"}
+                        {isAllTimeSelected
+                            ? t(
+                                  "system.hospital_manage_schedule_page.deselect_all"
+                              )
+                            : t(
+                                  "system.hospital_manage_schedule_page.select_all"
+                              )}
                     </label>
                 </div>
                 {isDataTime ? (
@@ -252,7 +262,7 @@ function HospitalSchedule() {
                         className={cx("btn-update")}
                         onClick={() => handleUpdateDoctorSchedule()}
                     >
-                        Update
+                        {t("system.hospital_manage_schedule_page.update")}
                     </Button>
                 ) : (
                     <Button
@@ -260,7 +270,7 @@ function HospitalSchedule() {
                         className={cx("btn-save")}
                         onClick={() => handleSaveDoctorSchedule()}
                     >
-                        Save
+                        {t("system.hospital_manage_schedule_page.save")}
                     </Button>
                 )}
             </div>

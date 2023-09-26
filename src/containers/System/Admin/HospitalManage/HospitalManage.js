@@ -52,13 +52,15 @@ function HospitalManage() {
             <HeaderSystem />
             <div className={cx("hospital-manage-content")}>
                 <h2 className={cx("hospital-manage-title")}>
-                    Hospital management
+                    {t("system.hospital_manage_page.title")}
                 </h2>
                 <div className={cx("hospital-manage-body")}>
                     <div className={cx("form")}>
                         <div className={cx("row")}>
                             <div className={cx("col-4")}>
-                                <label>Tên bệnh viện</label>
+                                <label>
+                                    {t("system.hospital_manage_page.input_1")}
+                                </label>
                                 <input
                                     value={name}
                                     name="name"
@@ -68,7 +70,9 @@ function HospitalManage() {
                                 />
                             </div>
                             <div className={cx("col-4")}>
-                                <label>Địa chỉ</label>
+                                <label>
+                                    {t("system.hospital_manage_page.input_2")}
+                                </label>
                                 <input
                                     value={address}
                                     name="address"
@@ -78,7 +82,9 @@ function HospitalManage() {
                                 />
                             </div>
                             <div className={cx("col-4")}>
-                                <label>Địa chỉ google map</label>
+                                <label>
+                                    {t("system.hospital_manage_page.input_3")}
+                                </label>
                                 <input
                                     value={addressMap}
                                     name="addressMap"
@@ -90,7 +96,9 @@ function HospitalManage() {
                         </div>
                         <div className={cx("row")}>
                             <div className={cx("col-2 mt-4")}>
-                                <label>Logo</label>
+                                <label>
+                                    {t("system.hospital_manage_page.input_4")}
+                                </label>
                                 <input
                                     ref={inputLogoFileRef}
                                     type="file"
@@ -101,7 +109,9 @@ function HospitalManage() {
                                 />
                             </div>
                             <div className={cx("col-2 mt-4")}>
-                                <label>Cover image</label>
+                                <label>
+                                    {t("system.hospital_manage_page.input_5")}
+                                </label>
                                 <input
                                     ref={inputCoverImgFileRef}
                                     type="file"
@@ -118,7 +128,7 @@ function HospitalManage() {
                         onClick={() => handleSave()}
                         className={cx("btn-save")}
                     >
-                        Save
+                        {t("system.hospital_manage_page.save")}
                     </Button>
                 </div>
             </div>

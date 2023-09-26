@@ -1,6 +1,11 @@
+.search-content-wrapper{
+    width: 100%;
+}
+
 .search-content{
     padding: calc(var(--height-header) + 20px) 0px;
-    margin: 0px 180px;
+    width: 80%;
+    margin: 0px auto;
     position: relative;
 }
 

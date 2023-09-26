@@ -21,7 +21,12 @@ function Footer({ backGround }) {
             className={cx("login-footer")}
             style={{ backgroundColor: backGround }}
         >
-            <div className={cx("row form-group flex-nowrap")}>
+            <div
+                className={cx(
+                    "row form-group flex-nowrap",
+                    "login-footer-content"
+                )}
+            >
                 <div className={cx("col-3")}>
                     <p className={cx("text-uppercase fw-bolder")}>
                         {t("home.footer_section.company.title")}

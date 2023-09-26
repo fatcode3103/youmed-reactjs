@@ -41,30 +41,34 @@ function SearchPage() {
             {isLoading && <Loading />}
             <Header />
             <div className={cx("search-content")}>
-                <div className={cx("search-header")}>
-                    <SearchBar
-                        valueInput={qParam}
-                        type={type}
-                        className={cx("search-header-input")}
-                    />
-                    <div className={cx("search-footer")}>
-                        {dataEntitySearch &&
-                            dataEntitySearch.length > 0 &&
-                            dataEntitySearch.map((item, index) => {
-                                return (
-                                    <span
-                                        key={index}
-                                        className={cx({
-                                            active: isTypeActive(item.type),
-                                        })}
-                                        onClick={(e) => {
-                                            handleSelectEntityItem(item.type);
-                                        }}
-                                    >
-                                        {item.title}
-                                    </span>
-                                );
-                            })}
+                <div className={cx("search-header-wrapper")}>
+                    <div className={cx("search-header")}>
+                        <SearchBar
+                            valueInput={qParam}
+                            type={type}
+                            className={cx("search-header-input")}
+                        />
+                        <div className={cx("search-footer")}>
+                            {dataEntitySearch &&
+                                dataEntitySearch.length > 0 &&
+                                dataEntitySearch.map((item, index) => {
+                                    return (
+                                        <span
+                                            key={index}
+                                            className={cx({
+                                                active: isTypeActive(item.type),
+                                            })}
+                                            onClick={(e) => {
+                                                handleSelectEntityItem(
+                                                    item.type
+                                                );
+                                            }}
+                                        >
+                                            {item.title}
+                                        </span>
+                                    );
+                                })}
+                        </div>
                     </div>
                 </div>
                 <div className={cx("search-body")}>

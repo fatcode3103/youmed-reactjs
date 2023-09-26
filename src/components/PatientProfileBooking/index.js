@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import styles from "./PatientProfileBooking.module.scss";
 import Button from "../Button";
@@ -7,7 +8,6 @@ import { useState } from "react";
 import ModalUser from "../../containers/System/Admin/ModalUser";
 import PatientInfo from "../PatientInfo";
 import { language as LANGUAGE } from "../../utils/constant";
-import { useTranslation } from "react-i18next";
 
 var _ = require("lodash");
 
@@ -86,10 +86,10 @@ function PatientProfile(props) {
                 <PatientInfo />
                 <div className={cx("add-info")}>
                     <div className={cx("add-info-title")}>
-                        Thông tin bổ sung (không bắt buộc)
+                        {t("booking_page.booking_info")}
                     </div>
                     <div className={cx("add-info-note")}>
-                        <label>Ghi chú</label>
+                        <label>{t("booking_page.note")}</label>
                         <textarea
                             className={cx("form-control", "note")}
                             onChange={(e) => handleChangeNote(e)}
@@ -102,14 +102,14 @@ function PatientProfile(props) {
                         outline="true"
                         onClick={() => handleAddNewProfile()}
                     >
-                        Thêm hồ sơ mới
+                        {t("booking_page.add_new_profile")}
                     </Button>
                     <Button
                         className={cx("confirm-info")}
                         normal="true"
                         onClick={() => handleConfirmInfo()}
                     >
-                        Xác nhận
+                        {t("booking_page.confirm")}
                     </Button>
                 </div>
             </div>

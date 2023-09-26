@@ -1,10 +1,12 @@
 .about-container{
     margin-top: 50px;
+    width: 100%;
 }
 
 .about-content{
-    margin: 0px 120px;
+    margin: 0px auto;
     max-height: 500px;
+    width: 80%;
     display: flex;
     justify-content: space-between;
     align-items: center;

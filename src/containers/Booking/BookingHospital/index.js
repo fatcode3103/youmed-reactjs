@@ -1,12 +1,12 @@
 import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import styles from "./BookingHospital.module.scss";
 import Booking from "../index";
 import DataCatalog from "../../../components/DataCatalog";
 import * as actions from "../../../app/actions";
-import { language as LANGUAGE } from "../../../utils/constant";
 import BufferToBase64 from "../../../utils/BufferToBase64";
 
 var _ = require("lodash");
@@ -14,6 +14,7 @@ var _ = require("lodash");
 const cx = classNames.bind(styles);
 
 function BookingHospital() {
+    const { t } = useTranslation();
     const [data, setData] = useState([]);
 
     const admin = useSelector((state) => state.admin);
@@ -29,9 +30,12 @@ function BookingHospital() {
         if (allHospital && allHospital.length > 0) {
             let arr = allHospital.map((item) => {
                 return {
-                    name: item.name,
-                    address: item.address,
-                    image: BufferToBase64(item.logo.data),
+                    name: item.name ? item.name : "updating",
+                    address: item.address ? item.address : "updating...",
+                    image:
+                        item.logo &&
+                        item.logo.data &&
+                        BufferToBase64(item.logo.data),
                     link: `/booking/hospital-detail/${item.id}`,
                 };
             });
@@ -44,10 +48,8 @@ function BookingHospital() {
             <Booking>
                 <div className={cx("booking-hospital-content")}>
                     <div className={cx("booking-hospital-title")}>
-                        <p>Đặt khám trực tuyến với các Bệnh viện</p>
-                        <span>
-                            Chủ động chọn lịch hẹn - Đi khám không đợi chờ
-                        </span>
+                        <p>{t("booking.title_hospital_1")}</p>
+                        <span>{t("booking.title_hospital_2")}</span>
                     </div>
                     {data && data.length > 0 && <DataCatalog data={data} />}
                 </div>

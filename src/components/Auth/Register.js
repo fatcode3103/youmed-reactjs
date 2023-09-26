@@ -96,7 +96,7 @@ function Register({ setActiveTab }) {
             <div className={cx("register-content")}>
                 <div className={cx("row")}>
                     <div className={cx("mt-2 col-12")}>
-                        <label>Email</label>
+                        <label>{t("register.email")}</label>
                         <input
                             name="email"
                             onChange={(e) => handleOnChangeInput(e)}
@@ -110,7 +110,7 @@ function Register({ setActiveTab }) {
                         />
                     </div>
                     <div className={cx("mt-2 col-12")}>
-                        <label>Địa chỉ</label>
+                        <label>{t("register.address")}</label>
                         <input
                             onKeyDown={(e) => {
                                 handleOnKeyDown(e);
@@ -124,7 +124,7 @@ function Register({ setActiveTab }) {
                         />
                     </div>
                     <div className={cx("mt-2 col-12")}>
-                        <label>Số điện thoại</label>
+                        <label>{t("register.phone_number")}</label>
                         <input
                             onKeyDown={(e) => {
                                 handleOnKeyDown(e);
@@ -137,7 +137,7 @@ function Register({ setActiveTab }) {
                         />
                     </div>
                     <div className={cx("mt-2 col-6")}>
-                        <label>First Name</label>
+                        <label>{t("register.first_name")}</label>
                         <input
                             onKeyDown={(e) => {
                                 handleOnKeyDown(e);
@@ -151,7 +151,7 @@ function Register({ setActiveTab }) {
                         />
                     </div>
                     <div className={cx("mt-2 col-6")}>
-                        <label>Last Name</label>
+                        <label>{t("register.last_name")}</label>
                         <input
                             onKeyDown={(e) => {
                                 handleOnKeyDown(e);
@@ -165,7 +165,7 @@ function Register({ setActiveTab }) {
                         />
                     </div>
                     <div className={cx("mt-2 col-6")}>
-                        <label>Giới tính</label>
+                        <label>{t("register.gender")}</label>
                         <select
                             className={cx("form-control ")}
                             value={gender}
@@ -185,7 +185,7 @@ function Register({ setActiveTab }) {
                         </select>
                     </div>
                     <div className={cx("mt-2 col-6")}>
-                        <label>Date of birth</label>
+                        <label>{t("register.date_of_birth")}</label>
                         <DatePicker
                             dateFormat={
                                 language === LANGUAGE.VN
@@ -211,7 +211,7 @@ function Register({ setActiveTab }) {
                         />
                     </div>
                     <div className={cx("mt-2 col-12")}>
-                        <label>Mật khẩu</label>
+                        <label>{t("register.password")}</label>
                         <input
                             onKeyDown={(e) => {
                                 handleOnKeyDown(e);
@@ -225,7 +225,7 @@ function Register({ setActiveTab }) {
                     </div>
                     <div className={cx("row")}>
                         <div className={cx("mt-2 col-12")}>
-                            <label>Avatar</label>
+                            <label>{t("register.avatar")}</label>
                             <input
                                 onChange={(e) => {
                                     handleOnChangeImg(e);
@@ -255,7 +255,7 @@ function Register({ setActiveTab }) {
                     className={cx("btn-register")}
                     onClick={() => handleRegister()}
                 >
-                    Đăng ký
+                    {t("register.register_btn")}
                 </Button>
             </div>
         </div>

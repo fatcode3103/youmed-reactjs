@@ -3,8 +3,10 @@
 }
 
 .menu-acc-content {
-    padding: calc(var(--height-header) + 30px) 150px 50px 150px;
+    padding: calc(var(--height-header) + 30px) 0px 0px 0px;
+    width: 80%;
     position: relative;
+    margin: 0px auto !important;
 }
 
 .menu-bar{

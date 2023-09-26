@@ -193,7 +193,7 @@ function BookingSection(props) {
                                             {renderNumOfTimeFrame(
                                                 item.timeType
                                             )}{" "}
-                                            khung giờ
+                                            {t("booking_section.time_slot")}
                                         </p>
                                     </div>
                                 );
@@ -211,7 +211,7 @@ function BookingSection(props) {
                         icon={faCalendarXmark}
                         className={cx("icon-no-schedule")}
                     />
-                    Không có lịch khám nào !
+                    {t("booking_section.no_schedule")}
                 </div>
             )}
         </div>

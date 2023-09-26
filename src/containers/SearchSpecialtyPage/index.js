@@ -64,104 +64,107 @@ function SearchSpecilatyPage() {
         <div className={cx("search-container")}>
             {isLoading && <Loading />}
             <Header />
-            <div className={cx("search-content")}>
-                <div className={cx("row")}>
-                    <div className={cx("col-3", "sidebar")}>
-                        <div>
-                            <div
-                                className={cx("sidebar-specialty-title")}
-                                onClick={() =>
-                                    setIsShowSpecialtySelection(
-                                        !isShowSpecialtySelection
-                                    )
-                                }
-                            >
-                                <span>Chuyên khoa</span>
-                                <FontAwesomeIcon
-                                    icon={faAngleDown}
-                                    className={cx({
-                                        "icon-up": isShowSpecialtySelection,
-                                        "icon-down": !isShowSpecialtySelection,
-                                    })}
-                                />
-                            </div>
-                            <SelectCategory
-                                searchType="specialty"
-                                isShowSelection={isShowSpecialtySelection}
-                                specialtyIdParam={+selectedSpecialty}
-                                data={allSpecialty}
-                                language={language}
-                                onSelectionChange={(newSpecialty) =>
-                                    setSelectedSpecialty(newSpecialty)
-                                }
-                            />
-                        </div>
-                        <div>
-                            <div
-                                className={cx("sidebar-specialty-title")}
-                                onClick={() =>
-                                    setIsShowOtherSelection(
-                                        !isShowOtherSelection
-                                    )
-                                }
-                            >
-                                <span>Tìm kiếm khác</span>
-                                <FontAwesomeIcon
-                                    icon={faAngleDown}
-                                    className={cx({
-                                        "icon-up": isShowOtherSelection,
-                                        "icon-down": !isShowOtherSelection,
-                                    })}
-                                />
-                            </div>
-                            <SelectCategory
-                                searchType="other"
-                                isShowSelection={isShowOtherSelection}
-                                typeParam={selectedOther}
-                                data={dataEntitySearch}
-                                language={language}
-                                onSelectionChange={(newOther) =>
-                                    setSelectedOther(newOther)
-                                }
-                            />
-                        </div>
-                        <div>
-                            <Image
-                                src={images.helpDesk}
-                                className={cx("sidebar-img")}
-                            />
-                        </div>
-                    </div>
-                    <div className={cx("col-9", "search-result")}>
-                        <p className={cx("search-result-title")}>
-                            Tìm thấy
-                            <span>
-                                {searchQuerySpecialtyResult &&
-                                    searchQuerySpecialtyResult.length}
-                            </span>
-                            kết quả
-                        </p>
-                        <div className={cx("search-result-specialty-item")}>
-                            {searchQuerySpecialtyResult &&
-                            searchQuerySpecialtyResult.length > 0 ? (
-                                searchQuerySpecialtyResult.map(
-                                    (item, index) => {
-                                        return (
-                                            <DataCatalogSearch
-                                                data={item}
-                                                keyIndex={index}
-                                                language={language}
-                                            />
-                                        );
+            <divc className={cx("search-content-wrapper")}>
+                <div className={cx("search-content")}>
+                    <div className={cx("row")}>
+                        <div className={cx("col-3", "sidebar")}>
+                            <div>
+                                <div
+                                    className={cx("sidebar-specialty-title")}
+                                    onClick={() =>
+                                        setIsShowSpecialtySelection(
+                                            !isShowSpecialtySelection
+                                        )
                                     }
-                                )
-                            ) : (
-                                <NoSearchResult />
-                            )}
+                                >
+                                    <span>Chuyên khoa</span>
+                                    <FontAwesomeIcon
+                                        icon={faAngleDown}
+                                        className={cx({
+                                            "icon-up": isShowSpecialtySelection,
+                                            "icon-down":
+                                                !isShowSpecialtySelection,
+                                        })}
+                                    />
+                                </div>
+                                <SelectCategory
+                                    searchType="specialty"
+                                    isShowSelection={isShowSpecialtySelection}
+                                    specialtyIdParam={+selectedSpecialty}
+                                    data={allSpecialty}
+                                    language={language}
+                                    onSelectionChange={(newSpecialty) =>
+                                        setSelectedSpecialty(newSpecialty)
+                                    }
+                                />
+                            </div>
+                            <div>
+                                <div
+                                    className={cx("sidebar-specialty-title")}
+                                    onClick={() =>
+                                        setIsShowOtherSelection(
+                                            !isShowOtherSelection
+                                        )
+                                    }
+                                >
+                                    <span>Tìm kiếm khác</span>
+                                    <FontAwesomeIcon
+                                        icon={faAngleDown}
+                                        className={cx({
+                                            "icon-up": isShowOtherSelection,
+                                            "icon-down": !isShowOtherSelection,
+                                        })}
+                                    />
+                                </div>
+                                <SelectCategory
+                                    searchType="other"
+                                    isShowSelection={isShowOtherSelection}
+                                    typeParam={selectedOther}
+                                    data={dataEntitySearch}
+                                    language={language}
+                                    onSelectionChange={(newOther) =>
+                                        setSelectedOther(newOther)
+                                    }
+                                />
+                            </div>
+                            <div>
+                                <Image
+                                    src={images.helpDesk}
+                                    className={cx("sidebar-img")}
+                                />
+                            </div>
+                        </div>
+                        <div className={cx("col-9", "search-result")}>
+                            <p className={cx("search-result-title")}>
+                                Tìm thấy
+                                <span>
+                                    {searchQuerySpecialtyResult &&
+                                        searchQuerySpecialtyResult.length}
+                                </span>
+                                kết quả
+                            </p>
+                            <div className={cx("search-result-specialty-item")}>
+                                {searchQuerySpecialtyResult &&
+                                searchQuerySpecialtyResult.length > 0 ? (
+                                    searchQuerySpecialtyResult.map(
+                                        (item, index) => {
+                                            return (
+                                                <DataCatalogSearch
+                                                    data={item}
+                                                    keyIndex={index}
+                                                    language={language}
+                                                />
+                                            );
+                                        }
+                                    )
+                                ) : (
+                                    <NoSearchResult />
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </divc>
             <DownloadAppSection />
             <Footer />
         </div>

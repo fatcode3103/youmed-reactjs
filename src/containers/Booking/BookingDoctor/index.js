@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import styles from "./BookingDoctor.module.scss";
 import Booking from "../index";
@@ -14,6 +15,7 @@ var _ = require("lodash");
 const cx = classNames.bind(styles);
 
 function BookingDoctor() {
+    const { t } = useTranslation();
     const [data, setData] = useState([]);
 
     const user = useSelector((state) => state.user);
@@ -22,7 +24,12 @@ function BookingDoctor() {
     const { allDoctor, language } = user;
 
     const handleRenderNameDoctor = (doctor) => {
-        if (doctor && doctor.positionData) {
+        if (
+            doctor &&
+            doctor.firstName &&
+            doctor.lastName &&
+            doctor.positionData
+        ) {
             if (language === LANGUAGE.VN) {
                 return `${doctor.positionData.valueVi}, ${doctor.lastName} ${doctor.firstName}`;
             } else {
@@ -40,22 +47,28 @@ function BookingDoctor() {
             let arr = allDoctor.map((item) => {
                 return {
                     name: handleRenderNameDoctor(item),
-                    address: item.detailInfoData.workPlace,
-                    image: BufferToBase64(item.image.data),
+                    address:
+                        item.detailInfoData && item.detailInfoData.workPlace
+                            ? item.detailInfoData.workPlace
+                            : "updating...",
+                    image:
+                        item.image &&
+                        item.image.data &&
+                        BufferToBase64(item.image.data),
                     link: `/booking/doctor-detail/${item.id}`,
                 };
             });
             setData(arr);
         }
-    }, [allDoctor]);
+    }, [allDoctor, language]);
 
     return (
         <div className={cx("booking-doctor-container")}>
             <Booking>
                 <div className={cx("booking-doctor-content")}>
                     <div className={cx("booking-doctor-title")}>
-                        <p>Đặt lịch với các bác sĩ hàng đầu Việt Nam</p>
-                        <span>Đặt khám, tư vấn dễ dàng và tiện lợi hơn</span>
+                        <p>{t("booking.title_doctor_1")}</p>
+                        <span>{t("booking.title_doctor_2")}</span>
                     </div>
                     {data && data.length > 0 && <DataCatalog data={data} />}
                 </div>

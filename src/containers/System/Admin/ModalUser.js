@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import classNames from "classnames/bind";
@@ -170,7 +170,7 @@ function ModalUser(props) {
                             />
                         </div>
                         <div className={cx("col-4")}>
-                            <label>First Name</label>
+                            <label>{t("modal_user.first_name")}</label>
                             <input
                                 onChange={(e) => handleOnChangeInput(e)}
                                 value={firstName}
@@ -180,7 +180,7 @@ function ModalUser(props) {
                             />
                         </div>
                         <div className={cx("col-4")}>
-                            <label>Last Name</label>
+                            <label>{t("modal_user.last_name")}</label>
                             <input
                                 onChange={(e) => handleOnChangeInput(e)}
                                 value={lastName}
@@ -190,7 +190,7 @@ function ModalUser(props) {
                             />
                         </div>
                         <div className={cx("col-4")}>
-                            <label>Password</label>
+                            <label>{t("modal_user.password")}</label>
                             <input
                                 disabled={isData}
                                 onChange={
@@ -205,7 +205,7 @@ function ModalUser(props) {
                             />
                         </div>
                         <div className={cx("col-8")}>
-                            <label>Phone Number</label>
+                            <label>{t("modal_user.phone_number")}</label>
                             <input
                                 onChange={(e) => handleOnChangeInput(e)}
                                 value={phoneNumber}
@@ -215,7 +215,7 @@ function ModalUser(props) {
                             />
                         </div>
                         <div className={cx("col-3")}>
-                            <label>Date of birth</label>
+                            <label>{t("modal_user.date")}</label>
                             <DatePicker
                                 dateFormat={
                                     language === LANGUAGE.VN
@@ -242,7 +242,7 @@ function ModalUser(props) {
                             />
                         </div>
                         <div className={cx("col-9")}>
-                            <label>Address</label>
+                            <label>{t("modal_user.address")}</label>
                             <input
                                 onChange={(e) => handleOnChangeInput(e)}
                                 value={address}
@@ -254,7 +254,7 @@ function ModalUser(props) {
                     </div>
                     <div className={cx("row form-group mb-2")}>
                         <div className={cx("col-3")}>
-                            <label>Gender</label>
+                            <label>{t("modal_user.gender")}</label>
                             <select
                                 value={gender}
                                 name="gender"
@@ -279,7 +279,7 @@ function ModalUser(props) {
                             </select>
                         </div>
                         <div className={cx("col-3")}>
-                            <label>Position</label>
+                            <label>{t("modal_user.position")}</label>
                             <select
                                 value={position}
                                 name="position"
@@ -304,7 +304,7 @@ function ModalUser(props) {
                             </select>
                         </div>
                         <div className={cx("col-3")}>
-                            <label>Role</label>
+                            <label>{t("modal_user.role")}</label>
                             <select
                                 value={role}
                                 name="role"
@@ -334,7 +334,7 @@ function ModalUser(props) {
                             </select>
                         </div>
                         <div className={cx("col-3")}>
-                            <label>Avatar</label>
+                            <label>{t("modal_user.avatar")}</label>
                             <input
                                 onChange={(e) => {
                                     handleOnChangeImg(e);
@@ -362,7 +362,7 @@ function ModalUser(props) {
                         onClick={() => handleClose()}
                         size="xm"
                     >
-                        Close
+                        {t("modal_user.close")}
                     </Button>
                     {!isData ? (
                         <Button
@@ -370,7 +370,7 @@ function ModalUser(props) {
                             onClick={() => handleSaveUser()}
                             size="xm"
                         >
-                            Save
+                            {t("modal_user.save")}
                         </Button>
                     ) : (
                         <Button
@@ -378,7 +378,7 @@ function ModalUser(props) {
                             onClick={() => handleUpdateUser()}
                             size="xm"
                         >
-                            Update
+                            {t("modal_user.update")}
                         </Button>
                     )}
                 </Modal.Footer>

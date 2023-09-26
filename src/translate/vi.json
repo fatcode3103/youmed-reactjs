@@ -118,23 +118,120 @@
         "hospital_schedule": "Quản lý lịch khám bệnh viện",
         "form": {
             "no": "Stt",
-            "email": "Email",
+            "email": "Địa chỉ email",
             "first_name": "Tên",
-            "last_name": "Tên đệm",
+            "last_name": "Họ",
             "address": "Địa chỉ",
             "phone_number": "Số điện thoại",
             "role": "Vai trò"
         },
         "user_manage": {
-        "add_new_user": "Thêm người dùng mới",
-        "preview": "Nhấp để xem trước"
+            "add_new_user": "Thêm người dùng mới",
+            "preview": "Nhấp để xem trước"
         },
         "info": "Thông tin",
         "schedule": "Lịch khám",
         "clinic_title": "Phòng khám",
         "clinic_manage": "Quản lý phòng khám",
         "clinic_manage_detail": "Quản lý phòng khám chi tiết",
-        "clinic_schedule": "Quản lý lịch khám phòng khám"
+        "clinic_schedule": "Quản lý lịch khám phòng khám",
+        "doctor_manage_page":{
+            "title": "Quản lý thông tin bác sĩ",
+            "input_1": "Chọn bác sĩ",
+            "input_2": "Nơi làm việc",
+            "input_3": "Địa chỉ",
+            "input_4": "Địa chỉ google map",
+            "input_5": "Lưu ý",
+            "input_6": "Giới thiệu",
+            "input_7": "Quá trình đào tạo",
+            "input_8": "Kinh nghiệm",
+            "input_9": "Năm kinh nghiệm",
+            "input_10": "Chọn chuyên khoa(chỉ thêm, giữ nguyên và không xóa)",
+            "update": "Cập nhật",
+            "save": "Lưu"
+        },
+        "specialty_manage_page":{
+            "title": "Quản lý chuyên khoa",
+            "input_1": "Tên chuyên khoa tiếng việt",
+            "input_2": "Tên chuyên khoa tiếng anh",
+            "input_3": "Ảnh chuyên khoa",
+            "input_4": "Xem trước hình ảnh",
+            "save": "Lưu"
+        },
+        "hospital_manage_page":{
+            "title": "Quản lý bệnh viện",
+            "input_1": "Tên bệnh viện",
+            "input_2": "Địa chỉ",
+            "input_3": "Địa chỉ google map",
+            "input_4": "Logo",
+            "input_5": "Ảnh bìa",
+            "save": "Lưu"
+        },
+        "hospital_manage_detail_page":{
+            "title": "Quản lý bệnh viện chi tiết",
+            "input_1": "Chọn bệnh viện",
+            "input_2": "Khẩu hiệu",
+            "input_3": "Link website",
+            "input_4": "1 vài hình ảnh về bệnh viện",
+            "input_5": "Địa chỉ google map",
+            "input_6": "Tổng đài đặt khám",
+            "input_7": "Bảng giá dịch vụ",
+            "input_8": "Bảng giá hóa đơn",
+            "input_9": "Chọn chuyên khoa(chỉ thêm, giữ nguyên và không xóa)",
+            "input_10": "Giới thiệu",
+            "save": "Lưu",
+            "update": "Cập nhật"
+        },
+        "hospital_manage_schedule_page":{
+            "title": "Quản lý lịch khám bệnh viện",
+            "input_1": "Chọn bệnh viện",
+            "input_2": "Chọn ngày",
+            "deselect_all": "Bỏ chọn tất cả",
+            "select_all": "Chọn tất cả",
+            "save": "Lưu",
+            "update": "Cập nhật"
+        },
+        "manage_appointment_doctor":{
+            "title": "Quản lý lịch đặt khám",
+            "number": "Stt",
+            "patient_name": "Họ tên bệnh nhân",
+            "date": "Ngày sinh",
+            "gender": "Giới tính",
+            "address": "Địa chỉ",
+            "phone": "Số điện thoại",
+            "status": "Trạng thái",
+            "confirm": "Xác nhận khám xong",
+            "status_1": "Chưa xác nhận",
+            "status_2": "Xác nhận khám xong",
+            "status_3": "Đã khám xong",
+            "status_4": "Đã hủy"
+        },
+        "manage_clinic":{
+            "title": "Quản lý phòng khám",
+            "input_1": "Tên phòng khám",
+            "input_2": "Địa chỉ",
+            "input_3": "Logo",
+            "save": "Lưu"
+        },
+        "clinic_manage_detail_page":{
+            "title": "Quản lý phòng khám chi tiết",
+            "input_1": "Chọn phòng khám",
+            "input_2": "Địa chỉ googlemap",
+            "input_3": "1 vài hình ảnh",
+            "input_4": "Chọn chuyên khoa(chỉ thêm, giữ nguyên và không xóa)",
+            "input_5": "Giới thiệu",
+            "save": "Lưu",
+            "update": "Cập nhật"
+        },
+        "clinic_schedule_manage":{
+            "title": "Quản lý lịch khám phòng khám",
+            "input_1": "Chọn phòng khám",
+            "input_2": "Chọn ngày",
+            "deselect_all": "Bỏ chọn tất cả",
+            "select_all": "Chọn tất cả",
+            "save": "Lưu",
+            "update": "Cập nhật"
+        }
     },
     
     "toast":{
@@ -197,11 +294,34 @@
         "login": "Đăng nhập",
         "register": "Đăng ký"
     },
+    "register": {
+        "email": "Địa chỉ email",
+        "password": "Mật khẩu mới",
+        "address": "Địa chỉ cụ thể",
+        "phone_number": "Số điện thoại",
+        "first_name": "Tên",
+        "last_name": "Họ",
+        "gender": "Giới tính",
+        "date_of_birth": "Ngày sinh",
+        "avatar": "Ảnh đại diện",
+        "register_btn": "Đăng ký"
+    },
     "booking": {
         "connecting_hospital": "Bệnh viện kết nối",
         "doctor_present" : "Bác sĩ hoạt động",
         "polyclinic": "Phòng khám đa khoa",
-        "specialty": "Chuyên khoa"
+        "specialty": "Chuyên khoa",
+        "title_doctor": "Đặt lịch hẹn với bác sĩ",
+        "title_hospital": "Đặt khám trực tuyến với các Bệnh viện",
+        "title_clinic": "Đặt lịch hẹn khám tại phòng khám",
+        "title_doctor_1": "Đặt lịch với bác sĩ hàng đầu Việt Nam",
+        "title_hospital_1": "Book a hospital's appointment",
+        "title_clinic_1": "Đa dạng phòng khám",
+        "title_doctor_2": "Đặt khám, tư vấn dễ dàng và tiện lợi hơn",
+        "title_hospital_2": "Chủ động chọn lịch hẹn - Đi khám không đợi chờ",
+        "title_clinic_2": "Đặt khám dễ dàng và tiện lợi hơn với các phòng khám cùng nhiều chuyên khoa",
+        "date_and_time": "Ngày và giờ khám",
+        "patient": "Bệnh nhân"
     },
     "booking_detail": {
         "examination": "Khám",
@@ -218,5 +338,148 @@
         "dynamicEntity_time": "Giờ khám",
         "examination": "Loại hình khám",
         "dynamicEntity_datde": "Ngày khám"
+    },
+    "advise_online": {
+        "title_1": "Tư vấn sức khoẻ online - Chọn YouMed ngay!",
+        "title_2": "Chủ động video call với các bác sĩ mọi lúc, mọi nơi.",
+        "doctor_number": "bác sĩ YouMed sẵn sàng giúp đỡ bạn",
+        "download_now": "Tải ứng dụng news",
+        "title_specialty_1_first": "Có",
+        "title_specialty_1_last": "chuyên khoa tư vấn",
+        "title_specialty_2": "Kết nối với các bác sĩ đầu ngành trong các  khoa dễ dàng và tiện lợi",
+        "step": "Thao tác đơn giản với 4 bước",
+        "health_1": "Tư vấn sức khoẻ online YouMed",
+        "health_2": "Tiện ích cho mọi nhà",
+        "care_health_1": "An tâm chăm sóc sức khỏe tại nhà",
+        "care_health_2": "Kết nối bạn với các bác sĩ hàng đầu thông qua gọi video và gọi thoại trên ứng dụng YouMed",
+        "menu_data": {
+            "step_1": "Bước 1: Chọn bác sĩ chuyên khoa",
+            "step_2": "Bước 2: Gọi ngay hoặc Đặt lịch tư vấn",
+            "step_3": "Bước 3: Tư vấn với bác sĩ qua video/ audio",
+            "step_4": "Bước 4: Nhận kết quả tư vấn",
+            "health_1": "Kết nối với bác sĩ chuyên khoa 24/7",
+            "health_1_des": "Gọi ngay hoặc chủ động Đặt lịch tư vấn với các bác sĩ đầu ngành của YouMed.",
+            "health_2": "Bảo mật thông tin",
+            "health_2_des": "Tuân theo đạo luật HIPAA và ứng dụng công nghệ cao, YouMed cam kết bảo mật toàn bộ thông tin cuộc tư vấn của bạn với bác sĩ.",
+            "health_3": "Tiện lợi và Tiết kiệm",
+            "health_3_des": "Không tốn công di chuyển, không cần chờ khám. Kết nối với các bác sĩ đầu ngành chỉ với chiếc điện thoại của bạn."
+        }
+    },
+    "clinic_detail": {
+        "images": "Hình ảnh trực tiếp từ phòng khám",
+        "booking": "Đăt khám ngay",
+        "intro": "Giới thiệu",
+        "specialty": "Chuyên khoa",
+        "work_time": "Giờ làm việc"
+    },
+    "doctor_detail": {
+        "exp": "năm kinh nghiệm",
+        "booking": "Đặt khám",
+        "position": "Chức vụ",
+        "work_place": "Nơi làm việc",
+        "address": "Địa chỉ",
+        "note": "Lưu ý",
+        "intro": "Giới thiệu",
+        "specialty": "Chuyên khoa",
+        "training_process": "Quá trình đào tạo",
+        "experience": "Kinh nghiệm",
+        "support_appointmnet": "Hỗ trợ đặt khám",
+        "booking_now": "Đăt khám ngay"
+    },
+    "booking_section": {
+        "time_slot": "khung giờ",
+        "no_schedule": "Không có lịch khám nào !"
+    },
+    "hospital_detail": {
+        "price_service": "Bảng giá dịch vụ",
+        "price_bill": "Bảng giá hóa đơn",
+        "booking": "Đặt khám",
+        "intro": "Giới thiệu",
+        "specialty": "Chuyên khoa",
+        "support_switchboard_1": "Tổng đài hỗ trợ",
+        "support_switchboard_2": "Trong trường hợp bạn cần hỗ trợ thêm thông tin, vui lòng liên hệ tổng đài bên dưới để được trợ giúp.",
+        "call_medical_examination": "Tổng đài đặt khám",
+        "technical": "Hỗ trợ kỹ thuật",
+        "consultation": "Tư vấn đặt khám",
+        "work_time": "Giờ làm việc",
+        "address": "Address",
+        "favourite": "Favourite"
+    },
+    "hcp": {
+        "solutions_1": "GIẢI PHÁP CHUYỂN ĐỔI SỐ PHÒNG KHÁM",
+        "solutions_2": "YouMed HCP cung cấp giải pháp chuyển đổi số giúp bác sĩ vận hành phòng khám hiệu quả, quản lý và lưu trữ hồ sơ bệnh nhân cũng như nâng cao danh tiếng, chất lượng dịch vụ",
+        "cooperation": "Đăng ký hợp tác",
+        "app_schedule_manage": "Ứng dụng Quản lý lịch khám",
+        "consulting_platform": "Nền tảng Tư vấn trực tuyến",
+        "consulting_platform_1": "Tối ưu hóa thời gian trống",
+        "consulting_platform_2": "Giúp tiếp cận bệnh nhân từ xa nhanh chóng",
+        "consulting_platform_3": "Quản lý hồ sơ bệnh nhân",
+        "consulting_platform_4": "Tăng sự trung thành của bệnh nhân",
+        "consulting_platform_5": "Hạn chế các cuộc gọi và tin nhắn truyền thống",
+        "register_now": "Đăng ký ngay",
+        "connect_doctor": "YouMed HCP tự hào với con số kết nối tăng lên từng ngày",
+        "doctor": "Bác sĩ",
+        "clinic": "Phòng khám",
+        "hospital": "Bệnh viện",
+        "clinic_manage": "Phần mềm Quản lý phòng khám",
+        "clinic_manage_1": "Nhận bệnh theo quy trình",
+        "clinic_manage_2": "Tìm kiếm hồ sơ bệnh án",
+        "clinic_manage_3": "Quản lý tồn kho",
+        "clinic_manage_4": "Vận hành hệ thống phòng khám",
+        "clinic_manage_5": "Cam kết bảo mật thông tin",
+        "partner": "Hợp tác với YouMed HCP ngay!",
+        "contact_you": "Để lại thông tin. Chúng tôi sẽ liên hệ với bạn.",
+        "send": "Gửi",
+        "menu_data": {
+            "schedule_manage": "Quản lý lịch khám",
+            "schedule_manage_des": "Lịch khám bệnh nhân được thống kê ngay trên ứng dụng. Bác sĩ dễ dàng kiểm tra bất cứ lúc nào.",
+            "profile_manage": "Quản lý hồ sơ",
+            "profile_manage_des": "Hồ sơ bệnh nhân được lưu trữ tự động ngay trên ứng dụng. Bác sĩ dễ dàng theo dõi và tìm lại.",
+            "advise_online": "Tư vấn trực tuyến",
+            "advise_online_des": "Tính năng tư vấn trực tuyến cho phép Bác sĩ tư vấn và thăm khám sức khỏe người bệnh từ xa.",
+            "free_examination": "Đặt khám miễn phí",
+            "free_examination_des": "Bệnh nhân đặt khám miễn phí trên ứng dụng YouMed. Trả kết quả, đơn thuốc và nhắc tái khám.",
+            "clinic_manage": "Phần mềm Quản lý phòng khám",
+            "clinic_manage_des": "Quản lý khám bệnh, lưu trữ,...",
+            "app_schedule_manage": "Ứng dụng Quản lý lịch khám",
+            "app_schedule_manage_des": "Quản lý lịch khám, hồ sơ,...",
+            "consulting_platform": "Nền tảng Tư vấn trực tuyến",
+            "consulting_platform_des": "Chủ động thời gian, khám nhanh, kịp thời,..."
+        }
+    },
+    "search": {
+        "all": "Tất cả",
+        "doctor": "Bác sĩ",
+        "hospital": "Bệnh viện",
+        "clinic": "Phòng khám"
+    },
+    "booking_page": {
+        "booking_info": "Thông tin đặt khám",
+        "book": "Đặt lịch",
+        "add_info": "Thông tin bổ sung (không bắt buộc)",
+        "note": "Ghi chú",
+        "add_new_profile": "Thêm hồ sơ mới",
+        "confirm": "Xác nhận",
+        "patient_key": "Mã bệnh nhân",
+        "patient_name": "Họ và tên",
+        "patient_date": "Ngày sinh",
+        "patient_address": "Địa chỉ",
+        "patient_phone": "Số điện thoại",
+        "edit_profile": "Chỉnh sửa hồ sơ"
+    },
+    "modal_user": {
+        "first_name": "Tên",
+        "last_name": "Họ",
+        "password": "Mật khẩu",
+        "phone_number": "Số điện thoại",
+        "date": "Ngày sinh",
+        "address": "Địa chỉ",
+        "gender": "Giới tính",
+        "position": "Chức vụ",
+        "role": "Vai trò",
+        "avatar": "Ảnh đại diện",
+        "close": "Đóng",
+        "save": "Lưu",
+        "update": "Cập nhật"
     }
 }

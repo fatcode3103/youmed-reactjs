@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import styles from "./HcpPage.module.scss";
 import Header from "../../components/Header";
@@ -24,6 +25,7 @@ import {
 const cx = classNames.bind(styles);
 
 function HcpPage() {
+    const { t } = useTranslation();
     const [stepScheduleActive, setstepScheduleActive] = useState(0);
 
     const user = useSelector((state) => state.user);
@@ -85,26 +87,23 @@ function HcpPage() {
             {isLoading && <Loading />}
             <Header />
             <div className={cx("hcp-content")}>
-                <div className={cx("hcp-content-header", "row")}>
-                    <div className={cx("col-7")}>
-                        <div className={cx("hcp-content-header-title-1")}>
-                            YouMed HCP
+                <div className={cx("hcp-content-header-wrapper")}>
+                    <div className={cx("hcp-content-header", "row")}>
+                        <div className={cx("col-7")}>
+                            <div className={cx("hcp-content-header-title-1")}>
+                                YouMed HCP
+                            </div>
+                            <div className={cx("hcp-content-header-title-2")}>
+                                {t("hcp.solutions_1")}
+                            </div>
+                            <p>{t("hcp.solutions_2")}</p>
+                            <Button href="#cooperation" normal="true">
+                                {t("hcp.cooperation")}
+                            </Button>
                         </div>
-                        <div className={cx("hcp-content-header-title-2")}>
-                            GIẢI PHÁP CHUYỂN ĐỔI SỐ PHÒNG KHÁM
+                        <div className={cx("col-5")}>
+                            <Image src={images.hcpBanner} />
                         </div>
-                        <p>
-                            YouMed HCP cung cấp giải pháp chuyển đổi số giúp bác
-                            sĩ vận hành phòng khám hiệu quả, quản lý và lưu trữ
-                            hồ sơ bệnh nhân cũng như nâng cao danh tiếng, chất
-                            lượng dịch vụ
-                        </p>
-                        <Button href="#cooperation" normal="true">
-                            Đăng ký hợp tác
-                        </Button>
-                    </div>
-                    <div className={cx("col-5")}>
-                        <Image src={images.hcpBanner} />
                     </div>
                 </div>
 
@@ -137,7 +136,7 @@ function HcpPage() {
 
                 <div className={cx("schedule-manage")} id="schedule-manage">
                     <div className={cx("schedule-manage-title")}>
-                        Ứng dụng Quản lý lịch khám
+                        {t("hcp.app_schedule_manage")}
                     </div>
                     <div className={cx("schedule-manage-content", "row")}>
                         <div className={cx("col-6 px-0")}>
@@ -152,19 +151,17 @@ function HcpPage() {
                 <div className={cx("advise-online", "row")} id="advise-online">
                     <div className={cx("col-6")}>
                         <div className={cx("advise-online-title")}>
-                            Nền tảng Tư vấn trực tuyến
+                            {t("hcp.consulting_platform")}
                         </div>
                         <ul>
-                            <li>Tối ưu hóa thời gian trống</li>
-                            <li>Giúp tiếp cận bệnh nhân từ xa nhanh chóng</li>
-                            <li>Quản lý hồ sơ bệnh nhân</li>
-                            <li>Tăng sự trung thành của bệnh nhân</li>
-                            <li>
-                                Hạn chế các cuộc gọi và tin nhắn truyền thống
-                            </li>
+                            <li>{t("hcp.consulting_platform_1")}</li>
+                            <li>{t("hcp.consulting_platform_2")}</li>
+                            <li>{t("hcp.consulting_platform_3")}</li>
+                            <li>{t("hcp.consulting_platform_4")}</li>
+                            <li>{t("hcp.consulting_platform_5")}</li>
                         </ul>
                         <Button href="#cooperation" outline="true">
-                            Đăng ký ngay
+                            {t("hcp.register_now")}
                         </Button>
                     </div>
                     <div className={cx("col-6", "advise-online-image")}>
@@ -179,8 +176,7 @@ function HcpPage() {
                         </div>
                         <div className={cx("connect-doctor-text", "col-6")}>
                             <div className={cx("connect-doctor-text-title")}>
-                                YouMed HCP tự hào với con số kết nối tăng lên
-                                từng ngày
+                                {t("hcp.connect_doctor")}
                             </div>
                             <div className={cx("connect-doctor-icon-wrapper")}>
                                 <div className={cx("connect-doctor-icon-item")}>
@@ -191,7 +187,7 @@ function HcpPage() {
                                         )}
                                     />
                                     <span>{allDoctor.length}</span>
-                                    <span>Bác sĩ</span>
+                                    <span>{t("hcp.doctor")}</span>
                                 </div>
                                 <div className={cx("connect-doctor-icon-item")}>
                                     <FontAwesomeIcon
@@ -201,7 +197,7 @@ function HcpPage() {
                                         )}
                                     />
                                     <span>{allClinic.length}</span>
-                                    <span>Phòng khám</span>
+                                    <span>{t("hcp.clinic")}</span>
                                 </div>
                                 <div className={cx("connect-doctor-icon-item")}>
                                     <FontAwesomeIcon
@@ -211,7 +207,7 @@ function HcpPage() {
                                         )}
                                     />
                                     <span>{allHospital.length}</span>
-                                    <span>Bệnh viện</span>
+                                    <span>{t("hcp.hospital")}</span>
                                 </div>
                             </div>
                         </div>
@@ -224,17 +220,17 @@ function HcpPage() {
                     </div>
                     <div className={cx("clinic-manage-content", "col-7")}>
                         <div className={cx("clinic-manage-content-title")}>
-                            Phần mềm Quản lý phòng khám
+                            {t("hcp.clinic_manage")}
                         </div>
                         <ul>
-                            <li>Nhận bệnh theo quy trình</li>
-                            <li>Tìm kiếm hồ sơ bệnh án</li>
-                            <li>Quản lý tồn kho</li>
-                            <li>Vận hành hệ thống phòng khám</li>
-                            <li>Cam kết bảo mật thông tin</li>
+                            <li>{t("hcp.clinic_manage_1")}</li>
+                            <li>{t("hcp.clinic_manage_2")}</li>
+                            <li>{t("hcp.clinic_manage_3")}</li>
+                            <li>{t("hcp.clinic_manage_4")}</li>
+                            <li>{t("hcp.clinic_manage_5")}</li>
                         </ul>
                         <Button href="#cooperation" outline="true">
-                            Đăng ký ngay
+                            {t("hcp.register_now")}
                         </Button>
                     </div>
                 </div>
@@ -242,10 +238,10 @@ function HcpPage() {
                 <div className={cx("cooperation", "row")} id="cooperation">
                     <div className={cx("cooperation-text", "col-6")}>
                         <div className={cx("cooperation-text-title-1")}>
-                            Hợp tác với YouMed HCP ngay!
+                            {t("hcp.partner")}
                         </div>
                         <p className={cx("cooperation-text-title-2")}>
-                            Để lại thông tin. Chúng tôi sẽ liên hệ với bạn.
+                            {t("hcp.contact_you")}
                         </p>
                         <div className={cx("cooperation-text-form", "col-9")}>
                             <input
@@ -263,7 +259,7 @@ function HcpPage() {
                                 className={cx("form-control mb-3")}
                                 placeholder="Địa chỉ email*"
                             />
-                            <Button normal="true">Gửi</Button>
+                            <Button normal="true">{t("hcp.send")}</Button>
                         </div>
                     </div>
                     <div className={cx("col-6")}>

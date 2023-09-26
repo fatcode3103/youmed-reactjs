@@ -1,7 +1,8 @@
 import classNames from "classnames/bind";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import styles from "./ClinicDetail.module.scss";
 import Header from "../../../components/Header";
@@ -20,7 +21,9 @@ import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 const cx = classNames.bind(styles);
 
 function ClinicDetail() {
+    const { t } = useTranslation();
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const [displayedIntro, setDisplayedIntro] = useState("");
     const [isCollapsed, setIsCollapsed] = useState(false);
@@ -87,11 +90,25 @@ function ClinicDetail() {
         }
     };
 
+    const handleClickSearchSpecialty = (specialtyId) => {
+        dispatch(
+            actions.postQuerySearchSpecialtyAction({
+                specialtyId: specialtyId,
+                type: "all",
+                navigate,
+            })
+        );
+    };
+
     const renderSpecialtyByLanguage = (specialtyArr) => {
         if (specialtyArr && specialtyArr.length > 0) {
             const renderedButtons = specialtyArr.map((item, index) => {
                 return (
-                    <Button to="/" key={index}>
+                    <Button
+                        className={cx("btn-specialty-wrapper")}
+                        onClick={() => handleClickSearchSpecialty(item.id)}
+                        key={index}
+                    >
                         <span className={cx("btn-specialty")}>
                             <FontAwesomeIcon
                                 icon={faCircleCheck}
@@ -129,7 +146,7 @@ function ClinicDetail() {
                                 marginBottom: "10px",
                             }}
                         >
-                            Hình ảnh trực tiếp từ phòng khám
+                            {t("clinic_detail.images")}
                         </div>
                         <ViewImages
                             imagesArr={clinicDetailData.images}
@@ -146,14 +163,14 @@ function ClinicDetail() {
                             normal="true"
                             className={cx("btn-booking")}
                         >
-                            Đăt khám ngay
+                            {t("clinic_detail.booking")}
                         </Button>
                     </div>
                     <div className={cx("row mt-5")}>
                         <div className={cx("col-6 pe-5")}>
                             <div className={cx("introduction")}>
                                 <div className={cx("introduction-title")}>
-                                    Giới thiệu
+                                    {t("clinic_detail.intro")}
                                 </div>
                                 <div className={cx("introduction-content")}>
                                     <MarkdownPreview
@@ -179,12 +196,8 @@ function ClinicDetail() {
                             </div>
                             <div className={cx("specialty")}>
                                 <p className={cx("specialty-title")}>
-                                    Chuyên khoa
+                                    {t("clinic_detail.specialty")}
                                 </p>
-                                {console.log(
-                                    "check clinicById:>> ",
-                                    clinicById
-                                )}
                                 <div>
                                     {clinicById &&
                                         clinicById.specialtyData &&
@@ -196,7 +209,7 @@ function ClinicDetail() {
                         </div>
                         <div className={cx("schedule", "col-6")}>
                             <div className={cx("schedule-title")}>
-                                Giờ làm việc
+                                {t("clinic_detail.work_time")}
                             </div>
                             <div className={cx("schedule-content")}>
                                 <SevenDaySchedule

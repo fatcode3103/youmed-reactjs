@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import * as actions from "../../../app/actions";
 import { path } from "../../../utils/constant";
+import SearchBar from "../../../components/SearchBar";
 
 const cx = classNames.bind(styles);
 
@@ -47,14 +48,7 @@ function BookingHomeHeader() {
                     <div className={cx("title")}>{t("home.header.title")}</div>
                     <div className={cx("text")}>{t("home.header.text")}</div>
                     <div className={cx("search")}>
-                        <input
-                            type="text"
-                            placeholder={t("home.header.search")}
-                        />
-                        <FontAwesomeIcon
-                            icon={faSearch}
-                            className={cx("icon-search")}
-                        />
+                        <SearchBar autoDispatch={false} />
                     </div>
                 </div>
                 <div className={cx("footer")}>

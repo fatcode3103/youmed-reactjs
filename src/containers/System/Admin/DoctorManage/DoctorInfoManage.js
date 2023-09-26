@@ -181,11 +181,13 @@ function DoctorInfoManage() {
             {isLoading && <Loading />}
             <HeaderSystem />
             <div className={cx("doctor-manage-content")}>
-                <h1>Quản lý thông tin bác sĩ</h1>
+                <h1>{t("system.doctor_manage_page.title")}</h1>
                 <div className={cx("form")}>
                     <div className={cx("row")}>
                         <div className={cx("col-4 mt-3")}>
-                            <label>Chọn bác sĩ</label>
+                            <label>
+                                {t("system.doctor_manage_page.input_1")}
+                            </label>
                             <Select
                                 value={
                                     selectedDoctor !== null ? undefined : null
@@ -207,7 +209,9 @@ function DoctorInfoManage() {
                             />
                         </div>
                         <div className={cx("col-4 mt-3", "workPlace")}>
-                            <label>Nơi làm việc</label>
+                            <label>
+                                {t("system.doctor_manage_page.input_2")}
+                            </label>
                             <textarea
                                 rows="3"
                                 name="workPlace"
@@ -216,7 +220,9 @@ function DoctorInfoManage() {
                             ></textarea>
                         </div>
                         <div className={cx("col-4 mt-3", "address")}>
-                            <label>Địa chỉ</label>
+                            <label>
+                                {t("system.doctor_manage_page.input_3")}
+                            </label>
                             <textarea
                                 rows="3"
                                 name="address"
@@ -226,7 +232,9 @@ function DoctorInfoManage() {
                         </div>
                         {/* more info */}
                         <div className={cx("col-4 mt-3", "address-map")}>
-                            <label>Địa chỉ google map</label>
+                            <label>
+                                {t("system.doctor_manage_page.input_4")}
+                            </label>
                             <textarea
                                 rows="3"
                                 name="addressMap"
@@ -235,7 +243,9 @@ function DoctorInfoManage() {
                             ></textarea>
                         </div>
                         <div className={cx("col-8 mt-3", "note")}>
-                            <label>Lưu ý</label>
+                            <label>
+                                {t("system.doctor_manage_page.input_5")}
+                            </label>
                             <textarea
                                 rows="3"
                                 name="note"
@@ -244,7 +254,9 @@ function DoctorInfoManage() {
                             ></textarea>
                         </div>
                         <div className={cx("col-12 mt-3", "introduction")}>
-                            <label>Giới thiệu</label>
+                            <label>
+                                {t("system.doctor_manage_page.input_6")}
+                            </label>
                             <textarea
                                 rows="3"
                                 name="introduction"
@@ -253,7 +265,9 @@ function DoctorInfoManage() {
                             ></textarea>
                         </div>
                         <div className={cx("col-4 mt-3", "traning-process")}>
-                            <label>Quá trình đào tạo</label>
+                            <label>
+                                {t("system.doctor_manage_page.input_7")}
+                            </label>
                             <textarea
                                 rows="3"
                                 name="traningProcess"
@@ -262,7 +276,9 @@ function DoctorInfoManage() {
                             ></textarea>
                         </div>
                         <div className={cx("col-4 mt-3", "experience")}>
-                            <label>Kinh nghiệm</label>
+                            <label>
+                                {t("system.doctor_manage_page.input_8")}
+                            </label>
                             <textarea
                                 rows="3"
                                 name="experience"
@@ -271,7 +287,9 @@ function DoctorInfoManage() {
                             ></textarea>
                         </div>
                         <div className={cx("col-2 mt-3", "year-experience")}>
-                            <label>Năm kinh nghiệm</label>
+                            <label>
+                                {t("system.doctor_manage_page.input_9")}
+                            </label>
                             <input
                                 name="yearExperience"
                                 value={yearExperience}
@@ -280,8 +298,7 @@ function DoctorInfoManage() {
                         </div>
                         <div className={cx("col-2 mt-3")}>
                             <label>
-                                Chọn chuyên khoa(chỉ thêm, giữ nguyên và không
-                                xóa)
+                                {t("system.doctor_manage_page.input_10")}
                             </label>
                             <Select
                                 value={selectedSpecialty}
@@ -308,7 +325,7 @@ function DoctorInfoManage() {
                             onClick={() => handleUpdate()}
                             className={cx("btn-update")}
                         >
-                            Update
+                            {t("system.doctor_manage_page.update")}
                         </Button>
                     ) : (
                         <Button
@@ -316,7 +333,7 @@ function DoctorInfoManage() {
                             onClick={() => handleSave()}
                             className={cx("btn-save")}
                         >
-                            Save
+                            {t("system.doctor_manage_page.save")}
                         </Button>
                     )}
                 </div>

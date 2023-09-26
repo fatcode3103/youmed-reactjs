@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import styles from "./BookingAppointmentHospital.module.scss";
 import BookingAppoimentPage from "../../../components/BookingAppointmentPage";
@@ -8,7 +9,6 @@ import BookingSection from "../../../components/BookingSection";
 import PatientProfile from "../../../components/PatientProfileBooking";
 import Loading from "../../../components/Loading";
 import Header from "../../../components/Header/Header";
-import TypeExamination from "../../../components/TypeExamination";
 import moment from "moment";
 import { language as LANGUAGE, date } from "../../../utils/constant";
 import { useEffect } from "react";
@@ -21,6 +21,7 @@ var _ = require("lodash");
 const cx = classNames.bind(styles);
 
 function BookingAppointmentHospital() {
+    const { t } = useTranslation();
     let { id } = useParams();
 
     const user = useSelector((state) => state.user);
@@ -97,7 +98,7 @@ function BookingAppointmentHospital() {
 
     const sectionStepData = [
         {
-            title: "Ngày và giờ khám",
+            title: t("booking.date_and_time"),
             component: BookingSection,
             data: [
                 {
@@ -109,7 +110,7 @@ function BookingAppointmentHospital() {
             ],
         },
         {
-            title: "Bệnh nhân",
+            title: t("booking.patient"),
             component: PatientProfile,
             data: [
                 {

@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,6 +12,7 @@ import {
     faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import styles from "./HospitalDetail.module.scss";
 import Header from "../../../components/Header/Header";
@@ -31,7 +32,9 @@ var _ = require("lodash");
 const cx = classNames.bind(styles);
 
 function HospitalDetail() {
+    const { t } = useTranslation();
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const [displayedIntro, setDisplayedIntro] = useState("");
     const [isCollapsed, setIsCollapsed] = useState(false);
@@ -111,11 +114,25 @@ function HospitalDetail() {
         return arr;
     };
 
+    const handleClickSearchSpecialty = (specialtyId) => {
+        dispatch(
+            actions.postQuerySearchSpecialtyAction({
+                specialtyId: specialtyId,
+                type: "all",
+                navigate,
+            })
+        );
+    };
+
     const renderSpecialtyByLanguage = (specialtyArr) => {
         if (specialtyArr && specialtyArr.length > 0) {
             const renderedButtons = specialtyArr.map((item, index) => {
                 return (
-                    <Button to="/" key={index}>
+                    <Button
+                        className={cx("btn-specialty-wrapper")}
+                        onClick={() => handleClickSearchSpecialty(item.id)}
+                        key={index}
+                    >
                         <span className={cx("btn-specialty")}>
                             <FontAwesomeIcon
                                 icon={faCircleCheck}
@@ -197,7 +214,9 @@ function HospitalDetail() {
                                         className={cx("price-1")}
                                     >
                                         <FontAwesomeIcon icon={faFileLines} />
-                                        <span>Bảng giá dịch vụ</span>
+                                        <span>
+                                            {t("hospital_detail.price_service")}
+                                        </span>
                                     </Button>
                                 )}
                             {hospitalById &&
@@ -213,7 +232,9 @@ function HospitalDetail() {
                                         className={cx("price-2")}
                                     >
                                         <FontAwesomeIcon icon={faFileLines} />
-                                        <span>Bảng giá hóa đơn</span>
+                                        <span>
+                                            {t("hospital_detail.price_bill")}
+                                        </span>
                                     </Button>
                                 )}
                         </div>
@@ -225,14 +246,14 @@ function HospitalDetail() {
                                 normal="true"
                                 className={cx("btn-booking")}
                             >
-                                Đặt khám
+                                {t("hospital_detail.booking")}
                             </Button>
                         </div>
                     </div>
                     <div className={cx("info", "row mt-5")}>
                         <div className={cx("introduction", "col-6 pe-4")}>
                             <p className={cx("introduction-title")}>
-                                Giới thiệu
+                                {t("hospital_detail.intro")}
                             </p>
                             <div>
                                 <MarkdownPreview
@@ -255,7 +276,7 @@ function HospitalDetail() {
                             </div>
                             <div className={cx("specialty")}>
                                 <p className={cx("specialty-title")}>
-                                    Chuyên khoa
+                                    {t("hospital_detail.specialty")}
                                 </p>
                                 <div>
                                     {hospitalById &&
@@ -267,11 +288,11 @@ function HospitalDetail() {
                         </div>
                         <div className={cx("col-6 ps-4")}>
                             <div className={cx("switchboard-support")}>
-                                <p>Tổng đài hỗ trợ</p>
+                                <p>
+                                    {t("hospital_detail.support_switchboard_1")}
+                                </p>
                                 <span>
-                                    Trong trường hợp bạn cần hỗ trợ thêm thông
-                                    tin, vui lòng liên hệ tổng đài bên dưới để
-                                    được trợ giúp.
+                                    {t("hospital_detail.support_switchboard_2")}
                                 </span>
                                 <div className={cx("switchboard-link")}>
                                     <Button href="/">
@@ -281,7 +302,10 @@ function HospitalDetail() {
                                                 "switchboard-link-icon"
                                             )}
                                         />
-                                        Tổng đài đặt khám: 1900636223
+                                        {t(
+                                            "hospital_detail.call_medical_examination"
+                                        )}
+                                        : 1900636223
                                     </Button>
                                     <Button href="/">
                                         <FontAwesomeIcon
@@ -290,7 +314,8 @@ function HospitalDetail() {
                                                 "switchboard-link-icon"
                                             )}
                                         />
-                                        Hỗ trợ kỹ thuật: 19002805 (1.000đ/phút)
+                                        {t("hospital_detail.technical")}:
+                                        19002805 (1.000đ/phút)
                                     </Button>
 
                                     <Button href="/">
@@ -300,13 +325,13 @@ function HospitalDetail() {
                                                 "switchboard-link-icon"
                                             )}
                                         />
-                                        Tư vấn đặt khám
+                                        {t("hospital_detail.consultation")}
                                     </Button>
                                 </div>
                             </div>
                             <div className={cx("schedule")}>
                                 <p className={cx("schedule-title")}>
-                                    Giờ làm việc
+                                    {t("hospital_detail.work_time")}
                                 </p>
                                 <SevenDaySchedule
                                     startDate={1}

@@ -166,11 +166,13 @@ function ClinicManageDetail() {
         <div className={cx("clinic-detail-container")}>
             <HeaderSystem />
             <div className={cx("clinic-detail-content")}>
-                <h1>ClinicManageDetail page</h1>
+                <h1>{t("system.clinic_manage_detail_page.title")}</h1>
                 <div className={cx("form")}>
                     <div className={cx("row")}>
                         <div className={cx("col-3")}>
-                            <label>Chọn phòng khám</label>
+                            <label>
+                                {t("system.clinic_manage_detail_page.input_1")}
+                            </label>
                             <Select
                                 value={selectedClinic ? undefined : null}
                                 onChange={(e) => {
@@ -185,7 +187,9 @@ function ClinicManageDetail() {
                             />
                         </div>
                         <div className={cx("col-3")}>
-                            <label>Địa chỉ map</label>
+                            <label>
+                                {t("system.clinic_manage_detail_page.input_2")}
+                            </label>
                             <input
                                 type="text"
                                 className={cx("form-control")}
@@ -195,7 +199,9 @@ function ClinicManageDetail() {
                             />
                         </div>
                         <div className={cx("col-3")}>
-                            <label>1 vài hình ảnh</label>
+                            <label>
+                                {t("system.clinic_manage_detail_page.input_3")}
+                            </label>
                             <input
                                 ref={inputFileImg}
                                 onChange={(e) =>
@@ -210,8 +216,7 @@ function ClinicManageDetail() {
                         </div>
                         <div className={cx("col-3")}>
                             <label>
-                                Chọn chuyên khoa(chỉ thêm, giữ nguyên và không
-                                xóa)
+                                {t("system.clinic_manage_detail_page.input_4")}
                             </label>
                             <Select
                                 value={selectedSpecialty}
@@ -232,7 +237,9 @@ function ClinicManageDetail() {
                     </div>
                     <div className={cx("row mt-3")}>
                         <div className={cx("col-12")} data-color-mode="light">
-                            <label>Giới thiệu</label>
+                            <label>
+                                {t("system.clinic_manage_detail_page.input_5")}
+                            </label>
                             <MDEditor
                                 value={intro}
                                 onChange={setIntro}
@@ -247,7 +254,9 @@ function ClinicManageDetail() {
                     update={isData}
                     className={cx("btn-save")}
                 >
-                    {isData ? "Update" : "Save"}
+                    {isData
+                        ? t("system.clinic_manage_detail_page.update")
+                        : t("system.clinic_manage_detail_page.save")}
                 </Button>
             </div>
         </div>

@@ -1,5 +1,4 @@
 import classNames from "classnames/bind";
-
 import styles from "./HeaderContentDetail.module.scss";
 import Image from "../../components/Image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,12 +10,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import Button from "../../components/Button";
 import BufferToBase64 from "../../utils/BufferToBase64";
 
 const cx = classNames.bind(styles);
 
 function HeaderContentDetail(props) {
+    const { t } = useTranslation();
     const { dataInput } = props;
     const [isHeartActive, setIsHeartActive] = useState(false);
 
@@ -76,7 +78,7 @@ function HeaderContentDetail(props) {
                                     className={cx("icon-contact")}
                                     icon={faMapLocation}
                                 />
-                                <span>Địa chỉ</span>
+                                <span>{t("hospital_detail.address")}</span>
                             </Button>
                         )}
                         {dataInput && dataInput.switchboard && (
@@ -91,7 +93,10 @@ function HeaderContentDetail(props) {
                                     icon={faPhone}
                                 />
                                 <span>
-                                    Tổng đài đặt khám {dataInput.switchboard}
+                                    {t(
+                                        "hospital_detail.call_medical_examination"
+                                    )}{" "}
+                                    {dataInput.switchboard}
                                 </span>
                             </Button>
                         )}
@@ -106,7 +111,7 @@ function HeaderContentDetail(props) {
                     className={cx({ "icon-heart": isHeartActive })}
                     icon={isHeartActive ? faHeart : faHeartRegular}
                 />
-                <span>Yêu thích</span>
+                <span>{t("hospital_detail.favourite")}</span>
             </div>
         </div>
     );

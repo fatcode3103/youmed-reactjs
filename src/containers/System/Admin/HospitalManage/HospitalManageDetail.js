@@ -189,15 +189,18 @@ function HospitalManageDetail() {
 
     return (
         <div className={cx("hospital-detail-container")}>
-            {console.log("check hospitalById:>>> ", hospitalById)}
             {isLoading && <Loading />}
             <HeaderSystem />
             <div className={cx("hospital-detail-content")}>
-                <h2>HospitalManageDetail page</h2>
+                <h2>{t("system.hospital_manage_detail_page.title")}</h2>
                 <div className={cx("form")}>
                     <div className={cx("row mb-3")}>
                         <div className={cx("col-3")}>
-                            <label>Chọn bệnh viện</label>
+                            <label>
+                                {t(
+                                    "system.hospital_manage_detail_page.input_1"
+                                )}
+                            </label>
                             <Select
                                 value={selectedHospital ? undefined : null}
                                 onChange={(e) => {
@@ -212,7 +215,11 @@ function HospitalManageDetail() {
                             />
                         </div>
                         <div className={cx("col-2")}>
-                            <label>Khẩu hiệu</label>
+                            <label>
+                                {t(
+                                    "system.hospital_manage_detail_page.input_2"
+                                )}
+                            </label>
                             <input
                                 value={slogan}
                                 onChange={(e) => handleOnChangeInput(e)}
@@ -222,7 +229,11 @@ function HospitalManageDetail() {
                             />
                         </div>
                         <div className={cx("col-2")}>
-                            <label>Link web</label>
+                            <label>
+                                {t(
+                                    "system.hospital_manage_detail_page.input_3"
+                                )}
+                            </label>
                             <input
                                 value={linkWeb}
                                 onChange={(e) => handleOnChangeInput(e)}
@@ -232,7 +243,11 @@ function HospitalManageDetail() {
                             />
                         </div>
                         <div className={cx("col-2")}>
-                            <label>1 vài hình ảnh về bệnh viện</label>
+                            <label>
+                                {t(
+                                    "system.hospital_manage_detail_page.input_4"
+                                )}
+                            </label>
                             <input
                                 ref={inputFileImg}
                                 onChange={(e) =>
@@ -246,7 +261,11 @@ function HospitalManageDetail() {
                             />
                         </div>
                         <div className={cx("col-3")}>
-                            <label>Địa chỉ google map</label>
+                            <label>
+                                {t(
+                                    "system.hospital_manage_detail_page.input_5"
+                                )}
+                            </label>
                             <input
                                 value={addressMap}
                                 onChange={(e) => handleOnChangeInput(e)}
@@ -258,7 +277,11 @@ function HospitalManageDetail() {
                     </div>
                     <div className={cx("row mb-3")}>
                         <div className={cx("col-3")}>
-                            <label>Tổng đài đặt khám</label>
+                            <label>
+                                {t(
+                                    "system.hospital_manage_detail_page.input_6"
+                                )}
+                            </label>
                             <input
                                 value={switchboard}
                                 onChange={(e) => handleOnChangeInput(e)}
@@ -268,7 +291,11 @@ function HospitalManageDetail() {
                             />
                         </div>
                         <div className={cx("col-3")}>
-                            <label>Bảng giá dịch vụ</label>
+                            <label>
+                                {t(
+                                    "system.hospital_manage_detail_page.input_7"
+                                )}
+                            </label>
                             <input
                                 value={servicePrice}
                                 onChange={(e) => handleOnChangeInput(e)}
@@ -278,7 +305,11 @@ function HospitalManageDetail() {
                             />
                         </div>
                         <div className={cx("col-3")}>
-                            <label>Bảng giá hóa đơn</label>
+                            <label>
+                                {t(
+                                    "system.hospital_manage_detail_page.input_8"
+                                )}
+                            </label>
                             <input
                                 value={billPrice}
                                 onChange={(e) => handleOnChangeInput(e)}
@@ -289,8 +320,9 @@ function HospitalManageDetail() {
                         </div>
                         <div className={cx("col-3")}>
                             <label>
-                                Chọn chuyên khoa(chỉ thêm, giữ nguyên và không
-                                xóa)
+                                {t(
+                                    "system.hospital_manage_detail_page.input_9"
+                                )}
                             </label>
                             <Select
                                 value={selectedSpecialty}
@@ -311,7 +343,11 @@ function HospitalManageDetail() {
                     </div>
                     <div className={cx("row mb-3")}>
                         <div className={cx("col-12")} data-color-mode="light">
-                            <label>Giới thiệu</label>
+                            <label>
+                                {t(
+                                    "system.hospital_manage_detail_page.input_10"
+                                )}
+                            </label>
                             <MDEditor
                                 value={intro}
                                 onChange={setIntro}
@@ -326,7 +362,9 @@ function HospitalManageDetail() {
                     update={isData}
                     className={cx("btn-save")}
                 >
-                    {isData ? "Update" : "Save"}
+                    {isData
+                        ? t("system.hospital_manage_detail_page.update")
+                        : t("system.hospital_manage_detail_page.save")}
                 </Button>
             </div>
         </div>

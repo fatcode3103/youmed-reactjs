@@ -48,13 +48,15 @@ function ClinicInfoManage() {
             <HeaderSystem />
             <div className={cx("clinic-manage-content")}>
                 <h2 className={cx("clinic-manage-title")}>
-                    Hospital management
+                    {t("system.manage_clinic.title")}
                 </h2>
                 <div className={cx("clinic-manage-body")}>
                     <div className={cx("form")}>
                         <div className={cx("row")}>
                             <div className={cx("col-4")}>
-                                <label>Tên phòng khám</label>
+                                <label>
+                                    {t("system.manage_clinic.input_1")}
+                                </label>
                                 <input
                                     value={name}
                                     name="name"
@@ -64,7 +66,9 @@ function ClinicInfoManage() {
                                 />
                             </div>
                             <div className={cx("col-4")}>
-                                <label>Địa chỉ</label>
+                                <label>
+                                    {t("system.manage_clinic.input_2")}
+                                </label>
                                 <input
                                     value={address}
                                     name="address"
@@ -74,7 +78,9 @@ function ClinicInfoManage() {
                                 />
                             </div>
                             <div className={cx("col-2")}>
-                                <label>Logo</label>
+                                <label>
+                                    {t("system.manage_clinic.input_3")}
+                                </label>
                                 <input
                                     ref={inputLogoFileRef}
                                     type="file"
@@ -91,7 +97,7 @@ function ClinicInfoManage() {
                         onClick={() => handleSave()}
                         className={cx("btn-save")}
                     >
-                        Save
+                        {t("system.manage_clinic.save")}
                     </Button>
                 </div>
             </div>

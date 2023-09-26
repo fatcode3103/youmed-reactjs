@@ -1,9 +1,11 @@
 .hospital-section-container {
     margin-top: 50px;
+    width: 100%;
 }
 
 .hospital-section-content{  
-    margin: 0 120px;
+    margin: 0 auto;
+    width: 80%;
     min-height: 500px;
 }
 
@@ -31,6 +33,7 @@
     display: flex;
     align-items: center;
     padding: 6px 12px;
+    width: max-content;
 
     &:hover{
         opacity: 0.8;

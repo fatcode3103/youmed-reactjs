@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import styles from "./ManageAppointment.module.scss";
 import HeaderSystemDoctor from "../../../../components/Header/HeaderSystemDoctor";
@@ -17,6 +18,7 @@ import moment from "moment";
 const cx = classNames.bind(styles);
 
 function ManageAppointment() {
+    const { t } = useTranslation();
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
@@ -74,19 +76,19 @@ function ManageAppointment() {
         let text = "";
         switch (status) {
             case STATUS.S1:
-                text = "Chưa xác nhận";
+                text = t("system.manage_appointment_doctor.status_1");
                 break;
             case STATUS.S2:
-                text = "Xác nhận khám xong";
+                text = t("system.manage_appointment_doctor.status_2");
                 break;
             case STATUS.S3:
-                text = "Đã khám xong";
+                text = t("system.manage_appointment_doctor.status_3");
                 break;
             case STATUS.S4:
-                text = "Đã hủy";
+                text = t("system.manage_appointment_doctor.status_4");
                 break;
             default:
-                text = "missing status";
+                text = "Missing status";
         }
         return text;
     };
@@ -96,17 +98,21 @@ function ManageAppointment() {
             {isLoading && <Loading />}
             <HeaderSystemDoctor />
             <div className={cx("manage-appointmnet-content")}>
-                <div className={cx("table-title")}>Quản lý lịch đặt khám</div>
+                <div className={cx("table-title")}>
+                    {t("system.manage_appointment_doctor.title")}
+                </div>
                 <table className={cx("manage-appointmnet-table")}>
                     <tr>
-                        <th>STT</th>
-                        <th>Họ tên bệnh nhân</th>
-                        <th>Ngày sinh</th>
-                        <th>Giới tính</th>
-                        <th>Địa chỉ</th>
-                        <th>Số điện thoại</th>
-                        <th>Trạng thái</th>
-                        <th>Xác nhận khám xong</th>
+                        <th>{t("system.manage_appointment_doctor.number")}</th>
+                        <th>
+                            {t("system.manage_appointment_doctor.patient_name")}
+                        </th>
+                        <th>{t("system.manage_appointment_doctor.date")}</th>
+                        <th>{t("system.manage_appointment_doctor.gender")}</th>
+                        <th>{t("system.manage_appointment_doctor.address")}</th>
+                        <th>{t("system.manage_appointment_doctor.phone")}</th>
+                        <th>{t("system.manage_appointment_doctor.status")}</th>
+                        <th>{t("system.manage_appointment_doctor.confirm")}</th>
                     </tr>
                     {examinationAppointmentDoctorArr &&
                         examinationAppointmentDoctorArr.length > 0 &&

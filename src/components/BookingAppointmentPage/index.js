@@ -12,7 +12,6 @@ import {
     faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import Button from "../Button";
-import { language as LANGUAGE } from "../../utils/constant";
 import * as actions from "../../app/actions";
 import { useTranslation } from "react-i18next";
 
@@ -213,7 +212,7 @@ function BookingAppoimentPage(props) {
                 <div className={cx("col-4")}>
                     <div className={cx("booking-info")}>
                         <div className={cx("booking-info-title")}>
-                            <p>Thông tin đặt khám</p>
+                            <p>{t("booking_page.booking_info")}</p>
                             <hr
                                 style={{
                                     margin: "0px",
@@ -266,6 +265,9 @@ function BookingAppoimentPage(props) {
                                                             (e, indx) => {
                                                                 return (
                                                                     <span
+                                                                        className={cx(
+                                                                            "schedule-info-item-title-right"
+                                                                        )}
                                                                         key={
                                                                             indx
                                                                         }
@@ -299,7 +301,7 @@ function BookingAppoimentPage(props) {
                                 }
                                 onClick={() => handleClickBtnBooking()}
                             >
-                                Đặt lịch
+                                {t("booking_page.book")}
                             </Button>
                         </div>
                     </div>
