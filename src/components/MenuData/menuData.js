@@ -363,18 +363,26 @@ export const dataEntitySearch = [
     {
         title: <Translation>{(t) => t("search.all")}</Translation>,
         type: TYPE_SEARCH_PARAM.ALL,
+        valueVi: "Tất cả",
+        valueEn: "All",
     },
     {
         title: <Translation>{(t) => t("search.doctor")}</Translation>,
         type: TYPE_SEARCH_PARAM.DOCTOR,
+        valueVi: "Bác sĩ",
+        valueEn: "Doctor",
     },
     {
         title: <Translation>{(t) => t("search.hospital")}</Translation>,
         type: TYPE_SEARCH_PARAM.HOSPITAL,
+        valueVi: "Bệnh viện",
+        valueEn: "Hospital",
     },
     {
         title: <Translation>{(t) => t("search.clinic")}</Translation>,
         type: TYPE_SEARCH_PARAM.CLINIC,
+        valueVi: "Phòng khám",
+        valueEn: "Clinic",
     },
 ];
 

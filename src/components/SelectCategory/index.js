@@ -8,6 +8,8 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(styles);
 
+const unidecode = require("unidecode");
+
 function SelectCategory({
     searchType,
     isShowSelection,
@@ -20,6 +22,9 @@ function SelectCategory({
     const [isCheckedSpecialty, setIsCheckedSpecialty] =
         useState(specialtyIdParam);
     const [isCheckedOther, setIsCheckedOther] = useState(typeParam);
+
+    const [specialtyInput, setSpecialtyInput] = useState("");
+    const [typeInput, setTypeInput] = useState("");
 
     const renderNameByLanguage = (data) => {
         if (data && data.valueVi && data.valueEn) {
@@ -41,6 +46,27 @@ function SelectCategory({
         }
     };
 
+    const handleChangeInputType = (e) => {
+        setTypeInput(e.target.value);
+    };
+
+    const handleChangeInputSpecialty = (e) => {
+        setSpecialtyInput(e.target.value);
+    };
+
+    const renderValueByLanguage = (textObj) => {
+        return language === LANGUAGE.VN ? textObj.valueVi : textObj.valueEn;
+    };
+
+    const handleCmpText = (textList, text) => {
+        if (text === "") {
+            return true;
+        }
+        return unidecode(
+            renderValueByLanguage(textList).toLowerCase()
+        ).includes(unidecode(text.toLowerCase()));
+    };
+
     return (
         <>
             {searchType === "specialty" && (
@@ -60,6 +86,10 @@ function SelectCategory({
                                     )}
                                 />
                                 <input
+                                    onChange={(e) =>
+                                        handleChangeInputSpecialty(e)
+                                    }
+                                    value={specialtyInput}
                                     type="text"
                                     className={cx(
                                         "form-control",
@@ -73,37 +103,44 @@ function SelectCategory({
                                     data.length > 0 &&
                                     data.map((item, index) => {
                                         return (
-                                            <div
-                                                key={index}
-                                                className={cx(
-                                                    "category-selection-item"
-                                                )}
-                                                onClick={(e) =>
-                                                    handleCheckedSpecialty(
-                                                        e,
-                                                        item.id
-                                                    )
-                                                }
-                                            >
-                                                <input
-                                                    type="radio"
-                                                    id={`category-${index}`}
-                                                    onChange={() => {
-                                                        setIsCheckedSpecialty(
+                                            handleCmpText(
+                                                item,
+                                                specialtyInput
+                                            ) && (
+                                                <div
+                                                    key={index}
+                                                    className={cx(
+                                                        "category-selection-item"
+                                                    )}
+                                                    onClick={(e) =>
+                                                        handleCheckedSpecialty(
+                                                            e,
                                                             item.id
-                                                        );
-                                                    }}
-                                                    checked={
-                                                        item.id ===
-                                                        isCheckedSpecialty
+                                                        )
                                                     }
-                                                />
-                                                <label
-                                                    htmlFor={`category-${index}`}
                                                 >
-                                                    {renderNameByLanguage(item)}
-                                                </label>
-                                            </div>
+                                                    <input
+                                                        type="radio"
+                                                        id={`category-${index}`}
+                                                        onChange={() => {
+                                                            setIsCheckedSpecialty(
+                                                                item.id
+                                                            );
+                                                        }}
+                                                        checked={
+                                                            item.id ===
+                                                            isCheckedSpecialty
+                                                        }
+                                                    />
+                                                    <label
+                                                        htmlFor={`category-${index}`}
+                                                    >
+                                                        {renderNameByLanguage(
+                                                            item
+                                                        )}
+                                                    </label>
+                                                </div>
+                                            )
                                         );
                                     })}
                             </div>
@@ -128,6 +165,8 @@ function SelectCategory({
                                     )}
                                 />
                                 <input
+                                    value={typeInput}
+                                    onChange={(e) => handleChangeInputType(e)}
                                     type="text"
                                     className={cx(
                                         "form-control",
@@ -140,38 +179,43 @@ function SelectCategory({
                                 {data &&
                                     data.length > 0 &&
                                     data.map((item, index) => {
+                                        console.log(item);
                                         return (
-                                            <div
-                                                key={index}
-                                                className={cx(
-                                                    "category-selection-item"
-                                                )}
-                                                onClick={(e) =>
-                                                    handleCheckedOther(
-                                                        e,
-                                                        item.type
-                                                    )
-                                                }
-                                            >
-                                                <input
-                                                    type="radio"
-                                                    id={`category-other-${index}`}
-                                                    onChange={() => {
-                                                        setIsCheckedOther(
+                                            handleCmpText(item, typeInput) && (
+                                                <div
+                                                    key={index}
+                                                    className={cx(
+                                                        "category-selection-item"
+                                                    )}
+                                                    onClick={(e) =>
+                                                        handleCheckedOther(
+                                                            e,
                                                             item.type
-                                                        );
-                                                    }}
-                                                    checked={
-                                                        item.type ===
-                                                        isCheckedOther
+                                                        )
                                                     }
-                                                />
-                                                <label
-                                                    htmlFor={`category-other-${index}`}
                                                 >
-                                                    {renderNameByLanguage(item)}
-                                                </label>
-                                            </div>
+                                                    <input
+                                                        type="radio"
+                                                        id={`category-other-${index}`}
+                                                        onChange={() => {
+                                                            setIsCheckedOther(
+                                                                item.type
+                                                            );
+                                                        }}
+                                                        checked={
+                                                            item.type ===
+                                                            isCheckedOther
+                                                        }
+                                                    />
+                                                    <label
+                                                        htmlFor={`category-other-${index}`}
+                                                    >
+                                                        {renderNameByLanguage(
+                                                            item
+                                                        )}
+                                                    </label>
+                                                </div>
+                                            )
                                         );
                                     })}
                             </div>

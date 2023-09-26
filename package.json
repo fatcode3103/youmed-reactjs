@@ -48,6 +48,7 @@
     "remarkable": "^2.0.1",
     "sass": "^1.63.6",
     "slick-carousel": "^1.8.1",
+    "unidecode": "^0.1.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
