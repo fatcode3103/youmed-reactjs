@@ -1,7 +1,9 @@
 import axios from "axios";
 
+let url = process.env.REACT_APP_URL;
+
 const httpRequest = axios.create({
-    baseURL: "http://localhost:8000/api/",
+    baseURL: `${url}/api/`,
 });
 
 export default httpRequest;
